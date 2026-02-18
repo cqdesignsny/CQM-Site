@@ -13,8 +13,8 @@ Last updated: **February 18, 2026**
 
 ## 2) Tech Stack
 
-- Next.js `15` (App Router)
-- React `19`
+- Next.js `15.5.12` (App Router)
+- React `19.2.4`
 - TypeScript (strict mode)
 - Tailwind CSS + `class-variance-authority`
 - Radix UI primitives (Accordion, Slot)
@@ -52,6 +52,7 @@ Last updated: **February 18, 2026**
 - Repository and collaboration setup:
   - Local git repo initialized in project root
   - Remote connected and synced to GitHub (`main`)
+  - Vercel deployment active: `https://cqm-site.vercel.app`
   - README maintained as handoff source-of-truth for Cursor/Claude/other dev tools
 
 ### What is still placeholder/incomplete
@@ -216,6 +217,7 @@ Observed important info to keep aligned:
 From project root:
 
 ```bash
+cp .env.example .env.local
 npm install
 npm run dev
 ```
@@ -234,13 +236,39 @@ npm run start
 - GitHub repository: `https://github.com/cqdesignsny/CQM-Site.git`
 - Primary branch: `main`
 - This project is now a git repository and tracks `origin/main`.
+- Current deployed Vercel URL: `https://cqm-site.vercel.app`
 - Continue updating this README on each major change:
   - What changed
   - Why it changed
   - What remains
   - Any assumptions/questions requiring business confirmation
 
-## 10) Deployment Notes
+## 10) Credentials & Access Checklist
+
+- Important security rule:
+  - Do **not** store passwords, API secrets, or private keys in this README or in git-tracked files.
+  - Store secrets in local `.env.local` and in Vercel project environment variables.
+
+- Required platform access:
+  - GitHub repo access: `https://github.com/cqdesignsny/CQM-Site.git` (push rights on `main` or PR workflow)
+  - Vercel project access (deployments, domains, environment variables)
+  - Domain/DNS provider access for `creativequalitymarketing.com` cutover
+  - Google Search Console + Google Analytics access (post-launch validation)
+
+- Environment variables to configure (template in `.env.example`):
+  - `NEXT_PUBLIC_CALENDLY_URL`
+  - `NEXT_PUBLIC_GA4_ID`
+  - `NEXT_PUBLIC_META_PIXEL_ID`
+  - `NEXT_PUBLIC_TIKTOK_PIXEL_ID`
+  - `NEXT_PUBLIC_LINKEDIN_PARTNER_ID`
+
+## 11) Deployment Notes
+
+- Vercel deployment status:
+  - Live preview URL: `https://cqm-site.vercel.app`
+  - Canonical domain remains `https://creativequalitymarketing.com` (intended for final cutover)
+  - Production branch should be set to `main` in Vercel project settings.
+  - If a deployment fails on an older commit, deploy the latest `main` commit instead of redeploying the failed old commit.
 
 - Local development runs with Next.js:
   - Default: `npm run dev`
@@ -252,7 +280,7 @@ npm run start
   - `next build` may fail if `fonts.googleapis.com` is unreachable because `next/font/google` needs network access.
   - In normal connected environments this should compile successfully.
 
-## 11) SEO + AEO Audit (Snapshot)
+## 12) SEO + AEO Audit (Snapshot)
 
 Audit date: **February 18, 2026**
 
@@ -293,7 +321,7 @@ Audit date: **February 18, 2026**
 - Dedicated OG image asset still pending (currently logo fallback).
 - Validate live deployment in Google Search Console + Rich Results Test after production release.
 
-## 12) Change Log
+## 13) Change Log
 
 - **2026-02-18**
   - Added `README.md` baseline documentation.
@@ -370,3 +398,9 @@ Audit date: **February 18, 2026**
     - `@types/react-dom` -> `^19.2.3`
   - Pushed security upgrade commit:
     - `4993bb9 fix: upgrade Next.js and React to patched security versions`
+  - Pushed deployment trigger commit for Vercel after version patch:
+    - `a3fa760 chore: trigger fresh vercel deployment on patched next`
+  - Verified live deployment and endpoint checks on Vercel:
+    - `https://cqm-site.vercel.app/` -> `200`
+    - `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/.well-known/llms.txt` -> `200`
+  - Updated README with credentials/access checklist and deployment verification notes.
