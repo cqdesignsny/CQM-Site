@@ -49,6 +49,10 @@ Last updated: **February 18, 2026**
   - Studio page
   - Contact page
   - About, Work, Process, Pricing, Resources, Careers (content-filled v1)
+- Repository and collaboration setup:
+  - Local git repo initialized in project root
+  - Remote connected and synced to GitHub (`main`)
+  - README maintained as handoff source-of-truth for Cursor/Claude/other dev tools
 
 ### What is still placeholder/incomplete
 
@@ -161,6 +165,8 @@ Notes:
 - `/resources` (built)
 - `/pricing` (built)
 - `/studio` (built, booking/media integrations pending)
+- `/llms.txt` (built)
+- `/.well-known/llms.txt` (built)
 
 ## 6) Live Site Research Notes (for content alignment)
 
@@ -225,14 +231,28 @@ npm run start
 ## 9) Handoff Notes
 
 - Project root is: `/Users/cqmarketing/Dropbox/-CQ Main/CQ Cursor Site/New App`
-- This project currently appears outside a detected `.git` repository in this workspace.
+- GitHub repository: `https://github.com/cqdesignsny/CQM-Site.git`
+- Primary branch: `main`
+- This project is now a git repository and tracks `origin/main`.
 - Continue updating this README on each major change:
   - What changed
   - Why it changed
   - What remains
   - Any assumptions/questions requiring business confirmation
 
-## 10) SEO + AEO Audit (Snapshot)
+## 10) Deployment Notes
+
+- Local development runs with Next.js:
+  - Default: `npm run dev`
+  - If port `3000` is in use, run `npm run dev -- --port 3001`
+- Recent local preview URL used:
+  - `http://localhost:3001`
+
+- Production build caveat in restricted/offline environments:
+  - `next build` may fail if `fonts.googleapis.com` is unreachable because `next/font/google` needs network access.
+  - In normal connected environments this should compile successfully.
+
+## 11) SEO + AEO Audit (Snapshot)
 
 Audit date: **February 18, 2026**
 
@@ -273,7 +293,7 @@ Audit date: **February 18, 2026**
 - Dedicated OG image asset still pending (currently logo fallback).
 - Validate live deployment in Google Search Console + Rich Results Test after production release.
 
-## 11) Change Log
+## 12) Change Log
 
 - **2026-02-18**
   - Added `README.md` baseline documentation.
@@ -336,3 +356,9 @@ Audit date: **February 18, 2026**
       - `/.well-known/llms.txt`
     - Added `lib/llms.ts` as centralized LLM text source.
   - Completed code-level SEO/AEO audit and documented pass/follow-up checklist in this README.
+  - Initialized local git repository in project root and linked remote:
+    - `origin -> https://github.com/cqdesignsny/CQM-Site.git`
+  - Committed current rebuild as initial repository commit:
+    - `48f6e6d Initial rebuild: CQM site redesign with SEO and AEO`
+  - Pushed all local project files to GitHub `main` branch.
+  - Updated README to reflect current repository state, deployment notes, and current local/remote workflow.
