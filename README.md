@@ -362,3 +362,11 @@ Audit date: **February 18, 2026**
     - `48f6e6d Initial rebuild: CQM site redesign with SEO and AEO`
   - Pushed all local project files to GitHub `main` branch.
   - Updated README to reflect current repository state, deployment notes, and current local/remote workflow.
+  - Resolved Vercel security-blocked deployment by upgrading patched package versions:
+    - `next` -> `^15.5.12` (from `15.5.6`)
+    - `eslint-config-next` -> `^15.5.12`
+    - `react` / `react-dom` -> `^19.2.4`
+    - `@types/react` -> `^19.2.14`
+    - `@types/react-dom` -> `^19.2.3`
+  - Pushed security upgrade commit:
+    - `4993bb9 fix: upgrade Next.js and React to patched security versions`
