@@ -81,20 +81,23 @@ export function Header() {
           </Link>
         </div>
 
-        {/* Mobile/Tablet Menu Button — visible below xl */}
-        <button
-          type="button"
-          className="text-white xl:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-          aria-expanded={mobileMenuOpen}
-        >
-          {mobileMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
+        {/* Mobile/Tablet: Language Switcher + Hamburger — visible below xl */}
+        <div className="flex items-center gap-3 xl:hidden">
+          <LanguageSwitcher variant="compact" />
+          <button
+            type="button"
+            className="text-white"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile/Tablet Menu */}
@@ -115,9 +118,6 @@ export function Header() {
               {t(link.labelKey)}
             </Link>
           ))}
-          <div className="py-2">
-            <LanguageSwitcher />
-          </div>
           <Link
             href="/contact"
             className="block rounded-md border border-red-500 bg-red-600 px-4 py-2 text-center text-sm font-medium text-white"

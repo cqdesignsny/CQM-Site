@@ -121,7 +121,7 @@ Last updated: **February 25, 2026**
   - `useReducer` for complex state management in builder (15+ interdependent state vars)
   - JSONB service snapshots in Supabase (immune to future price changes)
   - New proposal per revision (version history, each gets its own link)
-  - Package selection auto-populates services + advances to review step
+  - Package selection auto-populates services (stays on build step so user can review before continuing)
   - API routes: `POST /api/proposals`, `POST /api/proposals/[id]/accept`, `POST /api/assessment`, `GET /api/assessment/[id]`
 
 - **n8n / Agent Readiness**:
@@ -422,6 +422,11 @@ Audit date: **February 18, 2026**
 - Validate live deployment in Google Search Console + Rich Results Test after production release.
 
 ## 13) Change Log
+
+- **2026-02-25 (Session 4)**
+  - Moved language picker next to hamburger menu on mobile — always visible without opening the menu
+  - Previously the language switcher was hidden inside the mobile dropdown menu
+  - Updated documentation and memory files
 
 - **2026-02-25 (Session 3)**
   - Site-wide CTA strategy: funnel all pages to Assessment + Proposal Builder
