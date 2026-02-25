@@ -122,6 +122,32 @@ const translations: Record<string, Record<string, string>> = {
     "assessment.solidFoundation": "Solid Foundation",
     "assessment.marketingPro": "Marketing Pro",
 
+    // Assessment inline strings (formerly ternary)
+    "assessment.evaluateTitle": "Evaluate Your Marketing",
+    "assessment.evaluateDesc": "Answer {n} questions about your current marketing. Get a personalized score and service recommendations tailored to your business.",
+    "assessment.evaluateTime": "Takes about 3-5 minutes",
+    "assessment.almostThere": "Almost There!",
+    "assessment.contactDesc": "Enter your details to see your personalized results and recommendations.",
+    "assessment.calculating": "Calculating...",
+    "assessment.question": "Question",
+    "assessment.greatJob": "Great job!",
+    "assessment.greatJobDesc": "Your marketing is in great shape. Keep doing what you're doing!",
+    "assessment.basedOnAnswers": "Based on your answers, these services can help you improve:",
+
+    // Share results
+    "share.title": "Share Results",
+    "share.copyLink": "Copy Link",
+    "share.copied": "Copied!",
+    "share.emailResults": "Email Results",
+    "share.emailPlaceholder": "Email address",
+    "share.send": "Send",
+    "share.sent": "Sent!",
+    "share.share": "Share",
+    "share.failedToSend": "Failed to send",
+    "share.networkError": "Network error",
+    "share.shareTitle": "Marketing Assessment — Score: {score}/100",
+    "share.shareText": "{name} completed a marketing assessment and scored {score}/100.",
+
     // Packages
     "package.startup": "Business Startup",
     "package.growth": "Business Growth",
@@ -252,11 +278,37 @@ const translations: Record<string, Record<string, string>> = {
     "assessment.solidFoundation": "Base S\u00F3lida",
     "assessment.marketingPro": "Profesional del Marketing",
 
+    // Assessment inline strings
+    "assessment.evaluateTitle": "Evalúe su Marketing",
+    "assessment.evaluateDesc": "Responda {n} preguntas sobre su marketing actual. Obtenga una puntuación personalizada y recomendaciones de servicios adaptadas a su negocio.",
+    "assessment.evaluateTime": "Toma aproximadamente 3-5 minutos",
+    "assessment.almostThere": "¡Casi listo!",
+    "assessment.contactDesc": "Ingrese sus datos para ver sus resultados y recomendaciones personalizadas.",
+    "assessment.calculating": "Calculando...",
+    "assessment.question": "Pregunta",
+    "assessment.greatJob": "¡Excelente trabajo!",
+    "assessment.greatJobDesc": "Su marketing está en excelente forma. ¡Siga así!",
+    "assessment.basedOnAnswers": "Según sus respuestas, estos servicios pueden ayudarle a mejorar:",
+
+    // Share results
+    "share.title": "Compartir Resultados",
+    "share.copyLink": "Copiar enlace",
+    "share.copied": "¡Copiado!",
+    "share.emailResults": "Enviar por email",
+    "share.emailPlaceholder": "Dirección de email",
+    "share.send": "Enviar",
+    "share.sent": "¡Enviado!",
+    "share.share": "Compartir",
+    "share.failedToSend": "No se pudo enviar",
+    "share.networkError": "Error de red",
+    "share.shareTitle": "Evaluación de Marketing — Puntuación: {score}/100",
+    "share.shareText": "{name} completó una evaluación de marketing y obtuvo {score}/100.",
+
     // Packages
     "package.startup": "Inicio de Negocio",
     "package.growth": "Crecimiento Empresarial",
     "package.scale": "Escala Empresarial",
-    "package.popular": "M\u00E1s Popular",
+    "package.popular": "Más Popular",
     "package.select": "Seleccionar Paquete",
     "package.custom": "Personalizado",
     "package.customDesc": "Elige exactamente los servicios que necesitas",
@@ -381,6 +433,32 @@ const translations: Record<string, Record<string, string>> = {
     "assessment.gettingThere": "En Progrès",
     "assessment.solidFoundation": "Base Solide",
     "assessment.marketingPro": "Pro du Marketing",
+
+    // Assessment inline strings
+    "assessment.evaluateTitle": "Évaluez votre Marketing",
+    "assessment.evaluateDesc": "Répondez à {n} questions sur votre marketing actuel. Obtenez un score personnalisé et des recommandations de services adaptées à votre entreprise.",
+    "assessment.evaluateTime": "Prend environ 3-5 minutes",
+    "assessment.almostThere": "Presque terminé !",
+    "assessment.contactDesc": "Entrez vos coordonnées pour voir vos résultats et recommandations personnalisés.",
+    "assessment.calculating": "Calcul en cours...",
+    "assessment.question": "Question",
+    "assessment.greatJob": "Excellent travail !",
+    "assessment.greatJobDesc": "Votre marketing est en excellente forme. Continuez comme ça !",
+    "assessment.basedOnAnswers": "D'après vos réponses, ces services peuvent vous aider à vous améliorer :",
+
+    // Share results
+    "share.title": "Partager les résultats",
+    "share.copyLink": "Copier le lien",
+    "share.copied": "Copié !",
+    "share.emailResults": "Envoyer par e-mail",
+    "share.emailPlaceholder": "Adresse e-mail",
+    "share.send": "Envoyer",
+    "share.sent": "Envoyé !",
+    "share.share": "Partager",
+    "share.failedToSend": "Échec de l'envoi",
+    "share.networkError": "Erreur réseau",
+    "share.shareTitle": "Évaluation Marketing — Score : {score}/100",
+    "share.shareText": "{name} a complété une évaluation marketing et a obtenu {score}/100.",
 
     // Packages
     "package.startup": "Lancement d'Entreprise",

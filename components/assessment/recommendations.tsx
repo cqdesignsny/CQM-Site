@@ -18,23 +18,17 @@ export function Recommendations({
   assessmentId,
   locale,
 }: Props) {
+  const pt = (key: string) => t(key, locale);
+
   if (recommendedServices.length === 0) {
     return (
       <div className="rounded-2xl border border-green-500/20 bg-green-500/5 p-8 text-center">
         <Check className="mx-auto mb-3 h-8 w-8 text-green-400" />
         <h3 className="text-lg font-semibold text-white">
-          {locale === "es"
-            ? "\u00A1Excelente trabajo!"
-            : locale === "fr"
-              ? "Excellent travail !"
-              : "Great job!"}
+          {pt("assessment.greatJob")}
         </h3>
         <p className="mt-2 text-sm text-white/50">
-          {locale === "es"
-            ? "Su marketing est\u00E1 en excelente forma. Cont\u00E1ctenos si desea llevar las cosas al siguiente nivel."
-            : locale === "fr"
-              ? "Votre marketing est en excellente forme. Contactez-nous si vous souhaitez passer au niveau sup\u00E9rieur."
-              : "Your marketing is in great shape. Contact us if you want to take things to the next level."}
+          {pt("assessment.greatJobDesc")}
         </p>
       </div>
     );
@@ -44,14 +38,10 @@ export function Recommendations({
     <div>
       <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
         <h3 className="mb-2 text-base font-semibold text-white">
-          {t("assessment.recommendations", locale)}
+          {pt("assessment.recommendations")}
         </h3>
         <p className="mb-5 text-xs text-white/40">
-          {locale === "es"
-            ? "Basado en sus respuestas, estos servicios pueden ayudarle a mejorar."
-            : locale === "fr"
-              ? "Sur la base de vos r\u00E9ponses, ces services peuvent vous aider \u00E0 vous am\u00E9liorer."
-              : "Based on your answers, these services can help you improve."}
+          {pt("assessment.basedOnAnswers")}
         </p>
 
         <div className="space-y-3">
@@ -79,7 +69,7 @@ export function Recommendations({
                       : formatCurrency(service.price)}
                   </p>
                   <p className="text-[10px] text-white/30">
-                    {t(`billing.${service.billing}`, locale)}
+                    {pt(`billing.${service.billing}`)}
                   </p>
                 </div>
               </div>
@@ -94,7 +84,7 @@ export function Recommendations({
           href={`/proposals?from=assessment&id=${assessmentId}&services=${recommendedServices.join(",")}`}
           className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-700"
         >
-          {t("assessment.buildPackage", locale)}
+          {pt("assessment.buildPackage")}
           <ArrowRight className="h-4 w-4" />
         </Link>
       </div>

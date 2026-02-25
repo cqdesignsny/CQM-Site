@@ -777,6 +777,7 @@ export const PACKAGES: PackageInfo[] = [
       "Configuration SEO de Base",
       "3 Publications sur les Réseaux Sociaux",
     ],
+    serviceIds: ["brand-audit", "landing-page", "social-1-platform", "seo-audit", "static-post"],
   },
   {
     id: "growth",
@@ -814,6 +815,10 @@ export const PACKAGES: PackageInfo[] = [
       "Séquence Email Marketing (3 Emails)",
       "Configuration et Gestion de Campagnes Publicitaires",
       "Appel Stratégique Mensuel",
+    ],
+    serviceIds: [
+      "brand-audit", "landing-page", "social-1-platform", "seo-audit", "static-post",
+      "website-1-3-wordpress", "additional-platform", "email-sequence", "ad-management", "monthly-advisory",
     ],
   },
   {
@@ -854,6 +859,11 @@ export const PACKAGES: PackageInfo[] = [
       "SEO Avancé et Création de Liens",
       "Configuration Complète Automatisation et CRM",
       "Réunions de Progrès Hebdomadaires",
+    ],
+    serviceIds: [
+      "brand-audit", "landing-page", "social-1-platform", "seo-audit", "static-post",
+      "website-1-3-wordpress", "additional-platform", "email-sequence", "ad-management", "monthly-advisory",
+      "shopify-setup", "brand-video", "blog-writing", "ongoing-seo", "ai-automation",
     ],
   },
 ];

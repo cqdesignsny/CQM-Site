@@ -12,32 +12,32 @@ export function AboutContent() {
   const leadership = [
     {
       name: "Cesar Q.",
-      roleKey: "Founder & CEO",
-      summaryKey: "Digital marketer, branding strategist, web designer/developer, and growth-focused campaign leader.",
+      roleKey: "about.team.cesar.role",
+      summaryKey: "about.team.cesar.summary",
       image: "https://creativequalitymarketing.com/wp-content/uploads/2022/07/cez-480x480.jpg",
     },
     {
       name: "Laura B.",
-      roleKey: "Co-Founder & COO",
-      summaryKey: "Leads strategy execution across social, paid ads, content, and email marketing workflows.",
+      roleKey: "about.team.laura.role",
+      summaryKey: "about.team.laura.summary",
       image: "https://creativequalitymarketing.com/wp-content/uploads/2021/03/laura-480x480.jpg",
     },
     {
       name: "Kevin Page",
-      roleKey: "Photo & Video Producer",
-      summaryKey: "Videographer, photographer, editor, and animator driving high-quality media production.",
+      roleKey: "about.team.kevin.role",
+      summaryKey: "about.team.kevin.summary",
       image: "https://creativequalitymarketing.com/wp-content/uploads/2021/03/kevin-480x480.jpg",
     },
     {
       name: "Dennis Rodriguez",
-      roleKey: "AI & Web Developer",
-      summaryKey: "Designer/developer focused on AI-enabled systems, web builds, and execution support.",
+      roleKey: "about.team.dennis.role",
+      summaryKey: "about.team.dennis.summary",
       image: "https://creativequalitymarketing.com/wp-content/uploads/2024/03/Dennis-Headshot-480x480.png",
     },
     {
       name: "Broly",
-      roleKey: "Chief Play Officer",
-      summaryKey: "Happiness manager, morale booster, and the most important member of the culture team.",
+      roleKey: "about.team.broly.role",
+      summaryKey: "about.team.broly.summary",
       image: "https://creativequalitymarketing.com/wp-content/uploads/2021/03/broly-480x480.jpg",
     },
   ];
@@ -88,8 +88,8 @@ export function AboutContent() {
                   />
                 </div>
                 <h3 className="text-lg font-semibold">{member.name}</h3>
-                <p className="mb-2 text-sm font-medium text-primary">{member.roleKey}</p>
-                <p className="text-sm text-muted-foreground">{member.summaryKey}</p>
+                <p className="mb-2 text-sm font-medium text-primary">{t(member.roleKey)}</p>
+                <p className="text-sm text-muted-foreground">{t(member.summaryKey)}</p>
               </article>
             ))}
           </div>

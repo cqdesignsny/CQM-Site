@@ -13,44 +13,44 @@ export function WorkContent() {
     {
       name: "Advanced Skin Medspa",
       logo: "/images/asm.webp",
-      focus: "Brand visibility and lead generation",
-      services: ["Website updates", "Local SEO", "Social content"],
-      impact: "Created a clearer online presence and a stronger patient acquisition flow.",
+      focusKey: "work.spot.asm.focus",
+      serviceKeys: ["work.spot.asm.s1", "work.spot.asm.s2", "work.spot.asm.s3"],
+      impactKey: "work.spot.asm.impact",
     },
     {
       name: "SaGrah Beauty",
       logo: "/images/sagrah-beauty.webp",
-      focus: "E-commerce growth and content consistency",
-      services: ["Website support", "Email campaigns", "Creative production"],
-      impact: "Built a more consistent launch cadence with better conversion-focused content.",
+      focusKey: "work.spot.sagrah.focus",
+      serviceKeys: ["work.spot.sagrah.s1", "work.spot.sagrah.s2", "work.spot.sagrah.s3"],
+      impactKey: "work.spot.sagrah.impact",
     },
     {
       name: "Urban Flooring",
       logo: "/images/urban-flooring.webp",
-      focus: "Local demand capture",
-      services: ["SEO support", "Paid search", "Landing page optimization"],
-      impact: "Improved visibility for high-intent local searches and quote requests.",
+      focusKey: "work.spot.urban.focus",
+      serviceKeys: ["work.spot.urban.s1", "work.spot.urban.s2", "work.spot.urban.s3"],
+      impactKey: "work.spot.urban.impact",
     },
     {
       name: "Hudson Valley Podcasting",
       logo: "/images/hvp.webp",
-      focus: "Media production and audience growth",
-      services: ["Studio production", "Video edits", "Distribution workflows"],
-      impact: "Expanded content output and streamlined publishing across major channels.",
+      focusKey: "work.spot.hvp.focus",
+      serviceKeys: ["work.spot.hvp.s1", "work.spot.hvp.s2", "work.spot.hvp.s3"],
+      impactKey: "work.spot.hvp.impact",
     },
     {
       name: "Mark Viera",
       logo: "/images/markviera.webp",
-      focus: "Brand storytelling and campaign content",
-      services: ["Photography", "Video production", "Social campaign assets"],
-      impact: "Delivered reusable media assets for ongoing audience engagement.",
+      focusKey: "work.spot.mark.focus",
+      serviceKeys: ["work.spot.mark.s1", "work.spot.mark.s2", "work.spot.mark.s3"],
+      impactKey: "work.spot.mark.impact",
     },
     {
       name: "Wrecktified",
       logo: "/images/wrecktified.webp",
-      focus: "Performance-focused digital presence",
-      services: ["Website support", "Paid ads", "Content strategy"],
-      impact: "Improved campaign clarity with a stronger conversion path for prospects.",
+      focusKey: "work.spot.wreck.focus",
+      serviceKeys: ["work.spot.wreck.s1", "work.spot.wreck.s2", "work.spot.wreck.s3"],
+      impactKey: "work.spot.wreck.impact",
     },
   ];
 
@@ -95,22 +95,22 @@ export function WorkContent() {
                 />
                 <div>
                   <h2 className="text-xl font-semibold">{client.name}</h2>
-                  <p className="text-sm text-primary">{client.focus}</p>
+                  <p className="text-sm text-primary">{t(client.focusKey)}</p>
                 </div>
               </div>
 
               <ul className="mb-4 flex flex-wrap gap-2">
-                {client.services.map((service) => (
+                {client.serviceKeys.map((key) => (
                   <li
-                    key={service}
+                    key={key}
                     className="rounded-full border bg-muted/40 px-3 py-1 text-xs font-medium"
                   >
-                    {service}
+                    {t(key)}
                   </li>
                 ))}
               </ul>
 
-              <p className="text-sm text-muted-foreground">{client.impact}</p>
+              <p className="text-sm text-muted-foreground">{t(client.impactKey)}</p>
             </Link>
           ))}
         </section>

@@ -25,56 +25,56 @@ export function ServicesContent() {
       titleKey: "service.web",
       descKey: "services.web.desc",
       href: "/services/web",
-      features: ["Custom Design", "Responsive Development", "CMS Integration"],
+      featureKeys: ["services.feat.web.1", "services.feat.web.2", "services.feat.web.3"],
     },
     {
       icon: Search,
       titleKey: "service.seo",
       descKey: "services.seo.desc",
       href: "/services/seo",
-      features: ["Keyword Research", "Technical SEO", "Content Strategy"],
+      featureKeys: ["services.feat.seo.1", "services.feat.seo.2", "services.feat.seo.3"],
     },
     {
       icon: TrendingUp,
       titleKey: "service.paidAds",
       descKey: "services.paidAds.desc",
       href: "/services/paid-ads",
-      features: ["Google Ads", "Meta Ads", "LinkedIn Ads"],
+      featureKeys: ["services.feat.ads.1", "services.feat.ads.2", "services.feat.ads.3"],
     },
     {
       icon: Share2,
       titleKey: "service.socialMedia",
       descKey: "services.socialMedia.desc",
       href: "/services/social-media",
-      features: ["Content Creation", "Community Management", "Analytics"],
+      featureKeys: ["services.feat.social.1", "services.feat.social.2", "services.feat.social.3"],
     },
     {
       icon: Mail,
       titleKey: "service.emailMarketing",
       descKey: "services.emailMarketing.desc",
       href: "/services/email-marketing",
-      features: ["Automation", "Segmentation", "A/B Testing"],
+      featureKeys: ["services.feat.email.1", "services.feat.email.2", "services.feat.email.3"],
     },
     {
       icon: Bot,
       titleKey: "services.aiDev.title",
       descKey: "services.aiDev.desc",
       href: "/services/ai-development",
-      features: ["Workflow Automation", "Prompt Systems", "AI Tooling"],
+      featureKeys: ["services.feat.aiDev.1", "services.feat.aiDev.2", "services.feat.aiDev.3"],
     },
     {
       icon: Workflow,
       titleKey: "services.aiInt.title",
       descKey: "services.aiInt.desc",
       href: "/services/ai-integration",
-      features: ["Agent Setup", "System Integration", "Team Enablement"],
+      featureKeys: ["services.feat.aiInt.1", "services.feat.aiInt.2", "services.feat.aiInt.3"],
     },
     {
       icon: Video,
       titleKey: "service.video",
       descKey: "services.video.desc",
       href: "/services/video",
-      features: ["Scripting", "Filming", "Editing"],
+      featureKeys: ["services.feat.video.1", "services.feat.video.2", "services.feat.video.3"],
     },
   ];
 
@@ -131,10 +131,10 @@ export function ServicesContent() {
                 <h2 className="mb-2 text-2xl font-semibold">{t(service.titleKey)}</h2>
                 <p className="mb-4 text-muted-foreground">{t(service.descKey)}</p>
                 <ul className="mb-6 space-y-2 text-sm">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2">
+                  {service.featureKeys.map((key) => (
+                    <li key={key} className="flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      {feature}
+                      {t(key)}
                     </li>
                   ))}
                 </ul>

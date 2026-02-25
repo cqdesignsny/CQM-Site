@@ -6,10 +6,10 @@ import {
   calculateOverallScore,
   getRecommendedServices,
 } from "@/lib/assessment/scoring";
-import type { AssessmentAnswer } from "@/lib/proposals/types";
+import type { AssessmentAnswer, Locale } from "@/lib/proposals/types";
 
 interface AssessmentBody {
-  locale: "en" | "es";
+  locale: Locale;
   contact: { name: string; email: string; phone: string };
   answers: AssessmentAnswer[];
 }

@@ -6,7 +6,7 @@ import {
   initialState,
 } from "@/lib/proposals/reducer";
 import { calculateAllTotals } from "@/lib/proposals/calculations";
-import { t } from "@/lib/proposals/translations";
+import { useProposalLocale } from "@/lib/i18n/use-proposal-locale";
 import { SERVICES } from "@/lib/proposals/services-data";
 import { PackageSelector } from "./package-selector";
 import { CategoryTabs } from "./category-tabs";
@@ -16,7 +16,6 @@ import { DiscountField } from "./discount-field";
 import { ProposalSummary } from "./proposal-summary";
 import { ReviewStep } from "./review-step";
 import { ContactStep } from "./contact-step";
-import { Globe } from "lucide-react";
 import { track } from "@/lib/analytics";
 
 interface Props {
@@ -26,6 +25,7 @@ interface Props {
 export function ProposalBuilder({ searchParamsPromise }: Props) {
   const searchParams = use(searchParamsPromise);
   const [state, dispatch] = useReducer(proposalBuilderReducer, initialState);
+  const { locale, pt } = useProposalLocale();
 
   // Load assessment recommendations if coming from assessment
   useEffect(() => {
@@ -81,23 +81,10 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
     state.discount
   );
 
-  // Filter services by active category and search query
-  const filteredServices = SERVICES.filter((s) => {
-    if (s.category !== state.activeCategory) return false;
-    if (state.searchQuery) {
-      const q = state.searchQuery.toLowerCase();
-      const name =
-        state.locale === "es" ? s.name_es.toLowerCase() : state.locale === "fr" ? s.name_fr.toLowerCase() : s.name.toLowerCase();
-      const desc =
-        state.locale === "es"
-          ? s.description_es.toLowerCase()
-          : state.locale === "fr"
-            ? s.description_fr.toLowerCase()
-            : s.description.toLowerCase();
-      return name.includes(q) || desc.includes(q);
-    }
-    return true;
-  });
+  // Filter services by active category
+  const filteredServices = SERVICES.filter(
+    (s) => s.category === state.activeCategory
+  );
 
   const handleSubmit = async () => {
     dispatch({ type: "SUBMIT_START" });
@@ -107,7 +94,7 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          locale: state.locale,
+          locale,
           contact: state.contact,
           referredBy: state.referredBy,
           selectedServices: selectedArray,
@@ -149,35 +136,21 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
   };
 
   return (
-    <div className="bg-gradient-to-b from-black via-zinc-950 to-zinc-900 pb-20">
+    <div className={`bg-gradient-to-b from-black via-zinc-950 to-zinc-900${state.step === "build" ? " pb-20" : ""}`}>
       {/* Header */}
       <div className="border-b border-white/10 bg-black/50 backdrop-blur">
         <div className="container mx-auto flex flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="brand-section-title mb-1">
-              {t("builder.title", state.locale)}
+              {pt("builder.title")}
             </p>
             <h1 className="text-2xl font-bold text-white sm:text-3xl">
-              {t("builder.subtitle", state.locale)}
+              {pt("builder.subtitle")}
             </h1>
             <p className="mt-2 text-sm text-white/60">
-              {t("builder.instructions", state.locale)}
+              {pt("builder.instructions")}
             </p>
           </div>
-
-          {/* Language toggle */}
-          <button
-            onClick={() =>
-              dispatch({
-                type: "SET_LOCALE",
-                locale: state.locale === "en" ? "es" : state.locale === "es" ? "fr" : "en",
-              })
-            }
-            className="flex items-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-sm text-white/70 transition-colors hover:border-white/20 hover:text-white"
-          >
-            <Globe className="h-4 w-4" />
-            {state.locale.toUpperCase()}
-          </button>
         </div>
       </div>
 
@@ -212,10 +185,10 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
                 }`}
               >
                 {step === "build"
-                  ? t("mode.custom", state.locale)
+                  ? pt("mode.custom")
                   : step === "review"
-                    ? t("review.title", state.locale)
-                    : t("contact.title", state.locale)}
+                    ? pt("review.title")
+                    : pt("contact.title")}
               </span>
               {i < 2 && (
                 <div className="mx-2 h-px w-8 bg-white/10 sm:w-16" />
@@ -232,7 +205,7 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
             {/* Package Selector */}
             <PackageSelector
               activePackage={state.activePackage}
-              locale={state.locale}
+              locale={locale}
               onSelect={(pkgId) => {
                 if (pkgId) {
                   dispatch({ type: "SELECT_PACKAGE", packageId: pkgId });
@@ -247,7 +220,7 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
             <div className="mt-8">
               <CategoryTabs
                 activeCategory={state.activeCategory}
-                locale={state.locale}
+                locale={locale}
                 selectedServices={state.selectedServices}
                 onSelect={(cat) =>
                   dispatch({ type: "SET_CATEGORY", category: cat })
@@ -255,23 +228,7 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
               />
             </div>
 
-            {/* Search — full width */}
-            <div className="mb-4 mt-4">
-              <input
-                type="search"
-                value={state.searchQuery}
-                onChange={(e) =>
-                  dispatch({
-                    type: "SET_SEARCH",
-                    query: e.target.value,
-                  })
-                }
-                placeholder={t("placeholder.search", state.locale)}
-                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition-colors focus:border-red-600/50 focus:ring-1 focus:ring-red-600/50"
-              />
-            </div>
-
-            <div className="grid gap-6 lg:grid-cols-[1fr_380px]">
+            <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_380px]">
               {/* Left: Service cards + custom items */}
               <div>
                 <div className="grid gap-3 sm:grid-cols-2">
@@ -279,7 +236,7 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
                     <ServiceCard
                       key={service.id}
                       service={service}
-                      locale={state.locale}
+                      locale={locale}
                       selected={state.selectedServices.has(service.id)}
                       quantity={
                         state.selectedServices.get(service.id)?.quantity ?? 1
@@ -305,7 +262,7 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
                 <div className="mt-8">
                   <CustomItemsEditor
                     items={state.customLineItems}
-                    locale={state.locale}
+                    locale={locale}
                     onAdd={(item) =>
                       dispatch({ type: "ADD_CUSTOM_ITEM", item })
                     }
@@ -325,7 +282,7 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
                   selectedServices={selectedArray}
                   customLineItems={state.customLineItems}
                   discount={state.discount}
-                  locale={state.locale}
+                  locale={locale}
                   totals={totals}
                   onContinue={() =>
                     dispatch({ type: "SET_STEP", step: "review" })
@@ -346,7 +303,7 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
             selectedServices={selectedArray}
             customLineItems={state.customLineItems}
             discount={state.discount}
-            locale={state.locale}
+            locale={locale}
             totals={totals}
             onBack={() => dispatch({ type: "SET_STEP", step: "build" })}
             onContinue={() =>
@@ -360,7 +317,7 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
           <ContactStep
             contact={state.contact}
             referredBy={state.referredBy}
-            locale={state.locale}
+            locale={locale}
             isSubmitting={state.isSubmitting}
             submitError={state.submitError}
             submitResult={state.submitResult}

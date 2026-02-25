@@ -10,7 +10,7 @@ import { useLanguage } from "@/lib/i18n/context";
 
 /**
  * Case Studies Section - Featured work snapshots
- * i18n: Section title/subtitle/CTA use the global t() function
+ * i18n: All strings use the global t() function
  */
 export function CaseStudies() {
   const { t } = useLanguage();
@@ -19,28 +19,25 @@ export function CaseStudies() {
     {
       slug: "advanced-skin-medspa",
       title: "Advanced Skin Medspa",
-      industry: "Health & Wellness",
-      description:
-        "Aligned website updates, local SEO, and social content to support stronger lead flow.",
-      highlights: ["Local visibility", "Conversion-focused pages", "Content consistency"],
+      industryKey: "cs.asm.industry",
+      descKey: "cs.asm.desc",
+      highlightKeys: ["cs.asm.h1", "cs.asm.h2", "cs.asm.h3"],
       logo: "/images/asm.webp",
     },
     {
       slug: "sagrah-beauty",
       title: "SaGrah Beauty",
-      industry: "Beauty & E-commerce",
-      description:
-        "Built a cleaner content and campaign system to support product launches and brand growth.",
-      highlights: ["Campaign planning", "Email support", "Creative production"],
+      industryKey: "cs.sagrah.industry",
+      descKey: "cs.sagrah.desc",
+      highlightKeys: ["cs.sagrah.h1", "cs.sagrah.h2", "cs.sagrah.h3"],
       logo: "/images/sagrah-beauty.webp",
     },
     {
       slug: "urban-flooring",
       title: "Urban Flooring",
-      industry: "Home Services",
-      description:
-        "Combined SEO and paid search support to capture high-intent local traffic and inquiries.",
-      highlights: ["Search visibility", "Lead quality", "Landing page optimization"],
+      industryKey: "cs.urban.industry",
+      descKey: "cs.urban.desc",
+      highlightKeys: ["cs.urban.h1", "cs.urban.h2", "cs.urban.h3"],
       logo: "/images/urban-flooring.webp",
     },
   ];
@@ -88,16 +85,16 @@ export function CaseStudies() {
                   />
                 </div>
                 <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-red-600">
-                  {study.industry}
+                  {t(study.industryKey)}
                 </p>
                 <h3 className="mb-2 text-2xl font-semibold">{study.title}</h3>
-                <p className="mb-5 text-sm text-black/75">{study.description}</p>
+                <p className="mb-5 text-sm text-black/75">{t(study.descKey)}</p>
 
                 <div className="mb-6 space-y-2">
-                  {study.highlights.map((item) => (
-                    <div key={item} className="flex items-center gap-2 text-sm">
+                  {study.highlightKeys.map((key) => (
+                    <div key={key} className="flex items-center gap-2 text-sm">
                       <TrendingUp className="h-4 w-4 text-red-600" />
-                      <span>{item}</span>
+                      <span>{t(key)}</span>
                     </div>
                   ))}
                 </div>

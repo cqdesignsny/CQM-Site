@@ -1,17 +1,14 @@
 import type {
-  Locale,
   SelectedService,
   CustomLineItem,
   Discount,
   BillingType,
 } from "./types";
-import { getServiceById } from "./services-data";
+import { getServiceById, PACKAGES } from "./services-data";
 
 export interface ProposalBuilderState {
-  locale: Locale;
   mode: "packages" | "custom";
   activeCategory: string;
-  searchQuery: string;
   selectedServices: Map<string, SelectedService>;
   activePackage: string | null;
   customLineItems: CustomLineItem[];
@@ -32,10 +29,8 @@ export interface ProposalBuilderState {
 }
 
 export const initialState: ProposalBuilderState = {
-  locale: "en",
   mode: "packages",
   activeCategory: "strategy",
-  searchQuery: "",
   selectedServices: new Map(),
   activePackage: null,
   customLineItems: [],
@@ -51,10 +46,8 @@ export const initialState: ProposalBuilderState = {
 };
 
 export type ProposalBuilderAction =
-  | { type: "SET_LOCALE"; locale: Locale }
   | { type: "SET_MODE"; mode: "packages" | "custom" }
   | { type: "SET_CATEGORY"; category: string }
-  | { type: "SET_SEARCH"; query: string }
   | { type: "TOGGLE_SERVICE"; serviceId: string }
   | { type: "SET_QUANTITY"; serviceId: string; quantity: number }
   | { type: "SELECT_PACKAGE"; packageId: string }
@@ -97,17 +90,11 @@ export function proposalBuilderReducer(
   action: ProposalBuilderAction
 ): ProposalBuilderState {
   switch (action.type) {
-    case "SET_LOCALE":
-      return { ...state, locale: action.locale };
-
     case "SET_MODE":
       return { ...state, mode: action.mode };
 
     case "SET_CATEGORY":
       return { ...state, activeCategory: action.category };
-
-    case "SET_SEARCH":
-      return { ...state, searchQuery: action.query };
 
     case "TOGGLE_SERVICE": {
       const next = new Map(state.selectedServices);
@@ -140,9 +127,32 @@ export function proposalBuilderReducer(
     }
 
     case "SELECT_PACKAGE": {
-      // Selecting a package does NOT auto-populate services.
-      // Packages are treated as predefined bundles with a fixed price.
-      return { ...state, activePackage: action.packageId, mode: "custom" };
+      const pkg = PACKAGES.find((p) => p.id === action.packageId);
+      if (!pkg) return state;
+
+      // Populate services from package serviceIds
+      const next = new Map<string, SelectedService>();
+      if (pkg.serviceIds) {
+        for (const serviceId of pkg.serviceIds) {
+          const service = getServiceById(serviceId);
+          if (service) {
+            next.set(serviceId, {
+              serviceId,
+              quantity: 1,
+              unitPrice: service.price,
+              billing: service.billing,
+            });
+          }
+        }
+      }
+
+      return {
+        ...state,
+        activePackage: action.packageId,
+        selectedServices: next,
+        mode: "custom",
+        step: "review", // Auto-advance to review step
+      };
     }
 
     case "CLEAR_PACKAGE":
@@ -212,7 +222,7 @@ export function proposalBuilderReducer(
       };
 
     case "RESET":
-      return { ...initialState, locale: state.locale };
+      return { ...initialState };
 
     case "LOAD_RECOMMENDATIONS": {
       const next = new Map<string, SelectedService>();

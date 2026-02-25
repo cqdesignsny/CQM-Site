@@ -1,6 +1,7 @@
 "use client";
 
 import { useReducer, useState } from "react";
+import { useProposalLocale } from "@/lib/i18n";
 import { t } from "@/lib/proposals/translations";
 import type { Locale, AssessmentAnswer, CategoryScore } from "@/lib/proposals/types";
 import { ASSESSMENT_QUESTIONS, TOTAL_QUESTIONS } from "@/lib/assessment/questions";
@@ -10,7 +11,6 @@ import { Recommendations } from "./recommendations";
 import {
   ArrowRight,
   ArrowLeft,
-  Globe,
   ClipboardCheck,
   Loader2,
   Mail,
@@ -20,8 +20,9 @@ import {
 } from "lucide-react";
 import { track } from "@/lib/analytics";
 
+/* ───────────────────── State ───────────────────── */
+
 interface AssessmentState {
-  locale: Locale;
   step: "intro" | "questions" | "contact" | "results";
   currentQuestion: number;
   answers: Map<string, AssessmentAnswer>;
@@ -37,7 +38,6 @@ interface AssessmentState {
 }
 
 type AssessmentAction =
-  | { type: "SET_LOCALE"; locale: Locale }
   | { type: "SET_STEP"; step: AssessmentState["step"] }
   | { type: "NEXT_QUESTION" }
   | { type: "PREV_QUESTION" }
@@ -48,7 +48,6 @@ type AssessmentAction =
   | { type: "SUBMIT_ERROR"; error: string };
 
 const initialState: AssessmentState = {
-  locale: "en",
   step: "intro",
   currentQuestion: 0,
   answers: new Map(),
@@ -63,8 +62,6 @@ function assessmentReducer(
   action: AssessmentAction
 ): AssessmentState {
   switch (action.type) {
-    case "SET_LOCALE":
-      return { ...state, locale: action.locale };
     case "SET_STEP":
       return { ...state, step: action.step };
     case "NEXT_QUESTION":
@@ -93,6 +90,8 @@ function assessmentReducer(
   }
 }
 
+/* ───────────────────── Share Results ───────────────────── */
+
 function ShareResults({
   assessmentId,
   overallScore,
@@ -113,6 +112,8 @@ function ShareResults({
   const [copied, setCopied] = useState(false);
   const [emailError, setEmailError] = useState<string | null>(null);
 
+  const pt = (key: string) => t(key, locale);
+
   const shareUrl = typeof window !== "undefined"
     ? `${window.location.origin}/assessment?results=${assessmentId}`
     : "";
@@ -131,16 +132,10 @@ function ShareResults({
     if (navigator.share) {
       try {
         await navigator.share({
-          title: locale === "es"
-            ? `Evaluación de Marketing — Puntuación: ${overallScore}/100`
-            : locale === "fr"
-              ? `Évaluation Marketing — Score : ${overallScore}/100`
-              : `Marketing Assessment — Score: ${overallScore}/100`,
-          text: locale === "es"
-            ? `${contactName} completó una evaluación de marketing y obtuvo ${overallScore}/100.`
-            : locale === "fr"
-              ? `${contactName} a complété une évaluation marketing et a obtenu ${overallScore}/100.`
-              : `${contactName} completed a marketing assessment and scored ${overallScore}/100.`,
+          title: pt("share.shareTitle").replace("{score}", String(overallScore)),
+          text: pt("share.shareText")
+            .replace("{name}", contactName)
+            .replace("{score}", String(overallScore)),
           url: shareUrl,
         });
       } catch {
@@ -170,7 +165,7 @@ function ShareResults({
 
       if (!response.ok) {
         const data = await response.json();
-        setEmailError(data.error || (locale === "es" ? "No se pudo enviar" : locale === "fr" ? "Échec de l'envoi" : "Failed to send"));
+        setEmailError(data.error || pt("share.failedToSend"));
       } else {
         setSent(true);
         setEmail("");
@@ -180,7 +175,7 @@ function ShareResults({
         }, 3000);
       }
     } catch {
-      setEmailError(locale === "es" ? "Error de red" : locale === "fr" ? "Erreur réseau" : "Network error");
+      setEmailError(pt("share.networkError"));
     } finally {
       setSending(false);
     }
@@ -189,7 +184,7 @@ function ShareResults({
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
       <h3 className="mb-4 text-sm font-semibold text-white">
-        {locale === "es" ? "Compartir Resultados" : locale === "fr" ? "Partager les résultats" : "Share Results"}
+        {pt("share.title")}
       </h3>
       <div className="flex flex-wrap gap-3">
         {/* Copy link */}
@@ -200,12 +195,12 @@ function ShareResults({
           {copied ? (
             <>
               <Check className="h-4 w-4 text-green-400" />
-              {locale === "es" ? "¡Copiado!" : locale === "fr" ? "Copié !" : "Copied!"}
+              {pt("share.copied")}
             </>
           ) : (
             <>
               <Copy className="h-4 w-4" />
-              {locale === "es" ? "Copiar enlace" : locale === "fr" ? "Copier le lien" : "Copy Link"}
+              {pt("share.copyLink")}
             </>
           )}
         </button>
@@ -216,7 +211,7 @@ function ShareResults({
           className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/70 transition-colors hover:border-white/20 hover:text-white"
         >
           <Mail className="h-4 w-4" />
-          {locale === "es" ? "Enviar por email" : locale === "fr" ? "Envoyer par e-mail" : "Email Results"}
+          {pt("share.emailResults")}
         </button>
 
         {/* Native share (mobile) */}
@@ -226,7 +221,7 @@ function ShareResults({
             className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/70 transition-colors hover:border-white/20 hover:text-white"
           >
             <Share2 className="h-4 w-4" />
-            {locale === "es" ? "Compartir" : locale === "fr" ? "Partager" : "Share"}
+            {pt("share.share")}
           </button>
         )}
       </div>
@@ -238,7 +233,7 @@ function ShareResults({
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder={locale === "es" ? "Dirección de email" : locale === "fr" ? "Adresse e-mail" : "Email address"}
+            placeholder={pt("share.emailPlaceholder")}
             className="flex-1 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none focus:border-red-600/50 focus:ring-1 focus:ring-red-600/50"
           />
           <button
@@ -251,10 +246,10 @@ function ShareResults({
             ) : sent ? (
               <>
                 <Check className="h-4 w-4" />
-                {locale === "es" ? "¡Enviado!" : locale === "fr" ? "Envoyé !" : "Sent!"}
+                {pt("share.sent")}
               </>
             ) : (
-              locale === "es" ? "Enviar" : locale === "fr" ? "Envoyer" : "Send"
+              pt("share.send")
             )}
           </button>
         </div>
@@ -266,7 +261,10 @@ function ShareResults({
   );
 }
 
+/* ───────────────────── Main Component ───────────────────── */
+
 export function MarketingAssessment() {
+  const { locale, pt } = useProposalLocale();
   const [state, dispatch] = useReducer(assessmentReducer, initialState);
 
   const currentQ = ASSESSMENT_QUESTIONS[state.currentQuestion];
@@ -283,7 +281,7 @@ export function MarketingAssessment() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          locale: state.locale,
+          locale,
           contact: state.contact,
           answers: Array.from(state.answers.values()),
         }),
@@ -321,24 +319,12 @@ export function MarketingAssessment() {
         <div className="container mx-auto flex flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="brand-section-title mb-1">
-              {t("assessment.title", state.locale)}
+              {pt("assessment.title")}
             </p>
             <h1 className="text-2xl font-bold text-white sm:text-3xl">
-              {t("assessment.subtitle", state.locale)}
+              {pt("assessment.subtitle")}
             </h1>
           </div>
-          <button
-            onClick={() =>
-              dispatch({
-                type: "SET_LOCALE",
-                locale: state.locale === "en" ? "es" : state.locale === "es" ? "fr" : "en",
-              })
-            }
-            className="flex items-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-sm text-white/70 transition-colors hover:border-white/20 hover:text-white"
-          >
-            <Globe className="h-4 w-4" />
-            {state.locale.toUpperCase()}
-          </button>
         </div>
       </div>
 
@@ -350,25 +336,13 @@ export function MarketingAssessment() {
               <ClipboardCheck className="h-10 w-10 text-red-400" />
             </div>
             <h2 className="text-2xl font-bold text-white">
-              {state.locale === "es"
-                ? "Eval\u00FAe su Marketing"
-                : state.locale === "fr"
-                  ? "\u00C9valuez votre Marketing"
-                  : "Evaluate Your Marketing"}
+              {pt("assessment.evaluateTitle")}
             </h2>
             <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/60">
-              {state.locale === "es"
-                ? `Responda ${TOTAL_QUESTIONS} preguntas sobre su marketing actual. Obtenga una puntuaci\u00F3n personalizada y recomendaciones de servicios adaptadas a su negocio.`
-                : state.locale === "fr"
-                  ? `R\u00E9pondez \u00E0 ${TOTAL_QUESTIONS} questions sur votre marketing actuel. Obtenez un score personnalis\u00E9 et des recommandations de services adapt\u00E9es \u00E0 votre entreprise.`
-                  : `Answer ${TOTAL_QUESTIONS} questions about your current marketing. Get a personalized score and service recommendations tailored to your business.`}
+              {pt("assessment.evaluateDesc").replace("{n}", String(TOTAL_QUESTIONS))}
             </p>
             <p className="mt-2 text-xs text-white/30">
-              {state.locale === "es"
-                ? "Toma aproximadamente 3-5 minutos"
-                : state.locale === "fr"
-                  ? "Prend environ 3-5 minutes"
-                  : "Takes about 3-5 minutes"}
+              {pt("assessment.evaluateTime")}
             </p>
             <button
               onClick={() => {
@@ -377,7 +351,7 @@ export function MarketingAssessment() {
               }}
               className="mt-8 inline-flex items-center gap-2 rounded-lg bg-red-600 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-700"
             >
-              {t("assessment.start", state.locale)}
+              {pt("assessment.start")}
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>
@@ -390,7 +364,7 @@ export function MarketingAssessment() {
             <div className="mb-8">
               <div className="mb-2 flex items-center justify-between text-xs text-white/40">
                 <span>
-                  {state.locale === "es" ? "Pregunta" : state.locale === "fr" ? "Question" : "Question"}{" "}
+                  {pt("assessment.question")}{" "}
                   {state.currentQuestion + 1} / {TOTAL_QUESTIONS}
                 </span>
                 <span>{Math.round(progress)}%</span>
@@ -405,7 +379,7 @@ export function MarketingAssessment() {
 
             <QuestionCard
               question={currentQ}
-              locale={state.locale}
+              locale={locale}
               selectedIndex={currentAnswer?.selectedOptionIndex ?? null}
               onSelect={(optionIndex, score) =>
                 dispatch({
@@ -430,7 +404,7 @@ export function MarketingAssessment() {
                 className="flex items-center gap-2 rounded-lg border border-white/10 px-5 py-2.5 text-sm text-white/60 transition-colors hover:border-white/20 hover:text-white"
               >
                 <ArrowLeft className="h-4 w-4" />
-                {t("assessment.previous", state.locale)}
+                {pt("assessment.previous")}
               </button>
 
               {state.currentQuestion < TOTAL_QUESTIONS - 1 ? (
@@ -439,7 +413,7 @@ export function MarketingAssessment() {
                   disabled={!currentAnswer}
                   className="flex items-center gap-2 rounded-lg bg-red-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-red-700 disabled:opacity-30"
                 >
-                  {t("assessment.next", state.locale)}
+                  {pt("assessment.next")}
                   <ArrowRight className="h-4 w-4" />
                 </button>
               ) : (
@@ -448,7 +422,7 @@ export function MarketingAssessment() {
                   disabled={!allAnswered}
                   className="flex items-center gap-2 rounded-lg bg-red-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-red-700 disabled:opacity-30"
                 >
-                  {t("assessment.seeResults", state.locale)}
+                  {pt("assessment.seeResults")}
                   <ArrowRight className="h-4 w-4" />
                 </button>
               )}
@@ -461,25 +435,17 @@ export function MarketingAssessment() {
           <div className="mx-auto max-w-md">
             <div className="mb-8 text-center">
               <h2 className="text-2xl font-bold text-white">
-                {state.locale === "es"
-                  ? "\u00A1Casi listo!"
-                  : state.locale === "fr"
-                    ? "Presque termin\u00E9 !"
-                    : "Almost There!"}
+                {pt("assessment.almostThere")}
               </h2>
               <p className="mt-2 text-sm text-white/50">
-                {state.locale === "es"
-                  ? "Ingrese sus datos para ver sus resultados y recomendaciones personalizadas."
-                  : state.locale === "fr"
-                    ? "Entrez vos coordonn\u00E9es pour voir vos r\u00E9sultats et recommandations personnalis\u00E9s."
-                    : "Enter your details to see your personalized results and recommendations."}
+                {pt("assessment.contactDesc")}
               </p>
             </div>
 
             <div className="space-y-4">
               <div>
                 <label className="mb-1.5 block text-sm font-medium text-white/70">
-                  {t("form.name", state.locale)} *
+                  {pt("form.name")} *
                 </label>
                 <input
                   type="text"
@@ -492,7 +458,7 @@ export function MarketingAssessment() {
               </div>
               <div>
                 <label className="mb-1.5 block text-sm font-medium text-white/70">
-                  {t("form.email", state.locale)} *
+                  {pt("form.email")} *
                 </label>
                 <input
                   type="email"
@@ -505,7 +471,7 @@ export function MarketingAssessment() {
               </div>
               <div>
                 <label className="mb-1.5 block text-sm font-medium text-white/70">
-                  {t("form.phone", state.locale)}
+                  {pt("form.phone")}
                 </label>
                 <input
                   type="tel"
@@ -530,7 +496,7 @@ export function MarketingAssessment() {
                 className="flex items-center gap-2 rounded-lg border border-white/10 px-5 py-2.5 text-sm text-white/60 transition-colors hover:border-white/20 hover:text-white"
               >
                 <ArrowLeft className="h-4 w-4" />
-                {t("btn.back", state.locale)}
+                {pt("btn.back")}
               </button>
               <button
                 onClick={handleSubmit}
@@ -544,11 +510,11 @@ export function MarketingAssessment() {
                 {state.isSubmitting ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" />
-                    {state.locale === "es" ? "Calculando..." : state.locale === "fr" ? "Calcul en cours..." : "Calculating..."}
+                    {pt("assessment.calculating")}
                   </>
                 ) : (
                   <>
-                    {t("assessment.seeResults", state.locale)}
+                    {pt("assessment.seeResults")}
                     <ArrowRight className="h-4 w-4" />
                   </>
                 )}
@@ -563,19 +529,19 @@ export function MarketingAssessment() {
             <ScoreDisplay
               overallScore={state.results.overallScore}
               categoryScores={state.results.categoryScores}
-              locale={state.locale}
+              locale={locale}
             />
             <Recommendations
               recommendedServices={state.results.recommendedServices}
               assessmentId={state.results.assessmentId}
-              locale={state.locale}
+              locale={locale}
             />
             <ShareResults
               assessmentId={state.results.assessmentId}
               overallScore={state.results.overallScore}
               contactName={state.contact.name}
               contactEmail={state.contact.email}
-              locale={state.locale}
+              locale={locale}
             />
           </div>
         )}

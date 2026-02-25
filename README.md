@@ -88,36 +88,47 @@ Last updated: **February 25, 2026**
   - Stale notice if proposal > 30 days old
   - `noindex` to protect private proposal data
 
-### Internationalization (i18n) — Trilingual EN/ES/FR
+### Internationalization (i18n) — Unified Trilingual EN/ES/FR
 
-- **Language system**: `LanguageProvider` context with `useLanguage()` hook
+- **ONE language switcher** in the site header — no per-component Globe toggles
+- **Unified locale source**: All components read locale from the site-wide `LanguageProvider` context
+- **Bridge pattern**: `useProposalLocale()` hook connects site-wide context to proposal/assessment components
+- **Key files**:
   - `lib/i18n/context.tsx` — React context + provider + `useLanguage()` hook
-  - `lib/i18n/site-translations.ts` — ~1000+ trilingual translation keys (EN/ES/FR)
-  - `components/language-switcher.tsx` — EN/ES/FR toggle pill in header
-  - `components/language-provider.tsx` — wraps app in `LanguageProvider`
-- **Coverage**: All user-facing pages are fully wired for trilingual switching:
+  - `lib/i18n/use-proposal-locale.ts` — bridge hook returning `{ locale, pt }` for proposal/assessment components
+  - `lib/i18n/site-translations.ts` — ~1100+ trilingual translation keys (EN/ES/FR) for all site pages
+  - `lib/proposals/translations.ts` — ~200+ trilingual translation keys for proposal builder, assessment, emails
+  - `components/language-switcher.tsx` — EN/ES/FR dropdown toggle in header
+- **Coverage**: ALL user-facing pages are fully wired for trilingual switching:
   - Homepage sections: hero, value props, case studies, process, testimonials, resources teaser, trust logos
   - Core pages: about, contact, careers, process, work, pricing, resources, studio
-  - Services hub page + all 8 service detail pages (web, seo, paid-ads, social-media, email-marketing, ai-development, ai-integration, video)
+  - Services hub page (including feature lists) + all 8 service detail pages
   - Header, footer, contact form
-  - Proposal builder and assessment (already bilingual EN/ES in data layer)
+  - Proposal builder (full trilingual — reads locale from site context via bridge hook)
+  - Marketing assessment (full trilingual — reads locale from site context via bridge hook)
+  - Case studies metadata, work page spotlights, about page team members
 - **Architecture**:
   - Server components (`page.tsx`) handle metadata only
   - Client content wrappers (`*-content.tsx`) use `useLanguage()` + `t()` for all UI strings
-  - Translation key naming: `section.key` for site pages, `sd.{svc}.{field}` for service detail pages
-  - Designed for future locale additions (add language to `SiteLocale` union + translation entries)
+  - Proposal/assessment components use `useProposalLocale()` + `pt()` for translations from proposal translation file
+  - Translation key naming: `section.key` for pages, `sd.{svc}.{field}` for service detail pages, `services.feat.{svc}.{n}` for service features
+  - Type unification: `Locale` in proposals re-exports `SiteLocale` from i18n types
+  - Proposal view page uses stored `proposal.locale` from database (correct: shows language proposal was created in)
+  - Designed for future locale additions (add language to `SiteLocale` union + translation entries in both files)
 
 - **Architecture**:
   - Route groups: `(main)` for site pages with header/footer, `(proposal-view)` for minimal proposal layout
   - `useReducer` for complex state management in builder (15+ interdependent state vars)
   - JSONB service snapshots in Supabase (immune to future price changes)
   - New proposal per revision (version history, each gets its own link)
+  - Package selection auto-populates services + advances to review step
   - API routes: `POST /api/proposals`, `POST /api/proposals/[id]/accept`, `POST /api/assessment`, `GET /api/assessment/[id]`
 
 - **n8n / Agent Readiness**:
   - All API routes fire webhook events to `WEBHOOK_URL` when set
   - Events: `proposal_created`, `proposal_accepted`, `assessment_completed`
-  - Payloads include full contact info, scores, totals, and timestamps
+  - Payloads include full contact info, scores, totals, locale, timestamps, and financial breakdowns
+  - `proposal_accepted` webhook includes: locale, grandTotal, oneTimeTotal, monthlyTotal, packageId
   - Supabase tables accessible via API for custom agent queries
 
 ### What is still placeholder/incomplete
@@ -412,7 +423,24 @@ Audit date: **February 18, 2026**
 
 ## 13) Change Log
 
-- **2026-02-25**
+- **2026-02-25 (Session 2)**
+  - Unified i18n system: ONE language switcher in the header, removed Globe toggles from proposal builder and assessment
+  - Created bridge hook `useProposalLocale()` connecting site-wide LanguageProvider to proposal/assessment components
+  - Unified Locale type: proposals re-export `SiteLocale` from `lib/i18n/types.ts`
+  - Fixed package selection flow: clicking a pre-built package now populates services and auto-advances to review step
+  - Removed search bar from proposal builder (unnecessary UX friction)
+  - Fixed white space at bottom of proposal review step
+  - Added ~79 missing translation keys across site pages:
+    - 24 service hub feature keys (`services.feat.{svc}.{1|2|3}`)
+    - 15 case study metadata keys (`cs.{client}.{industry|desc|h1|h2|h3}`)
+    - 30 work page spotlight keys (`work.spot.{client}.{focus|s1|s2|s3|impact}`)
+    - 10 about page team member keys (`about.team.{member}.{role|summary}`)
+  - Replaced all inline ternary translations in assessment with `pt()` calls
+  - Enriched webhook payloads: added locale, oneTimeTotal, monthlyTotal, packageId to `proposal_accepted` event
+  - Fixed assessment API locale type from `"en" | "es"` to full `Locale` type (includes `"fr"`)
+  - Build passes cleanly: zero errors, all 31 pages compiled
+
+- **2026-02-25 (Session 1)**
   - Added full trilingual internationalization (EN/ES/FR) across the entire site
   - Created i18n infrastructure: `LanguageProvider` context, `useLanguage()` hook, `LanguageSwitcher` component
   - Built `lib/i18n/site-translations.ts` with ~1000+ translation keys covering all pages

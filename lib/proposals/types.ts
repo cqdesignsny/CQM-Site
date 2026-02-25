@@ -1,4 +1,7 @@
-export type Locale = "en" | "es" | "fr";
+import type { SiteLocale } from "@/lib/i18n/types";
+
+/** Re-export SiteLocale as Locale for backward compatibility across proposal/assessment code */
+export type Locale = SiteLocale;
 
 export type ServiceCategory =
   | "strategy"
@@ -79,6 +82,7 @@ export interface PackageInfo {
   features: string[];
   features_es: string[];
   features_fr: string[];
+  serviceIds?: string[];
 }
 
 export interface ProposalContact {
