@@ -8,13 +8,13 @@ const CATEGORY_SERVICE_MAP: Record<ServiceCategory, string[]> = {
   strategy: ["brand-audit", "customer-journey"],
   website: ["landing-page", "website-1-3-wordpress", "website-maintenance"],
   ecommerce: ["shopify-setup", "woocommerce-setup"],
-  "social-media": ["social-media-management", "social-media-content-creation"],
-  content: ["content-creation", "blog-writing", "branded-photography"],
-  "video-production": ["video-production-basic", "podcast-production"],
-  email: ["email-marketing-setup", "email-marketing-management"],
-  seo: ["seo-audit", "seo-monthly", "local-seo"],
-  ads: ["google-ads-setup", "google-ads-management", "social-media-ads"],
-  "ai-automation": ["ai-chatbot", "ai-workflow-automation"],
+  "social-media": ["social-1-platform", "community-management"],
+  content: ["blog-writing", "static-post", "reel-edit"],
+  "video-production": ["brand-video", "podcast-episode"],
+  email: ["newsletter", "email-sequence"],
+  seo: ["seo-audit", "ongoing-seo", "local-seo"],
+  ads: ["ad-management", "retargeting", "pixel-setup"],
+  "ai-automation": ["ai-agent", "ai-automation"],
 };
 
 export function calculateCategoryScores(

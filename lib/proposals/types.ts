@@ -101,6 +101,7 @@ export type ProposalStatus =
 export interface Proposal {
   id: string;
   parentId: string | null;
+  assessmentId: string | null;
   version: number;
   locale: Locale;
   contact: ProposalContact;

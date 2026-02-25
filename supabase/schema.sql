@@ -184,28 +184,38 @@ alter table analytics_events enable row level security;
 
 -- Allow service role (server-side) full access
 -- These policies use the service_role key from API routes
+drop policy if exists "Service role full access on proposals" on proposals;
 create policy "Service role full access on proposals"
   on proposals for all
+  to service_role
   using (true)
   with check (true);
 
+drop policy if exists "Service role full access on assessment_results" on assessment_results;
 create policy "Service role full access on assessment_results"
   on assessment_results for all
+  to service_role
   using (true)
   with check (true);
 
+drop policy if exists "Service role full access on contact_submissions" on contact_submissions;
 create policy "Service role full access on contact_submissions"
   on contact_submissions for all
+  to service_role
   using (true)
   with check (true);
 
+drop policy if exists "Service role full access on newsletter_subscribers" on newsletter_subscribers;
 create policy "Service role full access on newsletter_subscribers"
   on newsletter_subscribers for all
+  to service_role
   using (true)
   with check (true);
 
+drop policy if exists "Service role full access on analytics_events" on analytics_events;
 create policy "Service role full access on analytics_events"
   on analytics_events for all
+  to service_role
   using (true)
   with check (true);
 

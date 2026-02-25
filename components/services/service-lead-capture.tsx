@@ -16,12 +16,11 @@ interface ServiceLeadCaptureProps {
 export function ServiceLeadCapture({ serviceName }: ServiceLeadCaptureProps) {
   const { t } = useLanguage();
 
-  const handleSubmit = () => {
+  const handleInquiryEvent = () => {
     track("form_submit", {
       form_type: "service_inquiry",
       service: serviceName,
     });
-    window.location.href = `/contact?service=${encodeURIComponent(serviceName)}`;
   };
 
   return (
@@ -41,7 +40,7 @@ export function ServiceLeadCapture({ serviceName }: ServiceLeadCaptureProps) {
             <Link
               href="/proposals"
               onClick={() => {
-                handleSubmit();
+                handleInquiryEvent();
                 track("cta_click", { cta_type: "build_package", location: "service_lead_capture" });
               }}
             >

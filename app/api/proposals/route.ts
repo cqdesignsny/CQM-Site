@@ -85,6 +85,7 @@ export async function POST(request: NextRequest) {
     const proposal: Proposal = {
       id: proposalId,
       parentId: body.parentId || null,
+      assessmentId: body.assessmentId || null,
       version,
       locale: body.locale || "en",
       contact: body.contact,
@@ -123,6 +124,7 @@ export async function POST(request: NextRequest) {
           selected_services: proposal.selectedServices,
           custom_line_items: proposal.customLineItems,
           package_id: proposal.packageId,
+          assessment_id: proposal.assessmentId,
           one_time_total: proposal.oneTimeTotal,
           monthly_total: proposal.monthlyTotal,
           hosting_fee: proposal.hostingFee,

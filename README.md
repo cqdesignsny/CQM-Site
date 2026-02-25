@@ -133,7 +133,7 @@ Last updated: **February 25, 2026**
 
 ### What is still placeholder/incomplete
 
-- Contact form submission integration (currently mock alert)
+- Contact form UX and CRM automation can still be expanded (form already posts to `/api/contact`)
 - Calendly embeds (Contact + Studio)
 - Google Maps embed
 - Dedicated OG/social share image asset (currently falls back to logo)
@@ -416,7 +416,7 @@ Audit date: **February 18, 2026**
 
 ### C. Remaining production items (not blockers for indexing)
 
-- Contact and lead forms are still placeholder integrations.
+- Contact form API is live (`POST /api/contact`), but Calendly/Maps embeds and deeper CRM automations are still pending.
 - Calendly and Google Maps embeds are placeholders.
 - Dedicated OG image asset still pending (currently logo fallback).
 - Validate live deployment in Google Search Console + Rich Results Test after production release.
@@ -427,6 +427,15 @@ Audit date: **February 18, 2026**
   - Moved language picker next to hamburger menu on mobile — always visible without opening the menu
   - Previously the language switcher was hidden inside the mobile dropdown menu
   - Updated documentation and memory files
+
+- **2026-02-25 (Session 5)**
+  - Fixed service lead CTA routing bug so "Build Your Custom Package" reliably navigates to `/proposals`
+  - Corrected assessment recommendation mapping to valid service IDs used by the proposal builder
+  - Switched `/process` page to the i18n-enabled `process-content.tsx` implementation
+  - Added French support to assessment share emails (`/api/assessment/share`)
+  - Persisted `assessment_id` when creating proposals from assessment flow
+  - Hardened Supabase schema policy script to scope policies to `service_role`
+  - Restricted Next.js remote image host allowlist to `creativequalitymarketing.com`
 
 - **2026-02-25 (Session 3)**
   - Site-wide CTA strategy: funnel all pages to Assessment + Proposal Builder

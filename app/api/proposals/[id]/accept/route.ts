@@ -74,6 +74,7 @@ export async function POST(
     const proposal: Proposal = {
       id: row.id,
       parentId: row.parent_id,
+      assessmentId: row.assessment_id,
       version: row.version,
       locale: row.locale,
       contact: {

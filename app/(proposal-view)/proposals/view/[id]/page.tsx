@@ -21,6 +21,7 @@ async function getProposal(id: string): Promise<Proposal | null> {
   return {
     id: data.id,
     parentId: data.parent_id,
+    assessmentId: data.assessment_id,
     version: data.version,
     locale: data.locale as Locale,
     contact: {
