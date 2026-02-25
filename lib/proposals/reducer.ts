@@ -111,7 +111,12 @@ export function proposalBuilderReducer(
           });
         }
       }
-      return { ...state, selectedServices: next, activePackage: null };
+      return {
+        ...state,
+        selectedServices: next,
+        activePackage: null,
+        mode: "custom",
+      };
     }
 
     case "SET_QUANTITY": {
@@ -123,7 +128,12 @@ export function proposalBuilderReducer(
           quantity: Math.max(1, action.quantity),
         });
       }
-      return { ...state, selectedServices: next };
+      return {
+        ...state,
+        selectedServices: next,
+        activePackage: null,
+        mode: "custom",
+      };
     }
 
     case "SELECT_PACKAGE": {
@@ -150,13 +160,24 @@ export function proposalBuilderReducer(
         ...state,
         activePackage: action.packageId,
         selectedServices: next,
-        mode: "custom",
+        customLineItems: [],
+        discount: null,
+        mode: "packages",
+        step: "build",
         // Stay on build step so the user can review selections before continuing
       };
     }
 
     case "CLEAR_PACKAGE":
-      return { ...state, activePackage: null };
+      return {
+        ...state,
+        activePackage: null,
+        selectedServices: new Map(),
+        customLineItems: [],
+        discount: null,
+        mode: "custom",
+        step: "build",
+      };
 
     case "ADD_CUSTOM_ITEM": {
       customItemCounter++;
@@ -168,6 +189,8 @@ export function proposalBuilderReducer(
       };
       return {
         ...state,
+        activePackage: null,
+        mode: "custom",
         customLineItems: [...state.customLineItems, newItem],
       };
     }
@@ -175,6 +198,8 @@ export function proposalBuilderReducer(
     case "REMOVE_CUSTOM_ITEM":
       return {
         ...state,
+        activePackage: null,
+        mode: "custom",
         customLineItems: state.customLineItems.filter(
           (i) => i.id !== action.itemId
         ),
@@ -183,13 +208,20 @@ export function proposalBuilderReducer(
     case "UPDATE_CUSTOM_ITEM":
       return {
         ...state,
+        activePackage: null,
+        mode: "custom",
         customLineItems: state.customLineItems.map((i) =>
           i.id === action.itemId ? { ...i, ...action.updates } : i
         ),
       };
 
     case "SET_DISCOUNT":
-      return { ...state, discount: action.discount };
+      return {
+        ...state,
+        discount: action.discount,
+        activePackage: null,
+        mode: "custom",
+      };
 
     case "UPDATE_CONTACT":
       return {

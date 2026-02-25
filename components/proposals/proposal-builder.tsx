@@ -12,7 +12,6 @@ import { PackageSelector } from "./package-selector";
 import { CategoryTabs } from "./category-tabs";
 import { ServiceCard } from "./service-card";
 import { CustomItemsEditor } from "./custom-items-editor";
-import { DiscountField } from "./discount-field";
 import { ProposalSummary } from "./proposal-summary";
 import { ReviewStep } from "./review-step";
 import { ContactStep } from "./contact-step";
@@ -223,7 +222,6 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
                 } else {
                   dispatch({ type: "CLEAR_PACKAGE" });
                 }
-                dispatch({ type: "SET_MODE", mode: "custom" });
               }}
             />
 

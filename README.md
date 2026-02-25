@@ -437,6 +437,16 @@ Audit date: **February 18, 2026**
   - Hardened Supabase schema policy script to scope policies to `service_role`
   - Restricted Next.js remote image host allowlist to `creativequalitymarketing.com`
 
+- **2026-02-25 (Session 7)**
+  - Proposal builder package logic hardened to prevent stacking behavior
+  - Selecting a pre-made package now resets prior custom data:
+    - clears custom line items
+    - clears discount state
+    - repopulates selected services from the chosen package only
+  - Switching to "Build Custom" now exits package mode cleanly and resets package selections
+  - Builder reducer now force-switches to custom mode when user manually edits services/custom items/discount
+  - Added global branded red scrollbar styling site-wide in `app/globals.css` (WebKit + Firefox)
+
 - **2026-02-25 (Session 6)**
   - Translation audit pass completed for site + proposal i18n usage
   - Verified translation key coverage with literal-key scan:
