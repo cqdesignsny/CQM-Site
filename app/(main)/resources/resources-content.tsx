@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/i18n/context";
+import { CTABanner } from "@/components/sections/cta-banner";
 
 export function ResourcesContent() {
   const { t } = useLanguage();
@@ -176,6 +177,8 @@ export function ResourcesContent() {
             </Button>
           </div>
         </section>
+
+        <CTABanner variant="assessment" />
       </div>
     </div>
   );

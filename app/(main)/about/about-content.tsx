@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Brain, PawPrint, ShieldCheck, Sparkles, Target, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/i18n/context";
+import { CTABanner } from "@/components/sections/cta-banner";
 
 export function AboutContent() {
   const { t } = useLanguage();
@@ -138,6 +139,8 @@ export function AboutContent() {
             </Button>
           </div>
         </section>
+
+        <CTABanner variant="compact" />
       </div>
     </div>
   );

@@ -17,6 +17,7 @@ import { ProposalSummary } from "./proposal-summary";
 import { ReviewStep } from "./review-step";
 import { ContactStep } from "./contact-step";
 import { track } from "@/lib/analytics";
+import { RotateCcw } from "lucide-react";
 
 interface Props {
   searchParamsPromise: Promise<{ from?: string; id?: string; services?: string }>;
@@ -136,7 +137,7 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
   };
 
   return (
-    <div className={`bg-gradient-to-b from-black via-zinc-950 to-zinc-900${state.step === "build" ? " pb-20" : ""}`}>
+    <div className={`min-h-screen bg-gradient-to-b from-black via-zinc-950 to-zinc-900${state.step === "build" ? " pb-20" : " pb-20"}`}>
       {/* Header */}
       <div className="border-b border-white/10 bg-black/50 backdrop-blur">
         <div className="container mx-auto flex flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
@@ -151,6 +152,16 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
               {pt("builder.instructions")}
             </p>
           </div>
+          {/* Start Over button — visible when there are selections */}
+          {(selectedArray.length > 0 || state.customLineItems.length > 0 || state.step !== "build") && (
+            <button
+              onClick={() => dispatch({ type: "RESET" })}
+              className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/70 transition-colors hover:border-red-500/30 hover:bg-red-600/10 hover:text-white"
+            >
+              <RotateCcw className="h-4 w-4" />
+              {pt("btn.startOver")}
+            </button>
+          )}
         </div>
       </div>
 

@@ -18,6 +18,7 @@ import { CaseStudies } from "@/components/sections/case-studies";
 import { Process } from "@/components/sections/process";
 import { Testimonials } from "@/components/sections/testimonials";
 import { ResourcesTeaser } from "@/components/sections/resources-teaser";
+import { CTABanner } from "@/components/sections/cta-banner";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -41,6 +42,7 @@ export default function HomePage() {
       <CaseStudies />
       <Process />
       <Testimonials />
+      <CTABanner />
       <ResourcesTeaser />
     </>
   );

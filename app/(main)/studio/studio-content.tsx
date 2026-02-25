@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
+import { CTABanner } from "@/components/sections/cta-banner";
 
 export function StudioContent() {
   const { t } = useLanguage();
@@ -142,6 +143,8 @@ export function StudioContent() {
           </Button>
         </div>
       </section>
+
+      <CTABanner variant="compact" />
     </div>
   );
 }

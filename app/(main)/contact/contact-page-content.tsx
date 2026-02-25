@@ -4,6 +4,7 @@ import { ContactForm } from "@/components/contact/contact-form";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { useLanguage } from "@/lib/i18n/context";
+import { CTABanner } from "@/components/sections/cta-banner";
 
 /**
  * Contact Page Content - Client component for i18n support
@@ -101,6 +102,8 @@ export function ContactPageContent() {
           </div>
         </div>
       </div>
+
+      <CTABanner variant="compact" />
     </div>
   );
 }

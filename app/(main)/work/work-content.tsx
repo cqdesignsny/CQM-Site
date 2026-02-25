@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, BadgeCheck, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/i18n/context";
+import { CTABanner } from "@/components/sections/cta-banner";
 
 export function WorkContent() {
   const { t } = useLanguage();
@@ -161,6 +162,8 @@ export function WorkContent() {
             </Button>
           </div>
         </section>
+
+        <CTABanner variant="full" />
       </div>
     </div>
   );

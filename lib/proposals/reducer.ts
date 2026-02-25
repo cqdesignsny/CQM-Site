@@ -151,7 +151,7 @@ export function proposalBuilderReducer(
         activePackage: action.packageId,
         selectedServices: next,
         mode: "custom",
-        step: "review", // Auto-advance to review step
+        // Stay on build step so the user can review selections before continuing
       };
     }
 

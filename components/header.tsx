@@ -21,12 +21,12 @@ export function Header() {
   const { t } = useLanguage();
 
   const navLinks = [
+    { href: "/assessment", labelKey: "nav.assessment" },
+    { href: "/proposals", labelKey: "nav.proposals" },
     { href: "/services", labelKey: "nav.services" },
     { href: "/studio", labelKey: "nav.studio" },
     { href: "/work", labelKey: "nav.work" },
     { href: "/process", labelKey: "nav.process" },
-    { href: "/pricing", labelKey: "nav.pricing" },
-    { href: "/assessment", labelKey: "nav.assessment" },
     { href: "/resources", labelKey: "nav.resources" },
     { href: "/about", labelKey: "nav.about" },
     { href: "/contact", labelKey: "nav.contact" },

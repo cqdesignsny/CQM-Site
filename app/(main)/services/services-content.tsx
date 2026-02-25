@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/i18n/context";
 import { siteConfig } from "@/lib/site-config";
+import { CTABanner } from "@/components/sections/cta-banner";
 
 export function ServicesContent() {
   const { t } = useLanguage();
@@ -181,6 +182,8 @@ export function ServicesContent() {
           <Link href="/contact">{t("hero.cta1")}</Link>
         </Button>
       </div>
+
+      <CTABanner variant="full" />
     </div>
   );
 }

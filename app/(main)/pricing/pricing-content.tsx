@@ -118,18 +118,37 @@ export function PricingContent() {
           </div>
         </section>
 
-        <section className="rounded-xl border p-6 text-center md:p-8">
-          <h2 className="mb-3 text-2xl font-semibold">{t("pricing.customQuote.title")}</h2>
-          <p className="mb-6 text-muted-foreground">
+        {/* CTA: Build Your Package */}
+        <section className="rounded-xl border-2 border-red-500/30 bg-gradient-to-br from-red-950/20 to-black/40 p-6 text-center md:p-10">
+          <h2 className="mb-3 text-2xl font-bold sm:text-3xl">{t("cta.readyToGrow")}</h2>
+          <p className="mx-auto mb-8 max-w-2xl text-muted-foreground">
             {t("pricing.customQuote.desc")}
           </p>
-          <div className="flex flex-col justify-center gap-3 sm:flex-row">
-            <Button asChild>
-              <Link href="/contact">{t("hero.cta1")}</Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <Link href="/services">{t("pricing.compareServices")}</Link>
-            </Button>
+          <div className="mx-auto grid max-w-2xl gap-4 sm:grid-cols-2">
+            {/* Assessment CTA */}
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-red-400">
+                {t("cta.findOutWhatsMissing")}
+              </p>
+              <p className="mb-4 text-sm text-muted-foreground">
+                {t("cta.assessmentDesc")}
+              </p>
+              <Button asChild className="w-full">
+                <Link href="/assessment">{t("cta.takeAssessment")}</Link>
+              </Button>
+            </div>
+            {/* Proposal Builder CTA */}
+            <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-left">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-red-400">
+                {t("cta.builderDesc").split("?")[0]}?
+              </p>
+              <p className="mb-4 text-sm text-muted-foreground">
+                {t("cta.builderDesc")}
+              </p>
+              <Button asChild variant="outline" className="w-full">
+                <Link href="/proposals">{t("cta.buildPackage")}</Link>
+              </Button>
+            </div>
           </div>
         </section>
       </div>

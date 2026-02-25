@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Bot, CheckCircle2, Compass, Rocket, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/i18n/context";
+import { CTABanner } from "@/components/sections/cta-banner";
 
 export function ProcessContent() {
   const { t } = useLanguage();
@@ -122,6 +123,8 @@ export function ProcessContent() {
             </Button>
           </div>
         </section>
+
+        <CTABanner variant="full" />
       </div>
     </div>
   );

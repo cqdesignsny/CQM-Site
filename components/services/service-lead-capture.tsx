@@ -37,8 +37,16 @@ export function ServiceLeadCapture({ serviceName }: ServiceLeadCaptureProps) {
           {t("serviceDetail.leadCapture.desc")}
         </p>
         <div className="flex flex-col justify-center gap-3 sm:flex-row">
-          <Button size="lg" onClick={handleSubmit}>
-            {t("serviceDetail.bookCall")}
+          <Button size="lg" asChild>
+            <Link
+              href="/proposals"
+              onClick={() => {
+                handleSubmit();
+                track("cta_click", { cta_type: "build_package", location: "service_lead_capture" });
+              }}
+            >
+              {t("cta.buildPackage")}
+            </Link>
           </Button>
           <Button
             size="lg"
@@ -47,15 +55,15 @@ export function ServiceLeadCapture({ serviceName }: ServiceLeadCaptureProps) {
             asChild
           >
             <Link
-              href="/contact?type=audit"
+              href="/assessment"
               onClick={() =>
-                track("link_click", {
-                  link_type: "free_audit",
-                  location: "lead_capture",
+                track("cta_click", {
+                  cta_type: "take_assessment",
+                  location: "service_lead_capture",
                 })
               }
             >
-              {t("serviceDetail.requestAudit")}
+              {t("cta.takeQuiz")}
             </Link>
           </Button>
         </div>

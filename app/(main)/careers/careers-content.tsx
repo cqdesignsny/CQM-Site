@@ -5,6 +5,7 @@ import { ArrowRight, Brain, Camera, Megaphone, PenTool, Workflow } from "lucide-
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site-config";
 import { useLanguage } from "@/lib/i18n/context";
+import { CTABanner } from "@/components/sections/cta-banner";
 
 export function CareersContent() {
   const { t } = useLanguage();
@@ -90,6 +91,8 @@ export function CareersContent() {
             </Button>
           </div>
         </section>
+
+        <CTABanner variant="compact" />
       </div>
     </div>
   );

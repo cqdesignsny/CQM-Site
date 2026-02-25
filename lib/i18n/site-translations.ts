@@ -12,10 +12,23 @@ export const siteTranslations: TranslationMap = {
   "nav.process": { en: "Process", es: "Proceso", fr: "Processus" },
   "nav.pricing": { en: "Pricing", es: "Precios", fr: "Tarifs" },
   "nav.assessment": { en: "Assessment", es: "Evaluaci\u00F3n", fr: "\u00C9valuation" },
+  "nav.proposals": { en: "Proposals", es: "Propuestas", fr: "Propositions" },
   "nav.resources": { en: "Resources", es: "Recursos", fr: "Ressources" },
   "nav.about": { en: "About", es: "Nosotros", fr: "\u00C0 propos" },
   "nav.contact": { en: "Contact", es: "Contacto", fr: "Contact" },
   "nav.cta": { en: "Book a Strategy Call", es: "Agendar Llamada", fr: "R\u00E9server un appel" },
+
+  // ============================================================
+  // SITE-WIDE CTAs (Assessment + Proposal Builder funnels)
+  // ============================================================
+  "cta.takeAssessment": { en: "Take the Marketing Assessment", es: "Toma la Evaluaci\u00F3n de Marketing", fr: "Faites l\u2019\u00E9valuation marketing" },
+  "cta.takeQuiz": { en: "Take the Free Marketing Quiz", es: "Toma el Quiz de Marketing Gratis", fr: "Faites le quiz marketing gratuit" },
+  "cta.buildPackage": { en: "Build Your Custom Package", es: "Construye Tu Paquete Personalizado", fr: "Cr\u00E9ez votre forfait personnalis\u00E9" },
+  "cta.buildProposal": { en: "Build Your Proposal", es: "Crea Tu Propuesta", fr: "Cr\u00E9ez votre proposition" },
+  "cta.assessmentDesc": { en: "Not sure what you need? Take our free marketing assessment to discover your strengths and gaps.", es: "\u00BFNo sabes qu\u00E9 necesitas? Toma nuestra evaluaci\u00F3n de marketing gratuita para descubrir tus fortalezas y oportunidades.", fr: "Vous ne savez pas ce dont vous avez besoin\u00A0? Faites notre \u00E9valuation marketing gratuite pour d\u00E9couvrir vos forces et vos lacunes." },
+  "cta.builderDesc": { en: "Know what you need? Build a custom marketing package and get an instant proposal.", es: "\u00BFYa sabes lo que necesitas? Construye un paquete de marketing personalizado y obt\u00E9n una propuesta al instante.", fr: "Vous savez ce qu\u2019il vous faut\u00A0? Cr\u00E9ez un forfait marketing personnalis\u00E9 et obtenez une proposition instantan\u00E9e." },
+  "cta.readyToGrow": { en: "Ready to Grow Your Business?", es: "\u00BFListo para Hacer Crecer Tu Negocio?", fr: "Pr\u00EAt \u00E0 d\u00E9velopper votre entreprise\u00A0?" },
+  "cta.findOutWhatsMissing": { en: "Find out what's missing in your marketing", es: "Descubre lo que falta en tu marketing", fr: "D\u00E9couvrez ce qui manque dans votre marketing" },
 
   // ============================================================
   // HERO SECTION
@@ -205,6 +218,7 @@ export const siteTranslations: TranslationMap = {
   // ============================================================
   "footer.tagline": { en: "Digital marketing is everything now.", es: "El marketing digital lo es todo hoy.", fr: "Le marketing num\u00E9rique est incontournable." },
   "footer.services": { en: "Services", es: "Servicios", fr: "Services" },
+  "footer.tools": { en: "Tools", es: "Herramientas", fr: "Outils" },
   "footer.company": { en: "Company", es: "Empresa", fr: "Entreprise" },
   "footer.resources": { en: "Resources", es: "Recursos", fr: "Ressources" },
   "footer.blog": { en: "Blog", es: "Blog", fr: "Blogue" },

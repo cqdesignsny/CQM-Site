@@ -37,6 +37,7 @@ const translations: Record<string, Record<string, string>> = {
     // Buttons
     "btn.generate": "Generate Proposal",
     "btn.clear": "Clear All",
+    "btn.startOver": "Start Over",
     "btn.back": "Back",
     "btn.continue": "Continue",
     "btn.send": "Send Proposal",
@@ -193,6 +194,7 @@ const translations: Record<string, Record<string, string>> = {
     // Buttons
     "btn.generate": "Generar Propuesta",
     "btn.clear": "Borrar Todo",
+    "btn.startOver": "Empezar de Nuevo",
     "btn.back": "Volver",
     "btn.continue": "Continuar",
     "btn.send": "Enviar Propuesta",
@@ -349,6 +351,7 @@ const translations: Record<string, Record<string, string>> = {
     // Buttons
     "btn.generate": "Générer la Proposition",
     "btn.clear": "Tout Effacer",
+    "btn.startOver": "Recommencer",
     "btn.back": "Retour",
     "btn.continue": "Continuer",
     "btn.send": "Envoyer la Proposition",

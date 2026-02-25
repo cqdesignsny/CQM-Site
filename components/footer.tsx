@@ -26,19 +26,19 @@ export function Footer() {
       { href: "/services/ai-integration", labelKey: "service.aiIntegration" },
       { href: "/services/video", labelKey: "service.video" },
     ],
+    tools: [
+      { href: "/assessment", labelKey: "footer.assessment" },
+      { href: "/proposals", labelKey: "footer.proposalBuilder" },
+      { href: "/pricing", labelKey: "nav.pricing" },
+      { href: "/studio", labelKey: "footer.studioTour" },
+    ],
     company: [
       { href: "/about", labelKey: "nav.about" },
       { href: "/process", labelKey: "nav.process" },
       { href: "/work", labelKey: "footer.caseStudies" },
-      { href: "/pricing", labelKey: "nav.pricing" },
+      { href: "/resources", labelKey: "footer.blog" },
       { href: "/careers", labelKey: "footer.careers" },
       { href: "/contact", labelKey: "nav.contact" },
-    ],
-    resources: [
-      { href: "/resources", labelKey: "footer.blog" },
-      { href: "/studio", labelKey: "footer.studioTour" },
-      { href: "/assessment", labelKey: "footer.assessment" },
-      { href: "/proposals", labelKey: "footer.proposalBuilder" },
       { href: "https://hvpodcasting.com", labelKey: "footer.hvPodcasting", external: true },
     ],
   };
@@ -101,11 +101,11 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Company Column */}
+          {/* Tools Column — Assessment + Proposals prominently */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold">{t("footer.company")}</h4>
+            <h4 className="mb-4 text-sm font-semibold">{t("footer.tools")}</h4>
             <ul className="space-y-2">
-              {footerLinks.company.map((link) => (
+              {footerLinks.tools.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -118,13 +118,13 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Resources Column */}
+          {/* Company Column */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold">{t("footer.resources")}</h4>
+            <h4 className="mb-4 text-sm font-semibold">{t("footer.company")}</h4>
             <ul className="space-y-2">
-              {footerLinks.resources.map((link) => (
+              {footerLinks.company.map((link) => (
                 <li key={link.href}>
-                  {link.external ? (
+                  {"external" in link && link.external ? (
                     <a
                       href={link.href}
                       target="_blank"

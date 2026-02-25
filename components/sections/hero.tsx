@@ -129,7 +129,7 @@ export function Hero() {
               asChild
               onClick={() => handleCTAClick("audit")}
             >
-              <Link href="/contact?type=audit">{t("hero.cta2")}</Link>
+              <Link href="/assessment">{t("cta.takeQuiz")}</Link>
             </Button>
           </motion.div>
         </div>
