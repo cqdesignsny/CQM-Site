@@ -1,39 +1,45 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
+import { useLanguage } from "@/lib/i18n/context";
 
 /**
  * Footer Component - Site footer with address, links, and contact info
  *
  * Approach: Semantic HTML with clear sections
- * Address and contact values come from central site config.
+ * i18n: All labels use the global t() function
  */
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   const footerLinks = {
     services: [
-      { href: "/services/web", label: "Web Development" },
-      { href: "/services/seo", label: "SEO" },
-      { href: "/services/paid-ads", label: "Paid Ads" },
-      { href: "/services/social-media", label: "Social Media" },
-      { href: "/services/email-marketing", label: "Email Marketing" },
-      { href: "/services/ai-development", label: "AI Development" },
-      { href: "/services/ai-integration", label: "AI Integration" },
-      { href: "/services/video", label: "Video Production" },
+      { href: "/services/web", labelKey: "service.web" },
+      { href: "/services/seo", labelKey: "service.seo" },
+      { href: "/services/paid-ads", labelKey: "service.paidAds" },
+      { href: "/services/social-media", labelKey: "service.socialMedia" },
+      { href: "/services/email-marketing", labelKey: "service.emailMarketing" },
+      { href: "/services/ai-development", labelKey: "service.aiDevelopment" },
+      { href: "/services/ai-integration", labelKey: "service.aiIntegration" },
+      { href: "/services/video", labelKey: "service.video" },
     ],
     company: [
-      { href: "/about", label: "About" },
-      { href: "/process", label: "Process" },
-      { href: "/work", label: "Case Studies" },
-      { href: "/pricing", label: "Pricing" },
-      { href: "/careers", label: "Careers" },
-      { href: "/contact", label: "Contact" },
+      { href: "/about", labelKey: "nav.about" },
+      { href: "/process", labelKey: "nav.process" },
+      { href: "/work", labelKey: "footer.caseStudies" },
+      { href: "/pricing", labelKey: "nav.pricing" },
+      { href: "/careers", labelKey: "footer.careers" },
+      { href: "/contact", labelKey: "nav.contact" },
     ],
     resources: [
-      { href: "/resources", label: "Blog" },
-      { href: "/studio", label: "Studio Tour" },
-      { href: "https://hvpodcasting.com", label: "HV Podcasting", external: true },
+      { href: "/resources", labelKey: "footer.blog" },
+      { href: "/studio", labelKey: "footer.studioTour" },
+      { href: "/assessment", labelKey: "footer.assessment" },
+      { href: "/proposals", labelKey: "footer.proposalBuilder" },
+      { href: "https://hvpodcasting.com", labelKey: "footer.hvPodcasting", external: true },
     ],
   };
 
@@ -45,7 +51,7 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="text-lg font-bold">{siteConfig.name}</h3>
             <p className="text-sm text-white/70">
-              {siteConfig.tagline}
+              {t("footer.tagline")}
             </p>
             <div className="space-y-2 text-sm text-white/90">
               <div className="flex items-start gap-2">
@@ -80,7 +86,7 @@ export function Footer() {
 
           {/* Services Column */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold">Services</h4>
+            <h4 className="mb-4 text-sm font-semibold">{t("footer.services")}</h4>
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.href}>
@@ -88,7 +94,7 @@ export function Footer() {
                     href={link.href}
                     className="text-sm text-white/70 transition-colors hover:text-red-300"
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </Link>
                 </li>
               ))}
@@ -97,7 +103,7 @@ export function Footer() {
 
           {/* Company Column */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold">Company</h4>
+            <h4 className="mb-4 text-sm font-semibold">{t("footer.company")}</h4>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
@@ -105,7 +111,7 @@ export function Footer() {
                     href={link.href}
                     className="text-sm text-white/70 transition-colors hover:text-red-300"
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </Link>
                 </li>
               ))}
@@ -114,7 +120,7 @@ export function Footer() {
 
           {/* Resources Column */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold">Resources</h4>
+            <h4 className="mb-4 text-sm font-semibold">{t("footer.resources")}</h4>
             <ul className="space-y-2">
               {footerLinks.resources.map((link) => (
                 <li key={link.href}>
@@ -125,14 +131,14 @@ export function Footer() {
                       rel="noopener noreferrer"
                       className="text-sm text-white/70 transition-colors hover:text-red-300"
                     >
-                      {link.label}
+                      {t(link.labelKey)}
                     </a>
                   ) : (
                     <Link
                       href={link.href}
                       className="text-sm text-white/70 transition-colors hover:text-red-300"
                     >
-                      {link.label}
+                      {t(link.labelKey)}
                     </Link>
                   )}
                 </li>
@@ -144,12 +150,10 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-8 border-t border-white/10 pt-8 text-center text-sm text-white/60">
           <p>
-            © {currentYear} {siteConfig.name}. All rights reserved.
+            &copy; {currentYear} {siteConfig.name}. {t("footer.copyright")}
           </p>
         </div>
       </div>
     </footer>
   );
 }
-
-

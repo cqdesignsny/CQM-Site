@@ -24,7 +24,14 @@ type EventName =
   | "link_click"
   | "strategy_call_booked"
   | "audit_requested"
-  | "studio_tour_booked";
+  | "studio_tour_booked"
+  | "assessment_started"
+  | "assessment_completed"
+  | "proposal_started"
+  | "proposal_service_added"
+  | "proposal_submitted"
+  | "proposal_viewed"
+  | "proposal_accepted";
 
 type EventPayload = Record<string, unknown>;
 

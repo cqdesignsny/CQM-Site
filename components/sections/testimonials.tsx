@@ -2,11 +2,15 @@
 
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/context";
 
 /**
  * Testimonials Section - Client voice and trust
+ * i18n: Section title/subtitle use the global t() function
  */
 export function Testimonials() {
+  const { t } = useLanguage();
+
   const testimonials = [
     {
       name: "Sarah O'Flaherty",
@@ -39,10 +43,10 @@ export function Testimonials() {
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            What Clients Say
+            {t("testimonials.title")}
           </h2>
           <p className="text-lg text-muted-foreground">
-            We build long-term partnerships focused on results and reliability.
+            {t("testimonials.subtitle")}
           </p>
         </div>
 

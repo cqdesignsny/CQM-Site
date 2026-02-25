@@ -1,11 +1,15 @@
+"use client";
+
 import Image from "next/image";
+import { useLanguage } from "@/lib/i18n/context";
 
 /**
  * Trust Logos Section - Display client/partner logos
- *
- * Approach: Simple grid of logos with Next.js Image optimization
+ * i18n: Section text uses the global t() function
  */
 export function TrustLogos() {
+  const { t } = useLanguage();
+
   const logos = [
     { name: "Advanced Skin Medspa", logo: "/images/asm.webp" },
     { name: "Elco", logo: "/images/elco.webp" },
@@ -23,7 +27,7 @@ export function TrustLogos() {
     <section className="border-y bg-muted/30 py-12">
       <div className="container mx-auto px-4">
         <p className="mb-8 text-center text-sm font-medium text-muted-foreground">
-          Trusted by innovative businesses
+          {t("trust.title")}
         </p>
         <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
           {logos.map((logo, index) => (
@@ -42,14 +46,9 @@ export function TrustLogos() {
           ))}
         </div>
         <p className="mt-8 text-center text-lg font-medium text-muted-foreground">
-          And Many More!
+          {t("trust.andMore")}
         </p>
       </div>
     </section>
   );
 }
-
-
-
-
-

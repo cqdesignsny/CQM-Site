@@ -3,16 +3,8 @@
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
+import { useLanguage } from "@/lib/i18n/context";
 
-/**
- * Service Pricing Component - 3-tier pricing table
- *
- * Approach: Simple card-based pricing display
- * Trade-offs:
- * - Could use a more complex pricing calculator
- * - Could integrate with Stripe for direct checkout
- * - Keeping simple for now - CTAs lead to contact form
- */
 export interface PricingTier {
   name: string;
   price: string;
@@ -26,6 +18,8 @@ interface ServicePricingProps {
 }
 
 export function ServicePricing({ serviceName, tiers }: ServicePricingProps) {
+  const { t } = useLanguage();
+
   const handleCTAClick = (tier: string) => {
     track("cta_click", {
       cta_type: "pricing_tier",
@@ -37,13 +31,12 @@ export function ServicePricing({ serviceName, tiers }: ServicePricingProps) {
   return (
     <section className="mb-20" id="pricing">
       <div className="mb-10 text-center">
-        <p className="brand-section-title mb-2">Pricing</p>
+        <p className="brand-section-title mb-2">{t("serviceDetail.pricing")}</p>
         <h2 className="mb-4 text-3xl font-bold sm:text-4xl">
-          Plans Built for {serviceName}
+          {t("serviceDetail.plansFor")} {serviceName}
         </h2>
         <p className="text-muted-foreground">
-          Start with the baseline that fits your stage. Final scope is tailored
-          to your goals, channels, and complexity.
+          {t("serviceDetail.pricingNote")}
         </p>
       </div>
 
@@ -65,7 +58,7 @@ export function ServicePricing({ serviceName, tiers }: ServicePricingProps) {
             {index === 1 && (
               <div className="mb-4 text-center">
                 <span className="rounded-full bg-red-600 px-3 py-1 text-xs font-semibold text-white">
-                  Most Popular
+                  {t("pricing.popular")}
                 </span>
               </div>
             )}
@@ -75,8 +68,8 @@ export function ServicePricing({ serviceName, tiers }: ServicePricingProps) {
               {tier.description}
             </p>
             <ul className="mb-6 space-y-3">
-              {tier.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2">
+              {tier.features.map((feature, i) => (
+                <li key={i} className="flex items-start gap-2">
                   <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <span className="text-sm">{feature}</span>
                 </li>
@@ -89,18 +82,15 @@ export function ServicePricing({ serviceName, tiers }: ServicePricingProps) {
               asChild
             >
               <a href={`/contact?service=${encodeURIComponent(serviceName)}`}>
-                Start This Plan
+                {t("serviceDetail.startPlan")}
               </a>
             </Button>
           </article>
         ))}
       </div>
       <p className="mt-5 text-center text-sm text-muted-foreground">
-        All plans include strategy support and transparent reporting.
+        {t("serviceDetail.pricingDisclaimer")}
       </p>
     </section>
   );
 }
-
-
-

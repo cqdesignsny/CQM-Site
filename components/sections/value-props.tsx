@@ -15,69 +15,68 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { track } from "@/lib/analytics";
+import { useLanguage } from "@/lib/i18n/context";
 
 /**
  * Value Props Section - Showcase core services
- *
- * Approach: Grid layout with icons and descriptions
- * Each service links to its dedicated page
+ * i18n: All visible text uses the global t() function
  */
 export function ValueProps() {
+  const { t } = useLanguage();
+
   const services = [
     {
       icon: Globe,
-      title: "Web Development",
-      description: "Custom websites that convert visitors into customers.",
+      titleKey: "service.web",
+      descKey: "valueProps.desc.web",
       href: "/services/web",
     },
     {
       icon: Search,
-      title: "SEO",
-      description: "Rank higher in search results and drive organic traffic.",
+      titleKey: "service.seo",
+      descKey: "valueProps.desc.seo",
       href: "/services/seo",
     },
     {
       icon: TrendingUp,
-      title: "Paid Ads",
-      description: "Data-driven campaigns on Google, Meta, and LinkedIn.",
+      titleKey: "service.paidAds",
+      descKey: "valueProps.desc.paidAds",
       href: "/services/paid-ads",
     },
     {
       icon: Share2,
-      title: "Social Media",
-      description: "Engage your audience and grow your brand presence.",
+      titleKey: "service.socialMedia",
+      descKey: "valueProps.desc.socialMedia",
       href: "/services/social-media",
     },
     {
       icon: Mail,
-      title: "Email Marketing",
-      description: "Nurture leads and retain customers with targeted campaigns.",
+      titleKey: "service.emailMarketing",
+      descKey: "valueProps.desc.emailMarketing",
       href: "/services/email-marketing",
     },
     {
       icon: Bot,
-      title: "AI Development & Automation",
-      description:
-        "Automate repetitive workflows and build smarter systems for your marketing and operations.",
+      titleKey: "service.aiDevelopment",
+      descKey: "valueProps.desc.aiDevelopment",
       href: "/services/ai-development",
     },
     {
       icon: Workflow,
-      title: "Agent & AI Integration",
-      description:
-        "Integrate AI assistants and agents into your process without disrupting your existing stack.",
+      titleKey: "service.aiIntegration",
+      descKey: "valueProps.desc.aiIntegration",
       href: "/services/ai-integration",
     },
     {
       icon: Video,
-      title: "Video Production",
-      description: "Professional video content that tells your story.",
+      titleKey: "service.video",
+      descKey: "valueProps.desc.video",
       href: "/services/video",
     },
     {
       icon: Mic,
-      title: "Podcast Studio",
-      description: "Full-service podcast production and distribution.",
+      titleKey: "contact.form.podcastStudio",
+      descKey: "valueProps.desc.podcast",
       href: "/studio",
     },
   ];
@@ -87,11 +86,10 @@ export function ValueProps() {
       <div className="container mx-auto px-4">
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Everything You Need to Grow
+            {t("valueProps.title")}
           </h2>
           <p className="text-lg text-muted-foreground">
-            From web development to podcast production, we offer end-to-end
-            digital marketing services powered by AI-enhanced workflows.
+            {t("valueProps.subtitle")}
           </p>
         </div>
 
@@ -112,17 +110,17 @@ export function ValueProps() {
                   onClick={() =>
                     track("link_click", {
                       link_type: "service_card",
-                      destination: service.title,
+                      destination: t(service.titleKey),
                     })
                   }
                 >
                   <Icon className="mb-4 h-8 w-8 text-primary" />
-                  <h3 className="mb-2 text-xl font-semibold">{service.title}</h3>
+                  <h3 className="mb-2 text-xl font-semibold">{t(service.titleKey)}</h3>
                   <p className="mb-4 text-sm text-muted-foreground">
-                    {service.description}
+                    {t(service.descKey)}
                   </p>
                   <span className="inline-flex items-center text-sm font-medium text-primary group-hover:underline">
-                    Learn more
+                    {t("valueProps.learnMore")}
                     <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </Link>
@@ -134,5 +132,3 @@ export function ValueProps() {
     </section>
   );
 }
-
-

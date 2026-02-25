@@ -6,16 +6,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useLanguage } from "@/lib/i18n/context";
 
-/**
- * Service FAQs Component - Accordion-style FAQ section
- *
- * Approach: Using Radix UI Accordion for accessibility
- * Why Radix?
- * - Built-in keyboard navigation
- * - ARIA attributes handled automatically
- * - Smooth animations
- */
 export interface FAQ {
   question: string;
   answer: string;
@@ -26,16 +18,17 @@ interface ServiceFAQsProps {
 }
 
 export function ServiceFAQs({ faqs }: ServiceFAQsProps) {
+  const { t } = useLanguage();
+
   return (
     <section className="mb-20" id="faqs">
       <div className="mb-8">
-        <p className="brand-section-title mb-2">FAQs</p>
+        <p className="brand-section-title mb-2">{t("serviceDetail.faqs")}</p>
         <h2 className="mb-3 text-3xl font-bold sm:text-4xl">
-          Frequently Asked Questions
+          {t("serviceDetail.faqTitle")}
         </h2>
         <p className="text-muted-foreground">
-          Straight answers to the most common implementation and engagement
-          questions.
+          {t("serviceDetail.faqSubtitle")}
         </p>
       </div>
       <Accordion
@@ -45,7 +38,7 @@ export function ServiceFAQs({ faqs }: ServiceFAQsProps) {
       >
         {faqs.map((faq, index) => (
           <AccordionItem
-            key={faq.question}
+            key={index}
             value={`item-${index}`}
             className="rounded-lg border px-4 transition-colors hover:border-primary/40"
           >
@@ -61,7 +54,3 @@ export function ServiceFAQs({ faqs }: ServiceFAQsProps) {
     </section>
   );
 }
-
-
-
-

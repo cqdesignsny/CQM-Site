@@ -2,45 +2,39 @@
 
 import { motion } from "framer-motion";
 import { Search, Lightbulb, Rocket, BarChart3 } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/context";
 
 /**
  * Process Section - 4-step process explanation
- *
- * Approach: Visual step-by-step process
- * Why 4 steps?
- * - Easy to remember (rule of 4)
- * - Not overwhelming
- * - Clear progression from discovery to results
+ * i18n: All visible text uses the global t() function
  */
 export function Process() {
+  const { t } = useLanguage();
+
   const steps = [
     {
       number: "01",
       icon: Search,
-      title: "Discovery",
-      description:
-        "We learn about your business, goals, and target audience through strategy calls and audits.",
+      titleKey: "process.step1.title",
+      descKey: "process.step1.desc",
     },
     {
       number: "02",
       icon: Lightbulb,
-      title: "Strategy",
-      description:
-        "We develop a customized marketing strategy tailored to your unique needs and objectives.",
+      titleKey: "process.step2.title",
+      descKey: "process.step2.desc",
     },
     {
       number: "03",
       icon: Rocket,
-      title: "Execution",
-      description:
-        "Our team implements the strategy with high-quality creative work and technical expertise.",
+      titleKey: "process.step3.title",
+      descKey: "process.step3.desc",
     },
     {
       number: "04",
       icon: BarChart3,
-      title: "Optimization",
-      description:
-        "We continuously monitor performance, analyze data, and refine our approach for better results.",
+      titleKey: "process.step4.title",
+      descKey: "process.step4.desc",
     },
   ];
 
@@ -49,10 +43,10 @@ export function Process() {
       <div className="container mx-auto px-4">
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            How We Work
+            {t("process.title")}
           </h2>
           <p className="text-lg text-muted-foreground">
-            A proven process that delivers results at every stage.
+            {t("process.subtitle")}
           </p>
         </div>
 
@@ -82,9 +76,9 @@ export function Process() {
                       {step.number}
                     </span>
                   </div>
-                  <h3 className="mb-2 text-xl font-semibold">{step.title}</h3>
+                  <h3 className="mb-2 text-xl font-semibold">{t(step.titleKey)}</h3>
                   <p className="text-sm text-muted-foreground">
-                    {step.description}
+                    {t(step.descKey)}
                   </p>
                 </div>
               </motion.div>
@@ -95,8 +89,3 @@ export function Process() {
     </section>
   );
 }
-
-
-
-
-

@@ -6,11 +6,15 @@ import { motion } from "framer-motion";
 import { ArrowRight, Bot, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
+import { useLanguage } from "@/lib/i18n/context";
 
 /**
  * Case Studies Section - Featured work snapshots
+ * i18n: Section title/subtitle/CTA use the global t() function
  */
 export function CaseStudies() {
+  const { t } = useLanguage();
+
   const caseStudies = [
     {
       slug: "advanced-skin-medspa",
@@ -47,10 +51,10 @@ export function CaseStudies() {
       <div className="container relative z-10 mx-auto px-4">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Client Spotlight
+            {t("caseStudies.title")}
           </h2>
           <p className="text-lg text-white/70">
-            Strategic execution powered by AI-assisted workflows and human creative direction.
+            {t("caseStudies.subtitle")}
           </p>
         </div>
 
@@ -99,7 +103,7 @@ export function CaseStudies() {
                 </div>
 
                 <span className="inline-flex items-center text-sm font-medium text-red-600 group-hover:underline">
-                  View client work
+                  {t("caseStudies.viewWork")}
                   <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
@@ -115,7 +119,7 @@ export function CaseStudies() {
             asChild
           >
             <Link href="/work">
-              Explore More Work
+              {t("caseStudies.cta")}
               <Bot className="ml-2 h-4 w-4" />
             </Link>
           </Button>

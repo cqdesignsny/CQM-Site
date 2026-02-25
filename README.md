@@ -2,7 +2,7 @@
 
 This is the in-progress rebuild/redesign of [creativequalitymarketing.com](https://creativequalitymarketing.com) using Next.js (App Router) and Tailwind CSS.
 
-Last updated: **February 18, 2026**
+Last updated: **February 25, 2026**
 
 ## 1) Project Goals
 
@@ -19,6 +19,10 @@ Last updated: **February 18, 2026**
 - Tailwind CSS + `class-variance-authority`
 - Radix UI primitives (Accordion, Slot)
 - Framer Motion (section animations)
+- Supabase (database for proposals & assessments)
+- Notion API (CRM pipeline integration)
+- Resend (transactional email)
+- nanoid (URL-friendly proposal IDs)
 
 ## 3) Current Build Status
 
@@ -55,6 +59,67 @@ Last updated: **February 18, 2026**
   - Vercel deployment active: `https://cqm-site.vercel.app`
   - README maintained as handoff source-of-truth for Cursor/Claude/other dev tools
 
+### Proposal Builder & Marketing Assessment (New)
+
+- **Proposal Builder** (`/proposals`): Public tool for building custom marketing packages
+  - 48 services across 10 categories with trilingual EN/ES/FR support
+  - 3 pre-built packages: Startup ($750), Growth ($1,500), Scale ($3,000)
+  - Custom line items and discount fields
+  - 3-step wizard: Build -> Review -> Send
+  - Saves to Supabase, syncs to Notion CRM, sends branded email via Resend
+  - Shareable proposal links at `/proposals/view/[id]`
+  - Proposal acceptance flow with confirmation + notification
+  - Print/download via browser `window.print()` with optimized `@media print` styles
+  - Webhook support for n8n / external automation (WEBHOOK_URL env var)
+
+- **Marketing Assessment** (`/assessment`): Lead-gen diagnostic quiz
+  - 24 questions across 10 marketing categories
+  - Scores each category 0-100% with overall marketing health score
+  - Recommends services based on low-scoring categories (< 60%)
+  - Lead capture gate before showing results
+  - "Build Your Package" CTA feeds recommendations into the proposal builder
+  - Saves to Supabase, fires webhook events for n8n
+
+- **Proposal View Page** (`/proposals/view/[id]`): Clean branded layout (no site nav)
+  - Server-rendered with dynamic OG metadata
+  - Service breakdown grouped by category with descriptions
+  - Pricing summary with discount visualization
+  - Accept button with confirmation flow
+  - Stale notice if proposal > 30 days old
+  - `noindex` to protect private proposal data
+
+### Internationalization (i18n) — Trilingual EN/ES/FR
+
+- **Language system**: `LanguageProvider` context with `useLanguage()` hook
+  - `lib/i18n/context.tsx` — React context + provider + `useLanguage()` hook
+  - `lib/i18n/site-translations.ts` — ~1000+ trilingual translation keys (EN/ES/FR)
+  - `components/language-switcher.tsx` — EN/ES/FR toggle pill in header
+  - `components/language-provider.tsx` — wraps app in `LanguageProvider`
+- **Coverage**: All user-facing pages are fully wired for trilingual switching:
+  - Homepage sections: hero, value props, case studies, process, testimonials, resources teaser, trust logos
+  - Core pages: about, contact, careers, process, work, pricing, resources, studio
+  - Services hub page + all 8 service detail pages (web, seo, paid-ads, social-media, email-marketing, ai-development, ai-integration, video)
+  - Header, footer, contact form
+  - Proposal builder and assessment (already bilingual EN/ES in data layer)
+- **Architecture**:
+  - Server components (`page.tsx`) handle metadata only
+  - Client content wrappers (`*-content.tsx`) use `useLanguage()` + `t()` for all UI strings
+  - Translation key naming: `section.key` for site pages, `sd.{svc}.{field}` for service detail pages
+  - Designed for future locale additions (add language to `SiteLocale` union + translation entries)
+
+- **Architecture**:
+  - Route groups: `(main)` for site pages with header/footer, `(proposal-view)` for minimal proposal layout
+  - `useReducer` for complex state management in builder (15+ interdependent state vars)
+  - JSONB service snapshots in Supabase (immune to future price changes)
+  - New proposal per revision (version history, each gets its own link)
+  - API routes: `POST /api/proposals`, `POST /api/proposals/[id]/accept`, `POST /api/assessment`, `GET /api/assessment/[id]`
+
+- **n8n / Agent Readiness**:
+  - All API routes fire webhook events to `WEBHOOK_URL` when set
+  - Events: `proposal_created`, `proposal_accepted`, `assessment_completed`
+  - Payloads include full contact info, scores, totals, and timestamps
+  - Supabase tables accessible via API for custom agent queries
+
 ### What is still placeholder/incomplete
 
 - Contact form submission integration (currently mock alert)
@@ -65,6 +130,8 @@ Last updated: **February 18, 2026**
 - Blog/CMS/MDX integration
 - Real analytics scripts and event destinations
 - Final brand visual system refinement (typography, color system polish, motion pass)
+- Supabase tables need to be created (SQL in plan file)
+- Environment variables needed: Supabase, Notion, Resend, WEBHOOK_URL (see `.env.example`)
 
 ## 4) Changes Completed In This Session
 
@@ -169,6 +236,19 @@ Notes:
 - `/llms.txt` (built)
 - `/.well-known/llms.txt` (built)
 
+### Proposal Builder & Assessment
+
+- `/proposals` (built - proposal builder UI)
+- `/proposals/view/[id]` (built - shareable proposal view page, minimal layout)
+- `/assessment` (built - marketing assessment quiz)
+
+### API Routes
+
+- `POST /api/proposals` (built - create proposal)
+- `POST /api/proposals/[id]/accept` (built - accept proposal)
+- `POST /api/assessment` (built - submit assessment)
+- `GET /api/assessment/[id]` (built - fetch assessment results)
+
 ## 6) Live Site Research Notes (for content alignment)
 
 Primary source: [creativequalitymarketing.com](https://creativequalitymarketing.com)
@@ -261,6 +341,15 @@ npm run start
   - `NEXT_PUBLIC_META_PIXEL_ID`
   - `NEXT_PUBLIC_TIKTOK_PIXEL_ID`
   - `NEXT_PUBLIC_LINKEDIN_PARTNER_ID`
+  - `NEXT_PUBLIC_SUPABASE_URL`
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  - `SUPABASE_SERVICE_ROLE_KEY`
+  - `NOTION_API_KEY`
+  - `NOTION_PROPOSALS_DATABASE_ID`
+  - `NOTION_ASSESSMENTS_DATABASE_ID`
+  - `RESEND_API_KEY`
+  - `DEFAULT_PROPOSAL_EMAIL`
+  - `WEBHOOK_URL` (optional - for n8n / external automation)
 
 ## 11) Deployment Notes
 
@@ -322,6 +411,32 @@ Audit date: **February 18, 2026**
 - Validate live deployment in Google Search Console + Rich Results Test after production release.
 
 ## 13) Change Log
+
+- **2026-02-25**
+  - Added full trilingual internationalization (EN/ES/FR) across the entire site
+  - Created i18n infrastructure: `LanguageProvider` context, `useLanguage()` hook, `LanguageSwitcher` component
+  - Built `lib/i18n/site-translations.ts` with ~1000+ translation keys covering all pages
+  - Converted all homepage sections to use i18n: hero, value props, case studies, process, testimonials, resources teaser, trust logos
+  - Converted all core pages to client content wrappers with i18n: about, contact, careers, process, work, pricing, resources, studio
+  - Converted services hub page and all 8 service detail pages to i18n with `sd.*` translation keys
+  - Converted header, footer, and contact form to use `useLanguage()` for all UI strings
+  - Updated service template components (`service-page-template.tsx`, `service-pricing.tsx`, `service-faqs.tsx`) for i18n
+  - Added language switcher (EN/ES/FR pill toggle) to site header
+  - Moved all pages into `app/(main)/` route group (pages already existed under route group from proposal build)
+  - Updated `package.json` with `@supabase/supabase-js`, `@notionhq/client`, `resend`, `nanoid` dependencies
+
+- **2026-02-24**
+  - Integrated Proposal Builder from standalone vanilla JS app into Next.js site
+  - Added route groups `(main)` and `(proposal-view)` for dual-layout support
+  - Built complete data layer: types, 48-service catalog, bilingual translations, calculations
+  - Added Supabase client (server + browser), Notion CRM integration, Resend email integration
+  - Created API routes: `POST /api/proposals`, `POST /api/proposals/[id]/accept`, `POST /api/assessment`, `GET /api/assessment/[id]`
+  - Built proposal builder UI: package selector, category tabs, service cards, custom items editor, discount field, summary sidebar, review step, contact/send step
+  - Built proposal view page with accept flow, print styles, stale notice, dynamic OG metadata
+  - Built marketing assessment: 24-question quiz across 10 categories, scoring engine, recommendations, lead capture
+  - Added webhook support to all API routes for n8n / external automation
+  - Updated nav (header + footer), sitemap, robots.txt, and analytics event types
+  - Installed dependencies: `resend`, `@notionhq/client`, `@supabase/supabase-js`, `nanoid`
 
 - **2026-02-18**
   - Added `README.md` baseline documentation.

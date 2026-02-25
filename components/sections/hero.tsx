@@ -5,17 +5,15 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/context";
 
 /**
  * Hero Section - Main landing section with headline and CTAs
- *
- * Approach: Framer Motion for subtle animations
- * Trade-offs:
- * - Client component for interactivity
- * - Animations respect prefers-reduced-motion via CSS
- * - Could use CSS animations for simpler approach, but Framer Motion is more flexible
+ * i18n: All visible text uses the global t() function
  */
 export function Hero() {
+  const { t } = useLanguage();
+
   const handleCTAClick = (type: "strategy" | "audit") => {
     track("cta_click", {
       cta_type: type === "strategy" ? "strategy_call" : "free_audit",
@@ -29,7 +27,7 @@ export function Hero() {
     delay: Math.random() * 20,
     duration: 8 + Math.random() * 12,
     top: Math.random() * 100,
-    size: 4 + Math.random() * 6, // Bigger: 4-10px (was 2-6px)
+    size: 4 + Math.random() * 6,
   }));
 
   return (
@@ -47,7 +45,7 @@ export function Hero() {
               animation: `slideAcross ${star.duration}s linear ${star.delay}s infinite`,
             }}
           >
-            {/* Shooting star trail - longer gradient fade */}
+            {/* Shooting star trail */}
             <div
               className="absolute top-1/2 -translate-y-1/2"
               style={{
@@ -72,7 +70,7 @@ export function Hero() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="mx-auto max-w-3xl text-center">
-          {/* Animated Icon */}
+          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -81,7 +79,7 @@ export function Hero() {
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-red-500/60 bg-red-600/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-red-200">
               <Sparkles className="h-4 w-4" />
-              AI-Forward Growth Agency
+              {t("hero.badge")}
             </span>
           </motion.div>
 
@@ -92,9 +90,9 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            AI-Powered Creativity
+            {t("hero.title1")}
             <br />
-            <span className="text-red-400">Meets Results</span>
+            <span className="text-red-400">{t("hero.title2")}</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -104,10 +102,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mb-8 text-lg text-white/80 sm:text-xl"
           >
-            Digital marketing is everything now.
-            <br />
-            We are an AI-forward agency helping businesses grow with web
-            development, SEO, paid ads, social media, and content production.
+            {t("hero.subtitle")}
           </motion.p>
 
           {/* Dual CTAs */}
@@ -123,7 +118,7 @@ export function Hero() {
               onClick={() => handleCTAClick("strategy")}
             >
               <Link href="/contact">
-                Book a Strategy Call
+                {t("hero.cta1")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -134,7 +129,7 @@ export function Hero() {
               asChild
               onClick={() => handleCTAClick("audit")}
             >
-              <Link href="/contact?type=audit">Get a Free Audit</Link>
+              <Link href="/contact?type=audit">{t("hero.cta2")}</Link>
             </Button>
           </motion.div>
         </div>
@@ -142,5 +137,3 @@ export function Hero() {
     </section>
   );
 }
-
-

@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@/components/analytics";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import {
   generateLocalBusinessSchema,
   generateOrganizationSchema,
   generateWebsiteSchema,
 } from "@/components/seo/default-seo";
 import { siteConfig } from "@/lib/site-config";
+import { LanguageProviderWrapper } from "@/components/language-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -100,13 +99,11 @@ export default function RootLayout({
             __html: JSON.stringify(websiteSchema),
           }}
         />
-        <Header />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <LanguageProviderWrapper>
+          {children}
+        </LanguageProviderWrapper>
         <Analytics />
       </body>
     </html>
   );
 }
-
-

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
@@ -8,6 +10,7 @@ import {
   type PricingTier,
 } from "@/components/services/service-pricing";
 import { ServiceLeadCapture } from "@/components/services/service-lead-capture";
+import { useLanguage } from "@/lib/i18n/context";
 
 interface DeliverableBlock {
   title: string;
@@ -45,6 +48,7 @@ export function ServicePageTemplate({
   tiers,
   faqs,
 }: ServicePageTemplateProps) {
+  const { t } = useLanguage();
   const pageUrl = `${siteConfig.url}${path}`;
 
   const serviceSchema = {
@@ -77,7 +81,7 @@ export function ServicePageTemplate({
       {
         "@type": "ListItem",
         position: 2,
-        name: "Services",
+        name: t("services.title"),
         item: `${siteConfig.url}/services`,
       },
       {
@@ -127,7 +131,7 @@ export function ServicePageTemplate({
         <div className="absolute -left-10 bottom-0 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
         <div className="relative">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-red-300">
-            AI-Driven Service
+            {t("serviceDetail.aiDriven")}
           </p>
           <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
             {headline}
@@ -137,9 +141,9 @@ export function ServicePageTemplate({
           </p>
           {highlights.length > 0 && (
             <div className="mt-6 flex flex-wrap gap-2">
-              {highlights.map((highlight) => (
+              {highlights.map((highlight, i) => (
                 <span
-                  key={highlight}
+                  key={i}
                   className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white"
                 >
                   {highlight}
@@ -150,7 +154,7 @@ export function ServicePageTemplate({
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Button asChild>
               <Link href={`/contact?service=${encodeURIComponent(serviceName)}`}>
-                Book a Strategy Call
+                {t("serviceDetail.bookCall")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -159,7 +163,7 @@ export function ServicePageTemplate({
               className="border-white/35 bg-white/5 text-white hover:bg-white/15"
               asChild
             >
-              <Link href="#pricing">View Pricing</Link>
+              <Link href="#pricing">{t("serviceDetail.viewPricing")}</Link>
             </Button>
           </div>
         </div>
@@ -167,11 +171,11 @@ export function ServicePageTemplate({
 
       <nav className="mb-14 flex flex-wrap gap-2">
         {[
-          { href: "#outcomes", label: "Outcomes" },
-          { href: "#included", label: "What's Included" },
-          { href: "#process", label: "Our Process" },
-          { href: "#pricing", label: "Pricing" },
-          { href: "#faqs", label: "FAQs" },
+          { href: "#outcomes", label: t("serviceDetail.outcomes") },
+          { href: "#included", label: t("serviceDetail.included") },
+          { href: "#process", label: t("serviceDetail.process") },
+          { href: "#pricing", label: t("serviceDetail.pricing") },
+          { href: "#faqs", label: t("serviceDetail.faqs") },
         ].map((item) => (
           <a
             key={item.href}
@@ -185,13 +189,13 @@ export function ServicePageTemplate({
 
       <section id="outcomes" className="mb-20">
         <div className="mb-8">
-          <p className="brand-section-title mb-2">Outcomes</p>
-          <h2 className="text-3xl font-bold sm:text-4xl">What You&apos;ll Achieve</h2>
+          <p className="brand-section-title mb-2">{t("serviceDetail.outcomes")}</p>
+          <h2 className="text-3xl font-bold sm:text-4xl">{t("serviceDetail.whatYouGet")}</h2>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {outcomes.map((outcome) => (
+          {outcomes.map((outcome, i) => (
             <article
-              key={outcome}
+              key={i}
               className="group rounded-xl border bg-white/95 p-5 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-xl"
             >
               <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-red-100">
@@ -205,20 +209,20 @@ export function ServicePageTemplate({
 
       <section id="included" className="mb-20">
         <div className="mb-8">
-          <p className="brand-section-title mb-2">Scope</p>
-          <h2 className="text-3xl font-bold sm:text-4xl">What&apos;s Included</h2>
+          <p className="brand-section-title mb-2">{t("serviceDetail.scope")}</p>
+          <h2 className="text-3xl font-bold sm:text-4xl">{t("serviceDetail.included")}</h2>
         </div>
         <div className="grid gap-5 md:grid-cols-2">
-          {deliverables.map((block) => (
+          {deliverables.map((block, i) => (
             <article
-              key={block.title}
+              key={i}
               className="rounded-xl border bg-white/95 p-6 transition-all hover:border-primary hover:shadow-xl"
             >
               <h3 className="mb-2 text-xl font-semibold">{block.title}</h3>
               <p className="mb-4 text-sm text-muted-foreground">{block.description}</p>
               <ul className="space-y-2">
-                {block.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm">
+                {block.items.map((item, j) => (
+                  <li key={j} className="flex items-start gap-2 text-sm">
                     <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                     <span>{item}</span>
                   </li>
@@ -231,13 +235,13 @@ export function ServicePageTemplate({
 
       <section id="process" className="mb-20">
         <div className="mb-8">
-          <p className="brand-section-title mb-2">Process</p>
-          <h2 className="text-3xl font-bold sm:text-4xl">How We Work</h2>
+          <p className="brand-section-title mb-2">{t("serviceDetail.process")}</p>
+          <h2 className="text-3xl font-bold sm:text-4xl">{t("serviceDetail.howWeWork")}</h2>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           {processSteps.map((item, index) => (
             <article
-              key={item.step}
+              key={index}
               className="group rounded-xl border bg-white/95 p-6 transition-all hover:-translate-y-1 hover:border-red-300 hover:shadow-xl"
             >
               <div className="mb-3 flex items-center gap-3">
