@@ -423,11 +423,26 @@ Audit date: **February 18, 2026**
 
 ## 13) Change Log
 
+- **2026-02-25 (Session 3)**
+  - Site-wide CTA strategy: funnel all pages to Assessment + Proposal Builder
+  - Created reusable `CTABanner` component (`components/sections/cta-banner.tsx`) with 4 variants: full, compact, assessment, builder
+  - Added CTA banners to: homepage, services hub, work, about, process, resources, contact, studio, careers
+  - Updated hero: second CTA now links to `/assessment` ("Take the Free Marketing Quiz") instead of `/contact`
+  - Updated all 8 service detail page lead captures: CTAs now point to `/proposals` and `/assessment`
+  - Updated pricing page: replaced bottom CTA with dual assessment + builder cards
+  - Fixed Proposal Builder white bar at bottom (added `min-h-screen` to wrapper)
+  - Added "Start Over" button to proposal builder header (visible when selections exist)
+  - Changed package selection to NOT auto-advance to review step — stays on build step so users can review
+  - Reordered nav: Assessment, Proposals, Services, Studio, Work, Process, Resources, About, Contact
+  - Removed Pricing from header nav (kept page for SEO value)
+  - Updated footer: new "Tools" column with Assessment + Proposals prominently listed
+  - Added 12 new site-wide CTA translation keys (EN/ES/FR) + `nav.proposals` + `footer.tools` + `btn.startOver`
+
 - **2026-02-25 (Session 2)**
   - Unified i18n system: ONE language switcher in the header, removed Globe toggles from proposal builder and assessment
   - Created bridge hook `useProposalLocale()` connecting site-wide LanguageProvider to proposal/assessment components
   - Unified Locale type: proposals re-export `SiteLocale` from `lib/i18n/types.ts`
-  - Fixed package selection flow: clicking a pre-built package now populates services and auto-advances to review step
+  - Fixed package selection flow: clicking a pre-built package populates services on the build step
   - Removed search bar from proposal builder (unnecessary UX friction)
   - Fixed white space at bottom of proposal review step
   - Added ~79 missing translation keys across site pages:
