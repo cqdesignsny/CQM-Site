@@ -56,7 +56,7 @@ export function AcceptButton({ proposalId, locale }: Props) {
           {acceptedDate && (
             <span className="ml-2 font-normal text-green-400/60">
               {new Date(acceptedDate).toLocaleDateString(
-                locale === "es" ? "es-US" : "en-US",
+                locale === "es" ? "es-US" : locale === "fr" ? "fr-FR" : "en-US",
                 { month: "short", day: "numeric", year: "numeric" }
               )}
             </span>
@@ -102,7 +102,7 @@ export function AcceptButton({ proposalId, locale }: Props) {
           <span>{t("form.sending", locale)}</span>
         </>
       ) : status === "error" ? (
-        <span>Try Again</span>
+        <span>{t("btn.tryAgain", locale)}</span>
       ) : (
         <>
           <Check className="h-4 w-4" />

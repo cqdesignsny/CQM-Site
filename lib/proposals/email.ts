@@ -43,6 +43,7 @@ export async function sendAcceptanceNotification(
   proposal: Proposal
 ): Promise<void> {
   const resend = getResendClient();
+  const locale = proposal.locale || "en";
   const defaultEmail =
     process.env.DEFAULT_PROPOSAL_EMAIL || siteConfig.contact.email;
 
@@ -54,8 +55,8 @@ export async function sendAcceptanceNotification(
       <div style="padding: 32px 24px; background-color: #fff;">
         <div style="background-color: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 24px;">
           <p style="font-size: 24px; margin: 0 0 8px;">&#10003;</p>
-          <h2 style="color: #166534; font-size: 18px; margin: 0 0 8px;">Proposal Accepted!</h2>
-          <p style="color: #15803d; margin: 0;">${proposal.contact.name} ${t("email.acceptedBody")}</p>
+          <h2 style="color: #166534; font-size: 18px; margin: 0 0 8px;">${t("email.acceptedSubject", locale)}!</h2>
+          <p style="color: #15803d; margin: 0;">${proposal.contact.name} ${t("email.acceptedBody", locale)}</p>
         </div>
         <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
           <tr>
@@ -85,7 +86,7 @@ export async function sendAcceptanceNotification(
   await resend.emails.send({
     from: DEFAULT_FROM,
     to: [defaultEmail],
-    subject: `${t("email.acceptedSubject")} — ${proposal.contact.name}`,
+    subject: `${t("email.acceptedSubject", locale)} — ${proposal.contact.name}`,
     html,
   });
 }
@@ -105,6 +106,7 @@ function buildProposalEmailHtml(
   const oneTimeLabel = t("label.onetime", locale);
   const monthlyLabel = t("label.monthly", locale);
   const totalLabel = t("label.total", locale);
+  const perMonthShort = t("label.perMonthShort", locale);
 
   // Group services by category
   const serviceRows = proposal.selectedServices
@@ -153,7 +155,7 @@ function buildProposalEmailHtml(
       ? `
         <tr>
           <td style="padding: 10px 0; font-size: 14px; color: #6b7280;">${t("label.hosting", locale)}</td>
-          <td style="padding: 10px 0; text-align: right; font-size: 14px;">${formatCurrency(proposal.hostingFee)}/mo</td>
+          <td style="padding: 10px 0; text-align: right; font-size: 14px;">${formatCurrency(proposal.hostingFee)}${perMonthShort}</td>
         </tr>
       `
       : "";
@@ -192,7 +194,7 @@ function buildProposalEmailHtml(
             </tr>
             <tr>
               <td style="padding: 6px 0; font-size: 14px; color: #374151;">${monthlyLabel}</td>
-              <td style="padding: 6px 0; text-align: right; font-size: 14px; font-weight: 600;">${formatCurrency(proposal.monthlyTotal + proposal.hostingFee)}/mo</td>
+              <td style="padding: 6px 0; text-align: right; font-size: 14px; font-weight: 600;">${formatCurrency(proposal.monthlyTotal + proposal.hostingFee)}${perMonthShort}</td>
             </tr>
             <tr>
               <td style="padding: 10px 0 0; font-size: 16px; font-weight: 700; border-top: 1px solid #e5e7eb;">${totalLabel}</td>

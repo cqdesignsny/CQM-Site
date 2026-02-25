@@ -88,7 +88,7 @@ export function Header() {
             type="button"
             className="text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
+            aria-label={t("common.toggleMenu")}
             aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? (

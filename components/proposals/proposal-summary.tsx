@@ -130,7 +130,7 @@ export function ProposalSummary({
                 </span>
                 <span className="text-white">
                   {formatCurrency(totals.monthlyTotal)}
-                  <span className="text-white/40">/mo</span>
+                  <span className="text-white/40">{t("label.perMonthShort", locale)}</span>
                 </span>
               </div>
             )}
@@ -141,7 +141,7 @@ export function ProposalSummary({
                 </span>
                 <span className="text-white">
                   {formatCurrency(totals.hostingFee)}
-                  <span className="text-white/40">/mo</span>
+                  <span className="text-white/40">{t("label.perMonthShort", locale)}</span>
                 </span>
               </div>
             )}

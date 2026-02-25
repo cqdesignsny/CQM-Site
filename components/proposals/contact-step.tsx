@@ -88,7 +88,9 @@ export function ContactStep({
 
           {/* Shareable link */}
           <div className="mt-6 rounded-lg border border-white/10 bg-black/30 p-3">
-            <p className="mb-2 text-xs text-white/40">Shareable link:</p>
+            <p className="mb-2 text-xs text-white/40">
+              {t("success.shareableLink", locale)}
+            </p>
             <code className="block break-all text-xs text-white/70">
               {typeof window !== "undefined"
                 ? `${window.location.origin}${submitResult.viewUrl}`

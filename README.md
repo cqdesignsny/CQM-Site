@@ -437,6 +437,31 @@ Audit date: **February 18, 2026**
   - Hardened Supabase schema policy script to scope policies to `service_role`
   - Restricted Next.js remote image host allowlist to `creativequalitymarketing.com`
 
+- **2026-02-25 (Session 6)**
+  - Translation audit pass completed for site + proposal i18n usage
+  - Verified translation key coverage with literal-key scan:
+    - `site_defined=977`, `site_used_literal=658`, `site_missing_used=0`
+    - `proposal_defined_en=125`, `proposal_used_literal=60`, `proposal_missing_used=0`
+    - Proposal parity check: `es=0` missing, `fr=0` missing vs EN keyset
+  - Localized remaining hardcoded proposal UI strings:
+    - `Try Again` button
+    - `Shareable link:` label
+    - package `Show less` / `+N more`
+    - monthly suffix in proposal UI from hardcoded `/mo` to locale key
+  - Localized remaining hardcoded site UI strings:
+    - mobile menu + language switcher aria labels
+    - Contact/Studio Calendly placeholder text
+    - Contact map placeholder text
+  - Fixed French date formatting in proposal acceptance badge (`fr-FR` instead of fallback `en-US`)
+  - Localized proposal emails:
+    - monthly suffix now uses locale-aware `label.perMonthShort`
+    - acceptance notification subject/body now use `proposal.locale` translation
+  - Localized proposal not-found screen via proposal translation keys
+  - Added new translation keys:
+    - Site: `contact.mapPlaceholder`, `common.toggleMenu`, `common.changeLanguage`, `common.calendlyPlaceholder`, `common.calendlyEnvHint`
+    - Proposals: `label.perMonthShort`, `btn.tryAgain`, `success.shareableLink`, `package.showLess`, `package.more`
+  - Validation: `npm run lint` and `npx tsc --noEmit` both pass
+
 - **2026-02-25 (Session 3)**
   - Site-wide CTA strategy: funnel all pages to Assessment + Proposal Builder
   - Created reusable `CTABanner` component (`components/sections/cta-banner.tsx`) with 4 variants: full, compact, assessment, builder

@@ -33,6 +33,7 @@ const translations: Record<string, Record<string, string>> = {
     "label.discount": "Discount",
     "label.subtotal": "Subtotal",
     "label.total": "Total First Month",
+    "label.perMonthShort": "/mo",
 
     // Buttons
     "btn.generate": "Generate Proposal",
@@ -42,6 +43,7 @@ const translations: Record<string, Record<string, string>> = {
     "btn.continue": "Continue",
     "btn.send": "Send Proposal",
     "btn.addCustom": "Add Custom Service",
+    "btn.tryAgain": "Try Again",
 
     // Billing badges
     "billing.one-time": "one-time",
@@ -79,6 +81,7 @@ const translations: Record<string, Record<string, string>> = {
     "success.message": "The proposal has been sent to the client and a copy has been saved.",
     "success.viewLink": "View Proposal",
     "success.buildAnother": "Build Another Proposal",
+    "success.shareableLink": "Shareable link:",
 
     // Proposal view page
     "proposal.title": "Marketing Proposal",
@@ -96,6 +99,8 @@ const translations: Record<string, Record<string, string>> = {
     "proposal.validNote": "This proposal is valid for 30 days from the date above.",
     "proposal.notFound": "Proposal Not Found",
     "proposal.notFoundMessage": "The proposal you are looking for does not exist or has been removed.",
+    "proposal.goHome": "Go Home",
+    "proposal.buildProposal": "Build a Proposal",
 
     // Email
     "email.subject": "Your Marketing Proposal from Creative Quality Marketing",
@@ -157,6 +162,8 @@ const translations: Record<string, Record<string, string>> = {
     "package.select": "Select Package",
     "package.custom": "Build Custom",
     "package.customDesc": "Pick exactly the services you need",
+    "package.showLess": "Show less",
+    "package.more": "more",
   },
   es: {
     // Builder page
@@ -190,6 +197,7 @@ const translations: Record<string, Record<string, string>> = {
     "label.discount": "Descuento",
     "label.subtotal": "Subtotal",
     "label.total": "Total Primer Mes",
+    "label.perMonthShort": "/mes",
 
     // Buttons
     "btn.generate": "Generar Propuesta",
@@ -199,6 +207,7 @@ const translations: Record<string, Record<string, string>> = {
     "btn.continue": "Continuar",
     "btn.send": "Enviar Propuesta",
     "btn.addCustom": "Agregar Servicio Personalizado",
+    "btn.tryAgain": "Intentar de nuevo",
 
     // Billing badges
     "billing.one-time": "pago \u00FAnico",
@@ -236,6 +245,7 @@ const translations: Record<string, Record<string, string>> = {
     "success.message": "La propuesta ha sido enviada al cliente y se ha guardado una copia.",
     "success.viewLink": "Ver Propuesta",
     "success.buildAnother": "Crear Otra Propuesta",
+    "success.shareableLink": "Enlace para compartir:",
 
     // Proposal view page
     "proposal.title": "Propuesta de Marketing",
@@ -253,6 +263,8 @@ const translations: Record<string, Record<string, string>> = {
     "proposal.validNote": "Esta propuesta es v\u00E1lida por 30 d\u00EDas a partir de la fecha anterior.",
     "proposal.notFound": "Propuesta No Encontrada",
     "proposal.notFoundMessage": "La propuesta que busca no existe o ha sido eliminada.",
+    "proposal.goHome": "Ir al Inicio",
+    "proposal.buildProposal": "Crear una Propuesta",
 
     // Email
     "email.subject": "Su Propuesta de Marketing de Creative Quality Marketing",
@@ -314,6 +326,8 @@ const translations: Record<string, Record<string, string>> = {
     "package.select": "Seleccionar Paquete",
     "package.custom": "Personalizado",
     "package.customDesc": "Elige exactamente los servicios que necesitas",
+    "package.showLess": "Ver menos",
+    "package.more": "más",
   },
   fr: {
     // Builder page
@@ -347,6 +361,7 @@ const translations: Record<string, Record<string, string>> = {
     "label.discount": "Remise",
     "label.subtotal": "Sous-total",
     "label.total": "Total Premier Mois",
+    "label.perMonthShort": "/mois",
 
     // Buttons
     "btn.generate": "Générer la Proposition",
@@ -356,6 +371,7 @@ const translations: Record<string, Record<string, string>> = {
     "btn.continue": "Continuer",
     "btn.send": "Envoyer la Proposition",
     "btn.addCustom": "Ajouter un Service Personnalisé",
+    "btn.tryAgain": "Réessayer",
 
     // Billing badges
     "billing.one-time": "paiement unique",
@@ -393,6 +409,7 @@ const translations: Record<string, Record<string, string>> = {
     "success.message": "La proposition a été envoyée au client et une copie a été enregistrée.",
     "success.viewLink": "Voir la Proposition",
     "success.buildAnother": "Créer une Autre Proposition",
+    "success.shareableLink": "Lien partageable :",
 
     // Proposal view page
     "proposal.title": "Proposition Marketing",
@@ -410,6 +427,8 @@ const translations: Record<string, Record<string, string>> = {
     "proposal.validNote": "Cette proposition est valable 30 jours à compter de la date ci-dessus.",
     "proposal.notFound": "Proposition Introuvable",
     "proposal.notFoundMessage": "La proposition que vous recherchez n'existe pas ou a été supprimée.",
+    "proposal.goHome": "Retour à l'accueil",
+    "proposal.buildProposal": "Créer une proposition",
 
     // Email
     "email.subject": "Votre Proposition Marketing de Creative Quality Marketing",
@@ -471,6 +490,8 @@ const translations: Record<string, Record<string, string>> = {
     "package.select": "Sélectionner le Forfait",
     "package.custom": "Personnalisé",
     "package.customDesc": "Choisissez exactement les services dont vous avez besoin",
+    "package.showLess": "Voir moins",
+    "package.more": "de plus",
   },
 };
 

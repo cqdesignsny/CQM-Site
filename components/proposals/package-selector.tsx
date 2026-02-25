@@ -81,7 +81,9 @@ export function PackageSelector({ activePackage, locale, onSelect }: Props) {
               )}
               <div className="mb-1 text-2xl font-bold text-white">
                 {formatCurrency(pkg.price, locale)}
-                <span className="text-sm font-normal text-white/40">/mo</span>
+                <span className="text-sm font-normal text-white/40">
+                  {t("label.perMonthShort", locale)}
+                </span>
               </div>
               <h3 className="font-semibold text-white">{name}</h3>
               <p className="mt-1 text-xs text-white/50">{tagline}</p>
@@ -104,12 +106,12 @@ export function PackageSelector({ activePackage, locale, onSelect }: Props) {
                     >
                       {isExpanded ? (
                         <>
-                          {locale === "es" ? "Ver menos" : locale === "fr" ? "Voir moins" : "Show less"}
+                          {t("package.showLess", locale)}
                           <ChevronUp className="h-3 w-3" />
                         </>
                       ) : (
                         <>
-                          +{extraCount} {locale === "es" ? "más" : locale === "fr" ? "de plus" : "more"}
+                          +{extraCount} {t("package.more", locale)}
                           <ChevronDown className="h-3 w-3" />
                         </>
                       )}

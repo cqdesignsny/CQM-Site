@@ -258,6 +258,7 @@ export const siteTranslations: TranslationMap = {
   "contact.info.title": { en: "Contact Information", es: "Informaci\u00F3n de Contacto", fr: "Coordonn\u00E9es" },
   "contact.visit": { en: "Visit Our Studio", es: "Visite Nuestro Estudio", fr: "Visitez notre studio" },
   "contact.schedule": { en: "Schedule a Call", es: "Agende una Llamada", fr: "Planifier un appel" },
+  "contact.mapPlaceholder": { en: "Google Maps embed will be added here", es: "Aqu\u00ed se agregar\u00E1 la integraci\u00F3n de Google Maps", fr: "L\u2019int\u00E9gration Google Maps sera ajout\u00E9e ici" },
 
   // ============================================================
   // PRICING PAGE
@@ -1182,4 +1183,8 @@ export const siteTranslations: TranslationMap = {
   "common.oneTime": { en: "one-time", es: "\u00FAnico", fr: "unique" },
   "common.monthly": { en: "monthly", es: "mensual", fr: "mensuel" },
   "common.language": { en: "Language", es: "Idioma", fr: "Langue" },
+  "common.toggleMenu": { en: "Toggle menu", es: "Alternar men\u00FA", fr: "Afficher/masquer le menu" },
+  "common.changeLanguage": { en: "Change language", es: "Cambiar idioma", fr: "Changer de langue" },
+  "common.calendlyPlaceholder": { en: "Calendly booking widget will be embedded here", es: "El widget de reservas de Calendly se integrar\u00E1 aqu\u00ED", fr: "Le widget de r\u00E9servation Calendly sera int\u00E9gr\u00E9 ici" },
+  "common.calendlyEnvHint": { en: "Add your Calendly URL to .env.local: NEXT_PUBLIC_CALENDLY_URL", es: "Agrega tu URL de Calendly en .env.local: NEXT_PUBLIC_CALENDLY_URL", fr: "Ajoutez votre URL Calendly dans .env.local : NEXT_PUBLIC_CALENDLY_URL" },
 };

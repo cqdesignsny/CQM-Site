@@ -78,7 +78,7 @@ export function ContactPageContent() {
             <div className="aspect-video rounded-lg border bg-muted">
               {/* TODO: Add Google Maps embed */}
               <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
-                Google Maps embed will be added here
+                {t("contact.mapPlaceholder")}
                 <br />
                 {siteConfig.contact.streetAddress},{" "}
                 {siteConfig.contact.locality}, {siteConfig.contact.region}{" "}
@@ -93,10 +93,10 @@ export function ContactPageContent() {
             <div className="rounded-lg border bg-muted/30 p-8">
               {/* TODO: Replace with Calendly embed */}
               <p className="text-sm text-muted-foreground">
-                Calendly booking widget will be embedded here
+                {t("common.calendlyPlaceholder")}
               </p>
               <p className="mt-2 text-xs text-muted-foreground">
-                Add your Calendly URL to .env.local: NEXT_PUBLIC_CALENDLY_URL
+                {t("common.calendlyEnvHint")}
               </p>
             </div>
           </div>

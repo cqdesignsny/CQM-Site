@@ -225,7 +225,7 @@ export function ProposalDocument({ proposal, isStale }: Props) {
                   </span>
                   <span className="font-medium text-white">
                     {formatCurrency(proposal.monthlyTotal)}
-                    <span className="text-white/40">/mo</span>
+                    <span className="text-white/40">{t("label.perMonthShort", locale)}</span>
                   </span>
                 </div>
               )}
@@ -236,7 +236,7 @@ export function ProposalDocument({ proposal, isStale }: Props) {
                   </span>
                   <span className="font-medium text-white">
                     {formatCurrency(proposal.hostingFee)}
-                    <span className="text-white/40">/mo</span>
+                    <span className="text-white/40">{t("label.perMonthShort", locale)}</span>
                   </span>
                 </div>
               )}

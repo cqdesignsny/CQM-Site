@@ -132,10 +132,10 @@ export function StudioContent() {
           <p className="mb-6 text-muted-foreground">{t("studio.cta.desc")}</p>
           <div className="mb-6 rounded-lg border bg-background p-8">
             <p className="text-sm text-muted-foreground">
-              Calendly booking widget will be embedded here
+              {t("common.calendlyPlaceholder")}
             </p>
             <p className="mt-2 text-xs text-muted-foreground">
-              Add your Calendly URL to .env.local: NEXT_PUBLIC_CALENDLY_URL
+              {t("common.calendlyEnvHint")}
             </p>
           </div>
           <Button size="lg" asChild>

@@ -7,7 +7,7 @@ import type { SiteLocale } from "@/lib/i18n/types";
 import { Globe } from "lucide-react";
 
 export function LanguageSwitcher({ variant = "default" }: { variant?: "default" | "compact" }) {
-  const { locale, setLocale } = useLanguage();
+  const { locale, setLocale, t } = useLanguage();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -26,7 +26,7 @@ export function LanguageSwitcher({ variant = "default" }: { variant?: "default" 
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center gap-1.5 rounded-lg border border-white/10 px-2.5 py-1.5 text-sm text-white/70 transition-colors hover:border-white/20 hover:text-white"
-        aria-label="Change language"
+        aria-label={t("common.changeLanguage")}
       >
         <Globe className="h-3.5 w-3.5" />
         {variant === "compact" ? (
