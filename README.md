@@ -2,7 +2,7 @@
 
 This is the in-progress rebuild/redesign of [creativequalitymarketing.com](https://creativequalitymarketing.com) using Next.js (App Router) and Tailwind CSS.
 
-Last updated: **February 25, 2026**
+Last updated: **March 16, 2026**
 
 ## 0) Quick Resume
 
@@ -10,23 +10,19 @@ If you are picking this project up in a new AI/dev session, start here first:
 
 - Read [HANDOFF.md](./HANDOFF.md) for the latest implementation snapshot and next actions.
 - Current branch: `main`
-- Latest pushed commit: `c292b2a` (`fix: enforce exclusive package selection and style global scrollbar`)
-- Previous key commit: `5d265d8` (`fix: complete i18n audit cleanup and localization gaps`)
 - GitHub remote: `https://github.com/cqdesignsny/CQM-Site.git`
 - Vercel is expected to auto-deploy from `main`.
 
 ### Immediate known pending items
 
-- API credentials/integrations still pending final setup:
-  - `RESEND_API_KEY`
-  - `NEXT_PUBLIC_SUPABASE_URL`
-  - `SUPABASE_SERVICE_ROLE_KEY`
+- Environment variables needed for production:
   - `NOTION_API_KEY`
-  - `NOTION_PROPOSALS_DATABASE_ID`
-  - `NOTION_ASSESSMENTS_DATABASE_ID`
-  - optional: `WEBHOOK_URL`
+  - `NOTION_LEADS_DATABASE_ID` = `b98905d3f971471ea6da0bdc0a1f8af0`
+  - `NOTION_LEADS_DATASOURCE_ID` = `90a477ee-0de7-42a6-b25b-21ba2a2e8614`
+  - `RESEND_API_KEY`
+  - `SLACK_WEBHOOK_URL`
 - Contact + Studio still use placeholder blocks for Calendly/Google Maps embeds.
-- In restricted environments, `npm run build` may fail due external Google Fonts DNS access (`fonts.googleapis.com`), even when lint/typecheck are clean.
+- Pricing updates for proposal builder (pending user input).
 
 ## 1) Project Goals
 
@@ -43,9 +39,9 @@ If you are picking this project up in a new AI/dev session, start here first:
 - Tailwind CSS + `class-variance-authority`
 - Radix UI primitives (Accordion, Slot)
 - Framer Motion (section animations)
-- Supabase (database for proposals & assessments)
-- Notion API (CRM pipeline integration)
+- Notion API (CRM database for all leads — proposals, assessments, contacts)
 - Resend (transactional email)
+- Slack Incoming Webhooks (lead notifications)
 - nanoid (URL-friendly proposal IDs)
 
 ## 3) Current Build Status
@@ -446,6 +442,19 @@ Audit date: **February 18, 2026**
 - Validate live deployment in Google Search Console + Rich Results Test after production release.
 
 ## 13) Change Log
+
+- **2026-03-16 (Session 9)**
+  - **Replaced Supabase with Notion CRM** — Supabase goes inactive after 7 days; all data now stored in Notion
+  - Created unified "Leads" database in Notion with Source (Proposal/Assessment/Contact Form), Status pipeline, and all lead properties
+  - New `lib/notion/client.ts` — full CRUD for leads; stores complete proposal JSON in page body for `/proposals/view/[id]` retrieval
+  - Uses `@notionhq/client` v5.9.0 (`dataSources.query` API)
+  - **Added Slack notifications** — new `lib/slack.ts` sends Block Kit formatted messages via Incoming Webhook for all lead sources
+  - **Rewrote all API routes** to use Notion + Resend + Slack (removed all Supabase references)
+  - **Homepage logo slider** — full-width infinite auto-scrolling CSS animation, transparent logos, grayscale → color on hover
+  - Removed `@supabase/supabase-js` dependency, deleted `lib/supabase/`, `supabase/schema.sql`, `lib/proposals/notion.ts`
+  - Updated `.env.example` with new Notion/Slack vars, removed Supabase vars
+  - Updated `HANDOFF.md` and `README.md`
+  - Build passes cleanly: 31 pages, zero errors
 
 - **2026-02-25 (Session 8)**
   - Added `HANDOFF.md` as a fast continuation file for Claude/Codex/local handoff

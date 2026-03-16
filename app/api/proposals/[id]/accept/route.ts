@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase/client";
-import { updateProposalStatus, addNoteToProposal } from "@/lib/proposals/notion";
+import {
+  getProposalByLeadId,
+  updateLeadStatus,
+  addNoteToLead,
+} from "@/lib/notion/client";
 import { sendAcceptanceNotification } from "@/lib/proposals/email";
+import { sendSlackNotification } from "@/lib/slack";
+import { siteConfig } from "@/lib/site-config";
 import type { Proposal } from "@/lib/proposals/types";
 
 export async function POST(
@@ -11,107 +16,81 @@ export async function POST(
   try {
     const { id } = await params;
 
-    // Check if Supabase is configured
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    // Look up the proposal in Notion by Lead ID
+    const lead = await getProposalByLeadId(id);
 
-    if (!supabaseUrl || !supabaseKey) {
-      // Demo mode — return a mock acceptance
-      console.warn("[Proposals] Supabase not configured — returning demo acceptance");
-      return NextResponse.json({
-        success: true,
-        acceptedAt: new Date().toISOString(),
-        demo: true,
-      });
-    }
-
-    const supabase = createServerSupabaseClient();
-
-    // Fetch proposal
-    const { data: row, error: fetchError } = await supabase
-      .from("proposals")
-      .select("*")
-      .eq("id", id)
-      .single();
-
-    if (fetchError || !row) {
+    if (!lead) {
       return NextResponse.json(
         { error: "Proposal not found" },
         { status: 404 }
       );
     }
 
+    const props = lead.properties as Record<string, Record<string, unknown>>;
+
+    // Extract values from Notion properties
+    const getName = (p: Record<string, unknown>) => {
+      const title = p.title as Array<{ plain_text: string }> | undefined;
+      return title?.[0]?.plain_text || "";
+    };
+    const getText = (p: Record<string, unknown>) => {
+      const rt = p.rich_text as Array<{ plain_text: string }> | undefined;
+      return rt?.[0]?.plain_text || "";
+    };
+    const getNumber = (p: Record<string, unknown>) => {
+      return (p.number as number) || 0;
+    };
+    const getSelect = (p: Record<string, unknown>) => {
+      const sel = p.select as { name: string } | null;
+      return sel?.name || "";
+    };
+
     // Check if already accepted
-    if (row.accepted_at) {
+    if (getSelect(props.Status) === "Won") {
       return NextResponse.json({
         success: true,
         alreadyAccepted: true,
-        acceptedAt: row.accepted_at,
       });
     }
 
     const now = new Date().toISOString();
 
-    // Update Supabase
-    const { error: updateError } = await supabase
-      .from("proposals")
-      .update({
-        status: "won",
-        accepted_at: now,
-        updated_at: now,
-      })
-      .eq("id", id);
+    // Update status in Notion
+    await updateLeadStatus(lead.notionPageId, "won");
+    await addNoteToLead(
+      lead.notionPageId,
+      `Proposal accepted on ${new Date(now).toLocaleDateString()}`
+    );
 
-    if (updateError) {
-      console.error("[Proposals] Accept update error:", updateError);
-      return NextResponse.json(
-        { error: "Failed to update proposal" },
-        { status: 500 }
-      );
-    }
-
-    // Reconstruct proposal for email/notion
+    // Build a minimal proposal object for email
     const proposal: Proposal = {
-      id: row.id,
-      parentId: row.parent_id,
-      assessmentId: row.assessment_id,
-      version: row.version,
-      locale: row.locale,
+      id,
+      parentId: null,
+      assessmentId: null,
+      version: 1,
+      locale: (getSelect(props.Locale)?.toLowerCase() || "en") as Proposal["locale"],
       contact: {
-        name: row.contact_name,
-        email: row.contact_email,
-        phone: row.contact_phone || "",
+        name: getName(props.Name),
+        email: (props.Email as { email: string })?.email || "",
+        phone: (props.Phone as { phone_number: string })?.phone_number || "",
       },
-      referredBy: row.referred_by,
+      referredBy: getText(props["Referred By"]),
       status: "won",
-      selectedServices: row.selected_services,
-      customLineItems: row.custom_line_items || [],
-      packageId: row.package_id,
-      oneTimeTotal: Number(row.one_time_total),
-      monthlyTotal: Number(row.monthly_total),
-      hostingFee: Number(row.hosting_fee),
-      discountType: row.discount_type,
-      discountValue: row.discount_value ? Number(row.discount_value) : null,
-      discountAmount: Number(row.discount_amount),
-      grandTotal: Number(row.grand_total),
-      notionPageId: row.notion_page_id,
-      createdAt: row.created_at,
+      selectedServices: [],
+      customLineItems: [],
+      packageId: getSelect(props.Package)?.toLowerCase() || null,
+      oneTimeTotal: getNumber(props["One-Time Total"]),
+      monthlyTotal: getNumber(props["Monthly Total"]),
+      hostingFee: 0,
+      discountType: null,
+      discountValue: null,
+      discountAmount: 0,
+      grandTotal: getNumber(props["Grand Total"]),
+      notionPageId: lead.notionPageId,
+      createdAt: now,
       acceptedAt: now,
       updatedAt: now,
     };
-
-    // Update Notion status (non-blocking)
-    if (proposal.notionPageId) {
-      try {
-        await updateProposalStatus(proposal.notionPageId, "won");
-        await addNoteToProposal(
-          proposal.notionPageId,
-          `Proposal accepted by ${proposal.contact.name} on ${new Date(now).toLocaleDateString()}`
-        );
-      } catch (notionError) {
-        console.error("[Proposals] Notion update error:", notionError);
-      }
-    }
 
     // Send acceptance notification email (non-blocking)
     try {
@@ -120,30 +99,21 @@ export async function POST(
       console.error("[Proposals] Acceptance email error:", emailError);
     }
 
-    // Webhook for n8n / external automation (non-blocking)
-    const webhookUrl = process.env.WEBHOOK_URL;
-    if (webhookUrl) {
-      try {
-        await fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            event: "proposal_accepted",
-            proposalId: proposal.id,
-            contact: proposal.contact,
-            referredBy: proposal.referredBy,
-            locale: proposal.locale,
-            grandTotal: proposal.grandTotal,
-            oneTimeTotal: proposal.oneTimeTotal,
-            monthlyTotal: proposal.monthlyTotal,
-            packageId: proposal.packageId,
-            acceptedAt: now,
-            timestamp: now,
-          }),
-        });
-      } catch (webhookError) {
-        console.error("[Proposals] Webhook error:", webhookError);
-      }
+    // Slack notification (non-blocking)
+    try {
+      await sendSlackNotification({
+        event: "proposal_accepted",
+        name: proposal.contact.name,
+        email: proposal.contact.email,
+        phone: proposal.contact.phone,
+        details: {
+          "Proposal ID": id,
+          "Grand Total": `$${proposal.grandTotal.toLocaleString()}`,
+          "View": `${siteConfig.url}/proposals/view/${id}`,
+        },
+      });
+    } catch (slackError) {
+      console.error("[Proposals] Slack error:", slackError);
     }
 
     return NextResponse.json({

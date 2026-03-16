@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { nanoid } from "nanoid";
-import { createServerSupabaseClient } from "@/lib/supabase/client";
-import { calculateAllTotals } from "@/lib/proposals/calculations";
-import { createProposalPage } from "@/lib/proposals/notion";
+import { calculateAllTotals, formatCurrency } from "@/lib/proposals/calculations";
+import { createProposalLead } from "@/lib/notion/client";
 import { sendProposalEmail } from "@/lib/proposals/email";
+import { sendSlackNotification } from "@/lib/slack";
 import type {
   SelectedService,
   CustomLineItem,
@@ -50,29 +50,6 @@ export async function POST(request: NextRequest) {
 
     const proposalId = `prop_${nanoid(12)}`;
 
-    // Check if Supabase is configured
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    const hasSupabase = !!(supabaseUrl && supabaseKey);
-
-    // Calculate version number
-    let version = 1;
-    if (body.parentId && hasSupabase) {
-      try {
-        const supabase = createServerSupabaseClient();
-        const { data: parent } = await supabase
-          .from("proposals")
-          .select("version")
-          .eq("id", body.parentId)
-          .single();
-        if (parent) {
-          version = parent.version + 1;
-        }
-      } catch {
-        console.warn("[Proposals] Could not fetch parent version");
-      }
-    }
-
     // Calculate totals
     const totals = calculateAllTotals(
       body.selectedServices,
@@ -86,7 +63,7 @@ export async function POST(request: NextRequest) {
       id: proposalId,
       parentId: body.parentId || null,
       assessmentId: body.assessmentId || null,
-      version,
+      version: 1,
       locale: body.locale || "en",
       contact: body.contact,
       referredBy: body.referredBy || null,
@@ -107,92 +84,40 @@ export async function POST(request: NextRequest) {
       updatedAt: now,
     };
 
-    // 1. Save to Supabase (if configured)
-    if (hasSupabase) {
-      try {
-        const supabase = createServerSupabaseClient();
-        const { error: dbError } = await supabase.from("proposals").insert({
-          id: proposal.id,
-          parent_id: proposal.parentId,
-          version: proposal.version,
-          locale: proposal.locale,
-          contact_name: proposal.contact.name,
-          contact_email: proposal.contact.email,
-          contact_phone: proposal.contact.phone || null,
-          referred_by: proposal.referredBy,
-          status: proposal.status,
-          selected_services: proposal.selectedServices,
-          custom_line_items: proposal.customLineItems,
-          package_id: proposal.packageId,
-          assessment_id: proposal.assessmentId,
-          one_time_total: proposal.oneTimeTotal,
-          monthly_total: proposal.monthlyTotal,
-          hosting_fee: proposal.hostingFee,
-          discount_type: proposal.discountType,
-          discount_value: proposal.discountValue,
-          discount_amount: proposal.discountAmount,
-          grand_total: proposal.grandTotal,
-          created_at: proposal.createdAt,
-          updated_at: proposal.updatedAt,
-        });
-
-        if (dbError) {
-          console.error("[Proposals] Supabase insert error:", dbError);
-          // Continue anyway — still return the proposal link
-        }
-      } catch (dbErr) {
-        console.error("[Proposals] Database error (continuing without save):", dbErr);
-      }
-    } else {
-      console.warn("[Proposals] Supabase not configured — skipping database save");
+    // 1. Save to Notion CRM
+    try {
+      const notionPageId = await createProposalLead(proposal);
+      proposal.notionPageId = notionPageId;
+    } catch (notionError) {
+      console.error("[Proposals] Notion create error:", notionError);
     }
 
-    // 2. Create Notion page (non-blocking — don't fail if Notion is down)
-    if (hasSupabase) {
-      try {
-        const notionPageId = await createProposalPage(proposal);
-        proposal.notionPageId = notionPageId;
-
-        const supabase = createServerSupabaseClient();
-        await supabase
-          .from("proposals")
-          .update({ notion_page_id: notionPageId })
-          .eq("id", proposal.id);
-      } catch (notionError) {
-        console.error("[Proposals] Notion sync error:", notionError);
-      }
-    }
-
-    // 3. Send email via Resend (non-blocking)
+    // 2. Send email via Resend (non-blocking)
     try {
       await sendProposalEmail(proposal, proposal.locale);
     } catch (emailError) {
       console.error("[Proposals] Email send error:", emailError);
     }
 
-    // 4. Webhook for n8n / external automation (non-blocking)
-    const webhookUrl = process.env.WEBHOOK_URL;
-    if (webhookUrl) {
-      try {
-        await fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            event: "proposal_created",
-            proposalId: proposal.id,
-            contact: proposal.contact,
-            referredBy: proposal.referredBy,
-            grandTotal: proposal.grandTotal,
-            oneTimeTotal: proposal.oneTimeTotal,
-            monthlyTotal: proposal.monthlyTotal,
-            serviceCount: proposal.selectedServices.length,
-            locale: proposal.locale,
-            timestamp: proposal.createdAt,
-          }),
-        });
-      } catch (webhookError) {
-        console.error("[Proposals] Webhook error:", webhookError);
-      }
+    // 3. Slack notification (non-blocking)
+    try {
+      await sendSlackNotification({
+        event: "proposal_created",
+        name: proposal.contact.name,
+        email: proposal.contact.email,
+        phone: proposal.contact.phone,
+        details: {
+          "Proposal ID": proposal.id,
+          "Grand Total": formatCurrency(proposal.grandTotal),
+          "One-Time": formatCurrency(proposal.oneTimeTotal),
+          "Monthly": formatCurrency(proposal.monthlyTotal),
+          "Package": proposal.packageId || "Custom",
+          "Referred By": proposal.referredBy,
+          "View": `${siteConfig.url}/proposals/view/${proposal.id}`,
+        },
+      });
+    } catch (slackError) {
+      console.error("[Proposals] Slack error:", slackError);
     }
 
     const viewUrl = `${siteConfig.url}/proposals/view/${proposal.id}`;

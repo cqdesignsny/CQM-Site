@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient } from "@/lib/supabase/client";
+import { createContactLead } from "@/lib/notion/client";
+import { sendSlackNotification } from "@/lib/slack";
 import { siteConfig } from "@/lib/site-config";
 
 interface ContactBody {
@@ -9,11 +10,6 @@ interface ContactBody {
   serviceInterest?: string;
   message: string;
   locale?: string;
-  source?: string;
-  referrer?: string;
-  utmSource?: string;
-  utmMedium?: string;
-  utmCampaign?: string;
 }
 
 export async function POST(request: NextRequest) {
@@ -37,40 +33,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Save to Supabase if configured
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-    if (supabaseUrl && supabaseKey) {
-      try {
-        const supabase = createServerSupabaseClient();
-        const { error: dbError } = await supabase
-          .from("contact_submissions")
-          .insert({
-            name: body.name,
-            email: body.email,
-            phone: body.phone || null,
-            service_interest: body.serviceInterest || null,
-            message: body.message,
-            locale: body.locale || "en",
-            source: body.source || "contact_page",
-            referrer: body.referrer || null,
-            utm_source: body.utmSource || null,
-            utm_medium: body.utmMedium || null,
-            utm_campaign: body.utmCampaign || null,
-          });
-
-        if (dbError) {
-          console.error("[Contact] Supabase insert error:", dbError);
-        }
-      } catch (dbErr) {
-        console.error("[Contact] Database error (continuing):", dbErr);
-      }
-    } else {
-      console.warn("[Contact] Supabase not configured — skipping database save");
+    // 1. Save to Notion CRM
+    try {
+      await createContactLead({
+        name: body.name,
+        email: body.email,
+        phone: body.phone,
+        serviceInterest: body.serviceInterest,
+        message: body.message,
+        locale: body.locale,
+      });
+    } catch (notionError) {
+      console.error("[Contact] Notion create error:", notionError);
     }
 
-    // Send notification email via Resend
+    // 2. Send notification email via Resend
     const resendKey = process.env.RESEND_API_KEY;
     if (resendKey) {
       try {
@@ -106,28 +83,23 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Webhook for n8n
-    const webhookUrl = process.env.WEBHOOK_URL;
-    if (webhookUrl) {
-      try {
-        await fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            event: "contact_submitted",
-            name: body.name,
-            email: body.email,
-            phone: body.phone,
-            serviceInterest: body.serviceInterest,
-            message: body.message,
-            locale: body.locale,
-            source: body.source,
-            timestamp: new Date().toISOString(),
-          }),
-        });
-      } catch {
-        // non-blocking
-      }
+    // 3. Slack notification (non-blocking)
+    try {
+      await sendSlackNotification({
+        event: "contact_submitted",
+        name: body.name,
+        email: body.email,
+        phone: body.phone,
+        details: {
+          "Service Interest": body.serviceInterest,
+          "Message":
+            body.message.length > 200
+              ? body.message.slice(0, 200) + "…"
+              : body.message,
+        },
+      });
+    } catch (slackError) {
+      console.error("[Contact] Slack error:", slackError);
     }
 
     return NextResponse.json({ success: true });

@@ -1,90 +1,74 @@
 # CQM Site Handoff
 
-Updated: **February 25, 2026**
+Updated: **March 16, 2026**
 
 ## Repo State
 
 - Project: `CQM-Site`
 - Branch: `main`
 - Remote: `https://github.com/cqdesignsny/CQM-Site.git`
-- Latest commit pushed: `c292b2a`
 - Working tree status at handoff: clean
 
-## What Was Completed Most Recently
+## What Was Completed Most Recently (March 16, 2026)
 
-### Commit `c292b2a` (latest)
+### Major: Replace Supabase with Notion CRM + Add Slack Notifications
 
-- Fixed proposal package selection behavior so packages are exclusive (no stacking).
-- Selecting any pre-made package now:
-  - replaces proposal services with that package's service IDs only
-  - clears custom line items
-  - clears discount state
-- Switching to "Build Custom" now exits package mode cleanly and resets package selections.
-- Added global red branded scrollbar styles in `app/globals.css` (Firefox + WebKit).
-- Updated README changelog for Session 7.
+- **Removed Supabase entirely** — deleted `@supabase/supabase-js`, `lib/supabase/client.ts`, `supabase/schema.sql`
+- **Created Notion CRM** — unified "Leads" database inside a "CQM CRM" page in Notion
+  - Database ID: `b98905d3f971471ea6da0bdc0a1f8af0`
+  - Data Source ID: `90a477ee-0de7-42a6-b25b-21ba2a2e8614`
+  - Properties: Name, Email, Phone, Source (Proposal/Assessment/Contact Form), Status (New/Contacted/Negotiating/Won/Lost), Lead ID, Score, Grand Total, Package, Proposal Link, etc.
+- **New `lib/notion/client.ts`** — all CRUD operations for leads, proposals, assessments, contacts
+  - Full proposal JSON stored as code block in Notion page body for `/proposals/view/[id]`
+  - Uses `@notionhq/client` v5.9.0 (`dataSources.query` instead of `databases.query`)
+- **New `lib/slack.ts`** — Slack Incoming Webhook notifications with Block Kit formatting
+- **All API routes rewritten** to use Notion + Resend + Slack (no more Supabase)
+- **Homepage logo slider** — full-width infinite auto-scrolling CSS animation, transparent logos, grayscale → color on hover
 
-### Commit `5d265d8` (prior major pass)
+### Files Changed
 
-- Completed translation audit cleanup for proposal + site UI.
-- Removed remaining hardcoded i18n strings in audited components.
-- Added missing translation keys and parity updates (`en/es/fr`).
-- Fixed locale handling in proposal acceptance dates and proposal emails.
-- Localized proposal not-found UI.
-- Updated README changelog for Session 6.
+- `lib/notion/client.ts` (new)
+- `lib/slack.ts` (new)
+- `app/api/proposals/route.ts` — Notion + Resend + Slack
+- `app/api/proposals/[id]/accept/route.ts` — Notion + Resend + Slack
+- `app/api/assessment/route.ts` — Notion + Slack
+- `app/api/assessment/[id]/route.ts` — Notion query
+- `app/api/contact/route.ts` — Notion + Resend + Slack
+- `app/(proposal-view)/proposals/view/[id]/page.tsx` — Notion fetch
+- `components/sections/trust-logos.tsx` — infinite scroll slider
+- `tailwind.config.ts` — logo-scroll keyframes
+- `.env.example` — updated vars
+- `package.json` — removed Supabase
+- Deleted: `lib/supabase/client.ts`, `lib/proposals/notion.ts`, `supabase/schema.sql`
 
-## Files Touched in Latest Two Commits
+## Environment Variables Needed
 
-- `lib/proposals/reducer.ts`
-- `components/proposals/proposal-builder.tsx`
-- `app/globals.css`
-- `lib/proposals/translations.ts`
-- `lib/i18n/site-translations.ts`
-- `lib/proposals/email.ts`
-- `components/proposals/*` (accept/contact/review/summary/document/package selector)
-- `components/header.tsx`
-- `components/language-switcher.tsx`
-- `app/(main)/contact/contact-page-content.tsx`
-- `app/(main)/studio/studio-content.tsx`
-- `app/(proposal-view)/proposals/view/[id]/not-found.tsx`
-- `README.md`
+```
+NOTION_API_KEY=<Notion integration token>
+NOTION_LEADS_DATABASE_ID=b98905d3f971471ea6da0bdc0a1f8af0
+NOTION_LEADS_DATASOURCE_ID=90a477ee-0de7-42a6-b25b-21ba2a2e8614
+RESEND_API_KEY=<Resend API key>
+SLACK_WEBHOOK_URL=<Slack incoming webhook for #cqm-leads>
+DEFAULT_PROPOSAL_EMAIL=cesar@creativequalitymarketing.com
+```
 
-## Pending Integrations / Inputs Needed
+Optional:
+- `NEXT_PUBLIC_CALENDLY_URL` — for booking embeds
+- `NEXT_PUBLIC_GA4_ID`, `NEXT_PUBLIC_META_PIXEL_ID`, etc. — analytics
 
-The app is feature-complete enough to keep building UI/logic, but production wiring still depends on these environment variables:
+## Pending / Next Steps
 
-- `RESEND_API_KEY`
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`
-- `NOTION_API_KEY`
-- `NOTION_PROPOSALS_DATABASE_ID`
-- `NOTION_ASSESSMENTS_DATABASE_ID`
-- Optional for automations: `WEBHOOK_URL`
-- Optional for booking embeds: `NEXT_PUBLIC_CALENDLY_URL`
+1. **Pricing updates** — proposal builder pricing, logic, and wording changes (user has updates to discuss)
+2. **Resend CLI** — install and configure for local email testing
+3. **Slack channel** — create #cqm-leads channel and set up Incoming Webhook
+4. **Calendly + Google Maps embeds** — Contact and Studio pages
+5. **Spanish tone normalization** — `tú` vs `usted` across translations
+6. **Blog/CMS integration** — not yet started
 
-## Known Follow-Up Opportunities
-
-1. Harden email rendering safety by escaping user-provided HTML content in contact/proposal templates.
-2. Improve contact route reliability by validating Resend API response (`res.ok`) and surfacing failures.
-3. Normalize Spanish tone (`tú` vs `usted`) across both translation dictionaries.
-4. Replace Contact/Studio placeholders with live Calendly and Google Maps embeds once keys/URLs are provided.
-
-## Resume Checklist For New Session
+## Resume Checklist
 
 1. `git pull origin main`
-2. Confirm latest commit is `c292b2a`:
-   - `git log --oneline -n 1`
-3. Install/check deps:
-   - `npm install`
-4. Run validation:
-   - `npm run lint`
-   - `npx tsc --noEmit`
-5. If needed, run local dev:
-   - `npm run dev`
-
-## Build Note
-
-In restricted-network environments, `npm run build` can fail if Google Fonts cannot be fetched:
-
-- Error: `getaddrinfo ENOTFOUND fonts.googleapis.com`
-
-This is environment/network related, not necessarily a regression in app logic.
+2. `npm install`
+3. Copy `.env.example` to `.env.local` and fill in values
+4. `npm run dev` — start local dev server
+5. `npm run build` — verify production build passes

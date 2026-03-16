@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { nanoid } from "nanoid";
-import { createServerSupabaseClient } from "@/lib/supabase/client";
+import { createAssessmentLead } from "@/lib/notion/client";
+import { sendSlackNotification } from "@/lib/slack";
 import {
   calculateCategoryScores,
   calculateOverallScore,
@@ -38,59 +39,35 @@ export async function POST(request: NextRequest) {
 
     const assessmentId = `assess_${nanoid(12)}`;
 
-    // Save to Supabase if configured — gracefully skip if not
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-    if (supabaseUrl && supabaseKey) {
-      try {
-        const supabase = createServerSupabaseClient();
-        const { error: dbError } = await supabase
-          .from("assessment_results")
-          .insert({
-            id: assessmentId,
-            contact_name: body.contact.name,
-            contact_email: body.contact.email,
-            contact_phone: body.contact.phone || null,
-            answers: body.answers,
-            category_scores: categoryScores,
-            overall_score: overallScore,
-            recommended_services: recommendedServices,
-            locale: body.locale || "en",
-          });
-
-        if (dbError) {
-          console.error("[Assessment] Supabase insert error:", dbError);
-          // Continue anyway — still return results to user
-        }
-      } catch (dbErr) {
-        console.error("[Assessment] Database error (continuing without save):", dbErr);
-      }
-    } else {
-      console.warn("[Assessment] Supabase not configured — skipping database save");
+    // 1. Save to Notion CRM
+    try {
+      await createAssessmentLead({
+        id: assessmentId,
+        contact: body.contact,
+        overallScore,
+        categoryScores,
+        recommendedServices,
+        locale: body.locale || "en",
+      });
+    } catch (notionError) {
+      console.error("[Assessment] Notion create error:", notionError);
     }
 
-    // Webhook support for n8n / external automation
-    const webhookUrl = process.env.WEBHOOK_URL;
-    if (webhookUrl) {
-      try {
-        await fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            event: "assessment_completed",
-            assessmentId,
-            contact: body.contact,
-            overallScore,
-            categoryScores,
-            recommendedServices,
-            locale: body.locale,
-            timestamp: new Date().toISOString(),
-          }),
-        });
-      } catch (webhookError) {
-        console.error("[Assessment] Webhook error:", webhookError);
-      }
+    // 2. Slack notification (non-blocking)
+    try {
+      await sendSlackNotification({
+        event: "assessment_completed",
+        name: body.contact.name,
+        email: body.contact.email,
+        phone: body.contact.phone,
+        details: {
+          "Assessment ID": assessmentId,
+          "Overall Score": `${overallScore}/100`,
+          "Recommended": recommendedServices.join(", ") || "None",
+        },
+      });
+    } catch (slackError) {
+      console.error("[Assessment] Slack error:", slackError);
     }
 
     return NextResponse.json({
