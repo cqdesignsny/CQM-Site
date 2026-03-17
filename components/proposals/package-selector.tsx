@@ -1,11 +1,27 @@
 "use client";
 
 import { useState } from "react";
-import { PACKAGES } from "@/lib/proposals/services-data";
+import { PACKAGES, SERVICES } from "@/lib/proposals/services-data";
 import { t } from "@/lib/proposals/translations";
 import { formatCurrency } from "@/lib/proposals/calculations";
 import type { Locale } from "@/lib/proposals/types";
-import { Check, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
+import { Check, Sparkles, ChevronDown, ChevronUp, Info } from "lucide-react";
+
+function calcALaCarteMonthly(serviceIds: string[]): number {
+  let oneTime = 0;
+  let monthly = 0;
+  for (const id of serviceIds) {
+    const svc = SERVICES.find((s) => s.id === id);
+    if (!svc) continue;
+    if (svc.billing === "monthly") {
+      monthly += svc.price;
+    } else {
+      oneTime += svc.price;
+    }
+  }
+  // Spread one-time costs over 12 months + monthly recurring
+  return Math.round(oneTime / 12 + monthly);
+}
 
 interface Props {
   activePackage: string | null;
@@ -15,6 +31,7 @@ interface Props {
 
 export function PackageSelector({ activePackage, locale, onSelect }: Props) {
   const [expandedPackages, setExpandedPackages] = useState<Set<string>>(new Set());
+  const [tooltipOpen, setTooltipOpen] = useState<string | null>(null);
 
   const toggleExpanded = (pkgId: string, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -27,6 +44,11 @@ export function PackageSelector({ activePackage, locale, onSelect }: Props) {
       }
       return next;
     });
+  };
+
+  const toggleTooltip = (pkgId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setTooltipOpen((prev) => (prev === pkgId ? null : pkgId));
   };
 
   return (
@@ -64,6 +86,10 @@ export function PackageSelector({ activePackage, locale, onSelect }: Props) {
           const isExpanded = expandedPackages.has(pkg.id);
           const extraCount = features.length - 3;
 
+          const aLaCarteMonthly = calcALaCarteMonthly(pkg.serviceIds ?? []);
+          const savings = aLaCarteMonthly - pkg.price;
+          const showTooltip = tooltipOpen === pkg.id;
+
           return (
             <button
               key={pkg.id}
@@ -87,6 +113,45 @@ export function PackageSelector({ activePackage, locale, onSelect }: Props) {
               </div>
               <h3 className="font-semibold text-white">{name}</h3>
               <p className="mt-1 text-xs text-white/50">{tagline}</p>
+
+              {/* Savings breakdown */}
+              {savings > 0 && (
+                <div className="mt-3 rounded-lg bg-green-600/10 border border-green-500/20 px-3 py-2">
+                  <div className="flex items-center justify-between text-[11px]">
+                    <span className="text-white/50">{t("package.aLaCarte", locale)}</span>
+                    <span className="text-white/60 line-through">
+                      {formatCurrency(aLaCarteMonthly, locale)}{t("package.perMonth", locale)}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs font-semibold mt-0.5">
+                    <span className="text-green-400">{t("package.youSave", locale)}</span>
+                    <span className="text-green-400">
+                      {formatCurrency(savings, locale)}{t("package.perMonth", locale)}
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* 12-month commitment with tooltip */}
+              <div className="relative mt-3">
+                <span
+                  role="button"
+                  onClick={(e) => toggleTooltip(pkg.id, e)}
+                  className="inline-flex items-center gap-1 rounded-full bg-white/5 border border-white/10 px-2.5 py-1 text-[10px] font-medium text-white/50 transition-colors hover:text-white/70 hover:border-white/20"
+                >
+                  {t("package.commitment", locale)}
+                  <Info className="h-3 w-3" />
+                </span>
+                {showTooltip && (
+                  <div className="absolute bottom-full left-0 z-50 mb-2 w-72 rounded-lg bg-zinc-800 border border-white/10 p-3 text-xs leading-relaxed text-white/70 shadow-xl">
+                    <div className="absolute bottom-0 left-4 translate-y-full">
+                      <div className="h-0 w-0 border-x-[6px] border-t-[6px] border-x-transparent border-t-zinc-800" />
+                    </div>
+                    {t("package.commitmentTooltip", locale)}
+                  </div>
+                )}
+              </div>
+
               <ul className="mt-3 space-y-1">
                 {features.slice(0, isExpanded ? features.length : 3).map((f) => (
                   <li

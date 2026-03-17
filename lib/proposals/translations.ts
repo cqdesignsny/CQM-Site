@@ -164,6 +164,11 @@ const translations: Record<string, Record<string, string>> = {
     "package.customDesc": "Pick exactly the services you need",
     "package.showLess": "Show less",
     "package.more": "more",
+    "package.aLaCarte": "À la carte value",
+    "package.youSave": "You save",
+    "package.perMonth": "/mo",
+    "package.commitment": "12-month commitment",
+    "package.commitmentTooltip": "Marketing campaigns take up to 90 days to build out and another 90 days to gain traction. Results typically show between months 6–12. This isn\u2019t an overnight solution\u2014it\u2019s a long-term investment in your brand\u2019s growth.",
   },
   es: {
     // Builder page
@@ -328,6 +333,11 @@ const translations: Record<string, Record<string, string>> = {
     "package.customDesc": "Elige exactamente los servicios que necesitas",
     "package.showLess": "Ver menos",
     "package.more": "más",
+    "package.aLaCarte": "Valor a la carta",
+    "package.youSave": "Ahorras",
+    "package.perMonth": "/mes",
+    "package.commitment": "Compromiso de 12 meses",
+    "package.commitmentTooltip": "Las campañas de marketing tardan hasta 90 días en construirse y otros 90 días en ganar tracción. Los resultados generalmente se ven entre los meses 6 y 12. Esto no es una solución de la noche a la mañana — es una inversión a largo plazo en el crecimiento de tu marca.",
   },
   fr: {
     // Builder page
@@ -492,6 +502,11 @@ const translations: Record<string, Record<string, string>> = {
     "package.customDesc": "Choisissez exactement les services dont vous avez besoin",
     "package.showLess": "Voir moins",
     "package.more": "de plus",
+    "package.aLaCarte": "Valeur à la carte",
+    "package.youSave": "Vous économisez",
+    "package.perMonth": "/mois",
+    "package.commitment": "Engagement de 12 mois",
+    "package.commitmentTooltip": "Les campagnes marketing prennent jusqu\u2019à 90 jours pour se construire et encore 90 jours pour gagner en traction. Les résultats apparaissent généralement entre les mois 6 et 12. Ce n\u2019est pas une solution instantanée — c\u2019est un investissement à long terme dans la croissance de votre marque.",
   },
 };
 
