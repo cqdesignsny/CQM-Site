@@ -27,22 +27,22 @@ export const siteTranslations: TranslationMap = {
   "cta.buildProposal": { en: "Build Your Proposal", es: "Crea Tu Propuesta", fr: "Cr\u00E9ez votre proposition" },
   "cta.assessmentDesc": { en: "Not sure what you need? Take our free marketing assessment to discover your strengths and gaps.", es: "\u00BFNo sabes qu\u00E9 necesitas? Toma nuestra evaluaci\u00F3n de marketing gratuita para descubrir tus fortalezas y oportunidades.", fr: "Vous ne savez pas ce dont vous avez besoin\u00A0? Faites notre \u00E9valuation marketing gratuite pour d\u00E9couvrir vos forces et vos lacunes." },
   "cta.builderDesc": { en: "Know what you need? Build a custom marketing package and get an instant proposal.", es: "\u00BFYa sabes lo que necesitas? Construye un paquete de marketing personalizado y obt\u00E9n una propuesta al instante.", fr: "Vous savez ce qu\u2019il vous faut\u00A0? Cr\u00E9ez un forfait marketing personnalis\u00E9 et obtenez une proposition instantan\u00E9e." },
-  "cta.readyToGrow": { en: "Ready to Grow Your Business?", es: "\u00BFListo para Hacer Crecer Tu Negocio?", fr: "Pr\u00EAt \u00E0 d\u00E9velopper votre entreprise\u00A0?" },
+  "cta.readyToGrow": { en: "Ready to Stop Guessing and Start Growing?", es: "\u00BFListo para Hacer Crecer Tu Negocio?", fr: "Pr\u00EAt \u00E0 d\u00E9velopper votre entreprise\u00A0?" },
   "cta.findOutWhatsMissing": { en: "Find out what's missing in your marketing", es: "Descubre lo que falta en tu marketing", fr: "D\u00E9couvrez ce qui manque dans votre marketing" },
 
   // ============================================================
   // HERO SECTION
   // ============================================================
-  "hero.badge": { en: "AI-Forward Growth Agency", es: "Agencia de Crecimiento con IA", fr: "Agence de croissance IA" },
-  "hero.title1": { en: "AI-Powered Creativity", es: "Creatividad Impulsada por IA", fr: "Cr\u00E9ativit\u00E9 propuls\u00E9e par l\u2019IA" },
-  "hero.title2": { en: "Meets Results", es: "con Resultados Reales", fr: "au service des r\u00E9sultats" },
+  "hero.badge": { en: "Your Bridge to Smarter Marketing", es: "Agencia de Crecimiento con IA", fr: "Agence de croissance IA" },
+  "hero.title1": { en: "Marketing That Actually Works", es: "Creatividad Impulsada por IA", fr: "Cr\u00E9ativit\u00E9 propuls\u00E9e par l\u2019IA" },
+  "hero.title2": { en: "Powered by AI, Built by Humans", es: "con Resultados Reales", fr: "au service des r\u00E9sultats" },
   "hero.subtitle": {
-    en: "Digital marketing is everything now. We are an AI-forward agency helping businesses grow with web development, SEO, paid ads, social media, and content production.",
+    en: "We help businesses grow with websites, SEO, ads, social media, email, and video. We use AI to move faster and smarter, but every strategy is built by real people who actually care about your results.",
     es: "El marketing digital lo es todo hoy. Somos una agencia impulsada por IA que ayuda a las empresas a crecer con desarrollo web, SEO, anuncios pagados, redes sociales y producci\u00F3n de contenido.",
     fr: "Le marketing num\u00E9rique est incontournable. Nous sommes une agence propuls\u00E9e par l\u2019IA qui aide les entreprises \u00E0 cro\u00EEtre gr\u00E2ce au d\u00E9veloppement web, SEO, publicit\u00E9 payante, r\u00E9seaux sociaux et production de contenu.",
   },
   "hero.cta1": { en: "Book a Strategy Call", es: "Agendar Llamada Estrat\u00E9gica", fr: "R\u00E9server un appel strat\u00E9gique" },
-  "hero.cta2": { en: "Get a Free Audit", es: "Obtener Auditor\u00EDa Gratis", fr: "Obtenir un audit gratuit" },
+  "hero.cta2": { en: "Take the Free Marketing Quiz", es: "Obtener Auditor\u00EDa Gratis", fr: "Obtenir un audit gratuit" },
 
   // ============================================================
   // TRUST LOGOS
@@ -53,24 +53,24 @@ export const siteTranslations: TranslationMap = {
   // ============================================================
   // VALUE PROPS / SERVICES
   // ============================================================
-  "valueProps.title": { en: "Everything You Need to Grow", es: "Todo lo que necesitas para crecer", fr: "Tout ce dont vous avez besoin pour cro\u00EEtre" },
+  "valueProps.title": { en: "Everything Your Business Needs to Grow", es: "Todo lo que necesitas para crecer", fr: "Tout ce dont vous avez besoin pour cro\u00EEtre" },
   "valueProps.subtitle": {
-    en: "From web development to podcast production, we deliver end-to-end marketing solutions powered by AI-assisted workflows.",
+    en: "Websites, SEO, ads, social, email, video, AI automation. We do it all, and we do it well. Think of us as your marketing team without the overhead.",
     es: "Desde desarrollo web hasta producci\u00F3n de podcasts, ofrecemos soluciones de marketing integrales impulsadas por flujos de trabajo asistidos por IA.",
     fr: "Du d\u00E9veloppement web \u00E0 la production de podcasts, nous offrons des solutions marketing compl\u00E8tes propuls\u00E9es par des flux de travail assist\u00E9s par l\u2019IA.",
   },
   "valueProps.learnMore": { en: "Learn more", es: "Saber m\u00E1s", fr: "En savoir plus" },
 
   // Service card descriptions (value props section)
-  "valueProps.desc.web": { en: "Custom websites that convert visitors into customers.", es: "Sitios web personalizados que convierten visitantes en clientes.", fr: "Sites web sur mesure qui convertissent les visiteurs en clients." },
-  "valueProps.desc.seo": { en: "Rank higher in search results and drive organic traffic.", es: "Posiciónese mejor en los resultados de búsqueda y genere tráfico orgánico.", fr: "Améliorez votre positionnement dans les résultats de recherche et générez du trafic organique." },
-  "valueProps.desc.paidAds": { en: "Data-driven campaigns on Google, Meta, and LinkedIn.", es: "Campañas basadas en datos en Google, Meta y LinkedIn.", fr: "Campagnes basées sur les données sur Google, Meta et LinkedIn." },
-  "valueProps.desc.socialMedia": { en: "Engage your audience and grow your brand presence.", es: "Conecte con su audiencia y haga crecer la presencia de su marca.", fr: "Engagez votre audience et développez la présence de votre marque." },
-  "valueProps.desc.emailMarketing": { en: "Nurture leads and retain customers with targeted campaigns.", es: "Nutra prospectos y retenga clientes con campañas dirigidas.", fr: "Cultivez vos prospects et fidélisez vos clients avec des campagnes ciblées." },
-  "valueProps.desc.aiDevelopment": { en: "Automate repetitive workflows and build smarter systems for your marketing and operations.", es: "Automatice flujos de trabajo repetitivos y construya sistemas más inteligentes para su marketing y operaciones.", fr: "Automatisez les flux de travail répétitifs et construisez des systèmes plus intelligents pour votre marketing et vos opérations." },
-  "valueProps.desc.aiIntegration": { en: "Integrate AI assistants and agents into your process without disrupting your existing stack.", es: "Integre asistentes y agentes de IA en su proceso sin interrumpir su stack existente.", fr: "Intégrez des assistants et agents IA dans votre processus sans perturber votre pile technologique existante." },
-  "valueProps.desc.video": { en: "Professional video content that tells your story.", es: "Contenido de video profesional que cuenta su historia.", fr: "Contenu vidéo professionnel qui raconte votre histoire." },
-  "valueProps.desc.podcast": { en: "Full-service podcast production and distribution.", es: "Producción y distribución de podcasts de servicio completo.", fr: "Production et distribution de podcasts clé en main." },
+  "valueProps.desc.web": { en: "Websites that look great and actually get people to take action.", es: "Sitios web personalizados que convierten visitantes en clientes.", fr: "Sites web sur mesure qui convertissent les visiteurs en clients." },
+  "valueProps.desc.seo": { en: "Show up when people Google what you do. Simple as that.", es: "Posiciónese mejor en los resultados de búsqueda y genere tráfico orgánico.", fr: "Améliorez votre positionnement dans les résultats de recherche et générez du trafic organique." },
+  "valueProps.desc.paidAds": { en: "Ads on Google, Meta, and LinkedIn that bring back more than they cost.", es: "Campañas basadas en datos en Google, Meta y LinkedIn.", fr: "Campagnes basées sur les données sur Google, Meta et LinkedIn." },
+  "valueProps.desc.socialMedia": { en: "Content that stops the scroll and gets people talking about your brand.", es: "Conecte con su audiencia y haga crecer la presencia de su marca.", fr: "Engagez votre audience et développez la présence de votre marque." },
+  "valueProps.desc.emailMarketing": { en: "Emails your customers actually open. Sequences that turn leads into buyers.", es: "Nutra prospectos y retenga clientes con campañas dirigidas.", fr: "Cultivez vos prospects et fidélisez vos clients avec des campagnes ciblées." },
+  "valueProps.desc.aiDevelopment": { en: "Stop doing the same thing 50 times a day. We build AI systems that handle the boring stuff so you can focus on growth.", es: "Automatice flujos de trabajo repetitivos y construya sistemas más inteligentes para su marketing y operaciones.", fr: "Automatisez les flux de travail répétitifs et construisez des systèmes plus intelligents pour votre marketing et vos opérations." },
+  "valueProps.desc.aiIntegration": { en: "We plug AI into your existing tools without breaking anything. ChatGPT, automations, agents, you name it.", es: "Integre asistentes y agentes de IA en su proceso sin interrumpir su stack existente.", fr: "Intégrez des assistants et agents IA dans votre processus sans perturber votre pile technologique existante." },
+  "valueProps.desc.video": { en: "Video that tells your story and makes people hit that share button.", es: "Contenido de video profesional que cuenta su historia.", fr: "Contenu vidéo professionnel qui raconte votre histoire." },
+  "valueProps.desc.podcast": { en: "Walk in, record, walk out. We handle the rest.", es: "Producción y distribución de podcasts de servicio completo.", fr: "Production et distribution de podcasts clé en main." },
 
   // Service names
   "service.web": { en: "Web Development", es: "Desarrollo Web", fr: "D\u00E9veloppement Web" },
@@ -85,21 +85,21 @@ export const siteTranslations: TranslationMap = {
   // ============================================================
   // PROCESS SECTION
   // ============================================================
-  "process.title": { en: "How We Work", es: "C\u00F3mo Trabajamos", fr: "Notre m\u00E9thode" },
+  "process.title": { en: "How We Get It Done", es: "C\u00F3mo Trabajamos", fr: "Notre m\u00E9thode" },
   "process.subtitle": {
-    en: "A proven process that delivers results at every stage.",
+    en: "No fluff, no mystery. Here is exactly how we take you from idea to results.",
     es: "Un proceso comprobado que entrega resultados en cada etapa.",
     fr: "Un processus \u00E9prouv\u00E9 qui produit des r\u00E9sultats \u00E0 chaque \u00E9tape.",
   },
   "process.step1.title": { en: "Discovery", es: "Descubrimiento", fr: "D\u00E9couverte" },
   "process.step1.desc": {
-    en: "We audit your current digital presence, analyze competitors, and identify growth opportunities.",
+    en: "We look at everything you have going on, check out the competition, and find where you are leaving money on the table.",
     es: "Auditamos su presencia digital actual, analizamos la competencia e identificamos oportunidades de crecimiento.",
     fr: "Nous auditons votre pr\u00E9sence num\u00E9rique, analysons la concurrence et identifions les opportunit\u00E9s de croissance.",
   },
   "process.step2.title": { en: "Strategy", es: "Estrategia", fr: "Strat\u00E9gie" },
   "process.step2.desc": {
-    en: "We build a custom roadmap with clear KPIs, timelines, and deliverables tailored to your goals.",
+    en: "We build a game plan with real numbers, real deadlines, and real deliverables. No vague promises.",
     es: "Construimos una hoja de ruta personalizada con KPIs claros, plazos y entregables adaptados a sus objetivos.",
     fr: "Nous \u00E9laborons une feuille de route personnalis\u00E9e avec des KPI clairs, des \u00E9ch\u00E9anciers et des livrables adapt\u00E9s \u00E0 vos objectifs.",
   },
@@ -111,7 +111,7 @@ export const siteTranslations: TranslationMap = {
   },
   "process.step4.title": { en: "Optimization", es: "Optimizaci\u00F3n", fr: "Optimisation" },
   "process.step4.desc": {
-    en: "We continuously test, measure, and refine campaigns to maximize ROI and scale what works.",
+    en: "We watch the data, kill what is not working, and double down on what is. Rinse and repeat.",
     es: "Probamos, medimos y refinamos continuamente las campa\u00F1as para maximizar el ROI y escalar lo que funciona.",
     fr: "Nous testons, mesurons et affinons continuellement les campagnes pour maximiser le ROI et d\u00E9velopper ce qui fonctionne.",
   },
@@ -119,7 +119,7 @@ export const siteTranslations: TranslationMap = {
   // Process page-specific keys (more detailed than homepage section)
   "process.badge": { en: "Our Process", es: "Nuestro Proceso", fr: "Notre processus" },
   "process.heading": { en: "A Proven System for Measurable Growth", es: "Un Sistema Comprobado para Crecimiento Medible", fr: "Un syst\u00e8me \u00e9prouv\u00e9 pour une croissance mesurable" },
-  "process.description": { en: "Every engagement follows a structured framework designed to move fast, stay aligned, and deliver results you can measure.", es: "Cada proyecto sigue un marco estructurado dise\u00f1ado para moverse r\u00e1pido, mantenerse alineado y entregar resultados que puedas medir.", fr: "Chaque engagement suit un cadre structur\u00e9 con\u00e7u pour avancer vite, rester align\u00e9 et produire des r\u00e9sultats mesurables." },
+  "process.description": { en: "Every project follows the same proven framework. We move fast, stay aligned with your goals, and deliver results you can actually measure.", es: "Cada proyecto sigue un marco estructurado dise\u00f1ado para moverse r\u00e1pido, mantenerse alineado y entregar resultados que puedas medir.", fr: "Chaque engagement suit un cadre structur\u00e9 con\u00e7u pour avancer vite, rester align\u00e9 et produire des r\u00e9sultats mesurables." },
   "process.page.step1.title": { en: "Discovery & Audit", es: "Descubrimiento y Auditor\u00eda", fr: "D\u00e9couverte et audit" },
   "process.page.step1.summary": { en: "We start by understanding your business, audience, and current marketing landscape.", es: "Comenzamos entendiendo su negocio, audiencia y panorama de marketing actual.", fr: "Nous commen\u00e7ons par comprendre votre entreprise, votre audience et votre paysage marketing actuel." },
   "process.page.step1.d1": { en: "Full digital presence audit across all channels", es: "Auditor\u00eda completa de presencia digital en todos los canales", fr: "Audit complet de la pr\u00e9sence num\u00e9rique sur tous les canaux" },
@@ -153,9 +153,9 @@ export const siteTranslations: TranslationMap = {
   // ============================================================
   // TESTIMONIALS
   // ============================================================
-  "testimonials.title": { en: "What Clients Say", es: "Lo que dicen nuestros clientes", fr: "Ce que disent nos clients" },
+  "testimonials.title": { en: "What Our Clients Say", es: "Lo que dicen nuestros clientes", fr: "Ce que disent nos clients" },
   "testimonials.subtitle": {
-    en: "We build long-term partnerships focused on results and reliability.",
+    en: "We do not just do a project and disappear. We stick around because the best results come from real relationships.",
     es: "Construimos alianzas a largo plazo enfocadas en resultados y confiabilidad.",
     fr: "Nous b\u00E2tissons des partenariats \u00E0 long terme ax\u00E9s sur les r\u00E9sultats et la fiabilit\u00E9.",
   },
@@ -165,7 +165,7 @@ export const siteTranslations: TranslationMap = {
   // ============================================================
   "caseStudies.title": { en: "Client Spotlight", es: "Casos de \u00C9xito", fr: "\u00C9tudes de cas" },
   "caseStudies.subtitle": {
-    en: "Strategic execution powered by AI-assisted workflows and creative problem-solving.",
+    en: "Real projects, real businesses, real results. Here is some of the work we are most proud of.",
     es: "Ejecuci\u00F3n estrat\u00E9gica impulsada por flujos de trabajo asistidos por IA y resoluci\u00F3n creativa de problemas.",
     fr: "Ex\u00E9cution strat\u00E9gique propuls\u00E9e par des flux de travail assist\u00E9s par l\u2019IA et la r\u00E9solution cr\u00E9ative de probl\u00E8mes.",
   },
@@ -216,7 +216,7 @@ export const siteTranslations: TranslationMap = {
   // ============================================================
   // FOOTER
   // ============================================================
-  "footer.tagline": { en: "Digital marketing is everything now.", es: "El marketing digital lo es todo hoy.", fr: "Le marketing num\u00E9rique est incontournable." },
+  "footer.tagline": { en: "Your bridge between business and technology.", es: "El marketing digital lo es todo hoy.", fr: "Le marketing num\u00E9rique est incontournable." },
   "footer.services": { en: "Services", es: "Servicios", fr: "Services" },
   "footer.tools": { en: "Tools", es: "Herramientas", fr: "Outils" },
   "footer.company": { en: "Company", es: "Empresa", fr: "Entreprise" },
@@ -235,7 +235,7 @@ export const siteTranslations: TranslationMap = {
   // ============================================================
   "contact.pageTitle": { en: "Get in Touch", es: "Cont\u00E1ctenos", fr: "Contactez-nous" },
   "contact.pageSubtitle": {
-    en: "Ready to grow your business? Let\u2019s talk about your goals.",
+    en: "Got questions? Want to talk strategy? Just want to say hi? We are here for it.",
     es: "\u00BFListo para hacer crecer su negocio? Hablemos de sus objetivos.",
     fr: "Pr\u00EAt \u00E0 d\u00E9velopper votre entreprise\u00A0? Parlons de vos objectifs.",
   },
@@ -277,8 +277,8 @@ export const siteTranslations: TranslationMap = {
   "pricing.custom": { en: "Need something custom?", es: "\u00BFNecesita algo personalizado?", fr: "Besoin d\u2019un service sur mesure\u00A0?" },
   "pricing.customCta": { en: "Build Your Package", es: "Cree Su Paquete", fr: "Cr\u00E9ez votre forfait" },
   "pricing.badge": { en: "Pricing & Plans", es: "Precios y Planes", fr: "Tarifs et forfaits" },
-  "pricing.heading": { en: "Choose the Growth Plan That Matches Your Stage", es: "Elija el plan de crecimiento que se adapte a su etapa", fr: "Choisissez le plan de croissance adapt\u00E9 \u00E0 votre stade" },
-  "pricing.description": { en: "Every plan combines strategy, creative execution, and AI-powered optimization workflows. Pricing is customized by scope so you only pay for what you need.", es: "Cada plan combina estrategia, ejecuci\u00F3n creativa y flujos de optimizaci\u00F3n impulsados por IA. Los precios se personalizan seg\u00FAn el alcance para que solo pague por lo que necesita.", fr: "Chaque plan combine strat\u00E9gie, ex\u00E9cution cr\u00E9ative et flux d\u2019optimisation propuls\u00E9s par l\u2019IA. Les tarifs sont personnalis\u00E9s selon la port\u00E9e pour que vous ne payiez que ce dont vous avez besoin." },
+  "pricing.heading": { en: "Two Ways to Get Started", es: "Elija el plan de crecimiento que se adapte a su etapa", fr: "Choisissez le plan de croissance adapt\u00E9 \u00E0 votre stade" },
+  "pricing.description": { en: "We keep it simple. Figure out what you need, build your plan, and let us handle the rest. No hidden fees, no long contracts you did not ask for.", es: "Cada plan combina estrategia, ejecuci\u00F3n creativa y flujos de optimizaci\u00F3n impulsados por IA. Los precios se personalizan seg\u00FAn el alcance para que solo pague por lo que necesita.", fr: "Chaque plan combine strat\u00E9gie, ex\u00E9cution cr\u00E9ative et flux d\u2019optimisation propuls\u00E9s par l\u2019IA. Les tarifs sont personnalis\u00E9s selon la port\u00E9e pour que vous ne payiez que ce dont vous avez besoin." },
   "pricing.plan.startup": { en: "Startup", es: "Inicio", fr: "D\u00E9marrage" },
   "pricing.plan.startup.audience": { en: "For businesses building their foundation", es: "Para empresas que construyen sus bases", fr: "Pour les entreprises qui b\u00E2tissent leurs fondations" },
   "pricing.plan.startup.summary": { en: "A focused plan to launch consistent marketing with clear strategy and early momentum.", es: "Un plan enfocado para lanzar marketing consistente con estrategia clara e impulso temprano.", fr: "Un plan cibl\u00E9 pour lancer un marketing coh\u00E9rent avec une strat\u00E9gie claire et un \u00E9lan initial." },
@@ -314,6 +314,18 @@ export const siteTranslations: TranslationMap = {
   "pricing.customQuote.title": { en: "Need a Custom Quote?", es: "\u00BFNecesita una cotizaci\u00F3n personalizada?", fr: "Besoin d\u2019un devis personnalis\u00E9 ?" },
   "pricing.customQuote.desc": { en: "These are baseline starting prices. Final scope depends on add-ons, complexity, and the channels we activate for your business.", es: "Estos son precios base iniciales. El alcance final depende de los complementos, la complejidad y los canales que activemos para su negocio.", fr: "Ce sont des prix de d\u00E9part de base. La port\u00E9e finale d\u00E9pend des ajouts, de la complexit\u00E9 et des canaux que nous activons pour votre entreprise." },
   "pricing.compareServices": { en: "Compare Services", es: "Comparar Servicios", fr: "Comparer les services" },
+  "pricing.path1.title": { en: "Not sure where to start?", es: "No sabes por d\u00f3nde empezar?", fr: "Vous ne savez pas par o\u00f9 commencer\u00a0?" },
+  "pricing.path1.desc": { en: "Take our free marketing assessment. We'll show you exactly where your gaps are and what to focus on first.", es: "Toma nuestra evaluaci\u00f3n gratuita. Te mostraremos d\u00f3nde est\u00e1n tus brechas y en qu\u00e9 enfocarte primero.", fr: "Faites notre \u00e9valuation gratuite. Nous vous montrerons exactement o\u00f9 sont vos lacunes et sur quoi vous concentrer en premier." },
+  "pricing.path1.b1": { en: "5-minute quiz, instant results", es: "Quiz de 5 minutos, resultados instant\u00e1neos", fr: "Quiz de 5 minutes, r\u00e9sultats instantan\u00e9s" },
+  "pricing.path1.b2": { en: "See your strengths and blind spots", es: "Ve tus fortalezas y puntos ciegos", fr: "D\u00e9couvrez vos forces et vos angles morts" },
+  "pricing.path1.b3": { en: "Get personalized recommendations", es: "Obt\u00e9n recomendaciones personalizadas", fr: "Obtenez des recommandations personnalis\u00e9es" },
+  "pricing.path2.title": { en: "Know what you need?", es: "Sabes lo que necesitas?", fr: "Vous savez ce qu\u2019il vous faut\u00a0?" },
+  "pricing.path2.desc": { en: "Build your own proposal in minutes. Pick services, see pricing, and get a custom quote you can share with your team.", es: "Crea tu propia propuesta en minutos. Elige servicios, ve precios y obt\u00e9n una cotizaci\u00f3n personalizada.", fr: "Cr\u00e9ez votre proposition en minutes. Choisissez les services, consultez les tarifs et obtenez un devis personnalis\u00e9." },
+  "pricing.path2.b1": { en: "Choose from 40+ services", es: "Elige entre 40+ servicios", fr: "Choisissez parmi 40+ services" },
+  "pricing.path2.b2": { en: "See real pricing, no surprises", es: "Ve precios reales, sin sorpresas", fr: "Consultez les vrais tarifs, sans surprises" },
+  "pricing.path2.b3": { en: "Send yourself a shareable proposal link", es: "Env\u00edate un enlace de propuesta compartible", fr: "Envoyez-vous un lien de proposition partageable" },
+  "pricing.bottomCTA.title": { en: "Rather just talk to someone?", es: "Prefieres hablar con alguien?", fr: "Vous pr\u00e9f\u00e9rez parler \u00e0 quelqu\u2019un\u00a0?" },
+  "pricing.bottomCTA.desc": { en: "No pressure, no pitch. Let's hop on a call and figure out what makes sense for your business.", es: "Sin presi\u00f3n, sin ventas. Hagamos una llamada y veamos qu\u00e9 tiene sentido para tu negocio.", fr: "Pas de pression, pas de pitch. Parlons et voyons ce qui a du sens pour votre entreprise." },
 
   // ============================================================
   // ABOUT PAGE
@@ -322,11 +334,11 @@ export const siteTranslations: TranslationMap = {
   "about.values": { en: "Core Values", es: "Valores Fundamentales", fr: "Nos valeurs" },
   "about.team": { en: "Leadership", es: "Liderazgo", fr: "Direction" },
   "about.badge": { en: "About Creative Quality Marketing", es: "Acerca de Creative Quality Marketing", fr: "\u00C0 propos de Creative Quality Marketing" },
-  "about.heading": { en: "Built on Creativity, Powered by AI, Focused on Results", es: "Construido sobre creatividad, impulsado por IA, enfocado en resultados", fr: "B\u00E2ti sur la cr\u00E9ativit\u00E9, propuls\u00E9 par l\u2019IA, ax\u00E9 sur les r\u00E9sultats" },
-  "about.intro": { en: "We started with one simple goal: connect businesses to their future customers. That mission still drives everything we do, now with a modern AI-forward workflow and a hands-on team behind every campaign.", es: "Comenzamos con un objetivo simple: conectar empresas con sus futuros clientes. Esa misi\u00F3n sigue impulsando todo lo que hacemos, ahora con un flujo de trabajo moderno impulsado por IA y un equipo pr\u00E1ctico detr\u00E1s de cada campa\u00F1a.", fr: "Nous avons commenc\u00E9 avec un objectif simple : connecter les entreprises \u00E0 leurs futurs clients. Cette mission guide toujours tout ce que nous faisons, avec d\u00E9sormais un flux de travail moderne propuls\u00E9 par l\u2019IA et une \u00E9quipe impliqu\u00E9e derri\u00E8re chaque campagne." },
+  "about.heading": { en: "Real People. Real Strategy. Really Good at What We Do.", es: "Construido sobre creatividad, impulsado por IA, enfocado en resultados", fr: "B\u00E2ti sur la cr\u00E9ativit\u00E9, propuls\u00E9 par l\u2019IA, ax\u00E9 sur les r\u00E9sultats" },
+  "about.intro": { en: "We started by helping small businesses that needed better marketing but did not have big agency budgets. That is still what we do, just with better tools now. AI makes us faster. Experience makes us smarter. And we still pick up the phone when you call.", es: "Comenzamos con un objetivo simple: conectar empresas con sus futuros clientes. Esa misi\u00F3n sigue impulsando todo lo que hacemos, ahora con un flujo de trabajo moderno impulsado por IA y un equipo pr\u00E1ctico detr\u00E1s de cada campa\u00F1a.", fr: "Nous avons commenc\u00E9 avec un objectif simple : connecter les entreprises \u00E0 leurs futurs clients. Cette mission guide toujours tout ce que nous faisons, avec d\u00E9sormais un flux de travail moderne propuls\u00E9 par l\u2019IA et une \u00E9quipe impliqu\u00E9e derri\u00E8re chaque campagne." },
   "about.story.title": { en: "Our Story", es: "Nuestra Historia", fr: "Notre histoire" },
-  "about.story.p1": { en: "Creative Quality Marketing began by helping family businesses that needed better marketing execution. We built brands, websites, content, and campaigns that turned into measurable growth. Over time, that became a full-service agency serving businesses across multiple industries.", es: "Creative Quality Marketing comenz\u00F3 ayudando a negocios familiares que necesitaban mejor ejecuci\u00F3n de marketing. Construimos marcas, sitios web, contenido y campa\u00F1as que se convirtieron en crecimiento medible. Con el tiempo, eso se convirti\u00F3 en una agencia de servicio completo.", fr: "Creative Quality Marketing a d\u00E9but\u00E9 en aidant des entreprises familiales ayant besoin d\u2019une meilleure ex\u00E9cution marketing. Nous avons construit des marques, des sites web, du contenu et des campagnes qui se sont traduits en croissance mesurable." },
-  "about.story.p2": { en: "Today, we combine strategy, creative production, and AI-enabled systems to help brands scale without making the process overwhelming.", es: "Hoy, combinamos estrategia, producci\u00F3n creativa y sistemas habilitados por IA para ayudar a las marcas a escalar sin hacer el proceso abrumador.", fr: "Aujourd\u2019hui, nous combinons strat\u00E9gie, production cr\u00E9ative et syst\u00E8mes propuls\u00E9s par l\u2019IA pour aider les marques \u00E0 se d\u00E9velopper sans rendre le processus accablant." },
+  "about.story.p1": { en: "CQM started in the Hudson Valley, helping local businesses that were tired of paying for marketing that did not work. We built websites, ran campaigns, created content, and actually showed up. Word spread, and now we work with businesses across the country.", es: "Creative Quality Marketing comenz\u00F3 ayudando a negocios familiares que necesitaban mejor ejecuci\u00F3n de marketing. Construimos marcas, sitios web, contenido y campa\u00F1as que se convirtieron en crecimiento medible. Con el tiempo, eso se convirti\u00F3 en una agencia de servicio completo.", fr: "Creative Quality Marketing a d\u00E9but\u00E9 en aidant des entreprises familiales ayant besoin d\u2019une meilleure ex\u00E9cution marketing. Nous avons construit des marques, des sites web, du contenu et des campagnes qui se sont traduits en croissance mesurable." },
+  "about.story.p2": { en: "Today we combine proven strategy with AI-powered tools to help you grow without making the whole thing feel overwhelming. We are your bridge between where you are now and where you want to be.", es: "Hoy, combinamos estrategia, producci\u00F3n creativa y sistemas habilitados por IA para ayudar a las marcas a escalar sin hacer el proceso abrumador.", fr: "Aujourd\u2019hui, nous combinons strat\u00E9gie, production cr\u00E9ative et syst\u00E8mes propuls\u00E9s par l\u2019IA pour aider les marques \u00E0 se d\u00E9velopper sans rendre le processus accablant." },
   "about.team.title": { en: "Our Leadership Team", es: "Nuestro Equipo de Liderazgo", fr: "Notre \u00E9quipe de direction" },
   "about.team.cesar.role": { en: "Founder & CEO", es: "Fundador y CEO", fr: "Fondateur et PDG" },
   "about.team.cesar.summary": { en: "Digital marketer, branding strategist, web designer/developer, and growth-focused campaign leader.", es: "Mercad\u00f3logo digital, estratega de marca, dise\u00f1ador/desarrollador web y l\u00edder de campa\u00f1as enfocadas en crecimiento.", fr: "Sp\u00e9cialiste du marketing num\u00e9rique, strat\u00e8ge de marque, designer/d\u00e9veloppeur web et leader de campagnes ax\u00e9 sur la croissance." },
@@ -367,19 +379,19 @@ export const siteTranslations: TranslationMap = {
 
   // Services hub page keys
   "services.badge": { en: "What We Do", es: "Lo que Hacemos", fr: "Ce que nous faisons" },
-  "services.heading": { en: "End-to-End Digital Marketing Solutions", es: "Soluciones Integrales de Marketing Digital", fr: "Solutions marketing num\u00e9riques de bout en bout" },
-  "services.description": { en: "From web development to AI automation, we deliver strategy, creative execution, and measurable growth \u2014 all powered by AI-assisted workflows.", es: "Desde desarrollo web hasta automatizaci\u00f3n con IA, ofrecemos estrategia, ejecuci\u00f3n creativa y crecimiento medible \u2014 todo impulsado por flujos de trabajo asistidos por IA.", fr: "Du d\u00e9veloppement web \u00e0 l\u2019automatisation IA, nous offrons strat\u00e9gie, ex\u00e9cution cr\u00e9ative et croissance mesurable \u2014 le tout propuls\u00e9 par des flux de travail assist\u00e9s par l\u2019IA." },
+  "services.heading": { en: "Everything You Need Under One Roof", es: "Soluciones Integrales de Marketing Digital", fr: "Solutions marketing num\u00e9riques de bout en bout" },
+  "services.description": { en: "Websites, SEO, ads, social media, email, video, AI. We handle it all so you do not have to juggle five different vendors who never talk to each other.", es: "Desde desarrollo web hasta automatizaci\u00f3n con IA, ofrecemos estrategia, ejecuci\u00f3n creativa y crecimiento medible \u2014 todo impulsado por flujos de trabajo asistidos por IA.", fr: "Du d\u00e9veloppement web \u00e0 l\u2019automatisation IA, nous offrons strat\u00e9gie, ex\u00e9cution cr\u00e9ative et croissance mesurable \u2014 le tout propuls\u00e9 par des flux de travail assist\u00e9s par l\u2019IA." },
   "services.learnMore": { en: "Learn More", es: "Saber M\u00e1s", fr: "En savoir plus" },
-  "services.web.desc": { en: "Custom websites and landing pages built for conversion, speed, and scalability.", es: "Sitios web y p\u00e1ginas de destino personalizados, construidos para conversi\u00f3n, velocidad y escalabilidad.", fr: "Sites web et pages d\u2019atterrissage sur mesure con\u00e7us pour la conversion, la rapidit\u00e9 et la scalabilit\u00e9." },
-  "services.seo.desc": { en: "Technical SEO, content strategy, and local optimization to drive organic visibility.", es: "SEO t\u00e9cnico, estrategia de contenido y optimizaci\u00f3n local para impulsar la visibilidad org\u00e1nica.", fr: "SEO technique, strat\u00e9gie de contenu et optimisation locale pour accro\u00eetre la visibilit\u00e9 organique." },
-  "services.paidAds.desc": { en: "Data-driven campaigns across Google, Meta, LinkedIn, and TikTok for maximum ROI.", es: "Campa\u00f1as basadas en datos en Google, Meta, LinkedIn y TikTok para m\u00e1ximo ROI.", fr: "Campagnes bas\u00e9es sur les donn\u00e9es sur Google, Meta, LinkedIn et TikTok pour un ROI maximal." },
-  "services.socialMedia.desc": { en: "Strategic social media management to grow your audience and drive engagement.", es: "Gesti\u00f3n estrat\u00e9gica de redes sociales para hacer crecer su audiencia e impulsar el engagement.", fr: "Gestion strat\u00e9gique des r\u00e9seaux sociaux pour d\u00e9velopper votre audience et stimuler l\u2019engagement." },
-  "services.emailMarketing.desc": { en: "Automated email sequences and campaigns that nurture leads and drive revenue.", es: "Secuencias de correo electr\u00f3nico automatizadas y campa\u00f1as que nutren prospectos e impulsan ingresos.", fr: "S\u00e9quences d\u2019e-mails automatis\u00e9es et campagnes qui cultivent les prospects et g\u00e9n\u00e8rent des revenus." },
-  "services.video.desc": { en: "Professional video production from scripting to final edit, optimized for every platform.", es: "Producci\u00f3n de video profesional desde el gui\u00f3n hasta la edici\u00f3n final, optimizada para cada plataforma.", fr: "Production vid\u00e9o professionnelle du script au montage final, optimis\u00e9e pour chaque plateforme." },
+  "services.web.desc": { en: "Websites and landing pages that load fast, look sharp, and turn visitors into customers.", es: "Sitios web y p\u00e1ginas de destino personalizados, construidos para conversi\u00f3n, velocidad y escalabilidad.", fr: "Sites web et pages d\u2019atterrissage sur mesure con\u00e7us pour la conversion, la rapidit\u00e9 et la scalabilit\u00e9." },
+  "services.seo.desc": { en: "Get found on Google. We handle the technical stuff, the content, and the local listings.", es: "SEO t\u00e9cnico, estrategia de contenido y optimizaci\u00f3n local para impulsar la visibilidad org\u00e1nica.", fr: "SEO technique, strat\u00e9gie de contenu et optimisation locale pour accro\u00eetre la visibilit\u00e9 organique." },
+  "services.paidAds.desc": { en: "Smart ad campaigns across Google, Meta, LinkedIn, and TikTok. More clicks, less wasted spend.", es: "Campa\u00f1as basadas en datos en Google, Meta, LinkedIn y TikTok para m\u00e1ximo ROI.", fr: "Campagnes bas\u00e9es sur les donn\u00e9es sur Google, Meta, LinkedIn et TikTok pour un ROI maximal." },
+  "services.socialMedia.desc": { en: "We manage your social so you can stop stressing about what to post. Real strategy, not random content.", es: "Gesti\u00f3n estrat\u00e9gica de redes sociales para hacer crecer su audiencia e impulsar el engagement.", fr: "Gestion strat\u00e9gique des r\u00e9seaux sociaux pour d\u00e9velopper votre audience et stimuler l\u2019engagement." },
+  "services.emailMarketing.desc": { en: "Email that people actually read. Automations that nurture leads while you sleep.", es: "Secuencias de correo electr\u00f3nico automatizadas y campa\u00f1as que nutren prospectos e impulsan ingresos.", fr: "S\u00e9quences d\u2019e-mails automatis\u00e9es et campagnes qui cultivent les prospects et g\u00e9n\u00e8rent des revenus." },
+  "services.video.desc": { en: "From script to final edit, we make video content that looks pro and performs across every platform.", es: "Producci\u00f3n de video profesional desde el gui\u00f3n hasta la edici\u00f3n final, optimizada para cada plataforma.", fr: "Production vid\u00e9o professionnelle du script au montage final, optimis\u00e9e pour chaque plateforme." },
   "services.aiDev.title": { en: "AI Development", es: "Desarrollo de IA", fr: "D\u00e9veloppement IA" },
-  "services.aiDev.desc": { en: "Custom AI solutions including workflow automation, prompt engineering, and intelligent tooling.", es: "Soluciones de IA personalizadas incluyendo automatizaci\u00f3n de flujos de trabajo, ingenier\u00eda de prompts y herramientas inteligentes.", fr: "Solutions IA sur mesure incluant l\u2019automatisation des flux de travail, l\u2019ing\u00e9nierie de prompts et les outils intelligents." },
+  "services.aiDev.desc": { en: "Custom AI tools, workflow automation, and smart systems that save you hours every week.", es: "Soluciones de IA personalizadas incluyendo automatizaci\u00f3n de flujos de trabajo, ingenier\u00eda de prompts y herramientas inteligentes.", fr: "Solutions IA sur mesure incluant l\u2019automatisation des flux de travail, l\u2019ing\u00e9nierie de prompts et les outils intelligents." },
   "services.aiInt.title": { en: "AI Integration", es: "Integraci\u00f3n de IA", fr: "Int\u00e9gration IA" },
-  "services.aiInt.desc": { en: "Integrate AI assistants and agents into your existing systems without disruption.", es: "Integre asistentes y agentes de IA en sus sistemas existentes sin interrupciones.", fr: "Int\u00e9grez des assistants et agents IA dans vos syst\u00e8mes existants sans perturbation." },
+  "services.aiInt.desc": { en: "We drop AI into your existing setup without breaking anything. Seamless, practical, and actually useful.", es: "Integre asistentes y agentes de IA en sus sistemas existentes sin interrupciones.", fr: "Int\u00e9grez des assistants et agents IA dans vos syst\u00e8mes existants sans perturbation." },
   "services.ai.title": { en: "AI-Powered Marketing", es: "Marketing Impulsado por IA", fr: "Marketing propuls\u00e9 par l\u2019IA" },
   "services.ai.desc": { en: "Every service we offer is enhanced by AI-assisted workflows for faster execution and better results.", es: "Cada servicio que ofrecemos est\u00e1 mejorado por flujos de trabajo asistidos por IA para una ejecuci\u00f3n m\u00e1s r\u00e1pida y mejores resultados.", fr: "Chaque service que nous offrons est am\u00e9lior\u00e9 par des flux de travail assist\u00e9s par l\u2019IA pour une ex\u00e9cution plus rapide et de meilleurs r\u00e9sultats." },
   "services.ai.item1": { en: "AI-generated content drafts reviewed and refined by our team", es: "Borradores de contenido generados por IA revisados y refinados por nuestro equipo", fr: "\u00c9bauches de contenu g\u00e9n\u00e9r\u00e9es par l\u2019IA, r\u00e9vis\u00e9es et affin\u00e9es par notre \u00e9quipe" },
@@ -451,6 +463,8 @@ export const siteTranslations: TranslationMap = {
   "serviceDetail.pricingNote": { en: "Start with the baseline that fits your stage. Final scope is tailored to your goals, channels, and complexity.", es: "Comience con la base que se adapte a su etapa. El alcance final se adapta a sus objetivos, canales y complejidad.", fr: "Commencez avec la base qui correspond \u00e0 votre stade. La port\u00e9e finale est adapt\u00e9e \u00e0 vos objectifs, canaux et complexit\u00e9." },
   "serviceDetail.startPlan": { en: "Start This Plan", es: "Comenzar Este Plan", fr: "Choisir ce forfait" },
   "serviceDetail.pricingDisclaimer": { en: "All plans include strategy support and transparent reporting.", es: "Todos los planes incluyen soporte estrat\u00e9gico y reportes transparentes.", fr: "Tous les forfaits incluent un soutien strat\u00e9gique et des rapports transparents." },
+  "serviceDetail.pricingCTA": { en: "Ready to see what this looks like for you?", es: "Listo para ver c\u00f3mo se ve esto para ti?", fr: "Pr\u00eat \u00e0 voir \u00e0 quoi cela ressemble pour vous\u00a0?" },
+  "serviceDetail.pricingCTADesc": { en: "Build your own proposal in minutes. Pick the services you need, see real pricing, and get a custom quote.", es: "Crea tu propia propuesta en minutos. Elige los servicios que necesitas, ve precios reales y obt\u00e9n una cotizaci\u00f3n personalizada.", fr: "Cr\u00e9ez votre proposition en minutes. Choisissez les services, consultez les tarifs et obtenez un devis personnalis\u00e9." },
 
   // ============================================================
   // WORK / CASE STUDIES PAGE
@@ -464,7 +478,7 @@ export const siteTranslations: TranslationMap = {
   "work.industries": { en: "Industries We Serve", es: "Industrias que Servimos", fr: "Industries desservies" },
   "work.badge": { en: "Client Spotlights", es: "Casos de \u00c9xito", fr: "\u00c9tudes de cas" },
   "work.heading": { en: "Real Results for Real Businesses", es: "Resultados Reales para Negocios Reales", fr: "Des r\u00e9sultats r\u00e9els pour de vraies entreprises" },
-  "work.description": { en: "We partner with businesses across industries to deliver measurable growth through strategy, creative execution, and AI-powered workflows.", es: "Nos asociamos con empresas de diversas industrias para ofrecer crecimiento medible a trav\u00e9s de estrategia, ejecuci\u00f3n creativa y flujos de trabajo impulsados por IA.", fr: "Nous collaborons avec des entreprises de divers secteurs pour offrir une croissance mesurable gr\u00e2ce \u00e0 la strat\u00e9gie, l\u2019ex\u00e9cution cr\u00e9ative et les flux de travail propuls\u00e9s par l\u2019IA." },
+  "work.description": { en: "We work with businesses across all kinds of industries. Here is what we have been up to and the results we have delivered.", es: "Nos asociamos con empresas de diversas industrias para ofrecer crecimiento medible a trav\u00e9s de estrategia, ejecuci\u00f3n creativa y flujos de trabajo impulsados por IA.", fr: "Nous collaborons avec des entreprises de divers secteurs pour offrir une croissance mesurable gr\u00e2ce \u00e0 la strat\u00e9gie, l\u2019ex\u00e9cution cr\u00e9ative et les flux de travail propuls\u00e9s par l\u2019IA." },
   "work.aiAdvantage": { en: "The AI Advantage", es: "La Ventaja de la IA", fr: "L\u2019avantage de l\u2019IA" },
   "work.ai1": { en: "AI-assisted content creation reduces production time by up to 60%", es: "La creaci\u00f3n de contenido asistida por IA reduce el tiempo de producci\u00f3n hasta un 60%", fr: "La cr\u00e9ation de contenu assist\u00e9e par l\u2019IA r\u00e9duit le temps de production jusqu\u2019\u00e0 60\u00a0%" },
   "work.ai2": { en: "Automated reporting and analytics free up hours of manual work each week", es: "Los reportes y an\u00e1lisis automatizados liberan horas de trabajo manual cada semana", fr: "Les rapports et analyses automatis\u00e9s lib\u00e8rent des heures de travail manuel chaque semaine" },
@@ -533,6 +547,7 @@ export const siteTranslations: TranslationMap = {
   "studio.tourBtn": { en: "Book a Studio Tour", es: "Agendar Tour del Estudio", fr: "R\u00e9server une visite du studio" },
   "studio.hvpBtn": { en: "Visit HV Podcasting", es: "Visitar HV Podcasting", fr: "Visiter HV Podcasting" },
   "studio.packages": { en: "Studio Packages", es: "Paquetes de Estudio", fr: "Forfaits studio" },
+  "studio.packagesCTADesc": { en: "From quick podcast sessions to full-day productions, we've got a setup for every project. Build your proposal to see pricing and options.", es: "Desde sesiones r\u00e1pidas de podcast hasta producciones de d\u00eda completo, tenemos un setup para cada proyecto. Crea tu propuesta para ver precios y opciones.", fr: "Des sessions podcast rapides aux productions d\u2019une journ\u00e9e compl\u00e8te, nous avons une configuration pour chaque projet. Cr\u00e9ez votre proposition pour voir les tarifs et options." },
   "studio.mostRequested": { en: "Most Requested", es: "M\u00e1s Solicitado", fr: "Le plus demand\u00e9" },
   "studio.bookSession": { en: "Book a Session", es: "Reservar Sesi\u00f3n", fr: "R\u00e9server une s\u00e9ance" },
   "studio.pkg1.name": { en: "Podcast Starter", es: "Podcast Inicial", fr: "Podcast d\u00e9butant" },
@@ -584,8 +599,8 @@ export const siteTranslations: TranslationMap = {
   },
   "careers.applyEmail": { en: "Apply by Email", es: "Aplicar por Correo", fr: "Postuler par courriel" },
   "careers.badge": { en: "Careers at CQM", es: "Carreras en CQM", fr: "Carri\u00e8res chez CQM" },
-  "careers.heading": { en: "Build the Future of Marketing With Us", es: "Construye el Futuro del Marketing con Nosotros", fr: "Construisez l\u2019avenir du marketing avec nous" },
-  "careers.description": { en: "We\u2019re a small, focused team that moves fast and builds with intention. If you\u2019re passionate about marketing, AI, and creative problem-solving, we\u2019d love to hear from you.", es: "Somos un equipo peque\u00f1o y enfocado que se mueve r\u00e1pido y construye con intenci\u00f3n. Si te apasiona el marketing, la IA y la resoluci\u00f3n creativa de problemas, nos encantar\u00eda saber de ti.", fr: "Nous sommes une petite \u00e9quipe cibl\u00e9e qui avance vite et construit avec intention. Si vous \u00eates passionn\u00e9 par le marketing, l\u2019IA et la r\u00e9solution cr\u00e9ative de probl\u00e8mes, nous aimerions avoir de vos nouvelles." },
+  "careers.heading": { en: "Come Work With Us", es: "Construye el Futuro del Marketing con Nosotros", fr: "Construisez l\u2019avenir du marketing avec nous" },
+  "careers.description": { en: "We are a small team that moves fast, builds cool stuff, and actually likes working together. If you are into marketing, AI, and creative problem-solving, we want to hear from you.", es: "Somos un equipo peque\u00f1o y enfocado que se mueve r\u00e1pido y construye con intenci\u00f3n. Si te apasiona el marketing, la IA y la resoluci\u00f3n creativa de problemas, nos encantar\u00eda saber de ti.", fr: "Nous sommes une petite \u00e9quipe cibl\u00e9e qui avance vite et construit avec intention. Si vous \u00eates passionn\u00e9 par le marketing, l\u2019IA et la r\u00e9solution cr\u00e9ative de probl\u00e8mes, nous aimerions avoir de vos nouvelles." },
   "careers.howWeWork": { en: "How We Work", es: "C\u00f3mo Trabajamos", fr: "Notre fa\u00e7on de travailler" },
   "careers.howWeWork.desc": { en: "We operate as a hybrid team with a bias toward action. AI tools are part of our daily workflow, not a buzzword. We value output over hours and creative thinking over process for the sake of process.", es: "Operamos como un equipo h\u00edbrido con inclinaci\u00f3n hacia la acci\u00f3n. Las herramientas de IA son parte de nuestro flujo de trabajo diario, no una palabra de moda. Valoramos los resultados sobre las horas y el pensamiento creativo sobre los procesos por los procesos.", fr: "Nous fonctionnons comme une \u00e9quipe hybride avec un penchant pour l\u2019action. Les outils IA font partie de notre flux de travail quotidien, pas un simple mot \u00e0 la mode. Nous valorisons les r\u00e9sultats plut\u00f4t que les heures et la pens\u00e9e cr\u00e9ative plut\u00f4t que les processus pour les processus." },
   "careers.roles": { en: "Areas We Hire For", es: "\u00c1reas en las que Contratamos", fr: "Domaines de recrutement" },

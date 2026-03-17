@@ -163,7 +163,7 @@ export function ServicePageTemplate({
               className="border-white/35 bg-white/5 text-white hover:bg-white/15"
               asChild
             >
-              <Link href="#pricing">{t("serviceDetail.viewPricing")}</Link>
+              <Link href="/proposals">{t("cta.buildPackage")}</Link>
             </Button>
           </div>
         </div>
@@ -174,7 +174,7 @@ export function ServicePageTemplate({
           { href: "#outcomes", label: t("serviceDetail.outcomes") },
           { href: "#included", label: t("serviceDetail.included") },
           { href: "#process", label: t("serviceDetail.process") },
-          { href: "#pricing", label: t("serviceDetail.pricing") },
+          { href: "#pricing", label: t("cta.buildPackage") },
           { href: "#faqs", label: t("serviceDetail.faqs") },
         ].map((item) => (
           <a

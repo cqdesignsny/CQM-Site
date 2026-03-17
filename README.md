@@ -21,6 +21,7 @@ If you are picking this project up in a new AI/dev session, start here first:
   - `NOTION_LEADS_DATASOURCE_ID` = `90a477ee-0de7-42a6-b25b-21ba2a2e8614`
   - `RESEND_API_KEY`
   - `SLACK_WEBHOOK_URL`
+- **Resend**: CQM account created (separate from HVP). Domain verification for `creativequalitymarketing.com` on hold until site goes live on Vercel (migrating off Hostinger). Resend CLI v1.4.1 installed locally.
 - Contact + Studio still use placeholder blocks for Calendly/Google Maps embeds.
 - Pricing updates for proposal builder (pending user input).
 
