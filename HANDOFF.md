@@ -52,6 +52,14 @@ SLACK_WEBHOOK_URL=<Slack incoming webhook for #cqm-leads>
 DEFAULT_PROPOSAL_EMAIL=cesar@creativequalitymarketing.com
 ```
 
+### Resend Status
+
+- **CQM Resend account created** (separate from HVP account)
+- API key stored in `.env.local`
+- **Domain verification pending** — `creativequalitymarketing.com` needs to be verified in Resend once the site goes live on Vercel (switching from Hostinger)
+- Until domain is verified, emails can only be sent to the account owner's address
+- Once live: verify domain in Resend → update `from` addresses in email templates → full email flow works
+
 Optional:
 - `NEXT_PUBLIC_CALENDLY_URL` — for booking embeds
 - `NEXT_PUBLIC_GA4_ID`, `NEXT_PUBLIC_META_PIXEL_ID`, etc. — analytics
@@ -59,7 +67,7 @@ Optional:
 ## Pending / Next Steps
 
 1. **Pricing updates** — proposal builder pricing, logic, and wording changes (user has updates to discuss)
-2. **Resend CLI** — install and configure for local email testing
+2. **Resend domain verification** — verify `creativequalitymarketing.com` in Resend once site goes live on Vercel (switching from Hostinger)
 3. **Slack channel** — create #cqm-leads channel and set up Incoming Webhook
 4. **Calendly + Google Maps embeds** — Contact and Studio pages
 5. **Spanish tone normalization** — `tú` vs `usted` across translations
