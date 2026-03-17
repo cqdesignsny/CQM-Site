@@ -2,7 +2,7 @@
 
 This is the in-progress rebuild/redesign of [creativequalitymarketing.com](https://creativequalitymarketing.com) using Next.js (App Router) and Tailwind CSS.
 
-Last updated: **March 16, 2026**
+Last updated: **March 17, 2026**
 
 ## 0) Quick Resume
 
@@ -21,9 +21,11 @@ If you are picking this project up in a new AI/dev session, start here first:
   - `NOTION_LEADS_DATASOURCE_ID` = `90a477ee-0de7-42a6-b25b-21ba2a2e8614`
   - `RESEND_API_KEY`
   - `SLACK_WEBHOOK_URL`
-- **Resend**: CQM account created (separate from HVP). Domain verification for `creativequalitymarketing.com` on hold until site goes live on Vercel (migrating off Hostinger). Resend CLI v1.4.1 installed locally.
+- **Slack**: Create `#cqm-leads` channel and configure Incoming Webhook URL
+- **Resend**: CQM account created (separate from HVP). Domain verification for `creativequalitymarketing.com` on hold until site goes live on Vercel (migrating off Hostinger).
+- **Domain migration**: Move from Hostinger to Vercel
 - Contact + Studio still use placeholder blocks for Calendly/Google Maps embeds.
-- Pricing updates for proposal builder (pending user input).
+- Blog/CMS integration not started.
 
 ## 1) Project Goals
 
@@ -87,7 +89,7 @@ If you are picking this project up in a new AI/dev session, start here first:
   - 3 pre-built packages: Startup ($750), Growth ($1,500), Scale ($3,000)
   - Custom line items and discount fields
   - 3-step wizard: Build -> Review -> Send
-  - Saves to Supabase, syncs to Notion CRM, sends branded email via Resend
+  - Saves to Notion CRM, sends branded email via Resend, notifies via Slack
   - Shareable proposal links at `/proposals/view/[id]`
   - Proposal acceptance flow with confirmation + notification
   - Print/download via browser `window.print()` with optimized `@media print` styles
@@ -99,7 +101,7 @@ If you are picking this project up in a new AI/dev session, start here first:
   - Recommends services based on low-scoring categories (< 60%)
   - Lead capture gate before showing results
   - "Build Your Package" CTA feeds recommendations into the proposal builder
-  - Saves to Supabase, fires webhook events for n8n
+  - Saves to Notion CRM, fires Slack notifications
 
 - **Proposal View Page** (`/proposals/view/[id]`): Clean branded layout (no site nav)
   - Server-rendered with dynamic OG metadata
@@ -140,30 +142,36 @@ If you are picking this project up in a new AI/dev session, start here first:
 - **Architecture**:
   - Route groups: `(main)` for site pages with header/footer, `(proposal-view)` for minimal proposal layout
   - `useReducer` for complex state management in builder (15+ interdependent state vars)
-  - JSONB service snapshots in Supabase (immune to future price changes)
+  - Proposal JSON stored in Notion page body (immune to future price changes)
   - New proposal per revision (version history, each gets its own link)
   - Package selection auto-populates services (stays on build step so user can review before continuing)
+  - Pre-made packages show savings vs a la carte pricing with green badge
+  - 12-month commitment badge with click-toggle tooltip
   - API routes: `POST /api/proposals`, `POST /api/proposals/[id]/accept`, `POST /api/assessment`, `GET /api/assessment/[id]`
 
-- **n8n / Agent Readiness**:
-  - All API routes fire webhook events to `WEBHOOK_URL` when set
-  - Events: `proposal_created`, `proposal_accepted`, `assessment_completed`
-  - Payloads include full contact info, scores, totals, locale, timestamps, and financial breakdowns
-  - `proposal_accepted` webhook includes: locale, grandTotal, oneTimeTotal, monthlyTotal, packageId
-  - Supabase tables accessible via API for custom agent queries
+- **Pricing Strategy**:
+  - All custom service prices set to industry standard low end + 20-25%
+  - Website pricing is loss leader (stays lower to bring clients in)
+  - Pricing NOT shown on any site page — only in proposal builder
+  - Service pages have CTAs to "Build Your Proposal" or take the assessment
+  - Single "starting at" prices, no ranges
+
+- **Slack / Webhook Readiness**:
+  - All API routes send Slack notifications via `lib/slack.ts` when `SLACK_WEBHOOK_URL` is set
+  - Block Kit formatted messages for proposals, assessments, and contact form submissions
+  - Optional `WEBHOOK_URL` still supported for n8n / external automation
 
 ### What is still placeholder/incomplete
 
-- Contact form UX and CRM automation can still be expanded (form already posts to `/api/contact`)
-- Calendly embeds (Contact + Studio)
-- Google Maps embed
+- Calendly embeds (Contact + Studio pages)
+- Google Maps embed (Contact page)
 - Dedicated OG/social share image asset (currently falls back to logo)
 - Final approved case-study metrics and testimonial approvals
 - Blog/CMS/MDX integration
-- Real analytics scripts and event destinations
-- Final brand visual system refinement (typography, color system polish, motion pass)
-- Supabase tables need to be created (SQL in plan file)
-- Environment variables needed: Supabase, Notion, Resend, WEBHOOK_URL (see `.env.example`)
+- Analytics scripts (GA4, Meta Pixel, TikTok, LinkedIn IDs needed)
+- Slack webhook URL needs to be configured
+- Resend domain verification (pending Vercel migration)
+- Environment variables needed in Vercel: Notion, Resend, Slack (see `.env.example`)
 
 ## 4) Changes Completed In This Session
 
@@ -306,23 +314,15 @@ Observed important info to keep aligned:
 
 ## 7) Immediate Next Priorities
 
-1. Finalize approved production copy for testimonials and case-study proof points.
-2. Implement production contact handling:
-   - Tally/Typeform embed or custom API route + provider
-   - Remove mock `alert()` behavior
-3. Add Calendly + Google Maps embeds.
-4. Build full `/work` case study system:
-   - Data model (local JSON/MDX/CMS)
-   - Listing page + individual detail pages
-5. Build `/resources` system:
-   - MDX or headless CMS
-   - Categories, SEO metadata, internal linking
-6. Finalize analytics:
-   - GA4/Meta/LinkedIn/TikTok IDs from env
-   - Verify events
-7. Add dedicated OG/social preview image asset (`1200x630`) and wire it as the default preview image.
-8. Add production embeds (Calendly + Maps) and validate structured data in Google Rich Results Test.
-9. Run visual design pass for stronger, differentiated brand direction.
+1. **Slack webhook setup** — create `#cqm-leads` channel, configure Incoming Webhook, set env var
+2. **Domain migration** — move `creativequalitymarketing.com` from Hostinger to Vercel
+3. **Resend domain verification** — verify domain once on Vercel for full email flow
+4. **Set env vars in Vercel** — Notion, Slack, Resend keys for production
+5. **Calendly + Google Maps embeds** — Contact and Studio pages
+6. **Blog/CMS integration** — MDX or headless CMS for `/resources`
+7. **Dedicated OG image** — 1200x630 social preview asset
+8. **Analytics scripts** — GA4, Meta Pixel, TikTok, LinkedIn IDs
+9. **Final case study metrics and testimonial approvals**
 
 ## 8) Local Development
 
@@ -368,19 +368,17 @@ npm run start
   - Google Search Console + Google Analytics access (post-launch validation)
 
 - Environment variables to configure (template in `.env.example`):
+  - `NOTION_API_KEY`
+  - `NOTION_LEADS_DATABASE_ID` = `b98905d3f971471ea6da0bdc0a1f8af0`
+  - `NOTION_LEADS_DATASOURCE_ID` = `90a477ee-0de7-42a6-b25b-21ba2a2e8614`
+  - `RESEND_API_KEY`
+  - `SLACK_WEBHOOK_URL`
+  - `DEFAULT_PROPOSAL_EMAIL`
   - `NEXT_PUBLIC_CALENDLY_URL`
   - `NEXT_PUBLIC_GA4_ID`
   - `NEXT_PUBLIC_META_PIXEL_ID`
   - `NEXT_PUBLIC_TIKTOK_PIXEL_ID`
   - `NEXT_PUBLIC_LINKEDIN_PARTNER_ID`
-  - `NEXT_PUBLIC_SUPABASE_URL`
-  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-  - `SUPABASE_SERVICE_ROLE_KEY`
-  - `NOTION_API_KEY`
-  - `NOTION_PROPOSALS_DATABASE_ID`
-  - `NOTION_ASSESSMENTS_DATABASE_ID`
-  - `RESEND_API_KEY`
-  - `DEFAULT_PROPOSAL_EMAIL`
   - `WEBHOOK_URL` (optional - for n8n / external automation)
 
 ## 11) Deployment Notes
@@ -444,6 +442,16 @@ Audit date: **February 18, 2026**
 
 ## 13) Change Log
 
+- **2026-03-17 (Session 10)**
+  - **Full copy rewrite** — 47+ English strings rewritten for human, casual, funny tone across hero, value props, process, testimonials, about, contact, pricing, services, work, careers, footer, and CTAs
+  - **ES/FR translations synced** — all Spanish and French translations updated to match casual English vibe
+  - Hero tagline: "Real Humans Powered with AI / Delivering Results" (EN/ES/FR)
+  - **Pricing standardized** — all custom service prices set to industry standard low end + 20-25%; website pricing stays as loss leader
+  - **Pricing removed from all site pages** — replaced with CTAs to proposal builder and assessment
+  - **Package savings display** — shows crossed-out a la carte monthly price with green savings badge
+  - **12-month commitment badge** — with click-toggle tooltip explaining campaign buildout timeline
+  - Updated `HANDOFF.md`, `README.md`, and created Claude memory files for future session continuity
+
 - **2026-03-16 (Session 9)**
   - **Replaced Supabase with Notion CRM** — Supabase goes inactive after 7 days; all data now stored in Notion
   - Created unified "Leads" database in Notion with Source (Proposal/Assessment/Contact Form), Status pipeline, and all lead properties
@@ -451,7 +459,7 @@ Audit date: **February 18, 2026**
   - Uses `@notionhq/client` v5.9.0 (`dataSources.query` API)
   - **Added Slack notifications** — new `lib/slack.ts` sends Block Kit formatted messages via Incoming Webhook for all lead sources
   - **Rewrote all API routes** to use Notion + Resend + Slack (removed all Supabase references)
-  - **Homepage logo slider** — full-width infinite auto-scrolling CSS animation, transparent logos, grayscale → color on hover
+  - **Homepage logo slider** — full-width infinite auto-scrolling CSS animation, transparent logos, grayscale to color on hover
   - Removed `@supabase/supabase-js` dependency, deleted `lib/supabase/`, `supabase/schema.sql`, `lib/proposals/notion.ts`
   - Updated `.env.example` with new Notion/Slack vars, removed Supabase vars
   - Updated `HANDOFF.md` and `README.md`

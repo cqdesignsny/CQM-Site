@@ -1,44 +1,62 @@
 # CQM Site Handoff
 
-Updated: **March 16, 2026**
+Updated: **March 17, 2026**
 
 ## Repo State
 
 - Project: `CQM-Site`
 - Branch: `main`
 - Remote: `https://github.com/cqdesignsny/CQM-Site.git`
-- Working tree status at handoff: clean
+- Working tree status at handoff: clean (all changes committed and pushed)
+- Latest commit: `1736b95 feat: sync ES/FR translations to match casual English copy tone`
 
-## What Was Completed Most Recently (March 16, 2026)
+## What Was Completed (March 16-17, 2026)
 
-### Major: Replace Supabase with Notion CRM + Add Slack Notifications
+### 1. Replaced Supabase with Notion CRM
+- Removed `@supabase/supabase-js` entirely
+- Created unified "Leads" database in Notion (Database ID: `b98905d3f971471ea6da0bdc0a1f8af0`)
+- New `lib/notion/client.ts` — full CRUD for leads, proposals, assessments, contacts
+- Full proposal JSON stored as code block in Notion page body for `/proposals/view/[id]`
 
-- **Removed Supabase entirely** — deleted `@supabase/supabase-js`, `lib/supabase/client.ts`, `supabase/schema.sql`
-- **Created Notion CRM** — unified "Leads" database inside a "CQM CRM" page in Notion
-  - Database ID: `b98905d3f971471ea6da0bdc0a1f8af0`
-  - Data Source ID: `90a477ee-0de7-42a6-b25b-21ba2a2e8614`
-  - Properties: Name, Email, Phone, Source (Proposal/Assessment/Contact Form), Status (New/Contacted/Negotiating/Won/Lost), Lead ID, Score, Grand Total, Package, Proposal Link, etc.
-- **New `lib/notion/client.ts`** — all CRUD operations for leads, proposals, assessments, contacts
-  - Full proposal JSON stored as code block in Notion page body for `/proposals/view/[id]`
-  - Uses `@notionhq/client` v5.9.0 (`dataSources.query` instead of `databases.query`)
-- **New `lib/slack.ts`** — Slack Incoming Webhook notifications with Block Kit formatting
-- **All API routes rewritten** to use Notion + Resend + Slack (no more Supabase)
-- **Homepage logo slider** — full-width infinite auto-scrolling CSS animation, transparent logos, grayscale → color on hover
+### 2. Added Slack Notifications
+- New `lib/slack.ts` — Block Kit formatted messages via Incoming Webhook
+- All lead sources (proposals, assessments, contacts) trigger Slack notifications
 
-### Files Changed
+### 3. Resend Email Setup
+- CQM Resend account created (separate from HVP)
+- Domain verification pending until site migrates from Hostinger to Vercel
 
-- `lib/notion/client.ts` (new)
-- `lib/slack.ts` (new)
-- `app/api/proposals/route.ts` — Notion + Resend + Slack
-- `app/api/proposals/[id]/accept/route.ts` — Notion + Resend + Slack
-- `app/api/assessment/route.ts` — Notion + Slack
-- `app/api/assessment/[id]/route.ts` — Notion query
-- `app/api/contact/route.ts` — Notion + Resend + Slack
-- `app/(proposal-view)/proposals/view/[id]/page.tsx` — Notion fetch
-- `components/sections/trust-logos.tsx` — infinite scroll slider
-- `tailwind.config.ts` — logo-scroll keyframes
-- `.env.example` — updated vars
-- `package.json` — removed Supabase
+### 4. Pricing Overhaul
+- All custom service prices set to industry standard low end + 20-25%
+- Website pricing stays as-is (loss leader strategy)
+- Single "starting at" prices, no ranges
+- Pricing REMOVED from all site pages — only shows in proposal builder
+- Service pages now have CTAs to "Build Your Proposal" or take the assessment
+- Pre-made packages show savings vs a la carte (green badge with crossed-out price)
+- 12-month commitment badge with click-toggle tooltip
+
+### 5. Full Copy Rewrite + Trilingual Sync
+- 47+ English strings rewritten for human, casual, funny tone
+- Hero tagline: "Real Humans Powered with AI / Delivering Results"
+- All ES/FR translations synced to match casual English vibe
+- Sections updated: hero, value props, process, testimonials, about, contact, pricing, services hub, work, careers, footer, CTAs
+
+### 6. Homepage Logo Slider
+- Full-width infinite auto-scrolling CSS animation
+- Transparent logos, grayscale to color on hover
+
+### Files Changed (key ones)
+- `lib/notion/client.ts` (new) — Notion CRM client
+- `lib/slack.ts` (new) — Slack webhook notifications
+- `lib/proposals/services-data.ts` — 19 price changes
+- `lib/i18n/site-translations.ts` — 100+ translation edits across EN/ES/FR
+- `lib/proposals/translations.ts` — new package savings/commitment keys
+- `components/proposals/package-selector.tsx` — savings calculation, commitment badge
+- `components/services/service-pricing.tsx` — replaced pricing tiers with CTA card
+- `components/services/service-page-template.tsx` — pricing nav links to proposal builder
+- `app/(main)/pricing/pricing-content.tsx` — two-path funnel (assessment + proposals)
+- `app/(main)/studio/studio-content.tsx` — replaced pricing with CTA section
+- All API routes — rewritten for Notion + Resend + Slack
 - Deleted: `lib/supabase/client.ts`, `lib/proposals/notion.ts`, `supabase/schema.sql`
 
 ## Environment Variables Needed
@@ -47,31 +65,39 @@ Updated: **March 16, 2026**
 NOTION_API_KEY=<Notion integration token>
 NOTION_LEADS_DATABASE_ID=b98905d3f971471ea6da0bdc0a1f8af0
 NOTION_LEADS_DATASOURCE_ID=90a477ee-0de7-42a6-b25b-21ba2a2e8614
-RESEND_API_KEY=<Resend API key>
+RESEND_API_KEY=<Resend API key - stored in .env.local>
 SLACK_WEBHOOK_URL=<Slack incoming webhook for #cqm-leads>
 DEFAULT_PROPOSAL_EMAIL=cesar@creativequalitymarketing.com
 ```
 
 ### Resend Status
-
-- **CQM Resend account created** (separate from HVP account)
+- CQM Resend account created (separate from HVP account)
 - API key stored in `.env.local`
-- **Domain verification pending** — `creativequalitymarketing.com` needs to be verified in Resend once the site goes live on Vercel (switching from Hostinger)
-- Until domain is verified, emails can only be sent to the account owner's address
-- Once live: verify domain in Resend → update `from` addresses in email templates → full email flow works
+- **Domain verification pending** — needs to happen after Vercel migration from Hostinger
+- Until verified, emails only send to account owner's address
 
 Optional:
 - `NEXT_PUBLIC_CALENDLY_URL` — for booking embeds
 - `NEXT_PUBLIC_GA4_ID`, `NEXT_PUBLIC_META_PIXEL_ID`, etc. — analytics
 
-## Pending / Next Steps
+## Pending / Next Steps (Priority Order)
 
-1. **Pricing updates** — proposal builder pricing, logic, and wording changes (user has updates to discuss)
-2. **Resend domain verification** — verify `creativequalitymarketing.com` in Resend once site goes live on Vercel (switching from Hostinger)
-3. **Slack channel** — create #cqm-leads channel and set up Incoming Webhook
-4. **Calendly + Google Maps embeds** — Contact and Studio pages
-5. **Spanish tone normalization** — `tú` vs `usted` across translations
-6. **Blog/CMS integration** — not yet started
+1. **Slack channel setup** — create #cqm-leads channel, configure Incoming Webhook, set `SLACK_WEBHOOK_URL`
+2. **Domain migration** — move creativequalitymarketing.com from Hostinger to Vercel
+3. **Resend domain verification** — verify domain in Resend once on Vercel
+4. **Set all env vars in Vercel** — Notion, Slack, Resend keys
+5. **Calendly + Google Maps embeds** — Contact and Studio pages still use placeholders
+6. **Blog/CMS integration** — not started
+7. **Dedicated OG image** — 1200x630 social preview (currently logo fallback)
+8. **Analytics scripts** — GA4, Meta Pixel, TikTok, LinkedIn IDs
+9. **Final case study metrics and testimonial approvals**
+
+## Important Context for Next Session
+
+- **Copy tone**: All copy must be human, casual, funny. No em dashes, no AI-sounding language. ES/FR must match the English vibe.
+- **Pricing strategy**: Never add pricing back to site pages. Pricing lives only in the proposal builder. All services set to industry low-end + 20-25%. Websites are loss leaders.
+- **Notion API**: Uses `dataSources.query` (v5.9.0), NOT `databases.query`
+- **Architecture**: Route groups `(main)` for site, `(proposal-view)` for minimal proposal layout. Client content wrappers (`*-content.tsx`) handle i18n.
 
 ## Resume Checklist
 
