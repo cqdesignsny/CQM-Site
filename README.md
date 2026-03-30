@@ -165,17 +165,27 @@ NEXT_PUBLIC_TIKTOK_PIXEL_ID=<TikTok Pixel ID>
 NEXT_PUBLIC_LINKEDIN_PARTNER_ID=<LinkedIn Partner ID>
 ```
 
-## Remaining Items
+## Remaining To-Do List
 
-1. **Content agent** for automated blog posts (N8N or scheduled tasks)
-2. **Studio images** need real local photos (HVP remote URLs may be blocked by Cloudflare)
-3. **Slack webhook** configuration
-4. **Domain migration** from Hostinger to Vercel
-5. **Resend domain verification** + audience ID for newsletter
-6. **Calendly + Google Maps** embeds (Contact + Studio pages)
-7. **Dedicated OG image** (1200x630)
-8. **Analytics scripts** (GA4, Meta Pixel, TikTok, LinkedIn)
-9. **Final client stories** with real metrics and logos
+### High Priority (Needed for Launch)
+1. **Domain migration** from Hostinger to Vercel
+2. **Set env vars in Vercel** (Notion, Resend, Slack keys)
+3. **Slack webhook**: create #cqm-leads channel, configure Incoming Webhook
+4. **Resend domain verification** once on Vercel (unblocks email + newsletter)
+5. **Resend audience ID** for newsletter signups
+
+### Medium Priority (Post Launch)
+6. **Content agent** for automated blog posts (N8N or Claude scheduled tasks)
+7. **Calendly embeds** on Contact + Studio pages
+8. **Google Maps embed** on Contact page
+9. **Analytics scripts** (GA4, Meta Pixel, TikTok, LinkedIn IDs)
+10. **Dedicated OG image** (1200x630 social preview)
+
+### Lower Priority (Ongoing)
+11. **Client stories** with real metrics, logos, and case study details
+12. **Blog expansion** with more articles and trending topics
+13. **Proposal builder / Assessment refinements** based on real usage
+14. **Design polish** based on mobile testing and client feedback
 
 ## Local Development
 

@@ -1,152 +1,121 @@
 # CQM Site Handoff
 
-Updated: **March 29, 2026**
+Updated: **March 30, 2026**
 
 ## Repo State
 
 - Project: `CQM-Site`
 - Branch: `main`
 - Remote: `https://github.com/cqdesignsny/CQM-Site.git`
+- Vercel: `https://cqm-site.vercel.app` (auto deploys from `main`)
+- Working tree: clean (all changes committed and pushed)
 
-## Major Restructure: Education First Sales Tool (March 29, 2026)
+## Site Direction
 
-### Strategic Direction
-The entire site was restructured from a "list of services" agency website into an **education first sales tool**. The site now teaches prospects what marketing is, explains the marketing funnel, and positions CQM as the agency that learns your business first. Key messaging throughout: "When your competition outspends you, we outthink them."
+Education first sales tool. NOT a typical agency service listing site. The site teaches prospects what marketing is, explains the marketing funnel, and functions as a sales tool Cesar can pull up in any meeting.
 
-### What Changed
+**Key messaging:**
+- "Real Humans Powered with AI, Delivering Results"
+- "When your competition outspends you, we outthink them"
+- "Human led, AI accelerated" (AI is support/speed, NOT the driver)
+- We learn your business first, then build marketing around what makes you different
 
-#### 1. Navigation Simplified (9 items to 5)
-- **New nav:** How Marketing Works | Services | Studio | About | Contact
-- Assessment, Proposals, Work, Resources, Blog moved to footer
-- `/process` now redirects to `/how-marketing-works`
+**Copy tone:** Human, casual, funny, personable, knowledgeable. No dashes of any kind. Comedy woven throughout. Like talking to a friend who happens to be really good at marketing.
 
-#### 2. Homepage Completely Rebuilt
-New flow: Hero > Differentiator > Funnel Teaser > Services Overview > Social Proof > CTA Banner
-- Hero: "Real Humans Powered with AI / Delivering Results" with AI advantage subtitle
-- Differentiator: 4 pillars with glow/shine hover effects
-- Funnel teaser: actual funnel shape (narrowing widths), interactive expandable stages
-- Services grouped by funnel stage (Get Found, Convert Visitors, Tell Your Story, Scale Smarter)
-- Social proof: featured testimonial + scrolling logos
-- Removed: Case Studies, Resources Teaser, old Process, old 9 card Value Props
+## What Was Built (March 29-30, 2026)
 
-#### 3. New Page: /how-marketing-works (Centerpiece)
-Full education page for use in sales meetings:
-- Problem statement ("Most Businesses Are Marketing Blindfolded")
-- Interactive marketing funnel with 4 expandable stages, service links, warning callouts
-- Gap checker (4 yes/no questions leading to full Assessment)
-- CQM Difference section with AI Advantage callout
-- Process section (Discovery, Strategy, Execution, Optimization)
-- Bottom CTA (Assessment + Strategy Call)
+### Site Restructure
+1. **Navigation simplified** from 9 items to 5: How Marketing Works, Services, Studio, About, Contact
+2. **Homepage completely rebuilt**: Hero > Differentiator > Funnel Teaser > Services Overview > Social Proof > Newsletter Section > CTA Banner
+3. **/how-marketing-works** centerpiece education page: interactive funnel with 4 expandable stages, gap checker, CQM difference, AI advantage callout, process section
+4. **/process redirects** to /how-marketing-works (permanent redirect in next.config.ts)
 
-#### 4. Blog System Built
-- `/blog` listing page with category filters, featured articles, hover effect cards
-- `/blog/[slug]` dynamic article pages with related articles
-- 5 seed articles on AI, marketing funnels, SEO, social media, outthinking competitors
-- Blog data system in `lib/blog/` (types.ts + articles.ts)
+### New Tools
+5. **Blog system** at /blog: 18 full articles (800+ words each), 3 per category, category filters, Unsplash images, internal linking, external source references, SEO optimized
+6. **ROI Calculator** at /roi-calculator: 5 inputs (current revenue, revenue goal, customer value, current spend, industry), dynamic budget breakdown (ads vs creative), 12 industries, ROI multiplier, gap analysis, full methodology explanation
+7. **Newsletter signup**: footer component + homepage section, Resend Audiences API integration
 
-#### 5. Newsletter Signup
-- Component in footer with email input
-- API route `/api/newsletter` integrates with Resend Audiences
-- Needs `RESEND_AUDIENCE_ID` env var to activate
+### Page Updates
+8. **Service pages refocused**: funnel context ("Where This Fits in Your Marketing Funnel") + cross sell ("This Is Only One Piece of the Puzzle") added to all 8 service detail pages
+9. **Assessment shortened**: 24 to 10 questions (one per category), now recommends flagship plans (Startup/Growth/Scale) instead of individual services
+10. **Studio page expanded**: 13 real studio photos, 6 offering cards (podcast, video, content room, conference room, custom sets, post production), equipment highlights
+11. **About page**: simplified, team focused, AI advantage mention
+12. **Work page**: approach focused, "what we discovered" per client
+13. **Resources page**: removed placeholders, added blog + how marketing works promos
+14. **AI framing corrected**: "AI-Driven Service" changed to "Human Led, AI Accelerated" on all service pages
 
-#### 6. Service Pages Refocused
-All 8 service detail pages now include:
-- "Where This Fits in Your Marketing Funnel" mini funnel visualization
-- "This Is Only One Piece of the Puzzle" cross sell section with complementary services
+### SEO/AEO
+15. **Full SEO audit**: sitemap updated with dynamic blog entries, BlogPosting schema on blog posts, BreadcrumbList on new pages, WebApplication schema on ROI calculator
+16. **llms.txt updated**: new pages and positioning
+17. **Metadata optimized**: all titles under 60 chars, descriptions under 160 chars
+18. **Internal linking**: strong connections across all pages verified
 
-#### 7. Assessment Shortened
-- Reduced from 24 questions to 10 (one per category)
-- Same 10 categories, same scoring algorithm, just faster to complete
-- Recommendations now show 3 flagship plans (Startup/Growth/Scale) based on overall score instead of listing individual services
+### Infrastructure
+19. **Newsletter API**: POST /api/newsletter with Resend Audiences
+20. **Blog data system**: lib/blog/types.ts + articles.ts with helper functions
+21. **Funnel components**: components/funnel/ with reusable funnel visualizations
 
-#### 8. ROI Calculator (NEW)
-- Interactive tool at `/roi-calculator`
-- 4 inputs: revenue goal, customer value, current spend, industry (12 industries)
-- Budget breakdown: ad spend vs agency/creative labor with visual bar
-- ROI shown as multiplier (e.g. 5.2x return) with clear math explanation
-- Gap analysis with color coded status
-- CPAs raised ~25% to reflect 2026 ad cost increases
+## Remaining To-Do List (Priority Order)
 
-#### 9. Newsletter Section on Homepage
-- Prominent section between Social Proof and CTA Banner
-- Value proposition with 4 bullet points about what subscribers get
-- Reuses footer newsletter signup component
+### High Priority (Needed for Launch)
+1. **Domain migration**: Move `creativequalitymarketing.com` from Hostinger to Vercel
+2. **Set env vars in Vercel**: NOTION_API_KEY, NOTION_LEADS_DATABASE_ID, NOTION_LEADS_DATASOURCE_ID, RESEND_API_KEY, RESEND_AUDIENCE_ID, SLACK_WEBHOOK_URL, DEFAULT_PROPOSAL_EMAIL
+3. **Slack webhook**: Create #cqm-leads channel, configure Incoming Webhook URL
+4. **Resend domain verification**: Verify creativequalitymarketing.com in Resend once on Vercel (unblocks full email flow and newsletter)
+5. **Resend audience ID**: Create an audience in Resend dashboard, set RESEND_AUDIENCE_ID env var to activate newsletter signups
 
-#### 10. Blog Expanded to 18 Articles
-- 3 articles per category (6 categories)
-- All articles have Unsplash featured images (tech/business relevant)
-- Blog grid: 5 columns on wide screens, compact cards
-- Featured articles get full width treatment
+### Medium Priority (Post Launch)
+6. **Content agent**: Set up automated blog posting via N8N or Claude scheduled tasks. Agent should search for latest AI, marketing, business, and design news, write articles in Cesar's voice, and publish to the blog
+7. **Calendly embeds**: Replace placeholder blocks on Contact and Studio pages with actual Calendly booking widget (needs NEXT_PUBLIC_CALENDLY_URL)
+8. **Google Maps embed**: Replace placeholder on Contact page
+9. **Analytics scripts**: GA4, Meta Pixel, TikTok Pixel, LinkedIn Partner ID (env vars ready, just need the IDs)
+10. **Dedicated OG image**: Create 1200x630 social preview image (currently falls back to logo)
 
-#### 11. AI Framing Corrected
-- Changed "AI-Driven Service" to "Human Led, AI Accelerated" on all service pages
-- AI is positioned as support/speed, never the driver
-
-#### 12. Supporting Pages Updated
-- About: shortened story, team focused, AI advantage mention
-- Work: approach focused, "what we discovered" per client
-- Resources: removed placeholders, added blog + how marketing works promos
-
-### Files Created
-- `app/(main)/how-marketing-works/` (page + content)
-- `app/(main)/blog/` (listing page)
-- `app/(main)/blog/[slug]/` (article pages)
-- `app/(main)/roi-calculator/` (page + interactive calculator)
-- `app/api/newsletter/route.ts`
-- `components/sections/differentiator.tsx`
-- `components/sections/funnel-teaser.tsx`
-- `components/sections/services-overview.tsx`
-- `components/sections/social-proof.tsx`
-- `components/sections/newsletter-section.tsx`
-- `components/funnel/marketing-funnel.tsx`
-- `components/funnel/funnel-gap-checker.tsx`
-- `components/newsletter-signup.tsx`
-- `lib/blog/types.ts`
-- `lib/blog/articles.ts`
-
-### Files Modified (key ones)
-- `components/header.tsx` (5 item nav)
-- `components/footer.tsx` (new links + newsletter signup)
-- `app/(main)/page.tsx` (new homepage section lineup)
-- `components/sections/hero.tsx` (new CTA link)
-- `components/services/service-page-template.tsx` (funnel context + cross sell)
-- All 8 service content files (new props)
-- `lib/i18n/site-translations.ts` (200+ new keys)
-- `lib/assessment/questions.ts` (24 to 10 questions)
-- `app/sitemap.ts` (new routes)
-- `next.config.ts` (/process redirect)
-- `app/(main)/about/about-content.tsx`
-- `app/(main)/work/work-content.tsx`
-- `app/(main)/resources/resources-content.tsx`
+### Lower Priority (Ongoing)
+11. **Client stories**: Get real metrics, logos, and case study details for Advanced Skin Med Spa, Mark Vieira Comedy, Rectified, Level Aesthetics, Elko
+12. **Blog content expansion**: More articles, deeper content, trending topics
+13. **Proposal builder refinements**: Any UX tweaks based on client feedback (currently off limits per Cesar)
+14. **Assessment refinements**: Tweak scoring weights or question wording based on real usage data
+15. **Design polish**: Mobile responsiveness review, animation performance, card design iteration based on Cesar's feedback
 
 ## Environment Variables
 
-```
+```env
+# Required for production
 NOTION_API_KEY=<Notion integration token>
 NOTION_LEADS_DATABASE_ID=b98905d3f971471ea6da0bdc0a1f8af0
 NOTION_LEADS_DATASOURCE_ID=90a477ee-0de7-42a6-b25b-21ba2a2e8614
 RESEND_API_KEY=<CQM Resend account key>
-RESEND_AUDIENCE_ID=<Resend audience ID for newsletter>
 SLACK_WEBHOOK_URL=<Slack incoming webhook for #cqm-leads>
 DEFAULT_PROPOSAL_EMAIL=cesar@creativequalitymarketing.com
+
+# Newsletter
+RESEND_AUDIENCE_ID=<Resend audience ID for newsletter subscribers>
+
+# Optional
+NEXT_PUBLIC_CALENDLY_URL=<Calendly embed URL>
+NEXT_PUBLIC_GA4_ID=<Google Analytics 4 ID>
+NEXT_PUBLIC_META_PIXEL_ID=<Meta Pixel ID>
+NEXT_PUBLIC_TIKTOK_PIXEL_ID=<TikTok Pixel ID>
+NEXT_PUBLIC_LINKEDIN_PARTNER_ID=<LinkedIn Partner ID>
 ```
 
-## Pending / Next Steps
+## Important Context for Next Session
 
-1. **Content agent setup** for auto blog posts (N8N or Claude scheduled tasks)
-2. **Studio page expansion** with real HVP photos
-3. **Slack webhook** configuration
-4. **Domain migration** from Hostinger to Vercel
-5. **Resend domain verification** + audience ID setup
-6. **Calendly + Google Maps embeds**
-7. **Dedicated OG image** (1200x630)
-8. **Analytics scripts** (GA4, Meta Pixel, TikTok, LinkedIn)
-9. **Final client stories** with real metrics and logos
-
-## Important Context
-
-- **Copy tone**: Human, casual, funny, personable, knowledgeable. Like talking to a friend who happens to be really good at marketing. No dashes. No AI sounding language.
-- **Key messaging**: "When your competition outspends you, we outthink them." AI advantage throughout.
-- **Pricing**: Never on site pages. Only in proposal builder.
+- **Copy tone**: Human, casual, funny. No dashes. Comedy throughout. Mirror how Cesar actually talks.
+- **AI framing**: "Human led, AI accelerated." AI is NEVER the driver. Humans drive everything, AI supports.
+- **Key phrase**: "When your competition outspends you, we outthink them." This is the whole brand.
+- **Pricing**: NEVER on site pages. Only in proposal builder. Loss leader websites.
 - **Notion API**: Uses `dataSources.query` (v5.9.0), NOT `databases.query`
-- **Assessment**: Now 10 questions (was 24). Same scoring.
+- **Assessment**: 10 questions now (was 24). Recommends plans not individual services.
+- **Blog**: Static data in lib/blog/articles.ts. Ready for Notion CMS or content agent integration.
+- **N8N**: Available for building automation agents.
+- **Architecture**: Route groups `(main)` for site, `(proposal-view)` for proposals. Client content wrappers handle i18n.
+
+## Resume Checklist
+
+1. `git pull origin main`
+2. `npm install`
+3. Copy `.env.example` to `.env.local` and fill in values
+4. `npm run dev`
+5. `npm run build` to verify
