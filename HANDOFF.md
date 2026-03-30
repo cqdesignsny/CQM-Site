@@ -57,9 +57,32 @@ All 8 service detail pages now include:
 #### 7. Assessment Shortened
 - Reduced from 24 questions to 10 (one per category)
 - Same 10 categories, same scoring algorithm, just faster to complete
-- Scoring and recommendations unchanged
+- Recommendations now show 3 flagship plans (Startup/Growth/Scale) based on overall score instead of listing individual services
 
-#### 8. Supporting Pages Updated
+#### 8. ROI Calculator (NEW)
+- Interactive tool at `/roi-calculator`
+- 4 inputs: revenue goal, customer value, current spend, industry (12 industries)
+- Budget breakdown: ad spend vs agency/creative labor with visual bar
+- ROI shown as multiplier (e.g. 5.2x return) with clear math explanation
+- Gap analysis with color coded status
+- CPAs raised ~25% to reflect 2026 ad cost increases
+
+#### 9. Newsletter Section on Homepage
+- Prominent section between Social Proof and CTA Banner
+- Value proposition with 4 bullet points about what subscribers get
+- Reuses footer newsletter signup component
+
+#### 10. Blog Expanded to 18 Articles
+- 3 articles per category (6 categories)
+- All articles have Unsplash featured images (tech/business relevant)
+- Blog grid: 5 columns on wide screens, compact cards
+- Featured articles get full width treatment
+
+#### 11. AI Framing Corrected
+- Changed "AI-Driven Service" to "Human Led, AI Accelerated" on all service pages
+- AI is positioned as support/speed, never the driver
+
+#### 12. Supporting Pages Updated
 - About: shortened story, team focused, AI advantage mention
 - Work: approach focused, "what we discovered" per client
 - Resources: removed placeholders, added blog + how marketing works promos
@@ -68,11 +91,13 @@ All 8 service detail pages now include:
 - `app/(main)/how-marketing-works/` (page + content)
 - `app/(main)/blog/` (listing page)
 - `app/(main)/blog/[slug]/` (article pages)
+- `app/(main)/roi-calculator/` (page + interactive calculator)
 - `app/api/newsletter/route.ts`
 - `components/sections/differentiator.tsx`
 - `components/sections/funnel-teaser.tsx`
 - `components/sections/services-overview.tsx`
 - `components/sections/social-proof.tsx`
+- `components/sections/newsletter-section.tsx`
 - `components/funnel/marketing-funnel.tsx`
 - `components/funnel/funnel-gap-checker.tsx`
 - `components/newsletter-signup.tsx`
