@@ -711,7 +711,7 @@ export const siteTranslations: TranslationMap = {
   "serviceDetail.readyToLaunch": { en: "Ready to Launch", es: "Listo para Lanzar", fr: "Pr\u00EAt \u00E0 lancer" },
   "serviceDetail.bookCall": { en: "Book a Strategy Call", es: "Agendar Llamada Estrat\u00E9gica", fr: "R\u00E9server un appel strat\u00E9gique" },
   "serviceDetail.requestAudit": { en: "Request a Free Audit", es: "Solicitar Auditor\u00eda Gratis", fr: "Demander un audit gratuit" },
-  "serviceDetail.aiDriven": { en: "AI-Driven Service", es: "Servicio Impulsado por IA", fr: "Service propuls\u00e9 par l\u2019IA" },
+  "serviceDetail.aiDriven": { en: "Human Led, AI Accelerated", es: "Liderado por Humanos, Acelerado por IA", fr: "Guid\u00e9 par l'Humain, Acc\u00e9l\u00e9r\u00e9 par l'IA" },
   "serviceDetail.viewPricing": { en: "View Pricing", es: "Ver Precios", fr: "Voir les tarifs" },
   "serviceDetail.scope": { en: "Scope", es: "Alcance", fr: "Port\u00e9e" },
   "serviceDetail.plansFor": { en: "Plans Built for", es: "Planes Creados para", fr: "Forfaits con\u00e7us pour" },

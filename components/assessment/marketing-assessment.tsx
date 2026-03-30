@@ -535,6 +535,7 @@ export function MarketingAssessment() {
               recommendedServices={state.results.recommendedServices}
               assessmentId={state.results.assessmentId}
               locale={locale}
+              overallScore={state.results.overallScore}
             />
             <ShareResults
               assessmentId={state.results.assessmentId}

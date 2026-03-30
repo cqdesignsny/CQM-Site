@@ -71,8 +71,23 @@ export function StudioContent() {
       <section className="mb-20">
         <h2 className="mb-8 text-3xl font-bold">{t("studio.tour")}</h2>
         <div className="grid gap-4 md:grid-cols-3">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="aspect-square rounded-lg bg-muted" />
+          {[
+            { src: "https://hvpodcasting.com/wp-content/uploads/2024/10/IMG_0612-scaled.jpg", alt: "Podcast studio recording area" },
+            { src: "https://hvpodcasting.com/wp-content/uploads/2024/10/IMG_0611-scaled.jpg", alt: "Studio control room" },
+            { src: "https://hvpodcasting.com/wp-content/uploads/2024/10/IMG_0617-scaled.jpg", alt: "Content creation room" },
+            { src: "https://hvpodcasting.com/wp-content/uploads/2024/10/IMG_0616-scaled.jpg", alt: "Studio lounge area" },
+            { src: "https://hvpodcasting.com/wp-content/uploads/2024/10/IMG_0614-scaled.jpg", alt: "Recording equipment setup" },
+            { src: "https://hvpodcasting.com/wp-content/uploads/2024/10/IMG_0613-scaled.jpg", alt: "Studio workspace" },
+          ].map((img, i) => (
+            <div key={i} className="group relative aspect-square overflow-hidden rounded-xl border">
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            </div>
           ))}
         </div>
       </section>
