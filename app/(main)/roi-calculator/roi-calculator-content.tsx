@@ -13,13 +13,17 @@ import {
   ArrowRight,
   Calculator,
   ChevronDown,
+  Megaphone,
+  Wrench,
+  Monitor,
+  BarChart3,
 } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
 import { track } from "@/lib/analytics";
 import { CTABanner } from "@/components/sections/cta-banner";
 
 /* ------------------------------------------------------------------ */
-/*  Industry Benchmarks                                                */
+/*  Industry Benchmarks (CPAs raised ~25% to reflect 2026 ad costs)    */
 /* ------------------------------------------------------------------ */
 
 type Industry =
@@ -28,26 +32,48 @@ type Industry =
   | "homeServices"
   | "ecommerce"
   | "professional"
+  | "healthcare"
+  | "fitness"
+  | "automotive"
+  | "realestate"
+  | "legal"
+  | "education"
   | "other";
 
-const INDUSTRY_BENCHMARKS: Record<
-  Industry,
-  { cpaMin: number; cpaMax: number; budgetPercent: number }
-> = {
-  restaurants: { cpaMin: 30, cpaMax: 50, budgetPercent: 0.08 },
-  beauty: { cpaMin: 40, cpaMax: 80, budgetPercent: 0.1 },
-  homeServices: { cpaMin: 50, cpaMax: 100, budgetPercent: 0.1 },
-  ecommerce: { cpaMin: 20, cpaMax: 60, budgetPercent: 0.12 },
-  professional: { cpaMin: 80, cpaMax: 150, budgetPercent: 0.12 },
-  other: { cpaMin: 40, cpaMax: 80, budgetPercent: 0.1 },
+interface IndustryBenchmark {
+  cpaMin: number;
+  cpaMax: number;
+  budgetPercent: number;
+  adSpendRatio: number; // percentage of budget that goes to ad spend (rest is labor/agency)
+}
+
+const INDUSTRY_BENCHMARKS: Record<Industry, IndustryBenchmark> = {
+  restaurants:    { cpaMin: 38,  cpaMax: 63,  budgetPercent: 0.08, adSpendRatio: 0.45 },
+  beauty:         { cpaMin: 50,  cpaMax: 100, budgetPercent: 0.10, adSpendRatio: 0.40 },
+  homeServices:   { cpaMin: 63,  cpaMax: 125, budgetPercent: 0.10, adSpendRatio: 0.50 },
+  ecommerce:      { cpaMin: 25,  cpaMax: 75,  budgetPercent: 0.12, adSpendRatio: 0.55 },
+  professional:   { cpaMin: 100, cpaMax: 188, budgetPercent: 0.12, adSpendRatio: 0.40 },
+  healthcare:     { cpaMin: 75,  cpaMax: 150, budgetPercent: 0.10, adSpendRatio: 0.45 },
+  fitness:        { cpaMin: 44,  cpaMax: 88,  budgetPercent: 0.10, adSpendRatio: 0.45 },
+  automotive:     { cpaMin: 63,  cpaMax: 125, budgetPercent: 0.08, adSpendRatio: 0.55 },
+  realestate:     { cpaMin: 88,  cpaMax: 175, budgetPercent: 0.12, adSpendRatio: 0.50 },
+  legal:          { cpaMin: 125, cpaMax: 250, budgetPercent: 0.12, adSpendRatio: 0.45 },
+  education:      { cpaMin: 50,  cpaMax: 100, budgetPercent: 0.10, adSpendRatio: 0.40 },
+  other:          { cpaMin: 50,  cpaMax: 100, budgetPercent: 0.10, adSpendRatio: 0.45 },
 };
 
 const INDUSTRY_KEYS: Industry[] = [
   "restaurants",
   "beauty",
+  "fitness",
   "homeServices",
+  "healthcare",
+  "automotive",
+  "realestate",
   "ecommerce",
   "professional",
+  "legal",
+  "education",
   "other",
 ];
 
@@ -136,7 +162,6 @@ function DollarInput({
           placeholder="0"
         />
       </div>
-      {/* Slider */}
       <input
         type="range"
         value={value}
@@ -207,14 +232,12 @@ export function ROICalculatorContent() {
   const { t } = useLanguage();
   const resultsRef = useRef<HTMLDivElement>(null);
 
-  /* --- Inputs --- */
   const [revenueGoal, setRevenueGoal] = useState(10000);
   const [customerValue, setCustomerValue] = useState(500);
   const [currentSpend, setCurrentSpend] = useState(0);
   const [industry, setIndustry] = useState<Industry>("other");
   const [selectOpen, setSelectOpen] = useState(false);
 
-  /* Track calculator usage */
   const hasInteracted = useRef(false);
   useEffect(() => {
     if (!hasInteracted.current && (revenueGoal !== 10000 || customerValue !== 500 || currentSpend !== 0 || industry !== "other")) {
@@ -223,7 +246,6 @@ export function ROICalculatorContent() {
     }
   }, [revenueGoal, customerValue, currentSpend, industry]);
 
-  /* --- Calculations --- */
   const results = useMemo(() => {
     const bench = INDUSTRY_BENCHMARKS[industry];
     const customersNeeded = customerValue > 0 ? Math.ceil(revenueGoal / customerValue) : 0;
@@ -232,13 +254,19 @@ export function ROICalculatorContent() {
       revenueGoal * bench.budgetPercent,
       customersNeeded * avgCPA
     );
-    const estimatedNewCustomers =
-      currentSpend > 0 ? Math.floor(currentSpend / avgCPA) : 0;
-    const revenueFromNewCustomers = estimatedNewCustomers * customerValue;
-    const roi =
-      currentSpend > 0
-        ? ((revenueFromNewCustomers - currentSpend) / currentSpend) * 100
-        : 0;
+
+    // Budget breakdown: ad spend vs agency/labor
+    const adSpend = Math.round(recommendedBudget * bench.adSpendRatio);
+    const laborSpend = Math.round(recommendedBudget * (1 - bench.adSpendRatio));
+
+    // ROI: based on recommended budget (what you SHOULD expect if you invest properly)
+    // Formula: for every $1 you spend, how many dollars come back?
+    const expectedRevenueFromBudget = customersNeeded * customerValue;
+    const roiMultiplier = recommendedBudget > 0 ? expectedRevenueFromBudget / recommendedBudget : 0;
+
+    // If currently spending, what are you likely getting?
+    const estimatedNewCustomers = currentSpend > 0 ? Math.floor(currentSpend / avgCPA) : 0;
+    const currentRevenueFromMarketing = estimatedNewCustomers * customerValue;
 
     const budgetGap = recommendedBudget - currentSpend;
     const missedCustomers = budgetGap > 0 ? Math.floor(budgetGap / avgCPA) : 0;
@@ -251,14 +279,18 @@ export function ROICalculatorContent() {
     return {
       customersNeeded,
       recommendedBudget: Math.round(recommendedBudget),
+      adSpend,
+      laborSpend,
+      adSpendRatio: bench.adSpendRatio,
       cpaMin: bench.cpaMin,
       cpaMax: bench.cpaMax,
       avgCPA: Math.round(avgCPA),
-      roi: Math.round(roi),
+      roiMultiplier: Math.round(roiMultiplier * 10) / 10,
       budgetGap: Math.round(Math.max(0, budgetGap)),
       missedRevenue: Math.round(missedRevenue),
       status,
       estimatedNewCustomers,
+      currentRevenueFromMarketing: Math.round(currentRevenueFromMarketing),
     };
   }, [revenueGoal, customerValue, currentSpend, industry]);
 
@@ -266,7 +298,6 @@ export function ROICalculatorContent() {
     <div className="min-h-screen bg-black">
       {/* ======================== HERO ======================== */}
       <section className="relative overflow-hidden border-b border-white/5">
-        {/* Background glow */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-red-600/10 blur-[120px]" />
         </div>
@@ -360,7 +391,7 @@ export function ROICalculatorContent() {
                   <motion.div
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute z-20 mt-2 w-full rounded-xl border border-white/10 bg-zinc-900 py-1 shadow-2xl"
+                    className="absolute z-20 mt-2 max-h-64 w-full overflow-y-auto rounded-xl border border-white/10 bg-zinc-900 py-1 shadow-2xl"
                   >
                     {INDUSTRY_KEYS.map((key) => (
                       <button
@@ -407,34 +438,92 @@ export function ROICalculatorContent() {
               </ResultCard>
 
               <ResultCard icon={Target} label={t("roi.recommendedBudget")}>
-                <AnimatedNumber value={results.recommendedBudget} prefix="$" suffix={` ${t("roi.perMonth")}`} />
+                <AnimatedNumber value={results.recommendedBudget} prefix="$" suffix={`/${t("roi.perMonth")}`} />
               </ResultCard>
 
               <ResultCard icon={DollarSign} label={t("roi.estimatedCPA")}>
-                <span>
-                  ${results.cpaMin} &ndash; ${results.cpaMax}
-                </span>
+                <span>${results.cpaMin} to ${results.cpaMax}</span>
               </ResultCard>
 
               <ResultCard
                 icon={TrendingUp}
                 label={t("roi.expectedROI")}
                 color={
-                  currentSpend === 0
-                    ? "white"
-                    : results.roi >= 200
-                    ? "green"
-                    : results.roi >= 100
-                    ? "amber"
-                    : "red"
+                  results.roiMultiplier >= 5 ? "green" : results.roiMultiplier >= 3 ? "amber" : "white"
                 }
               >
-                {currentSpend > 0 ? (
-                  <AnimatedNumber value={results.roi} suffix="%" />
-                ) : (
-                  <span className="text-lg text-white/40">{t("roi.enterSpend")}</span>
-                )}
+                <AnimatedNumber value={results.roiMultiplier} suffix="x return" decimals={1} />
               </ResultCard>
+            </div>
+
+            {/* ======================== BUDGET BREAKDOWN ======================== */}
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
+              <h3 className="mb-4 flex items-center gap-2 text-sm font-semibold text-white">
+                <BarChart3 className="h-4 w-4 text-red-400" />
+                {t("roi.budgetBreakdown")}
+              </h3>
+
+              {/* Visual bar */}
+              <div className="mb-4 flex h-4 overflow-hidden rounded-full">
+                <div
+                  className="bg-gradient-to-r from-red-500 to-red-600 transition-all duration-500"
+                  style={{ width: `${results.adSpendRatio * 100}%` }}
+                />
+                <div
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
+                  style={{ width: `${(1 - results.adSpendRatio) * 100}%` }}
+                />
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {/* Ad Spend */}
+                <div className="rounded-lg border border-red-500/20 bg-red-500/5 p-4">
+                  <div className="mb-2 flex items-center gap-2">
+                    <Megaphone className="h-4 w-4 text-red-400" />
+                    <span className="text-xs font-medium text-white/60">{t("roi.adSpend")}</span>
+                  </div>
+                  <p className="text-xl font-bold text-white">
+                    <AnimatedNumber value={results.adSpend} prefix="$" suffix={`/${t("roi.perMonth")}`} />
+                  </p>
+                  <p className="mt-1 text-xs text-white/40">{t("roi.adSpendDesc")}</p>
+                </div>
+
+                {/* Agency/Labor */}
+                <div className="rounded-lg border border-blue-500/20 bg-blue-500/5 p-4">
+                  <div className="mb-2 flex items-center gap-2">
+                    <Wrench className="h-4 w-4 text-blue-400" />
+                    <span className="text-xs font-medium text-white/60">{t("roi.laborSpend")}</span>
+                  </div>
+                  <p className="text-xl font-bold text-white">
+                    <AnimatedNumber value={results.laborSpend} prefix="$" suffix={`/${t("roi.perMonth")}`} />
+                  </p>
+                  <p className="mt-1 text-xs text-white/40">{t("roi.laborSpendDesc")}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* ======================== ROI EXPLANATION ======================== */}
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+              <div className="mb-2 flex items-center gap-2">
+                <Monitor className="h-4 w-4 text-red-400" />
+                <h3 className="text-sm font-semibold text-white">{t("roi.roiExplained")}</h3>
+              </div>
+              <p className="text-sm text-white/50">
+                {t("roi.roiExplainedDesc")}
+                {" "}
+                <span className="font-semibold text-white">
+                  ${results.recommendedBudget.toLocaleString()}
+                </span>
+                {" "}{t("roi.roiExplainedDesc2")}{" "}
+                <span className="font-semibold text-white">
+                  ${(results.customersNeeded * customerValue).toLocaleString()}
+                </span>
+                {" "}{t("roi.roiExplainedDesc3")}{" "}
+                <span className={`font-bold ${results.roiMultiplier >= 5 ? "text-emerald-400" : results.roiMultiplier >= 3 ? "text-amber-400" : "text-red-400"}`}>
+                  {results.roiMultiplier}x
+                </span>
+                {" "}{t("roi.roiExplainedDesc4")}
+              </p>
             </div>
 
             {/* ======================== GAP ANALYSIS ======================== */}
@@ -465,7 +554,6 @@ export function ROICalculatorContent() {
               </div>
 
               <div className="space-y-3 text-sm">
-                {/* Spend comparison */}
                 <p className="text-white/80">
                   {t("roi.youreSpending")}{" "}
                   <span className="font-bold text-white">
@@ -489,7 +577,6 @@ export function ROICalculatorContent() {
                   )}
                 </p>
 
-                {/* Status message */}
                 {results.status === "underspending" && results.missedRevenue > 0 && (
                   <p className="font-medium text-red-300">
                     {t("roi.leavingOnTable")}{" "}
@@ -514,7 +601,7 @@ export function ROICalculatorContent() {
               </div>
             </motion.div>
 
-            {/* Quick CTA inside results */}
+            {/* Quick CTA */}
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/proposals"
@@ -548,7 +635,6 @@ export function ROICalculatorContent() {
         </div>
       </section>
 
-      {/* ======================== BOTTOM CTA ======================== */}
       <CTABanner />
     </div>
   );
