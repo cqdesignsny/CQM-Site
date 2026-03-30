@@ -252,9 +252,24 @@ export function ROICalculatorContent() {
     const growthNeeded = Math.max(0, revenueGoal - currentRevenue);
     const newCustomersNeeded = customerValue > 0 ? Math.ceil(growthNeeded / customerValue) : 0;
     const avgCPA = (bench.cpaMin + bench.cpaMax) / 2;
+
+    // Recommended budget driven by MULTIPLE factors, not just a flat %:
+    //
+    // 1. Acquisition cost: how much it costs to get the new customers you need
+    const acquisitionBudget = newCustomersNeeded * avgCPA;
+    //
+    // 2. Maintenance budget: you still need to spend to KEEP current customers
+    //    and maintain brand presence (typically 3-5% of current revenue)
+    const maintenanceBudget = currentRevenue * 0.04;
+    //
+    // 3. Industry floor: minimum spend based on industry norms (% of goal)
+    const industryFloor = revenueGoal * bench.budgetPercent;
+    //
+    // The recommended budget is the acquisition cost + maintenance,
+    // but never below the industry floor
     const recommendedBudget = Math.max(
-      revenueGoal * bench.budgetPercent,
-      newCustomersNeeded * avgCPA
+      acquisitionBudget + maintenanceBudget,
+      industryFloor
     );
 
     // Dynamic ad spend ratio based on budget size and growth stage:
