@@ -9,7 +9,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "picsum.photos",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "hvpodcasting.com",
       },
     ],
   },

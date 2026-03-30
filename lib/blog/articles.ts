@@ -40,7 +40,7 @@ Because ironically, the best use of AI in marketing is making your marketing fee
 
 The future belongs to marketers who can think. AI just made that more obvious.
     `,
-    image: "https://picsum.photos/seed/ai-marketing-future/1200/630",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop",
     category: "AI & Automation",
     tags: ["AI", "marketing strategy", "automation", "future of marketing"],
     author: "Cesar Q.",
@@ -85,7 +85,7 @@ Think of it like having 10 interns who never sleep, never complain, and actually
 
 The businesses that figure out AI agents early are going to have a massive head start. And it\u2019s not about budget. It\u2019s about being willing to experiment. Outthink, not outspend.
     `,
-    image: "https://picsum.photos/seed/ai-agents-marketing/1200/630",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&h=630&fit=crop",
     category: "AI & Automation",
     tags: ["AI agents", "automation", "workflows", "productivity"],
     author: "CQM Team",
@@ -127,7 +127,7 @@ The difference between "meh" AI output and genuinely useful results is context. 
 
 The businesses winning right now aren\u2019t the ones with the biggest budgets. They\u2019re the ones using every tool available to outthink the competition.
     `,
-    image: "https://picsum.photos/seed/chatgpt-business-use/1200/630",
+    image: "https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=1200&h=630&fit=crop",
     category: "AI & Automation",
     tags: ["ChatGPT", "AI tools", "business strategy", "productivity"],
     author: "Cesar Q.",
@@ -172,7 +172,7 @@ Let\u2019s say you get 1,000 visitors a month and convert 1%. That\u2019s 10 cus
 
 You just tripled your revenue without spending an extra dollar. That\u2019s what outthinking looks like.
     `,
-    image: "https://picsum.photos/seed/marketing-funnel/1200/630",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop",
     category: "Marketing Strategy",
     tags: ["marketing funnel", "conversion", "lead generation", "strategy"],
     author: "Cesar Q.",
@@ -215,7 +215,7 @@ You don\u2019t need to outspend your competitors at every touchpoint. You need t
 
 Map the real journey. Show up where it matters. That\u2019s strategy.
     `,
-    image: "https://picsum.photos/seed/customer-journey-map/1200/630",
+    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=630&fit=crop",
     category: "Marketing Strategy",
     tags: ["customer journey", "touchpoints", "retargeting", "strategy"],
     author: "CQM Team",
@@ -256,7 +256,7 @@ It\u2019s not glamorous. It\u2019s not as fun as designing a logo or picking bra
 
 Outthink, not outspend. And outthinking starts with actually knowing what you\u2019re talking about.
     `,
-    image: "https://picsum.photos/seed/research-first-data/1200/630",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop",
     category: "Marketing Strategy",
     tags: ["research", "data driven", "strategy", "customer insights"],
     author: "Cesar Q.",
@@ -301,7 +301,7 @@ If your SEO strategy still revolves around stuffing keywords into meta tags and 
 
 The businesses winning at SEO in 2026 aren\u2019t gaming the system. They\u2019re being genuinely useful. Funny how that works.
     `,
-    image: "https://picsum.photos/seed/seo-2026-search/1200/630",
+    image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=1200&h=630&fit=crop",
     category: "SEO & Search",
     tags: ["SEO", "Google", "search engine optimization", "content strategy"],
     author: "Cesar Q.",
@@ -341,7 +341,7 @@ AI Overviews pull information from multiple sources and present a synthesized an
 
 Google has always changed the rules. This is just the latest shift. The businesses that adapt quickly, the ones that outthink rather than panic, will come out ahead. Just like they always do.
     `,
-    image: "https://picsum.photos/seed/google-ai-overviews/1200/630",
+    image: "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=1200&h=630&fit=crop",
     category: "SEO & Search",
     tags: ["AI Overviews", "Google", "SEO strategy", "search trends"],
     author: "CQM Team",
@@ -389,7 +389,7 @@ Write content about your area. Seriously. Blog posts about local events, guides 
 
 Local SEO is free, it\u2019s powerful, and your competitors are probably sleeping on it. That\u2019s an opportunity.
     `,
-    image: "https://picsum.photos/seed/local-seo-map/1200/630",
+    image: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=1200&h=630&fit=crop",
     category: "SEO & Search",
     tags: ["local SEO", "Google Business Profile", "reviews", "local marketing"],
     author: "Cesar Q.",
@@ -437,7 +437,7 @@ Here\u2019s what\u2019s usually missing:
 
 The brands winning on social media in 2026 aren\u2019t the ones posting the most. They\u2019re the ones posting with purpose.
     `,
-    image: "https://picsum.photos/seed/social-media-strategy/1200/630",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&h=630&fit=crop",
     category: "Social Media",
     tags: ["social media", "strategy", "content marketing", "engagement"],
     author: "Cesar Q.",
@@ -487,7 +487,7 @@ Here\u2019s where AI and smart strategy intersect. Record one 5 minute video exp
 
 One piece of content becomes ten. Human led, AI accelerated. That\u2019s the move.
     `,
-    image: "https://picsum.photos/seed/short-form-video/1200/630",
+    image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=1200&h=630&fit=crop",
     category: "Social Media",
     tags: ["video marketing", "TikTok", "Reels", "content creation"],
     author: "CQM Team",
@@ -530,7 +530,7 @@ The truth is, follower count is one of the most misleading metrics in marketing.
 
 Community building is slower than follower farming. But it\u2019s the kind of slow that compounds into something competitors can\u2019t buy or replicate.
     `,
-    image: "https://picsum.photos/seed/community-building/1200/630",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=630&fit=crop",
     category: "Social Media",
     tags: ["community", "engagement", "brand building", "social strategy"],
     author: "Cesar Q.",
@@ -585,7 +585,7 @@ You don\u2019t need a full redesign to improve. Start with these:
 
 Your website is your hardest working salesperson. It works 24/7. Make sure it\u2019s actually good at the job.
     `,
-    image: "https://picsum.photos/seed/website-conversion/1200/630",
+    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&h=630&fit=crop",
     category: "Web & Design",
     tags: ["web design", "conversion optimization", "UX", "page speed"],
     author: "CQM Team",
@@ -628,7 +628,7 @@ Improving your mobile experience doesn\u2019t just make your site prettier. It d
 
 Your phone is probably in your hand right now. Go check your own website on it. If you cringe, it\u2019s time to fix that.
     `,
-    image: "https://picsum.photos/seed/mobile-first-design/1200/630",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&h=630&fit=crop",
     category: "Web & Design",
     tags: ["mobile design", "responsive design", "UX", "web development"],
     author: "Cesar Q.",
@@ -674,7 +674,7 @@ Things to stop doing:
 
 Good UX is invisible. When a site "just works" and the user gets what they need without thinking about it, that\u2019s great design. The best trend in 2026 is the same as it\u2019s always been: make it easy, make it fast, and get out of the user\u2019s way.
     `,
-    image: "https://picsum.photos/seed/ux-trends-2026/1200/630",
+    image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=1200&h=630&fit=crop",
     category: "Web & Design",
     tags: ["UX design", "web trends", "user experience", "design"],
     author: "CQM Team",
@@ -721,7 +721,7 @@ While enterprise companies are stuck in six month approval cycles and committee 
 
 The future of marketing belongs to businesses that think clearly and move quickly. That sounds like a small business to us.
     `,
-    image: "https://picsum.photos/seed/small-biz-growth/1200/630",
+    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1200&h=630&fit=crop",
     category: "Business Growth",
     tags: ["small business", "digital marketing", "competitive advantage", "AI"],
     author: "Cesar Q.",
@@ -768,7 +768,7 @@ If you increase customer retention by just 5%, you can increase profits by 25 to
 
 Stop chasing new customers while ignoring the ones you already have. Outthink, not outspend.
     `,
-    image: "https://picsum.photos/seed/customer-retention/1200/630",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=630&fit=crop",
     category: "Business Growth",
     tags: ["customer retention", "loyalty", "revenue", "growth strategy"],
     author: "CQM Team",
@@ -815,7 +815,7 @@ Here\u2019s where it gets exciting. One happy customer refers two friends. Those
 
 You don\u2019t need to outspend anyone. You need to out deliver. Do great work, make it easy to share, and let your customers do the selling. Human led, AI accelerated, referral powered. That\u2019s the growth formula.
     `,
-    image: "https://picsum.photos/seed/referral-engine/1200/630",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=630&fit=crop",
     category: "Business Growth",
     tags: ["referrals", "word of mouth", "growth", "customer advocacy"],
     author: "Cesar Q.",

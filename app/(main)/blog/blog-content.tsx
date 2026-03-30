@@ -85,7 +85,7 @@ export function BlogContent() {
 
       {/* Category Filters + Articles */}
       <section className="bg-zinc-950 py-16 md:py-20">
-        <div className="container mx-auto px-4">
+        <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
           {/* Category Tabs */}
           <div className="mb-12 flex flex-wrap justify-center gap-2">
             <button
@@ -174,7 +174,7 @@ export function BlogContent() {
           ))}
 
           {/* Regular Article Grid */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
             {regularArticles.map((article, i) => (
               <motion.div
                 key={article.id}
@@ -203,17 +203,17 @@ export function BlogContent() {
                     {/* Glow effect on hover */}
                     <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-red-600/0 blur-3xl transition-all duration-500 group-hover:bg-red-600/10" />
 
-                    <div className="relative flex flex-1 flex-col p-6">
-                      <span className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/50 transition-colors group-hover:border-red-500/30 group-hover:text-red-300">
-                        <Tag className="h-3 w-3" />
+                    <div className="relative flex flex-1 flex-col p-4">
+                      <span className="mb-2 inline-flex w-fit items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[10px] font-medium text-white/50 transition-colors group-hover:border-red-500/30 group-hover:text-red-300">
+                        <Tag className="h-2.5 w-2.5" />
                         {t(categoryTranslationKeys[article.category])}
                       </span>
 
-                      <h3 className="mb-3 text-lg font-bold text-white transition-colors group-hover:text-red-300">
+                      <h3 className="mb-2 text-sm font-bold leading-snug text-white transition-colors group-hover:text-red-300">
                         {article.title}
                       </h3>
 
-                      <p className="mb-4 flex-1 text-sm leading-relaxed text-white/50">
+                      <p className="mb-3 flex-1 text-xs leading-relaxed text-white/50 line-clamp-2">
                         {article.excerpt}
                       </p>
 

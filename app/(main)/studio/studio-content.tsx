@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
@@ -80,11 +81,12 @@ export function StudioContent() {
             { src: "https://hvpodcasting.com/wp-content/uploads/2024/10/IMG_0613-scaled.jpg", alt: "Studio workspace" },
           ].map((img, i) => (
             <div key={i} className="group relative aspect-square overflow-hidden rounded-xl border">
-              <img
+              <Image
                 src={img.src}
                 alt={img.alt}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                loading="lazy"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </div>
