@@ -61,6 +61,62 @@ This is NOT a typical agency website that lists services. It is an **education f
 | `/pricing` | Two path funnel (Assessment or Proposal Builder) |
 | `/careers` | Hiring page |
 
+### ROI Calculator Methodology
+
+The ROI calculator at `/roi-calculator` uses a multi-factor formula where every input affects the results:
+
+**Step 1: Customers Needed**
+```
+(Monthly Revenue Goal - Current Revenue) / Average Customer Value = New Customers Needed
+```
+Higher customer value = fewer customers needed. Already close to your goal = fewer needed.
+
+**Step 2: Recommended Budget** (three components)
+```
+Acquisition Cost = New Customers Needed x Industry Average CPA
+Maintenance Cost = Current Revenue x 4% (to keep existing customers)
+Industry Floor  = Revenue Goal x Industry Budget % (8-12% depending on industry)
+
+Recommended Budget = max(Acquisition + Maintenance, Industry Floor)
+```
+The budget is driven by actual customer acquisition costs, not just a flat percentage. Changing customer value, current revenue, or industry all change the recommendation.
+
+**Step 3: Budget Split (Ads vs Creative)**
+The ad/creative split varies dynamically based on budget size:
+- Under $1,000/mo: ~20-35% ads, ~65-80% creative (build foundation first)
+- $1,000 to $2,500: ~30-45% ads, ~55-70% creative
+- $2,500 to $5,000: industry default ratio
+- Over $5,000: ~55-65% ads (foundation covered, scale with ads)
+- Over $10,000: up to ~65-70% ads
+
+**Step 4: ROI Multiplier**
+```
+(New Customer Revenue + Current Revenue) / Recommended Budget = ROI Multiplier
+```
+A 5x return means every $1 invested generates $5 in revenue.
+
+**Step 5: Gap Analysis**
+```
+Budget Gap = Recommended Budget - Current Spend
+Missed Customers = Gap / Average CPA
+Missed Revenue = Missed Customers x Customer Value
+```
+
+Industry CPA benchmarks (2026, raised ~25% for rising ad costs):
+| Industry | CPA Range | Budget % |
+|----------|-----------|----------|
+| Restaurants | $38-63 | 8% |
+| Beauty/Wellness | $50-100 | 10% |
+| Fitness | $44-88 | 10% |
+| Home Services | $63-125 | 10% |
+| Healthcare | $75-150 | 10% |
+| Automotive | $63-125 | 8% |
+| Real Estate | $88-175 | 12% |
+| E-commerce | $25-75 | 12% |
+| Professional Services | $100-188 | 12% |
+| Legal | $125-250 | 12% |
+| Education | $50-100 | 10% |
+
 ### API Routes
 
 | Route | Method | Purpose |

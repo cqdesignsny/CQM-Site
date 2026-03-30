@@ -703,6 +703,59 @@ export function ROICalculatorContent() {
         </div>
       </section>
 
+      {/* ======================== HOW WE CALCULATE THIS ======================== */}
+      <section className="border-t border-white/5 py-16 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="mb-8 text-2xl font-bold text-white">
+              {t("roi.methodology.title")}
+            </h2>
+
+            <div className="space-y-6 text-sm leading-relaxed text-white/60">
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
+                <h3 className="mb-3 text-base font-semibold text-white">{t("roi.methodology.customersTitle")}</h3>
+                <p>{t("roi.methodology.customersDesc")}</p>
+                <div className="mt-3 rounded-lg bg-white/5 p-3 font-mono text-xs text-red-300">
+                  ({t("roi.revenueGoal")} &minus; {t("roi.currentRevenue")}) &divide; {t("roi.customerValue")} = {t("roi.customersNeeded")}
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
+                <h3 className="mb-3 text-base font-semibold text-white">{t("roi.methodology.budgetTitle")}</h3>
+                <p>{t("roi.methodology.budgetDesc")}</p>
+                <div className="mt-3 space-y-2 rounded-lg bg-white/5 p-3 font-mono text-xs text-red-300">
+                  <div>{t("roi.methodology.acquisition")}: {t("roi.customersNeeded")} &times; {t("roi.methodology.avgCPA")} = {t("roi.methodology.acquisitionCost")}</div>
+                  <div>{t("roi.methodology.maintenance")}: {t("roi.currentRevenue")} &times; 4% = {t("roi.methodology.maintenanceCost")}</div>
+                  <div>{t("roi.recommendedBudget")} = max({t("roi.methodology.acquisitionCost")} + {t("roi.methodology.maintenanceCost")}, {t("roi.methodology.industryFloor")})</div>
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
+                <h3 className="mb-3 text-base font-semibold text-white">{t("roi.methodology.splitTitle")}</h3>
+                <p>{t("roi.methodology.splitDesc")}</p>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
+                <h3 className="mb-3 text-base font-semibold text-white">{t("roi.methodology.roiTitle")}</h3>
+                <p>{t("roi.methodology.roiDesc")}</p>
+                <div className="mt-3 rounded-lg bg-white/5 p-3 font-mono text-xs text-red-300">
+                  ({t("roi.methodology.newRevenue")} + {t("roi.currentRevenue")}) &divide; {t("roi.recommendedBudget")} = ROI {t("roi.methodology.multiplier")}
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
+                <h3 className="mb-3 text-base font-semibold text-white">{t("roi.methodology.gapTitle")}</h3>
+                <p>{t("roi.methodology.gapDesc")}</p>
+              </div>
+
+              <p className="text-xs text-white/30">
+                {t("roi.methodology.disclaimer")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <CTABanner />
     </div>
   );
