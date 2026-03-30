@@ -20,7 +20,7 @@ import { NewsletterSection } from "@/components/sections/newsletter-section";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Creative Quality Marketing | Full Funnel Marketing Agency",
+  title: "Full Funnel Marketing Agency | Newburgh NY | CQM",
   description:
     "We learn your business first, then build marketing that actually works. Full funnel marketing agency in Newburgh, NY covering SEO, ads, social media, web, email, video, and AI.",
   path: "/",

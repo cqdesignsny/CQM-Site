@@ -3,7 +3,7 @@ import { BlogContent } from "./blog-content";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "The CQM Brain Dump | Marketing, AI & Business Insights | Creative Quality Marketing",
+  title: "Blog | Marketing, AI & Business Insights | CQM",
   description:
     "Real talk about AI, marketing strategy, SEO, social media, and growing your business. No fluff, no corporate jargon. Just stuff that actually works.",
   path: "/blog",

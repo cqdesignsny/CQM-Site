@@ -49,5 +49,75 @@ export default async function BlogPostPage({ params }: Props) {
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
-  return <BlogPostContent slug={slug} />;
+  const articleUrl = new URL(`/blog/${slug}`, siteConfig.url).toString();
+
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: article.title,
+    description: article.excerpt,
+    image: article.image,
+    url: articleUrl,
+    datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
+    author: {
+      "@type": "Person",
+      name: article.author,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteConfig.url}${siteConfig.assets.logoPath}`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
+    keywords: article.tags.join(", "),
+    wordCount: article.content.split(/\s+/).length,
+    articleSection: article.category,
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteConfig.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${siteConfig.url}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: article.title,
+        item: articleUrl,
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <BlogPostContent slug={slug} />
+    </>
+  );
 }

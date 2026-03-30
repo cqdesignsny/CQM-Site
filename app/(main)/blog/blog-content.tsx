@@ -47,9 +47,6 @@ export function BlogContent() {
       ? allArticles
       : allArticles.filter((a) => a.category === activeCategory);
 
-  const featuredArticles = filteredArticles.filter((a) => a.featured);
-  const regularArticles = filteredArticles.filter((a) => !a.featured);
-
   return (
     <>
       {/* Hero */}
@@ -116,66 +113,9 @@ export function BlogContent() {
             ))}
           </div>
 
-          {/* Featured Articles */}
-          {featuredArticles.map((article, i) => (
-            <motion.div
-              key={article.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="mb-8"
-            >
-              <Link href={`/blog/${article.slug}`} className="group block">
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-red-950/30 via-zinc-900 to-zinc-900 transition-all duration-500 hover:border-red-500/40 hover:shadow-2xl hover:shadow-red-600/10">
-                  {/* Featured Image */}
-                  {article.image && (
-                    <div className="relative aspect-[21/9] w-full overflow-hidden">
-                      <Image
-                        src={article.image}
-                        alt={article.title}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 1200px"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/80 to-transparent" />
-                    </div>
-                  )}
-                  {/* Shine sweep effect */}
-                  <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-                  <div className="relative p-8 md:p-12">
-                    <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-red-500/40 bg-red-600/20 px-3 py-1 text-xs font-semibold text-red-300">
-                      <Tag className="h-3 w-3" />
-                      {t(categoryTranslationKeys[article.category])}
-                    </span>
-                    <h2 className="mb-4 text-2xl font-bold text-white transition-colors group-hover:text-red-300 sm:text-3xl md:text-4xl">
-                      {article.title}
-                    </h2>
-                    <p className="mb-6 max-w-3xl text-lg text-white/60">
-                      {article.excerpt}
-                    </p>
-                    <div className="flex items-center gap-6 text-sm text-white/40">
-                      <span className="flex items-center gap-1.5">
-                        <Calendar className="h-4 w-4" />
-                        {formatDate(article.publishedAt)}
-                      </span>
-                      <span className="flex items-center gap-1.5">
-                        <Clock className="h-4 w-4" />
-                        {article.readTimeMinutes} {t("blog.readTime")}
-                      </span>
-                      <span className="ml-auto inline-flex items-center gap-1.5 font-medium text-red-400 transition-colors group-hover:text-red-300">
-                        {t("blog.readMore")}
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-
-          {/* Regular Article Grid */}
+          {/* Article Grid */}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-            {regularArticles.map((article, i) => (
+            {filteredArticles.map((article, i) => (
               <motion.div
                 key={article.id}
                 initial={{ opacity: 0, y: 30 }}

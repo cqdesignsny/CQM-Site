@@ -73,12 +73,12 @@ export function StudioContent() {
         <h2 className="mb-8 text-3xl font-bold">{t("studio.tour")}</h2>
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            { src: "https://hvpodcasting.com/wp-content/uploads/2024/10/IMG_0612-scaled.jpg", alt: "Podcast studio recording area" },
-            { src: "https://hvpodcasting.com/wp-content/uploads/2024/10/IMG_0611-scaled.jpg", alt: "Studio control room" },
-            { src: "https://hvpodcasting.com/wp-content/uploads/2024/10/IMG_0617-scaled.jpg", alt: "Content creation room" },
-            { src: "https://hvpodcasting.com/wp-content/uploads/2024/10/IMG_0616-scaled.jpg", alt: "Studio lounge area" },
-            { src: "https://hvpodcasting.com/wp-content/uploads/2024/10/IMG_0614-scaled.jpg", alt: "Recording equipment setup" },
-            { src: "https://hvpodcasting.com/wp-content/uploads/2024/10/IMG_0613-scaled.jpg", alt: "Studio workspace" },
+            { src: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&h=800&fit=crop", alt: "Podcast studio recording area" },
+            { src: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800&h=800&fit=crop", alt: "Studio microphone setup" },
+            { src: "https://images.unsplash.com/photo-1519683109079-d5f539e1542f?w=800&h=800&fit=crop", alt: "Content creation workspace" },
+            { src: "https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?w=800&h=800&fit=crop", alt: "Professional audio equipment" },
+            { src: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&h=800&fit=crop", alt: "Studio headphones and gear" },
+            { src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&h=800&fit=crop", alt: "Recording studio environment" },
           ].map((img, i) => (
             <div key={i} className="group relative aspect-square overflow-hidden rounded-xl border">
               <Image
