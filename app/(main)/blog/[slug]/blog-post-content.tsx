@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft, Clock, Calendar, Tag, User, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
@@ -117,6 +118,31 @@ export function BlogPostContent({ slug }: Props) {
           </motion.div>
         </div>
       </section>
+
+      {/* Hero Image */}
+      {article.image && (
+        <section className="bg-zinc-950 pt-8">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              className="mx-auto max-w-4xl"
+            >
+              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl shadow-2xl shadow-black/50">
+                <Image
+                  src={article.image}
+                  alt={article.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 896px"
+                  priority
+                />
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Article Content */}
       <section className="bg-zinc-950 py-12 md:py-16">

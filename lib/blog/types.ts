@@ -12,6 +12,7 @@ export interface BlogArticle {
   title: string;
   excerpt: string;
   content: string; // markdown
+  image: string; // URL for featured image
   category: BlogCategory;
   tags: string[];
   author: string;

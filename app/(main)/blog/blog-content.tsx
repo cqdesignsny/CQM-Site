@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Sparkles, Clock, Calendar, ArrowRight, Tag } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
@@ -125,10 +126,23 @@ export function BlogContent() {
               className="mb-8"
             >
               <Link href={`/blog/${article.slug}`} className="group block">
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-red-950/30 via-zinc-900 to-zinc-900 p-8 transition-all duration-500 hover:border-red-500/40 hover:shadow-2xl hover:shadow-red-600/10 md:p-12">
+                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-red-950/30 via-zinc-900 to-zinc-900 transition-all duration-500 hover:border-red-500/40 hover:shadow-2xl hover:shadow-red-600/10">
+                  {/* Featured Image */}
+                  {article.image && (
+                    <div className="relative aspect-[21/9] w-full overflow-hidden">
+                      <Image
+                        src={article.image}
+                        alt={article.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 1200px"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/80 to-transparent" />
+                    </div>
+                  )}
                   {/* Shine sweep effect */}
                   <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-                  <div className="relative">
+                  <div className="relative p-8 md:p-12">
                     <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-red-500/40 bg-red-600/20 px-3 py-1 text-xs font-semibold text-red-300">
                       <Tag className="h-3 w-3" />
                       {t(categoryTranslationKeys[article.category])}
@@ -169,14 +183,27 @@ export function BlogContent() {
                 transition={{ delay: i * 0.08 }}
               >
                 <Link href={`/blog/${article.slug}`} className="group block h-full">
-                  <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-red-500/30 hover:bg-white/[0.06] hover:shadow-xl hover:shadow-red-600/5">
+                  <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] transition-all duration-500 hover:-translate-y-1 hover:border-red-500/30 hover:bg-white/[0.06] hover:shadow-xl hover:shadow-red-600/5">
+                    {/* Featured Image */}
+                    {article.image && (
+                      <div className="relative aspect-[16/9] w-full overflow-hidden">
+                        <Image
+                          src={article.image}
+                          alt={article.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      </div>
+                    )}
+
                     {/* Shine sweep effect */}
                     <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
 
                     {/* Glow effect on hover */}
                     <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-red-600/0 blur-3xl transition-all duration-500 group-hover:bg-red-600/10" />
 
-                    <div className="relative flex flex-1 flex-col">
+                    <div className="relative flex flex-1 flex-col p-6">
                       <span className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/50 transition-colors group-hover:border-red-500/30 group-hover:text-red-300">
                         <Tag className="h-3 w-3" />
                         {t(categoryTranslationKeys[article.category])}

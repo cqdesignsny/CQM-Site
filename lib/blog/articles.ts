@@ -1,6 +1,7 @@
 import { BlogArticle } from "./types";
 
 export const articles: BlogArticle[] = [
+  // ─── AI & AUTOMATION ───────────────────────────────────────────────
   {
     id: "1",
     slug: "ai-is-not-replacing-marketers-its-replacing-the-lazy-ones",
@@ -39,13 +40,103 @@ Because ironically, the best use of AI in marketing is making your marketing fee
 
 The future belongs to marketers who can think. AI just made that more obvious.
     `,
+    image: "https://picsum.photos/seed/ai-marketing-future/1200/630",
     category: "AI & Automation",
     tags: ["AI", "marketing strategy", "automation", "future of marketing"],
-    author: "Cesar @ CQM",
+    author: "Cesar Q.",
     publishedAt: "2026-03-25",
     readTimeMinutes: 4,
     featured: true,
   },
+  {
+    id: "6",
+    slug: "ai-agents-are-your-new-marketing-interns",
+    title: "AI Agents Are Your New Marketing Interns (Except They Never Call In Sick)",
+    excerpt:
+      "AI agents can research, draft, schedule, and report while you focus on the stuff that actually requires a human brain. Here\u2019s how to put them to work.",
+    content: `
+## Meet Your Tireless New Team Member
+
+Remember when you had to manually pull analytics, write the weekly recap, format it into a deck, and then email it to the team? That was a Tuesday. Now imagine an AI agent doing all of that before you finish your morning coffee.
+
+AI agents in 2026 aren\u2019t chatbots. They\u2019re autonomous workflows that can chain together tasks, make decisions based on rules you set, and handle multi step processes without you babysitting them.
+
+## What Marketing AI Agents Actually Do
+
+Let\u2019s get specific. Here are real workflows AI agents handle right now:
+
+- **Content repurposing:** You publish a blog post. The agent automatically generates social captions, an email snippet, a video script outline, and a Twitter thread. All formatted to each platform\u2019s style.
+- **Lead qualification:** A form submission comes in. The agent checks the company size, industry, and budget range against your ideal customer profile and routes it to the right salesperson (or nurture sequence).
+- **Competitor monitoring:** The agent watches competitor websites, social channels, and review sites. When something changes, you get a summary. No more manual stalking.
+- **Report generation:** End of week? The agent pulls data from Google Analytics, your CRM, and ad platforms, then builds a summary with highlights and recommendations.
+
+## The Human Led, AI Accelerated Approach
+
+Here\u2019s the key: you\u2019re not handing the keys to a robot. You\u2019re setting the strategy, defining the rules, and letting AI handle execution at scale. The human decides *what* to do. The AI figures out *how* to do it faster.
+
+Think of it like having 10 interns who never sleep, never complain, and actually follow your instructions to the letter. (Sorry to every intern reading this.)
+
+## How to Start Without Overcomplicating It
+
+1. **Pick one repetitive task.** The thing you do every week that makes you groan. Start there.
+2. **Map the steps.** Write down exactly what you do manually. That becomes your agent\u2019s playbook.
+3. **Use existing tools.** Zapier, Make, and native AI features in platforms like HubSpot already support agent style workflows. You don\u2019t need to build from scratch.
+4. **Review and refine.** Let the agent run for a week. Check its output. Tweak the rules. Repeat.
+
+The businesses that figure out AI agents early are going to have a massive head start. And it\u2019s not about budget. It\u2019s about being willing to experiment. Outthink, not outspend.
+    `,
+    image: "https://picsum.photos/seed/ai-agents-marketing/1200/630",
+    category: "AI & Automation",
+    tags: ["AI agents", "automation", "workflows", "productivity"],
+    author: "CQM Team",
+    publishedAt: "2026-03-18",
+    readTimeMinutes: 5,
+    featured: false,
+  },
+  {
+    id: "7",
+    slug: "chatgpt-for-business-beyond-the-party-tricks",
+    title: "ChatGPT for Business: Beyond the Party Tricks",
+    excerpt:
+      "Most businesses use ChatGPT to write a few emails and call it a day. Here\u2019s how the smart ones are using it to actually make money.",
+    content: `
+## You\u2019re Using 5% of What This Thing Can Do
+
+If your ChatGPT usage is limited to "write me a caption for Instagram" and "make this email sound more professional," you\u2019re leaving an absurd amount of value on the table. It\u2019s like buying a Swiss Army knife and only using the toothpick.
+
+## The Business Use Cases Nobody Talks About
+
+**Customer research at scale.** Feed ChatGPT your customer reviews, survey responses, and support tickets. Ask it to find patterns, recurring complaints, and feature requests. What used to take a research team two weeks now takes an afternoon.
+
+**Sales call prep.** Before a big prospect call, have ChatGPT analyze their website, recent news, LinkedIn posts, and industry trends. Walk in with insights your competitor didn\u2019t bother to find.
+
+**Process documentation.** Nobody wants to write SOPs. Nobody. Give ChatGPT a brain dump of how you do something and it\u2019ll turn it into clean, step by step documentation your team can actually follow.
+
+**Competitive analysis.** Describe your market position and competitors. ChatGPT can help you map out positioning gaps, messaging angles, and opportunities your competitors are missing.
+
+## The Secret Sauce: Custom Instructions and Context
+
+The difference between "meh" AI output and genuinely useful results is context. The more specific you are about your business, audience, tone, and goals, the better the output. Think of it like briefing a consultant. "Make marketing better" gets you garbage. "Help me write a nurture sequence for B2B SaaS founders who are price sensitive and value ROI data" gets you gold.
+
+## The Human Led, AI Accelerated Playbook
+
+1. **Identify your bottlenecks.** Where does your team spend time on work that doesn\u2019t require deep expertise?
+2. **Create prompt templates.** Build reusable prompts for your most common tasks. Save them. Share them with your team.
+3. **Add your data.** The more context you provide, the more useful the output. Upload documents, paste in examples, give it your brand voice guidelines.
+4. **Always edit.** AI gives you the 80%. Your expertise and judgment provide the last 20% that makes it actually good.
+
+The businesses winning right now aren\u2019t the ones with the biggest budgets. They\u2019re the ones using every tool available to outthink the competition.
+    `,
+    image: "https://picsum.photos/seed/chatgpt-business-use/1200/630",
+    category: "AI & Automation",
+    tags: ["ChatGPT", "AI tools", "business strategy", "productivity"],
+    author: "Cesar Q.",
+    publishedAt: "2026-03-10",
+    readTimeMinutes: 4,
+    featured: false,
+  },
+
+  // ─── MARKETING STRATEGY ────────────────────────────────────────────
   {
     id: "2",
     slug: "your-marketing-funnel-has-a-hole-in-it",
@@ -81,13 +172,100 @@ Let\u2019s say you get 1,000 visitors a month and convert 1%. That\u2019s 10 cus
 
 You just tripled your revenue without spending an extra dollar. That\u2019s what outthinking looks like.
     `,
+    image: "https://picsum.photos/seed/marketing-funnel/1200/630",
     category: "Marketing Strategy",
     tags: ["marketing funnel", "conversion", "lead generation", "strategy"],
-    author: "Cesar @ CQM",
+    author: "Cesar Q.",
     publishedAt: "2026-03-20",
+    readTimeMinutes: 4,
+    featured: true,
+  },
+  {
+    id: "8",
+    slug: "the-customer-journey-is-not-a-straight-line",
+    title: "The Customer Journey Is Not a Straight Line (Stop Pretending It Is)",
+    excerpt:
+      "Your customers don\u2019t follow your neat little funnel diagram. They zigzag, backtrack, and ghost you for three weeks before buying. Here\u2019s how to plan for that.",
+    content: `
+## The Fantasy vs. The Reality
+
+In marketing textbooks, the customer journey looks beautiful. Awareness, consideration, decision, purchase. A clean straight line. Very satisfying.
+
+In real life? Someone sees your ad on Instagram, forgets about you, Googles something related three weeks later, reads your blog post, subscribes to your email list, ignores four emails, sees a retargeting ad, asks a friend about you, visits your site again, and *then* maybe buys.
+
+That\u2019s not a funnel. That\u2019s a pinball machine.
+
+## Why This Matters for Your Strategy
+
+If you\u2019re only planning for the straight line, you\u2019re missing most of your opportunities. The businesses that win are the ones that show up at every possible touchpoint, not with the same message, but with the *right* message for where that person is in their messy, nonlinear journey.
+
+## The Touchpoint Strategy
+
+**Be findable everywhere.** This doesn\u2019t mean be on every platform. It means be everywhere your specific audience hangs out. If they\u2019re on LinkedIn and Google, own those. If they\u2019re on TikTok and YouTube, own those instead.
+
+**Match content to intent.** Someone Googling "what is content marketing" is not ready to buy. They need education. Someone Googling "best marketing agency near me" is ready. The content you serve each person should be completely different.
+
+**Retargeting is not optional.** Most people need 7 to 12 touches before they buy. If you\u2019re not retargeting website visitors, email openers, and social engagers, you\u2019re abandoning warm leads.
+
+**Email is your secret weapon.** Social media reach is unpredictable. Email is the one channel where you control the relationship. Build the list. Nurture it. Treat it like the asset it is.
+
+## The Outthink Approach
+
+You don\u2019t need to outspend your competitors at every touchpoint. You need to be smarter about which touchpoints matter most for *your* audience and nail those. One well timed email beats ten random social posts. One helpful blog post that ranks on Google beats a month of paid ads.
+
+Map the real journey. Show up where it matters. That\u2019s strategy.
+    `,
+    image: "https://picsum.photos/seed/customer-journey-map/1200/630",
+    category: "Marketing Strategy",
+    tags: ["customer journey", "touchpoints", "retargeting", "strategy"],
+    author: "CQM Team",
+    publishedAt: "2026-03-14",
     readTimeMinutes: 4,
     featured: false,
   },
+  {
+    id: "9",
+    slug: "research-first-marketing-why-guessing-is-expensive",
+    title: "Research First Marketing: Why Guessing Is Expensive",
+    excerpt:
+      "Most marketing fails because it starts with assumptions instead of data. The research first approach costs less and works way better.",
+    content: `
+## The Most Expensive Word in Marketing: "Assume"
+
+Here\u2019s how most marketing campaigns start: someone in a meeting says "I think our customers want X" and everyone nods along because lunch is in 20 minutes. Nobody checks. Nobody asks the customers. Nobody looks at the data. And then the campaign flops, and everyone is *shocked*.
+
+This is what we call vibes based marketing. And it\u2019s burning money at an alarming rate.
+
+## What Research First Actually Means
+
+Research first doesn\u2019t mean spending six months on a study before you do anything. It means taking a beat before you spend money to make sure you\u2019re pointed in the right direction. Even a few hours of research can save thousands in wasted ad spend.
+
+**Talk to actual customers.** Five 15 minute conversations with real customers will teach you more than any amount of internal brainstorming. Ask what they struggled with, how they found you, and what almost made them not buy.
+
+**Look at your data.** Your Google Analytics, CRM, and email platform are full of answers. Which pages do people spend time on? Where do they drop off? Which emails get opened? The data is already there. Most businesses just never look.
+
+**Study the competition.** Not to copy them, but to find the gaps. What are they *not* saying? What questions are they *not* answering? That\u2019s your opportunity.
+
+**Check search demand.** Before you write that blog post or launch that campaign, check if anyone is actually searching for it. Tools like Ahrefs, SEMrush, or even Google\u2019s "People Also Ask" section tell you exactly what your audience wants to know.
+
+## The ROI of Doing Your Homework
+
+When you research first, your messaging hits harder because it\u2019s based on what people actually care about. Your targeting is tighter because you know who you\u2019re talking to. Your content performs better because it answers real questions.
+
+It\u2019s not glamorous. It\u2019s not as fun as designing a logo or picking brand colors. But research first marketing is the difference between campaigns that work and campaigns that "looked great in the meeting."
+
+Outthink, not outspend. And outthinking starts with actually knowing what you\u2019re talking about.
+    `,
+    image: "https://picsum.photos/seed/research-first-data/1200/630",
+    category: "Marketing Strategy",
+    tags: ["research", "data driven", "strategy", "customer insights"],
+    author: "Cesar Q.",
+    publishedAt: "2026-03-07",
+    readTimeMinutes: 5,
+    featured: false,
+  },
+
+  // ─── SEO & SEARCH ──────────────────────────────────────────────────
   {
     id: "3",
     slug: "seo-in-2026-what-actually-matters-now",
@@ -123,13 +301,104 @@ If your SEO strategy still revolves around stuffing keywords into meta tags and 
 
 The businesses winning at SEO in 2026 aren\u2019t gaming the system. They\u2019re being genuinely useful. Funny how that works.
     `,
+    image: "https://picsum.photos/seed/seo-2026-search/1200/630",
     category: "SEO & Search",
     tags: ["SEO", "Google", "search engine optimization", "content strategy"],
-    author: "Cesar @ CQM",
+    author: "Cesar Q.",
     publishedAt: "2026-03-15",
+    readTimeMinutes: 5,
+    featured: true,
+  },
+  {
+    id: "10",
+    slug: "ai-overviews-are-changing-google-heres-what-to-do",
+    title: "AI Overviews Are Changing Google. Here\u2019s What to Do About It.",
+    excerpt:
+      "Google\u2019s AI Overviews are eating clicks. But smart businesses are adapting their SEO strategy to thrive in the new landscape.",
+    content: `
+## The Click You Used to Get? Google Keeps It Now.
+
+If you\u2019ve Googled anything recently, you\u2019ve probably noticed Google\u2019s AI Overview sitting right at the top, answering the question before you even click a link. For users, it\u2019s convenient. For businesses that depend on organic search traffic, it\u2019s a wake up call.
+
+AI Overviews pull information from multiple sources and present a synthesized answer. That means fewer people are clicking through to individual websites for basic informational queries. The game has changed, and pretending it hasn\u2019t is not a strategy.
+
+## What This Means for Your SEO
+
+**Informational queries are getting squeezed.** If your entire SEO strategy was "rank for basic how to questions," you\u2019re going to see traffic dip. Google is answering those directly now. You need to provide something the AI Overview can\u2019t: depth, experience, opinion, and original data.
+
+**Transactional and commercial queries still drive clicks.** When someone searches "best CRM for small business" or "marketing agency near me," they still click through. These intent rich keywords are more valuable than ever.
+
+**Being cited in AI Overviews is the new page one.** Google pulls from sources it considers authoritative and well structured. If your content is clearly organized, factually accurate, and comprehensive, you have a shot at being the source Google quotes.
+
+## How to Adapt Your Strategy
+
+1. **Focus on experience and opinion.** AI can synthesize facts. It can\u2019t share your unique perspective, case studies, or real world results. Content that includes original insights, data from your business, and genuine expertise will always have value.
+2. **Structure your content for featured snippets.** Clear headings, concise answers to specific questions, bulleted lists, and tables. Make it easy for Google to pull your content into AI Overviews.
+3. **Double down on commercial intent keywords.** Shift your keyword strategy toward terms where people are ready to compare, evaluate, or buy. These drive the clicks that matter.
+4. **Build your brand.** When people search for you by name, no AI Overview competes with that. Brand awareness campaigns, PR, and community building create search demand that\u2019s entirely yours.
+
+## The Bigger Picture
+
+Google has always changed the rules. This is just the latest shift. The businesses that adapt quickly, the ones that outthink rather than panic, will come out ahead. Just like they always do.
+    `,
+    image: "https://picsum.photos/seed/google-ai-overviews/1200/630",
+    category: "SEO & Search",
+    tags: ["AI Overviews", "Google", "SEO strategy", "search trends"],
+    author: "CQM Team",
+    publishedAt: "2026-03-22",
     readTimeMinutes: 5,
     featured: false,
   },
+  {
+    id: "11",
+    slug: "local-seo-the-free-traffic-most-businesses-ignore",
+    title: "Local SEO: The Free Traffic Most Businesses Ignore",
+    excerpt:
+      "Your Google Business Profile is probably the highest ROI marketing channel you\u2019re not using. Here\u2019s how to fix that in an afternoon.",
+    content: `
+## The Best Marketing Channel You\u2019re Ignoring
+
+Here\u2019s a fun stat: 46% of all Google searches have local intent. Almost half. That means nearly half the people searching on Google right now are looking for something near them. And if your business doesn\u2019t show up? You\u2019re invisible to people who are literally ready to buy.
+
+Local SEO is the marketing equivalent of finding money in your couch cushions. It\u2019s right there. You just need to reach for it.
+
+## Your Google Business Profile Is Everything
+
+Your Google Business Profile (GBP) is the foundation of local SEO. When someone searches "marketing agency near me" or "best coffee shop in [your city]," Google pulls from GBP listings. If yours is incomplete, outdated, or nonexistent, you\u2019re handing customers to your competitors.
+
+**Here\u2019s what a complete GBP looks like:**
+
+- Accurate business name, address, and phone number (NAP consistency matters everywhere)
+- Updated hours (including holiday hours)
+- High quality photos of your business, team, and work
+- A compelling business description with natural keywords
+- Regular posts (yes, Google Business Profile has a posting feature and almost nobody uses it)
+- Responses to every single review, good or bad
+
+## Reviews Are Your Secret Weapon
+
+Here\u2019s what most businesses get wrong about reviews: they think it\u2019s about the star rating. It\u2019s not. It\u2019s about volume, recency, and your responses.
+
+Google rewards businesses that consistently get new reviews. A business with 200 reviews (4.5 stars) will outrank a business with 15 reviews (5.0 stars) almost every time. The algorithm trusts volume and recency over perfection.
+
+**How to get more reviews without being annoying:** Send a follow up text or email with a direct link to your Google review page within 24 hours of a positive interaction. Make it stupidly easy. One tap. That\u2019s it.
+
+## The Local Content Play
+
+Write content about your area. Seriously. Blog posts about local events, guides for your city, and content that connects your business to your community. Google loves this because it signals that you\u2019re a real, active local business, not just a listing in a directory.
+
+Local SEO is free, it\u2019s powerful, and your competitors are probably sleeping on it. That\u2019s an opportunity.
+    `,
+    image: "https://picsum.photos/seed/local-seo-map/1200/630",
+    category: "SEO & Search",
+    tags: ["local SEO", "Google Business Profile", "reviews", "local marketing"],
+    author: "Cesar Q.",
+    publishedAt: "2026-03-03",
+    readTimeMinutes: 4,
+    featured: false,
+  },
+
+  // ─── SOCIAL MEDIA ──────────────────────────────────────────────────
   {
     id: "4",
     slug: "stop-posting-and-praying-social-media-strategy-that-works",
@@ -168,13 +437,253 @@ Here\u2019s what\u2019s usually missing:
 
 The brands winning on social media in 2026 aren\u2019t the ones posting the most. They\u2019re the ones posting with purpose.
     `,
+    image: "https://picsum.photos/seed/social-media-strategy/1200/630",
     category: "Social Media",
     tags: ["social media", "strategy", "content marketing", "engagement"],
-    author: "Cesar @ CQM",
+    author: "Cesar Q.",
     publishedAt: "2026-03-10",
+    readTimeMinutes: 5,
+    featured: true,
+  },
+  {
+    id: "12",
+    slug: "short-form-video-is-eating-everything",
+    title: "Short Form Video Is Eating Everything (And That\u2019s Fine)",
+    excerpt:
+      "Reels, TikToks, Shorts. If you\u2019re not making short form video, you\u2019re leaving the biggest audience growth lever on the table.",
+    content: `
+## The 60 Second Revolution
+
+Here\u2019s a number that should get your attention: the average person watches 17 hours of online video per week. And a massive chunk of that is short form. TikTok, Instagram Reels, YouTube Shorts. These platforms aren\u2019t just for Gen Z dance trends anymore. They\u2019re where people discover brands, learn new things, and make buying decisions.
+
+If you\u2019re a business that\u2019s still treating video as "nice to have," you\u2019re about two years behind.
+
+## Why Short Form Wins
+
+**Attention spans are brutal.** You have about 3 seconds to hook someone before they scroll. Short form forces you to get to the point fast. That\u2019s actually a good thing for your marketing because it kills the fluff.
+
+**The algorithm loves it.** Every major platform is pushing short form video right now. That means organic reach on Reels and TikToks is dramatically higher than static posts. You\u2019re literally getting free distribution.
+
+**It builds trust fast.** When people see your face, hear your voice, and watch you explain something, they trust you way faster than reading a blog post. Video creates parasocial relationships that text simply can\u2019t match.
+
+## You Don\u2019t Need a Studio
+
+This is where most businesses get stuck. They think video means production crews, scripts, and expensive equipment. Nope. The most engaging short form video in 2026 is authentic, slightly messy, and shot on a phone. People can smell overproduced content from a mile away.
+
+**Here\u2019s the formula:**
+
+1. **Hook in the first 2 seconds.** Start with a bold statement, a question, or something unexpected. "Here\u2019s why your marketing is broken" works better than "Hi everyone, welcome to our channel."
+2. **Deliver one idea.** One video, one takeaway. Don\u2019t cram your entire marketing strategy into 60 seconds.
+3. **End with a reason to follow.** Tease the next topic, ask a question, or point them to your profile for more.
+
+## The Content Multiplication Trick
+
+Here\u2019s where AI and smart strategy intersect. Record one 5 minute video explaining a topic. Then use AI to:
+
+- Cut it into 3 to 5 short clips
+- Generate captions and subtitles automatically
+- Write text posts based on each clip\u2019s content
+- Create an email newsletter from the topic
+
+One piece of content becomes ten. Human led, AI accelerated. That\u2019s the move.
+    `,
+    image: "https://picsum.photos/seed/short-form-video/1200/630",
+    category: "Social Media",
+    tags: ["video marketing", "TikTok", "Reels", "content creation"],
+    author: "CQM Team",
+    publishedAt: "2026-03-23",
+    readTimeMinutes: 4,
+    featured: false,
+  },
+  {
+    id: "13",
+    slug: "building-a-community-beats-building-a-following",
+    title: "Building a Community Beats Building a Following",
+    excerpt:
+      "10,000 followers who scroll past you are worth less than 500 people who actually care. Here\u2019s how to build a community, not just a number.",
+    content: `
+## Followers Are Vanity. Community Is Revenue.
+
+Let\u2019s be honest. That 10K follower milestone feels great. But when you post something and get 12 likes, you start to wonder: are these real people or just ghosts?
+
+The truth is, follower count is one of the most misleading metrics in marketing. What actually drives business results is engagement, loyalty, and people who genuinely care about what you do. That\u2019s a community. And it\u2019s worth infinitely more than a big number on your profile.
+
+## What Community Looks Like in Practice
+
+**People talk to you, not just at you.** Comments, DMs, replies, shares. A real community is a two way conversation. If your content is a monologue, you\u2019re broadcasting. If it\u2019s a dialogue, you\u2019re building.
+
+**Members advocate for you.** The ultimate flex is when your audience recommends you without being asked. That comes from trust, value, and genuine relationship, not from posting a meme every day.
+
+**They show up consistently.** Not because of an algorithm push, but because they actively want to see what you have to say. Email subscribers who open every email. Comments from the same people. DMs from folks who feel like they know you.
+
+## How to Build It
+
+**1. Reply to everyone.** Especially when you\u2019re small. Every comment, every DM. People remember when a brand actually talks to them. It\u2019s shockingly rare and therefore incredibly powerful.
+
+**2. Create for a specific person.** Not "small business owners." Think "Sarah, who runs a bakery in Austin, has 3 employees, and is overwhelmed by marketing." When you write for Sarah, everyone like Sarah pays attention.
+
+**3. Give more than you take.** The ratio should be 80% value, 20% ask. Teach, entertain, inspire. Then occasionally say "hey, we can help with that." People respect generosity and punish constant selling.
+
+**4. Build a space that\u2019s yours.** Social media is rented land. Consider an email newsletter, a Slack group, or a private community where your people can connect. You own the relationship there.
+
+**5. Be a real human.** Share behind the scenes. Admit mistakes. Celebrate wins. People connect with people, not brands. The more human you are, the stronger the community.
+
+Community building is slower than follower farming. But it\u2019s the kind of slow that compounds into something competitors can\u2019t buy or replicate.
+    `,
+    image: "https://picsum.photos/seed/community-building/1200/630",
+    category: "Social Media",
+    tags: ["community", "engagement", "brand building", "social strategy"],
+    author: "Cesar Q.",
+    publishedAt: "2026-03-05",
     readTimeMinutes: 5,
     featured: false,
   },
+
+  // ─── WEB & DESIGN ──────────────────────────────────────────────────
+  {
+    id: "14",
+    slug: "your-website-has-3-seconds-to-not-suck",
+    title: "Your Website Has 3 Seconds to Not Suck",
+    excerpt:
+      "Visitors decide whether to stay or bounce in under 3 seconds. Here\u2019s how to make those seconds count and turn clicks into customers.",
+    content: `
+## The 3 Second Audition
+
+Every time someone lands on your website, you\u2019re auditioning. And the judges are ruthless. Studies show visitors form an opinion about your site in about 50 milliseconds, and they decide whether to stay or hit the back button within 3 seconds.
+
+That\u2019s not a lot of time to make your case. So let\u2019s make sure you\u2019re not blowing it.
+
+## The Top Reasons Visitors Bounce
+
+**Slow load times.** If your site takes more than 3 seconds to load, over half your visitors are gone before they see a single word. Page speed isn\u2019t a nice to have. It\u2019s table stakes.
+
+**Confusing headlines.** Someone lands on your site and the first thing they see is "Synergizing Innovative Solutions for Tomorrow\u2019s Challenges." What does that even mean? If visitors can\u2019t understand what you do in 5 seconds, they\u2019re leaving.
+
+**No clear next step.** Where should they click? What should they do? If the answer isn\u2019t immediately obvious, they\u2019ll choose the easiest option: leave.
+
+**It looks like 2019.** Design trends evolve. If your site looks dated, visitors subconsciously assume your business is too. Fair? No. Reality? Yes.
+
+## The Conversion Focused Homepage Formula
+
+Here\u2019s what the best converting websites have in common:
+
+1. **A clear headline.** What do you do, and who do you do it for? "Marketing that helps small businesses grow" beats "innovative solutions" every time.
+2. **Social proof above the fold.** Logos, testimonials, review stars. Something that says "other people trust us" before the visitor has to scroll.
+3. **One primary CTA.** Not five buttons competing for attention. One clear action you want them to take.
+4. **Fast, mobile first design.** Over 60% of web traffic is mobile. If your site isn\u2019t gorgeous on a phone, you\u2019re losing the majority of your visitors.
+5. **Visual hierarchy.** Guide the eye. Big headline, supporting text, CTA button. In that order. Every section should have a clear purpose.
+
+## The Quick Wins
+
+You don\u2019t need a full redesign to improve. Start with these:
+
+- Compress your images (you\u2019d be amazed how much this helps load time)
+- Rewrite your headline to be human and specific
+- Add a testimonial above the fold
+- Make your CTA button impossible to miss
+- Test your site on your phone right now (seriously, go do it)
+
+Your website is your hardest working salesperson. It works 24/7. Make sure it\u2019s actually good at the job.
+    `,
+    image: "https://picsum.photos/seed/website-conversion/1200/630",
+    category: "Web & Design",
+    tags: ["web design", "conversion optimization", "UX", "page speed"],
+    author: "CQM Team",
+    publishedAt: "2026-03-26",
+    readTimeMinutes: 4,
+    featured: true,
+  },
+  {
+    id: "15",
+    slug: "mobile-first-design-is-not-optional-anymore",
+    title: "Mobile First Design Is Not Optional Anymore",
+    excerpt:
+      "Over 60% of your traffic is on a phone. If your site is designed for desktop first, you\u2019re designing for the minority.",
+    content: `
+## Desktop Is the Side Quest Now
+
+There was a time when "mobile friendly" meant your desktop site kind of worked on a phone if you squinted. Those days are very much over. In 2026, mobile traffic dominates in almost every industry. If you\u2019re designing your website for desktop and hoping it translates to mobile, you\u2019ve got the entire process backwards.
+
+Mobile first design means you start with the smallest screen and build up. Not the other way around.
+
+## Why Mobile First Changes Everything
+
+**Constraints breed clarity.** When you only have a narrow screen to work with, you can\u2019t hide behind fancy layouts and decorative elements. You\u2019re forced to prioritize. What\u2019s the most important thing on this page? What\u2019s the one action I want someone to take? Mobile first design eliminates the noise.
+
+**Speed matters more on mobile.** Mobile users are often on cellular connections. They\u2019re on the go. They have less patience. A site that loads in 2 seconds on desktop might take 6 on a phone. And 6 seconds is an eternity.
+
+**Touch targets change the game.** Buttons need to be bigger. Navigation needs to be simpler. Forms need fewer fields. Every interaction needs to be designed for fingers, not cursors.
+
+## The Mobile First Checklist
+
+1. **Test everything on your phone first.** Before you approve any design, pull it up on your actual phone. Not a browser simulator. Your real phone. Is it easy to read? Easy to tap? Easy to navigate?
+2. **Simplify your navigation.** If your desktop site has a mega menu with 47 links, your mobile site cannot. Prioritize the 4 to 5 most important pages and make them easy to find.
+3. **Make buttons thumb friendly.** The minimum tap target should be 44x44 pixels. If your CTAs are smaller than that, people will miss them and get frustrated.
+4. **Optimize images aggressively.** Use next gen formats like WebP. Implement lazy loading. Serve smaller images to smaller screens. Every kilobyte matters on mobile.
+5. **Reduce form fields.** Every additional form field on mobile reduces conversions. Ask for the minimum. Name and email is enough for most lead gen forms.
+
+## The Business Impact
+
+Improving your mobile experience doesn\u2019t just make your site prettier. It directly impacts revenue. Google prioritizes mobile friendly sites in search rankings. Mobile users who have a good experience convert at higher rates. And first impressions on mobile determine whether someone ever comes back.
+
+Your phone is probably in your hand right now. Go check your own website on it. If you cringe, it\u2019s time to fix that.
+    `,
+    image: "https://picsum.photos/seed/mobile-first-design/1200/630",
+    category: "Web & Design",
+    tags: ["mobile design", "responsive design", "UX", "web development"],
+    author: "Cesar Q.",
+    publishedAt: "2026-03-17",
+    readTimeMinutes: 4,
+    featured: false,
+  },
+  {
+    id: "16",
+    slug: "ux-trends-that-actually-matter-in-2026",
+    title: "UX Trends That Actually Matter in 2026",
+    excerpt:
+      "Forget the trendy stuff that looks cool but hurts usability. These are the UX shifts that actually make your website perform better.",
+    content: `
+## Not All Trends Deserve Your Attention
+
+Every January, designers publish their "top UX trends" lists and half of them are things that look impressive in a Dribbble shot but would make a real user want to throw their phone. Parallax everything. Micro animations on every element. AI chatbots that pop up the second you arrive.
+
+Let\u2019s focus on the trends that actually help people use your site, not just the ones that win design awards.
+
+## The Trends Worth Adopting
+
+**Simplified navigation.** The era of mega menus with 50 links is ending. Users want clear, simple paths to what they need. The best sites in 2026 have streamlined navigation with 4 to 6 main items. Less choice, faster decisions, lower bounce rates.
+
+**Generous white space.** Cramming every pixel with content makes your site feel claustrophobic. White space (or dark space on dark themes) gives content room to breathe. It improves readability, guides attention, and makes your design feel premium without costing anything extra.
+
+**Conversational forms.** Instead of showing users a wall of fields, progressive forms that reveal one question at a time feel less overwhelming and convert better. Think typeform style interactions, but built natively into your site.
+
+**Dark mode as a first class option.** It\u2019s not just an aesthetic preference anymore. Dark mode reduces eye strain, saves battery on OLED screens, and many users now expect it. If you\u2019re building a new site, bake it in from the start.
+
+**Speed over effects.** A fast, clean site with no animations will outperform a slow, flashy site every single time. Users don\u2019t care about your scroll triggered parallax if the page takes 5 seconds to load. Performance is the ultimate UX feature.
+
+## The Anti Trends
+
+Things to stop doing:
+
+- **Auto playing video backgrounds.** They kill load times and annoy users on mobile. Just don\u2019t.
+- **Popup overload.** One well timed popup is fine. Three overlapping popups the second someone arrives is hostile.
+- **Infinite scroll with no navigation.** Users want to feel in control. Let them paginate, filter, and find things intentionally.
+- **Mystery navigation.** Hamburger menus on desktop when you have plenty of room for visible navigation? That\u2019s hiding your content on purpose.
+
+## The Bottom Line
+
+Good UX is invisible. When a site "just works" and the user gets what they need without thinking about it, that\u2019s great design. The best trend in 2026 is the same as it\u2019s always been: make it easy, make it fast, and get out of the user\u2019s way.
+    `,
+    image: "https://picsum.photos/seed/ux-trends-2026/1200/630",
+    category: "Web & Design",
+    tags: ["UX design", "web trends", "user experience", "design"],
+    author: "CQM Team",
+    publishedAt: "2026-03-08",
+    readTimeMinutes: 5,
+    featured: false,
+  },
+
+  // ─── BUSINESS GROWTH ───────────────────────────────────────────────
   {
     id: "5",
     slug: "why-small-businesses-beat-big-brands-online",
@@ -212,11 +721,106 @@ While enterprise companies are stuck in six month approval cycles and committee 
 
 The future of marketing belongs to businesses that think clearly and move quickly. That sounds like a small business to us.
     `,
+    image: "https://picsum.photos/seed/small-biz-growth/1200/630",
     category: "Business Growth",
     tags: ["small business", "digital marketing", "competitive advantage", "AI"],
-    author: "Cesar @ CQM",
+    author: "Cesar Q.",
     publishedAt: "2026-03-05",
     readTimeMinutes: 4,
+    featured: true,
+  },
+  {
+    id: "17",
+    slug: "customer-retention-the-revenue-everyone-forgets-about",
+    title: "Customer Retention: The Revenue Everyone Forgets About",
+    excerpt:
+      "Acquiring a new customer costs 5x more than keeping one. So why is your entire budget focused on new leads?",
+    content: `
+## The Leaky Revenue Problem
+
+Here\u2019s a stat that should make you rethink your entire marketing budget: it costs 5 to 7 times more to acquire a new customer than to retain an existing one. And yet, the vast majority of marketing spend goes toward acquisition. New leads, new traffic, new followers. Meanwhile, existing customers quietly churn out the back door.
+
+It\u2019s like filling a bathtub with the drain open. You can keep pouring water in, but you\u2019d get a lot further if you just plugged the hole first.
+
+## Why Retention Is Your Best Growth Lever
+
+**Repeat customers spend more.** Returning customers spend on average 67% more than first time buyers. They already trust you. They already know the quality. The friction is gone.
+
+**They refer others.** Happy customers are your best salespeople. They tell friends, leave reviews, and create word of mouth that no ad budget can replicate. A single loyal customer can generate dozens of new leads over their lifetime.
+
+**Predictable revenue.** New customer acquisition is unpredictable. Retention creates a baseline of reliable, recurring revenue that makes everything else easier to plan.
+
+## The Retention Playbook
+
+**1. Follow up after the sale.** This is embarrassingly simple and almost nobody does it. Send a thank you email. Check in after a week. Ask if they\u2019re happy. This alone separates you from 90% of businesses.
+
+**2. Create a loyalty program (that doesn\u2019t suck).** Points systems are boring. Give people something they actually care about. Early access, exclusive content, a direct line to support. Make loyalty feel like VIP treatment, not a points calculator.
+
+**3. Email your existing customers.** Not just newsletters. Send them helpful content, product tips, and exclusive offers. Make them feel like insiders, not just a name on a list.
+
+**4. Ask for feedback and act on it.** Send a survey after key interactions. Read the responses. Actually change things based on what you learn. Customers who feel heard become customers for life.
+
+**5. Surprise and delight.** A handwritten note. An unexpected discount. A birthday message. Small, personal touches create emotional connections that competitors can\u2019t replicate with ad spend.
+
+## The Math
+
+If you increase customer retention by just 5%, you can increase profits by 25 to 95%. That\u2019s not a typo. The numbers are that dramatic because retained customers buy more, refer more, and cost less to serve.
+
+Stop chasing new customers while ignoring the ones you already have. Outthink, not outspend.
+    `,
+    image: "https://picsum.photos/seed/customer-retention/1200/630",
+    category: "Business Growth",
+    tags: ["customer retention", "loyalty", "revenue", "growth strategy"],
+    author: "CQM Team",
+    publishedAt: "2026-03-19",
+    readTimeMinutes: 5,
+    featured: false,
+  },
+  {
+    id: "18",
+    slug: "the-referral-engine-how-to-turn-customers-into-your-sales-team",
+    title: "The Referral Engine: How to Turn Customers Into Your Sales Team",
+    excerpt:
+      "The best marketing doesn\u2019t come from your brand. It comes from your customers. Here\u2019s how to build a referral system that runs itself.",
+    content: `
+## Your Customers Are Better at Selling Than You Are
+
+Here\u2019s an uncomfortable truth: people trust their friends more than they trust your ads. A recommendation from someone they know carries more weight than any campaign you could ever run. The data backs this up: 92% of consumers trust referrals from people they know over any other form of marketing.
+
+So instead of spending more on ads to convince strangers, what if you turned your happiest customers into a referral engine?
+
+## Why Referral Programs Work So Well
+
+**Trust is built in.** When Sarah tells her friend "you need to check out this company," that friend arrives with pre built trust. They\u2019re not a cold lead. They\u2019re a warm referral. And warm referrals convert at 3 to 5 times the rate of cold traffic.
+
+**Customer acquisition cost drops.** A referred customer costs a fraction of what a paid ad customer costs. The math gets very attractive very quickly.
+
+**Referred customers stick longer.** Studies show referred customers have a 37% higher retention rate. They came in through trust, so they\u2019re more likely to stay.
+
+## Building the Engine
+
+**1. Make the experience worth talking about.** This is step zero. If your product or service isn\u2019t genuinely good, no referral program will save you. The foundation of referrals is an experience people *want* to share.
+
+**2. Ask at the right moment.** The best time to ask for a referral is right after a positive outcome. A successful project delivery, a glowing review, a compliment in a meeting. Strike while the iron is hot.
+
+**3. Make it stupidly easy.** Give customers a unique referral link. Provide them with copy they can paste. The more friction you remove, the more referrals you get. Nobody wants to write a paragraph on your behalf. But they\u2019ll happily forward a link.
+
+**4. Reward both sides.** The best referral programs give something to the referrer AND the new customer. A discount, a free month, a gift card, whatever makes sense for your business. Make both parties feel like they won.
+
+**5. Automate the follow up.** Use your CRM or email tool to track referrals, send thank you messages, and deliver rewards automatically. If you have to manually track referrals in a spreadsheet, the system will break within a month.
+
+## The Compound Effect
+
+Here\u2019s where it gets exciting. One happy customer refers two friends. Those two friends become customers and each refer two more. Suddenly you\u2019ve got a geometric growth curve powered entirely by trust and good work.
+
+You don\u2019t need to outspend anyone. You need to out deliver. Do great work, make it easy to share, and let your customers do the selling. Human led, AI accelerated, referral powered. That\u2019s the growth formula.
+    `,
+    image: "https://picsum.photos/seed/referral-engine/1200/630",
+    category: "Business Growth",
+    tags: ["referrals", "word of mouth", "growth", "customer advocacy"],
+    author: "Cesar Q.",
+    publishedAt: "2026-03-12",
+    readTimeMinutes: 5,
     featured: false,
   },
 ];
