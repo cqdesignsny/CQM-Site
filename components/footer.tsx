@@ -32,6 +32,7 @@ export function Footer() {
       { href: "/assessment", labelKey: "footer.assessment" },
       { href: "/proposals", labelKey: "footer.proposalBuilder" },
       { href: "/studio", labelKey: "footer.studioTour" },
+      { href: "/roi-calculator", labelKey: "nav.roiCalculator" },
     ],
     company: [
       { href: "/about", labelKey: "nav.about" },

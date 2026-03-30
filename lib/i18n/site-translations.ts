@@ -482,6 +482,45 @@ export const siteTranslations: TranslationMap = {
   },
 
 // ============================================================
+  // NEWSLETTER SECTION (Homepage)
+  // ============================================================
+  "newsletterSection.title": {
+    en: "Get Smarter About Marketing (Without Reading a Textbook)",
+    es: "Aprende M\u00E1s de Marketing (Sin Leer un Libro de Texto)",
+    fr: "Devenez Plus Malin en Marketing (Sans Lire un Manuel)",
+  },
+  "newsletterSection.subtitle": {
+    en: "We send the latest AI, marketing, and business news straight to your inbox. No fluff, no spam, just the stuff that actually helps you grow.",
+    es: "Te enviamos lo \u00FAltimo en IA, marketing y negocios directo a tu bandeja. Sin relleno, sin spam, solo lo que realmente te ayuda a crecer.",
+    fr: "On vous envoie les derni\u00E8res nouvelles en IA, marketing et business directement dans votre bo\u00EEte mail. Pas de blabla, pas de spam, juste ce qui vous aide vraiment \u00E0 grandir.",
+  },
+  "newsletterSection.bullet1": {
+    en: "The latest AI tools and how to actually use them",
+    es: "Las herramientas de IA m\u00E1s nuevas y c\u00F3mo usarlas de verdad",
+    fr: "Les derniers outils IA et comment vraiment les utiliser",
+  },
+  "newsletterSection.bullet2": {
+    en: "Marketing strategies that work in the real world",
+    es: "Estrategias de marketing que funcionan en el mundo real",
+    fr: "Des strat\u00E9gies marketing qui marchent dans le vrai monde",
+  },
+  "newsletterSection.bullet3": {
+    en: "Business growth tips from people who have done it",
+    es: "Consejos de crecimiento de gente que ya lo logr\u00F3",
+    fr: "Des conseils de croissance par ceux qui l\u2019ont fait",
+  },
+  "newsletterSection.bullet4": {
+    en: "Industry news before your competitors find out",
+    es: "Noticias de la industria antes de que tu competencia se entere",
+    fr: "Les nouvelles du secteur avant que vos concurrents ne les d\u00E9couvrent",
+  },
+  "newsletterSection.privacy": {
+    en: "No spam ever. Unsubscribe anytime.",
+    es: "Nunca spam. Cancela cuando quieras.",
+    fr: "Jamais de spam. D\u00E9sinscription \u00E0 tout moment.",
+  },
+
+  // ============================================================
   // CONTACT FORM
   // ============================================================
   "contact.pageTitle": { en: "Get in Touch", es: "Cont\u00E1ctenos", fr: "Contactez-nous" },
@@ -1521,4 +1560,46 @@ export const siteTranslations: TranslationMap = {
   "common.changeLanguage": { en: "Change language", es: "Cambiar idioma", fr: "Changer de langue" },
   "common.calendlyPlaceholder": { en: "Calendly booking widget will be embedded here", es: "El widget de reservas de Calendly se integrar\u00E1 aqu\u00ED", fr: "Le widget de r\u00E9servation Calendly sera int\u00E9gr\u00E9 ici" },
   "common.calendlyEnvHint": { en: "Add your Calendly URL to .env.local: NEXT_PUBLIC_CALENDLY_URL", es: "Agrega tu URL de Calendly en .env.local: NEXT_PUBLIC_CALENDLY_URL", fr: "Ajoutez votre URL Calendly dans .env.local : NEXT_PUBLIC_CALENDLY_URL" },
+
+  // ============================================================
+  // ROI CALCULATOR
+  // ============================================================
+  "nav.roiCalculator": { en: "ROI Calculator", es: "Calculadora de ROI", fr: "Calculateur de ROI" },
+  "roi.badge": { en: "Free Marketing Tool", es: "Herramienta de Marketing Gratuita", fr: "Outil Marketing Gratuit" },
+  "roi.title": { en: "How Much Should You Actually Be Spending on Marketing?", es: "\u00bfCu\u00e1nto Deber\u00edas Estar Gastando Realmente en Marketing?", fr: "Combien Devriez\u2011Vous R\u00e9ellement D\u00e9penser en Marketing\u00a0?" },
+  "roi.subtitle": {
+    en: "Let\u2019s do the math so you can stop guessing and start growing. (No MBA required.)",
+    es: "Hagamos las cuentas para que dejes de adivinar y empieces a crecer. (No se requiere MBA.)",
+    fr: "Faisons le calcul pour que vous arr\u00eatiez de deviner et commenciez \u00e0 grandir. (Pas besoin d\u2019un MBA.)",
+  },
+  "roi.inputsTitle": { en: "Your Numbers", es: "Tus N\u00fameros", fr: "Vos Chiffres" },
+  "roi.inputsSubtitle": { en: "Adjust the sliders or type in your numbers. Results update instantly.", es: "Ajusta los controles o escribe tus n\u00fameros. Los resultados se actualizan al instante.", fr: "Ajustez les curseurs ou tapez vos chiffres. Les r\u00e9sultats se mettent \u00e0 jour instantan\u00e9ment." },
+  "roi.revenueGoal": { en: "Monthly Revenue Goal", es: "Meta de Ingresos Mensuales", fr: "Objectif de Revenus Mensuels" },
+  "roi.customerValue": { en: "Average Customer Value", es: "Valor Promedio del Cliente", fr: "Valeur Moyenne du Client" },
+  "roi.currentSpend": { en: "Current Monthly Marketing Spend", es: "Gasto Mensual Actual en Marketing", fr: "D\u00e9penses Marketing Mensuelles Actuelles" },
+  "roi.industry": { en: "Your Industry", es: "Tu Industria", fr: "Votre Secteur" },
+  "roi.industry.restaurants": { en: "Restaurants & Food", es: "Restaurantes y Comida", fr: "Restaurants et Alimentation" },
+  "roi.industry.beauty": { en: "Beauty & Wellness", es: "Belleza y Bienestar", fr: "Beaut\u00e9 et Bien\u2011\u00eatre" },
+  "roi.industry.homeServices": { en: "Home Services", es: "Servicios del Hogar", fr: "Services \u00e0 Domicile" },
+  "roi.industry.ecommerce": { en: "E\u2011commerce", es: "Comercio Electr\u00f3nico", fr: "E\u2011commerce" },
+  "roi.industry.professional": { en: "Professional Services", es: "Servicios Profesionales", fr: "Services Professionnels" },
+  "roi.industry.other": { en: "Other", es: "Otro", fr: "Autre" },
+  "roi.resultsTitle": { en: "Your Marketing Snapshot", es: "Tu Panorama de Marketing", fr: "Votre Aper\u00e7u Marketing" },
+  "roi.resultsSubtitle": { en: "Based on real industry benchmarks. Not guesswork.", es: "Basado en benchmarks reales de la industria. No en adivinanzas.", fr: "Bas\u00e9 sur de vrais benchmarks du secteur. Pas du hasard." },
+  "roi.customersNeeded": { en: "Customers Needed", es: "Clientes Necesarios", fr: "Clients N\u00e9cessaires" },
+  "roi.recommendedBudget": { en: "Recommended Budget", es: "Presupuesto Recomendado", fr: "Budget Recommand\u00e9" },
+  "roi.estimatedCPA": { en: "Estimated Cost Per Acquisition", es: "Costo Estimado por Adquisici\u00f3n", fr: "Co\u00fbt Estim\u00e9 par Acquisition" },
+  "roi.expectedROI": { en: "Expected ROI", es: "ROI Esperado", fr: "ROI Attendu" },
+  "roi.perMonth": { en: "/mo", es: "/mes", fr: "/mois" },
+  "roi.enterSpend": { en: "Enter your current spend to see ROI", es: "Ingresa tu gasto actual para ver el ROI", fr: "Entrez vos d\u00e9penses actuelles pour voir le ROI" },
+  "roi.gapAnalysis": { en: "Gap Analysis", es: "An\u00e1lisis de Brecha", fr: "Analyse de l\u2019\u00c9cart" },
+  "roi.youreSpending": { en: "You\u2019re spending", es: "Est\u00e1s gastando", fr: "Vous d\u00e9pensez" },
+  "roi.youShouldSpend": { en: "You should be spending around", es: "Deber\u00edas estar gastando alrededor de", fr: "Vous devriez d\u00e9penser environ" },
+  "roi.thatsAGap": { en: "That\u2019s a gap of", es: "Esa es una brecha de", fr: "C\u2019est un \u00e9cart de" },
+  "roi.leavingOnTable": { en: "You\u2019re leaving approximately", es: "Est\u00e1s dejando aproximadamente", fr: "Vous laissez environ" },
+  "roi.everyMonth": { en: "on the table every month.", es: "sobre la mesa cada mes.", fr: "sur la table chaque mois." },
+  "roi.almostThere": { en: "You\u2019re close to the sweet spot! A small bump could unlock serious growth.", es: "\u00a1Est\u00e1s cerca del punto ideal! Un peque\u00f1o aumento podr\u00eda desbloquear un crecimiento serio.", fr: "Vous \u00eates proche du point id\u00e9al\u00a0! Un petit ajustement pourrait d\u00e9bloquer une croissance s\u00e9rieuse." },
+  "roi.goodNews": { en: "Good news: you\u2019re investing heavily. Let\u2019s make sure every dollar is working hard.", es: "Buenas noticias: est\u00e1s invirtiendo fuerte. Asegur\u00e9monos de que cada d\u00f3lar trabaje duro.", fr: "Bonne nouvelle\u00a0: vous investissez bien. Assurons\u2011nous que chaque dollar travaille fort." },
+  "roi.ctaBuildPlan": { en: "Build a Plan for This Budget", es: "Crea un Plan para Este Presupuesto", fr: "Cr\u00e9ez un Plan pour Ce Budget" },
+  "roi.ctaGetAssessment": { en: "Get a Free Assessment First", es: "Obt\u00e9n una Evaluaci\u00f3n Gratuita Primero", fr: "Obtenez d\u2019Abord une \u00c9valuation Gratuite" },
 };

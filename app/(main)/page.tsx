@@ -16,6 +16,7 @@ import { FunnelTeaser } from "@/components/sections/funnel-teaser";
 import { ServicesOverview } from "@/components/sections/services-overview";
 import { SocialProof } from "@/components/sections/social-proof";
 import { CTABanner } from "@/components/sections/cta-banner";
+import { NewsletterSection } from "@/components/sections/newsletter-section";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -38,6 +39,7 @@ export default function HomePage() {
       <FunnelTeaser />
       <ServicesOverview />
       <SocialProof />
+      <NewsletterSection />
       <CTABanner />
     </>
   );
