@@ -4,10 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  Bot,
-  CheckSquare,
+  BookOpen,
   ExternalLink,
-  FileText,
   Lightbulb,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,39 +14,6 @@ import { CTABanner } from "@/components/sections/cta-banner";
 
 export function ResourcesContent() {
   const { t } = useLanguage();
-
-  const featuredResources = [
-    {
-      typeKey: "resources.type.guide",
-      icon: FileText,
-      titleKey: "resources.featured1.title",
-      summaryKey: "resources.featured1.desc",
-      href: "#affiliate-tools",
-    },
-    {
-      typeKey: "resources.type.checklist",
-      icon: CheckSquare,
-      titleKey: "resources.featured2.title",
-      summaryKey: "resources.featured2.desc",
-      href: "#affiliate-tools",
-    },
-    {
-      typeKey: "resources.type.playbook",
-      icon: Lightbulb,
-      titleKey: "resources.featured3.title",
-      summaryKey: "resources.featured3.desc",
-      href: "#affiliate-tools",
-    },
-  ];
-
-  const learningTrackKeys = [
-    "resources.lt1",
-    "resources.lt2",
-    "resources.lt3",
-    "resources.lt4",
-    "resources.lt5",
-    "resources.lt6",
-  ];
 
   const affiliateTools = [
     { name: "TubeBuddy", logo: "https://creativequalitymarketing.com/wp-content/uploads/2024/03/TubeBuddy.png", href: "https://www.tubebuddy.com/cqdesigns" },
@@ -77,45 +42,42 @@ export function ResourcesContent() {
           {t("resources.description")}
         </p>
 
-        <section className="mb-14 grid gap-5 md:grid-cols-3">
-          {featuredResources.map((resource) => {
-            const Icon = resource.icon;
-            return (
-              <Link
-                key={resource.titleKey}
-                href={resource.href}
-                className="group rounded-xl border bg-white/90 p-5 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-xl"
-              >
-                <div className="mb-3 flex items-center gap-2">
-                  <Icon className="h-4 w-4 text-primary" />
-                  <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                    {t(resource.typeKey)}
-                  </span>
-                </div>
-                <h2 className="mb-2 text-lg font-semibold">{t(resource.titleKey)}</h2>
-                <p className="text-sm text-muted-foreground">{t(resource.summaryKey)}</p>
-                <span className="mt-3 inline-flex items-center text-sm font-medium text-primary group-hover:underline">
-                  {t("resources.explore")}
-                  <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-            );
-          })}
-        </section>
+        <section className="mb-14 grid gap-5 md:grid-cols-2">
+          <Link
+            href="/blog"
+            className="group rounded-xl border bg-white/90 p-6 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-xl md:p-8"
+          >
+            <div className="mb-3 flex items-center gap-2">
+              <BookOpen className="h-5 w-5 text-primary" />
+              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                {t("resources.blog.badge")}
+              </span>
+            </div>
+            <h2 className="mb-2 text-xl font-semibold">{t("resources.blog.title")}</h2>
+            <p className="mb-4 text-sm text-muted-foreground">{t("resources.blog.desc")}</p>
+            <span className="inline-flex items-center text-sm font-medium text-primary group-hover:underline">
+              {t("resources.blog.cta")}
+              <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </span>
+          </Link>
 
-        <section className="mb-14 rounded-xl border bg-muted/30 p-6 md:p-8">
-          <div className="mb-4 flex items-center gap-2">
-            <Bot className="h-5 w-5 text-primary" />
-            <h2 className="text-2xl font-semibold">{t("resources.learningTracks")}</h2>
-          </div>
-          <p className="mb-5 text-muted-foreground">{t("resources.learningTracks.desc")}</p>
-          <div className="grid gap-3 md:grid-cols-2">
-            {learningTrackKeys.map((key) => (
-              <div key={key} className="rounded-md border bg-background p-3 text-sm">
-                {t(key)}
-              </div>
-            ))}
-          </div>
+          <Link
+            href="/how-marketing-works"
+            className="group rounded-xl border bg-white/90 p-6 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-xl md:p-8"
+          >
+            <div className="mb-3 flex items-center gap-2">
+              <Lightbulb className="h-5 w-5 text-primary" />
+              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                {t("resources.hmw.badge")}
+              </span>
+            </div>
+            <h2 className="mb-2 text-xl font-semibold">{t("resources.hmw.title")}</h2>
+            <p className="mb-4 text-sm text-muted-foreground">{t("resources.hmw.desc")}</p>
+            <span className="inline-flex items-center text-sm font-medium text-primary group-hover:underline">
+              {t("resources.hmw.cta")}
+              <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </span>
+          </Link>
         </section>
 
         <section id="affiliate-tools" className="mb-14">
@@ -167,13 +129,13 @@ export function ResourcesContent() {
           <p className="mb-6 text-muted-foreground">{t("resources.cta.desc")}</p>
           <div className="flex flex-col justify-center gap-3 sm:flex-row">
             <Button asChild>
-              <Link href="/contact">
-                {t("hero.cta1")}
+              <Link href="/blog">
+                {t("resources.cta.readBlog")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href="/services">{t("resources.cta.seeServices")}</Link>
+              <Link href="/how-marketing-works">{t("resources.cta.seeProcess")}</Link>
             </Button>
           </div>
         </section>

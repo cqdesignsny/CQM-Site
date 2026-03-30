@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Brain, PawPrint, ShieldCheck, Sparkles, Target, Users } from "lucide-react";
+import { ArrowRight, Brain, PawPrint, ShieldCheck, Sparkles, Target, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/i18n/context";
 import { CTABanner } from "@/components/sections/cta-banner";
@@ -65,7 +65,13 @@ export function AboutContent() {
         <section className="mb-14 brand-panel p-6 md:p-8">
           <h2 className="mb-4 text-2xl font-semibold">{t("about.story.title")}</h2>
           <p className="mb-4 text-muted-foreground">{t("about.story.p1")}</p>
-          <p className="text-muted-foreground">{t("about.story.p2")}</p>
+          <p className="mb-4 text-muted-foreground">{t("about.story.p2")}</p>
+          <p className="text-muted-foreground">
+            {t("about.story.p3")}{" "}
+            <Link href="/how-marketing-works" className="font-medium text-primary hover:underline">
+              {t("about.story.processLink")}
+            </Link>
+          </p>
         </section>
 
         <section className="mb-14">
@@ -132,10 +138,13 @@ export function AboutContent() {
           <p className="mb-6 text-muted-foreground">{t("about.cta.desc")}</p>
           <div className="flex flex-col justify-center gap-3 sm:flex-row">
             <Button asChild>
-              <Link href="/contact">{t("hero.cta1")}</Link>
+              <Link href="/how-marketing-works">
+                {t("about.cta.seeProcess")}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href="/services">{t("about.cta.exploreServices")}</Link>
+              <Link href="/contact">{t("about.cta.getInTouch")}</Link>
             </Button>
           </div>
         </section>

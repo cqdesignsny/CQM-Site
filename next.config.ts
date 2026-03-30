@@ -9,6 +9,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/process",
+        destination: "/how-marketing-works",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

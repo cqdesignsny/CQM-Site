@@ -60,6 +60,12 @@ export function PaidAdsServiceContent() {
         { question: t("sd.ads.faq3.q"), answer: t("sd.ads.faq3.a") },
         { question: t("sd.ads.faq4.q"), answer: t("sd.ads.faq4.a") },
       ]}
+      funnelStages={["awareness", "decision"]}
+      complementaryServices={[
+        { nameKey: "service.web", href: "/services/web", descKey: "serviceDetail.crossSell.web" },
+        { nameKey: "service.emailMarketing", href: "/services/email-marketing", descKey: "serviceDetail.crossSell.emailMarketing" },
+        { nameKey: "service.seo", href: "/services/seo", descKey: "serviceDetail.crossSell.seo" },
+      ]}
     />
   );
 }

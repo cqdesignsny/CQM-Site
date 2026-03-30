@@ -6,6 +6,7 @@ export const siteTranslations: TranslationMap = {
   // ============================================================
   // NAVIGATION
   // ============================================================
+  "nav.howMarketingWorks": { en: "How Marketing Works", es: "C\u00F3mo Funciona el Marketing", fr: "Comment le Marketing Fonctionne" },
   "nav.services": { en: "Services", es: "Servicios", fr: "Services" },
   "nav.studio": { en: "Studio", es: "Estudio", fr: "Studio" },
   "nav.work": { en: "Work", es: "Trabajo", fr: "Travaux" },
@@ -33,22 +34,250 @@ export const siteTranslations: TranslationMap = {
   // ============================================================
   // HERO SECTION
   // ============================================================
-  "hero.badge": { en: "Your Bridge to Smarter Marketing", es: "Tu Puente Hacia un Marketing Más Inteligente", fr: "Votre Pont Vers un Marketing Plus Intelligent" },
+  "hero.badge": { en: "Full Funnel Marketing Partner", es: "Tu Socio de Marketing de Embudo Completo", fr: "Votre Partenaire Marketing Complet" },
   "hero.title1": { en: "Real Humans Powered with AI", es: "Humanos Reales Potenciados con IA", fr: "De Vrais Humains Propuls\u00E9s par l\u2019IA" },
   "hero.title2": { en: "Delivering Results", es: "Entregando Resultados", fr: "Des R\u00E9sultats Concrets" },
   "hero.subtitle": {
-    en: "We help businesses grow with websites, SEO, ads, social media, email, and video. We use AI to move faster and smarter, but every strategy is built by real people who actually care about your results.",
-    es: "Ayudamos a las empresas a crecer con sitios web, SEO, anuncios, redes sociales, email y video. Usamos IA para movernos m\u00E1s r\u00E1pido y m\u00E1s inteligente, pero cada estrategia la construyen personas reales que de verdad se preocupan por tus resultados.",
-    fr: "Nous aidons les entreprises \u00E0 cro\u00EEtre avec des sites web, du SEO, de la pub, des r\u00E9seaux sociaux, des emails et de la vid\u00E9o. L\u2019IA nous rend plus rapides et plus malins, mais chaque strat\u00E9gie est construite par de vraies personnes qui se soucient vraiment de vos r\u00E9sultats.",
+    en: "While other agencies are still figuring out AI, we already use it to move faster, think sharper, and deliver better results. We learn your business first, then build marketing that's actually yours. When your competition outspends you, we outthink them.",
+    es: "Mientras otras agencias todav\u00EDa est\u00E1n descubriendo la IA, nosotros ya la usamos para movernos m\u00E1s r\u00E1pido, pensar mejor y entregar mejores resultados. Primero aprendemos tu negocio, y luego construimos marketing que realmente es tuyo. Cuando tu competencia te supera en presupuesto, nosotros los superamos con ideas.",
+    fr: "Pendant que les autres agences essaient encore de comprendre l\u2019IA, nous on l\u2019utilise d\u00E9j\u00E0 pour aller plus vite, r\u00E9fl\u00E9chir mieux et livrer de meilleurs r\u00E9sultats. On apprend votre business d'abord, puis on construit du marketing qui est vraiment le v\u00F4tre. Quand la concurrence d\u00E9pense plus que vous, on les surpasse par l'id\u00E9e.",
   },
   "hero.cta1": { en: "Book a Strategy Call", es: "Agendar Llamada Estrat\u00E9gica", fr: "R\u00E9server un appel strat\u00E9gique" },
-  "hero.cta2": { en: "Take the Free Marketing Quiz", es: "Toma el Quiz de Marketing Gratis", fr: "Faites le Quiz Marketing Gratuit" },
+  "hero.cta2": { en: "See How Marketing Works", es: "Descubre C\u00F3mo Funciona el Marketing", fr: "D\u00E9couvrez Comment le Marketing Fonctionne" },
 
   // ============================================================
   // TRUST LOGOS
   // ============================================================
   "trust.title": { en: "Trusted by innovative businesses", es: "La confianza de empresas innovadoras", fr: "La confiance d\u2019entreprises innovantes" },
-  "trust.andMore": { en: "And Many More!", es: "¡Y muchos más!", fr: "Et bien d\u2019autres\u00A0!" },
+  "trust.andMore": { en: "And Many More!", es: "\u00A1Y muchos m\u00E1s!", fr: "Et bien d\u2019autres\u00A0!" },
+
+  // ============================================================
+  // DIFFERENTIATOR SECTION (Homepage)
+  // ============================================================
+  "diff.title": {
+    en: "Why We're Not Like Every Other Agency (Spoiler: We Actually Do the Homework)",
+    es: "Por Qu\u00E9 No Somos Como Las Dem\u00E1s Agencias (Spoiler: S\u00ED Hacemos la Tarea)",
+    fr: "Pourquoi On N'est Pas Comme Les Autres Agences (Spoiler: On Fait Vraiment Nos Devoirs)",
+  },
+  "diff.pitch": {
+    en: "Most agencies hand you a template and hope for the best. That's like a doctor giving you medicine before checking your symptoms. We start by learning everything about your business, your customers, your competitors, and your industry. Then we use AI to move at a speed that would make other agencies nervous. The result? Smarter strategies, faster execution, and marketing that actually fits YOUR business.",
+    es: "La mayor\u00EDa de las agencias te dan una plantilla y cruzan los dedos. Eso es como un doctor d\u00E1ndote medicina sin revisar tus s\u00EDntomas. Nosotros empezamos aprendiendo todo sobre tu negocio, tus clientes, tu competencia y tu industria. Luego usamos IA para movernos a una velocidad que pone nerviosas a otras agencias. El resultado? Estrategias m\u00E1s inteligentes, ejecuci\u00F3n m\u00E1s r\u00E1pida, y marketing que realmente le queda a TU negocio.",
+    fr: "La plupart des agences vous filent un template et croisent les doigts. C'est comme un m\u00E9decin qui vous donne des m\u00E9dicaments sans v\u00E9rifier vos sympt\u00F4mes. Nous, on commence par tout apprendre sur votre business, vos clients, vos concurrents et votre industrie. Ensuite on utilise l'IA pour bouger \u00E0 une vitesse qui rend les autres agences nerveuses. Le r\u00E9sultat? Des strat\u00E9gies plus malignes, une ex\u00E9cution plus rapide, et du marketing qui colle vraiment \u00E0 VOTRE business.",
+  },
+  "diff.pillar1.title": { en: "Deep Research First", es: "Investigaci\u00F3n Profunda Primero", fr: "Recherche Approfondie D'abord" },
+  "diff.pillar1.desc": {
+    en: "We study your market, your competitors, and your customers before we touch anything. While other agencies are already guessing, we're still asking questions. Weird flex, but it works.",
+    es: "Estudiamos tu mercado, tu competencia y tus clientes antes de tocar cualquier cosa. Mientras otras agencias ya est\u00E1n adivinando, nosotros seguimos haciendo preguntas. Suena raro, pero funciona.",
+    fr: "On \u00E9tudie votre march\u00E9, vos concurrents et vos clients avant de toucher \u00E0 quoi que ce soit. Pendant que les autres agences devinent d\u00E9j\u00E0, nous on pose encore des questions. Bizarre comme approche, mais \u00E7a marche.",
+  },
+  "diff.pillar2.title": { en: "Custom Strategy, Not Templates", es: "Estrategia Personalizada, No Plantillas", fr: "Strat\u00E9gie Sur Mesure, Pas de Templates" },
+  "diff.pillar2.desc": {
+    en: "Every plan is built from scratch for your business. We don't recycle last month's client strategy and slap your logo on it. That's lazy and you deserve better.",
+    es: "Cada plan se construye desde cero para tu negocio. No reciclamos la estrategia del cliente pasado y le ponemos tu logo. Eso es de flojos y t\u00FA mereces m\u00E1s.",
+    fr: "Chaque plan est construit de z\u00E9ro pour votre business. On ne recycle pas la strat\u00E9gie du dernier client en y collant votre logo. C'est paresseux et vous m\u00E9ritez mieux.",
+  },
+  "diff.pillar3.title": { en: "Outthink, Don't Outspend", es: "Supera con Ideas, No con Dinero", fr: "Surpassez par l'Id\u00E9e, Pas le Budget" },
+  "diff.pillar3.desc": {
+    en: "Your competitor has a bigger budget? Cool. We use AI and pure creativity to find the angles they're sleeping on. We don't need to outspend them. We outthink them. That's the whole game.",
+    es: "Tu competencia tiene m\u00E1s presupuesto? Tranquilo. Usamos IA y pura creatividad para encontrar los \u00E1ngulos que est\u00E1n ignorando. No necesitamos gastar m\u00E1s que ellos. Los superamos con ideas. Ese es todo el juego.",
+    fr: "Votre concurrent a un plus gros budget? Pas de souci. On utilise l'IA et la pure cr\u00E9ativit\u00E9 pour trouver les angles qu'ils ignorent. On n'a pas besoin de d\u00E9penser plus qu'eux. On les surpasse par l'id\u00E9e. C'est tout le jeu.",
+  },
+  "diff.pillar4.title": { en: "Full Funnel, No Gaps", es: "Embudo Completo, Sin Huecos", fr: "Tunnel Complet, Z\u00E9ro Trou" },
+  "diff.pillar4.desc": {
+    en: "Most agencies do one thing and call it a day. SEO guy doesn't talk to the ads guy. We cover every stage of the funnel so nothing falls through the cracks. Revolutionary concept, we know.",
+    es: "La mayor\u00EDa de las agencias hacen una cosa y se van a casa. El de SEO no habla con el de anuncios. Nosotros cubrimos cada etapa del embudo para que nada se nos escape. Concepto revolucionario, lo sabemos.",
+    fr: "La plupart des agences font un truc et basta. Le gars du SEO ne parle pas au gars des pubs. Nous, on couvre chaque \u00E9tape du tunnel pour que rien ne passe entre les mailles. Concept r\u00E9volutionnaire, on sait.",
+  },
+  "diff.cta": { en: "See Our Full Process", es: "Conoce Nuestro Proceso Completo", fr: "D\u00E9couvrez Notre Processus Complet" },
+
+  // ============================================================
+  // FUNNEL TEASER SECTION (Homepage)
+  // ============================================================
+  "funnel.teaser.title": {
+    en: "The Marketing Funnel (a.k.a. The Thing Most Businesses Don't Know Exists)",
+    es: "El Embudo de Marketing (tambi\u00E9n conocido como Lo Que La Mayor\u00EDa No Sabe Que Existe)",
+    fr: "L'Entonnoir Marketing (alias Le Truc Que La Plupart Des Entreprises Ignorent)",
+  },
+  "funnel.teaser.subtitle": {
+    en: "Marketing isn't just \"post on Instagram and pray.\" It's four stages working together. Most businesses are only doing one or two. The businesses that actually grow? They cover all four. Crazy how that works, right?",
+    es: "El marketing no es solo \"publica en Instagram y reza.\" Son cuatro etapas trabajando juntas. La mayor\u00EDa de los negocios solo hacen una o dos. Los negocios que realmente crecen? Cubren las cuatro. Loco c\u00F3mo funciona eso, verdad?",
+    fr: "Le marketing, c'est pas juste \"poster sur Instagram et prier.\" C'est quatre \u00E9tapes qui bossent ensemble. La plupart des entreprises n'en font qu'une ou deux. Celles qui grandissent vraiment? Elles couvrent les quatre. Dingue comment \u00E7a marche, non?",
+  },
+  "funnel.stage1.name": { en: "Awareness", es: "Visibilidad", fr: "Visibilit\u00E9" },
+  "funnel.stage1.hook": { en: "If people don't know you exist, nothing else matters. You could have the best product in the world and it won't make a difference.", es: "Si la gente no sabe que existes, nada m\u00E1s importa. Puedes tener el mejor producto del mundo y no va a hacer diferencia.", fr: "Si les gens ne savent pas que vous existez, rien d'autre ne compte. Vous pourriez avoir le meilleur produit du monde, \u00E7a ne changera rien." },
+  "funnel.stage2.name": { en: "Interest", es: "Inter\u00E9s", fr: "Int\u00E9r\u00EAt" },
+  "funnel.stage2.hook": { en: "Cool, they found you. Now give them a reason to stick around instead of bouncing in 3 seconds.", es: "Bien, te encontraron. Ahora dales una raz\u00F3n para quedarse en vez de irse en 3 segundos.", fr: "OK, ils vous ont trouv\u00E9. Maintenant donnez leur une raison de rester au lieu de partir en 3 secondes." },
+  "funnel.stage3.name": { en: "Decision", es: "Decisi\u00F3n", fr: "D\u00E9cision" },
+  "funnel.stage3.hook": { en: "They're comparing you to your competitors right now. Reviews, follow ups, retargeting. This is where deals are won or lost.", es: "Te est\u00E1n comparando con tu competencia ahora mismo. Rese\u00F1as, seguimientos, retargeting. Aqu\u00ED es donde se ganan o pierden los tratos.", fr: "Ils vous comparent \u00E0 vos concurrents en ce moment. Avis, suivis, retargeting. C'est ici que les deals se gagnent ou se perdent." },
+  "funnel.stage4.name": { en: "Action", es: "Acci\u00F3n", fr: "Action" },
+  "funnel.stage4.hook": { en: "They want to buy. Don't make it hard. If your checkout has 7 steps or your phone number is buried, you're losing money right now.", es: "Quieren comprar. No se lo hagas dif\u00EDcil. Si tu proceso de compra tiene 7 pasos o tu n\u00FAmero de tel\u00E9fono est\u00E1 escondido, est\u00E1s perdiendo dinero ahora mismo.", fr: "Ils veulent acheter. Ne compliquez pas les choses. Si votre checkout a 7 \u00E9tapes ou que votre num\u00E9ro est introuvable, vous perdez de l'argent l\u00E0 maintenant." },
+  "funnel.teaser.cta": { en: "Learn How the Full Funnel Works", es: "Aprende C\u00F3mo Funciona el Embudo Completo", fr: "D\u00E9couvrez Comment Fonctionne le Tunnel Complet" },
+
+  // ============================================================
+  // SERVICES OVERVIEW SECTION (Homepage, grouped by funnel stage)
+  // ============================================================
+  "servicesOverview.title": {
+    en: "What We Actually Do (And Where It Fits in the Funnel)",
+    es: "Lo Que Realmente Hacemos (Y D\u00F3nde Encaja en el Embudo)",
+    fr: "Ce Qu'on Fait Vraiment (Et O\u00F9 \u00C7a S'int\u00E8gre dans le Tunnel)",
+  },
+  "servicesOverview.subtitle": {
+    en: "Every service we offer plugs into a specific stage of the marketing funnel. Nothing random, everything intentional. We don't just throw spaghetti at the wall and see what sticks.",
+    es: "Cada servicio que ofrecemos se conecta a una etapa espec\u00EDfica del embudo de marketing. Nada al azar, todo intencional. No tiramos espagueti a la pared a ver qu\u00E9 pega.",
+    fr: "Chaque service qu'on offre se branche sur une \u00E9tape sp\u00E9cifique de l'entonnoir marketing. Rien au hasard, tout est intentionnel. On ne lance pas des spaghettis au mur pour voir ce qui colle.",
+  },
+  "servicesOverview.group1": { en: "Get Found", es: "Que Te Encuentren", fr: "Se Faire Trouver" },
+  "servicesOverview.group1.desc": { en: "Show up where your customers are already looking (hint: it's Google, not the Yellow Pages)", es: "Aparece donde tus clientes ya est\u00E1n buscando (pista: es Google, no las P\u00E1ginas Amarillas)", fr: "Apparaissez l\u00E0 o\u00F9 vos clients cherchent d\u00E9j\u00E0 (indice: c'est Google, pas les Pages Jaunes)" },
+  "servicesOverview.group2": { en: "Convert Visitors", es: "Convierte Visitantes", fr: "Convertir les Visiteurs" },
+  "servicesOverview.group2.desc": { en: "Turn curious clicks into real conversations and real money", es: "Convierte clics curiosos en conversaciones reales y dinero real", fr: "Transformez les clics curieux en vraies conversations et vrai argent" },
+  "servicesOverview.group3": { en: "Tell Your Story", es: "Cuenta Tu Historia", fr: "Racontez Votre Histoire" },
+  "servicesOverview.group3.desc": { en: "Content that makes people remember you (and actually hit share)", es: "Contenido que hace que la gente te recuerde (y que de verdad le den compartir)", fr: "Du contenu qui marque les esprits (et qui donne vraiment envie de partager)" },
+  "servicesOverview.group4": { en: "Scale Smarter", es: "Escala de Forma Inteligente", fr: "\u00C9voluez Plus Intelligemment" },
+  "servicesOverview.group4.desc": { en: "Let AI handle the repetitive stuff while you focus on growing. Welcome to 2026.", es: "Deja que la IA se encargue de lo repetitivo mientras t\u00FA te enfocas en crecer. Bienvenido al 2026.", fr: "Laissez l'IA g\u00E9rer le r\u00E9p\u00E9titif pendant que vous vous concentrez sur la croissance. Bienvenue en 2026." },
+  "servicesOverview.cta": { en: "Explore All Services", es: "Explora Todos los Servicios", fr: "D\u00E9couvrir Tous les Services" },
+
+  // ============================================================
+  // SOCIAL PROOF SECTION (Homepage)
+  // ============================================================
+  "socialProof.title": { en: "Businesses That Trust Us", es: "Negocios Que Conf\u00EDan en Nosotros", fr: "Les Entreprises Qui Nous Font Confiance" },
+
+  // ============================================================
+  // HOW MARKETING WORKS PAGE
+  // ============================================================
+  "hmw.badge": { en: "Marketing Education", es: "Educaci\u00F3n en Marketing", fr: "\u00C9ducation Marketing" },
+  "hmw.title": {
+    en: "How Marketing Actually Works",
+    es: "C\u00F3mo Funciona Realmente el Marketing",
+    fr: "Comment le Marketing Fonctionne Vraiment",
+  },
+  "hmw.subtitle": {
+    en: "Most business owners know they need marketing. But nobody ever sits down and explains what it actually is, how the pieces fit together, or why some businesses grow while others just burn money. Let's fix that right now.",
+    es: "La mayor\u00EDa de los due\u00F1os de negocios saben que necesitan marketing. Pero nadie se sienta a explicarles qu\u00E9 es realmente, c\u00F3mo encajan las piezas, o por qu\u00E9 algunos negocios crecen mientras otros solo queman dinero. Vamos a arreglar eso ahora mismo.",
+    fr: "La plupart des propri\u00E9taires d'entreprise savent qu'ils ont besoin de marketing. Mais personne ne s'assoit pour expliquer ce que c'est vraiment, comment les pi\u00E8ces s'embo\u00EEtent, ou pourquoi certaines entreprises grandissent pendant que d'autres br\u00FBlent juste de l'argent. On va r\u00E9gler \u00E7a maintenant.",
+  },
+  "hmw.problem.title": {
+    en: "The Problem: Most Businesses Are Marketing Blindfolded",
+    es: "El Problema: La Mayor\u00EDa de los Negocios Hacen Marketing con los Ojos Vendados",
+    fr: "Le Probl\u00E8me: La Plupart Des Entreprises Font du Marketing \u00E0 l'Aveugle",
+  },
+  "hmw.problem.p1": {
+    en: "Here's what usually happens: a business owner hears they need to \"be on social media\" so they start posting random stuff. Then someone tells them they need SEO, so they pay someone to do... something. Then they run some Google Ads because a sales rep called them. None of it is connected. None of it has a strategy. And then they wonder why nothing is working.",
+    es: "Esto es lo que normalmente pasa: un due\u00F1o de negocio escucha que necesita \"estar en redes sociales\" y empieza a publicar cosas al azar. Luego alguien le dice que necesita SEO, entonces le paga a alguien para que haga... algo. Despu\u00E9s pone unos anuncios en Google porque un vendedor lo llam\u00F3. Nada est\u00E1 conectado. Nada tiene estrategia. Y luego se pregunta por qu\u00E9 nada funciona.",
+    fr: "Voici ce qui se passe d'habitude: un propri\u00E9taire d'entreprise entend qu'il faut \"\u00EAtre sur les r\u00E9seaux sociaux\" alors il commence \u00E0 poster n'importe quoi. Ensuite quelqu'un lui dit qu'il a besoin de SEO, donc il paye quelqu'un pour faire... quelque chose. Puis il lance des Google Ads parce qu'un commercial l'a appel\u00E9. Rien n'est connect\u00E9. Rien n'a de strat\u00E9gie. Et apr\u00E8s il se demande pourquoi rien ne marche.",
+  },
+  "hmw.problem.p2": {
+    en: "The truth? Marketing is not one thing. It's not just a website, or just social media, or just ads. It's a system. And that system has a name: the marketing funnel.",
+    es: "La verdad? El marketing no es una sola cosa. No es solo un sitio web, o solo redes sociales, o solo anuncios. Es un sistema. Y ese sistema tiene un nombre: el embudo de marketing.",
+    fr: "La v\u00E9rit\u00E9? Le marketing, c'est pas un seul truc. C'est pas juste un site web, ou juste les r\u00E9seaux sociaux, ou juste des pubs. C'est un syst\u00E8me. Et ce syst\u00E8me a un nom: l'entonnoir marketing.",
+  },
+  "hmw.funnel.title": {
+    en: "The Marketing Funnel: Your Business Growth Engine",
+    es: "El Embudo de Marketing: El Motor de Crecimiento de Tu Negocio",
+    fr: "L'Entonnoir Marketing: Le Moteur de Croissance de Votre Entreprise",
+  },
+  "hmw.funnel.subtitle": {
+    en: "Every single customer you've ever had went through these four stages. Whether you planned for it or not. The difference between businesses that grow and businesses that struggle? The ones that grow designed this process on purpose.",
+    es: "Cada cliente que has tenido pas\u00F3 por estas cuatro etapas. Lo hayas planeado o no. La diferencia entre negocios que crecen y negocios que luchan? Los que crecen dise\u00F1aron este proceso a prop\u00F3sito.",
+    fr: "Chaque client que vous avez eu est pass\u00E9 par ces quatre \u00E9tapes. Que vous l'ayez pr\u00E9vu ou non. La diff\u00E9rence entre les entreprises qui grandissent et celles qui galent? Celles qui grandissent ont con\u00E7u ce processus expr\u00E8s.",
+  },
+  "hmw.stage1.title": { en: "Stage 1: Awareness", es: "Etapa 1: Visibilidad", fr: "\u00C9tape 1: Visibilit\u00E9" },
+  "hmw.stage1.headline": { en: "People Need to Know You Exist", es: "La Gente Necesita Saber Que Existes", fr: "Les Gens Doivent Savoir Que Vous Existez" },
+  "hmw.stage1.explanation": {
+    en: "Imagine you open the best restaurant in town but you put it in a basement with no sign. That's what it's like having a business with no awareness strategy. Someone Googles \"medspa near me\" and you don't show up? That's not bad luck. That's a missing awareness stage.",
+    es: "Imagina que abres el mejor restaurante de la ciudad pero lo pones en un s\u00F3tano sin letrero. As\u00ED es tener un negocio sin estrategia de visibilidad. Alguien busca en Google \"medspa cerca de m\u00ED\" y t\u00FA no apareces? Eso no es mala suerte. Es una etapa de visibilidad que falta.",
+    fr: "Imaginez que vous ouvrez le meilleur restaurant de la ville mais que vous le mettez dans un sous sol sans enseigne. C'est \u00E7a avoir un business sans strat\u00E9gie de visibilit\u00E9. Quelqu'un cherche \"medspa pr\u00E8s de moi\" et vous n'apparaissez pas? C'est pas de la malchance. C'est une \u00E9tape de visibilit\u00E9 qui manque.",
+  },
+  "hmw.stage1.services": { en: "How we fix it: SEO, Paid Ads, Social Media, Video Production", es: "C\u00F3mo lo arreglamos: SEO, Anuncios Pagados, Redes Sociales, Producci\u00F3n de Video", fr: "Comment on r\u00E8gle \u00E7a: SEO, Publicit\u00E9 payante, R\u00E9seaux sociaux, Production vid\u00E9o" },
+  "hmw.stage1.skip": { en: "Skip this stage and you're the best kept secret nobody knows about.", es: "Salta esta etapa y ser\u00E1s el secreto mejor guardado que nadie conoce.", fr: "Sautez cette \u00E9tape et vous serez le secret le mieux gard\u00E9 que personne ne conna\u00EEt." },
+
+  "hmw.stage2.title": { en: "Stage 2: Interest", es: "Etapa 2: Inter\u00E9s", fr: "\u00C9tape 2: Int\u00E9r\u00EAt" },
+  "hmw.stage2.headline": { en: "Give Them a Reason to Stick Around", es: "Dales una Raz\u00F3n Para Quedarse", fr: "Donnez Leur une Raison de Rester" },
+  "hmw.stage2.explanation": {
+    en: "OK so they found you. Great. Now what? They land on your website and it looks like it was built in 2014. Your social media hasn't been updated in 3 weeks. Your brand messaging says nothing specific about why you're different. They're gone in 3 seconds. Congratulations, you just paid for a click that went nowhere.",
+    es: "OK, te encontraron. Genial. Y ahora qu\u00E9? Llegan a tu sitio web y parece que se construy\u00F3 en 2014. Tus redes sociales no se han actualizado en 3 semanas. Tu mensaje de marca no dice nada espec\u00EDfico sobre por qu\u00E9 eres diferente. Se fueron en 3 segundos. Felicidades, acabas de pagar por un clic que no lleg\u00F3 a nada.",
+    fr: "OK ils vous ont trouv\u00E9. Super. Et maintenant? Ils atterrissent sur votre site et on dirait qu'il a \u00E9t\u00E9 fait en 2014. Vos r\u00E9seaux sociaux n'ont pas \u00E9t\u00E9 mis \u00E0 jour depuis 3 semaines. Votre message de marque ne dit rien de sp\u00E9cifique sur pourquoi vous \u00EAtes diff\u00E9rent. Ils sont partis en 3 secondes. F\u00E9licitations, vous venez de payer pour un clic qui n'a men\u00E9 nulle part.",
+  },
+  "hmw.stage2.services": { en: "How we fix it: Web Development, Social Media Content, Video, Branding", es: "C\u00F3mo lo arreglamos: Desarrollo Web, Contenido de Redes Sociales, Video, Branding", fr: "Comment on r\u00E8gle \u00E7a: D\u00E9veloppement Web, Contenu R\u00E9seaux Sociaux, Vid\u00E9o, Branding" },
+  "hmw.stage2.skip": { en: "Skip this stage and you're paying to drive traffic to a website that drives people away.", es: "Salta esta etapa y estar\u00E1s pagando por mandar tr\u00E1fico a un sitio web que ahuyenta a la gente.", fr: "Sautez cette \u00E9tape et vous payez pour envoyer du trafic vers un site qui fait fuir les gens." },
+
+  "hmw.stage3.title": { en: "Stage 3: Decision", es: "Etapa 3: Decisi\u00F3n", fr: "\u00C9tape 3: D\u00E9cision" },
+  "hmw.stage3.headline": { en: "Help Them Choose You Over the Competition", es: "Ay\u00FAdalos a Elegirte Sobre la Competencia", fr: "Aidez Les \u00E0 Vous Choisir Face \u00E0 la Concurrence" },
+  "hmw.stage3.explanation": {
+    en: "This is where most businesses lose. The customer is interested. They're comparing you to 2 or 3 other options RIGHT NOW. They're reading reviews. They're checking your emails. They're looking at your competitor's website. If your follow up game is weak, if you don't have retargeting ads, if your email sequences are nonexistent... you just lost a sale to someone who showed up more consistently.",
+    es: "Aqu\u00ED es donde la mayor\u00EDa de los negocios pierden. El cliente est\u00E1 interesado. Te est\u00E1 comparando con 2 o 3 opciones m\u00E1s AHORA MISMO. Est\u00E1 leyendo rese\u00F1as. Est\u00E1 revisando tus emails. Est\u00E1 viendo el sitio web de tu competencia. Si tu seguimiento es d\u00E9bil, si no tienes anuncios de retargeting, si tus secuencias de email no existen... acabas de perder una venta contra alguien que se present\u00F3 m\u00E1s consistentemente.",
+    fr: "C'est l\u00E0 que la plupart des entreprises perdent. Le client est int\u00E9ress\u00E9. Il vous compare \u00E0 2 ou 3 autres options EN CE MOMENT. Il lit les avis. Il v\u00E9rifie vos emails. Il regarde le site de votre concurrent. Si votre suivi est faible, si vous n'avez pas de retargeting, si vos s\u00E9quences email n'existent pas... vous venez de perdre une vente contre quelqu'un qui s'est montr\u00E9 plus r\u00E9guli\u00E8rement.",
+  },
+  "hmw.stage3.services": { en: "How we fix it: Email Marketing, Retargeting Ads, Review Strategy, Social Proof", es: "C\u00F3mo lo arreglamos: Email Marketing, Anuncios de Retargeting, Estrategia de Rese\u00F1as, Prueba Social", fr: "Comment on r\u00E8gle \u00E7a: Email Marketing, Retargeting, Strat\u00E9gie d'Avis, Preuve Sociale" },
+  "hmw.stage3.skip": { en: "Skip this stage and you're generating leads that never convert because your competitors follow up and you don't.", es: "Salta esta etapa y generar\u00E1s prospectos que nunca convierten porque tu competencia les da seguimiento y t\u00FA no.", fr: "Sautez cette \u00E9tape et vous g\u00E9n\u00E9rez des leads qui ne convertissent jamais parce que vos concurrents font le suivi et vous non." },
+
+  "hmw.stage4.title": { en: "Stage 4: Action", es: "Etapa 4: Acci\u00F3n", fr: "\u00C9tape 4: Action" },
+  "hmw.stage4.headline": { en: "Make It Ridiculously Easy to Say Yes", es: "Haz Que Sea Rid\u00EDculamente F\u00E1cil Decir Que S\u00ED", fr: "Rendez le Ridiculement Facile de Dire Oui" },
+  "hmw.stage4.explanation": {
+    en: "They want to buy. They're ready. And then... your booking page is confusing. Your phone number is buried on page 3. Your checkout process has 7 steps. Your contact form asks for their blood type. You'd be shocked how many businesses lose customers at the very last step just because they made it too complicated to give them money.",
+    es: "Quieren comprar. Est\u00E1n listos. Y entonces... tu p\u00E1gina de reservas es confusa. Tu n\u00FAmero de tel\u00E9fono est\u00E1 enterrado en la p\u00E1gina 3. Tu proceso de compra tiene 7 pasos. Tu formulario de contacto les pide su tipo de sangre. Te sorprender\u00EDa cu\u00E1ntos negocios pierden clientes en el \u00FAltimo paso solo porque hicieron muy complicado darles dinero.",
+    fr: "Ils veulent acheter. Ils sont pr\u00EAts. Et l\u00E0... votre page de r\u00E9servation est confuse. Votre num\u00E9ro de t\u00E9l\u00E9phone est enterr\u00E9 \u00E0 la page 3. Votre processus de paiement a 7 \u00E9tapes. Votre formulaire demande leur groupe sanguin. Vous seriez choqu\u00E9 de voir combien d'entreprises perdent des clients \u00E0 la toute derni\u00E8re \u00E9tape juste parce qu'elles ont rendu trop compliqu\u00E9 le fait de leur donner de l'argent.",
+  },
+  "hmw.stage4.services": { en: "How we fix it: Conversion Optimization, AI Chatbots, Streamlined Booking, Smart Automations", es: "C\u00F3mo lo arreglamos: Optimizaci\u00F3n de Conversi\u00F3n, Chatbots con IA, Reservas Simplificadas, Automatizaciones Inteligentes", fr: "Comment on r\u00E8gle \u00E7a: Optimisation de Conversion, Chatbots IA, R\u00E9servation Simplifi\u00E9e, Automatisations Intelligentes" },
+  "hmw.stage4.skip": { en: "Skip this stage and interested buyers give up because you made it too hard to hand you their money.", es: "Salta esta etapa y compradores interesados se rinden porque les hiciste muy dif\u00EDcil darte su dinero.", fr: "Sautez cette \u00E9tape et les acheteurs int\u00E9ress\u00E9s abandonnent parce que vous avez rendu trop difficile de vous donner leur argent." },
+
+  "hmw.gaps.title": {
+    en: "Quick Check: Where Are Your Gaps?",
+    es: "Revisi\u00F3n R\u00E1pida: D\u00F3nde Est\u00E1n Tus Huecos?",
+    fr: "V\u00E9rification Rapide: O\u00F9 Sont Vos Lacunes?",
+  },
+  "hmw.gaps.subtitle": {
+    en: "Be honest with yourself for 10 seconds. You probably already know the answer.",
+    es: "S\u00E9 honesto contigo mismo por 10 segundos. Probablemente ya sabes la respuesta.",
+    fr: "Soyez honn\u00EAte avec vous m\u00EAme pendant 10 secondes. Vous connaissez probablement d\u00E9j\u00E0 la r\u00E9ponse.",
+  },
+  "hmw.gaps.q1": { en: "Can people easily find your business online?", es: "La gente puede encontrar tu negocio f\u00E1cilmente en l\u00EDnea?", fr: "Les gens peuvent facilement trouver votre entreprise en ligne?" },
+  "hmw.gaps.q2": { en: "Does your website make people want to stay and learn more?", es: "Tu sitio web hace que la gente quiera quedarse y aprender m\u00E1s?", fr: "Votre site web donne envie aux gens de rester et d'en savoir plus?" },
+  "hmw.gaps.q3": { en: "Do you have a system to follow up with leads who aren't ready to buy yet?", es: "Tienes un sistema para darle seguimiento a prospectos que a\u00FAn no est\u00E1n listos para comprar?", fr: "Avez vous un syst\u00E8me pour suivre les prospects qui ne sont pas encore pr\u00EAts \u00E0 acheter?" },
+  "hmw.gaps.q4": { en: "Is it dead simple for someone to book, buy, or contact you?", es: "Es super f\u00E1cil para alguien reservar, comprar o contactarte?", fr: "Est ce que c'est ultra simple pour quelqu'un de r\u00E9server, acheter ou vous contacter?" },
+  "hmw.gaps.result": {
+    en: "If you answered \"no\" to any of those, you have gaps in your funnel. That's not a judgment call, that's just where the money is leaking. Want the full picture?",
+    es: "Si contestaste \"no\" a cualquiera de esas, tienes huecos en tu embudo. No es un juicio, es simplemente donde se est\u00E1 escapando el dinero. Quieres ver el panorama completo?",
+    fr: "Si vous avez r\u00E9pondu \"non\" \u00E0 l'une de ces questions, vous avez des trous dans votre entonnoir. C'est pas un jugement, c'est juste l\u00E0 o\u00F9 l'argent fuit. Vous voulez voir le tableau complet?",
+  },
+  "hmw.gaps.cta": { en: "Take the Full Marketing Assessment", es: "Toma la Evaluaci\u00F3n de Marketing Completa", fr: "Faites l'\u00C9valuation Marketing Compl\u00E8te" },
+
+  "hmw.diff.title": {
+    en: "OK, So Where Does CQM Come In?",
+    es: "OK, Entonces D\u00F3nde Entramos Nosotros?",
+    fr: "OK, Alors O\u00F9 Est Ce Que CQM Intervient?",
+  },
+  "hmw.diff.p1": {
+    en: "We cover every single stage of the funnel. Not just the sexy parts like social media and ads. ALL of it. From making sure people can find you, to making sure your website doesn't scare them away, to following up with leads, to making it easy to buy. The whole thing.",
+    es: "Cubrimos cada etapa del embudo. No solo las partes bonitas como redes sociales y anuncios. TODO. Desde asegurarnos de que te encuentren, hasta que tu sitio web no los espante, darle seguimiento a los prospectos, y hacer f\u00E1cil el comprar. Todo el paquete.",
+    fr: "On couvre chaque \u00E9tape de l'entonnoir. Pas juste les parties sexy comme les r\u00E9seaux sociaux et la pub. TOUT. De s'assurer qu'on vous trouve, \u00E0 ce que votre site ne fasse pas fuir les gens, en passant par le suivi des prospects et la simplification de l'achat. Tout le package.",
+  },
+  "hmw.diff.p2": {
+    en: "And here's the part that really matters: we don't start with tactics. We start with YOUR business. We learn your industry, your customers, your competitors, what makes you different. Then we use AI to move at a speed that would make traditional agencies sweat. When your competition outspends you, we outthink them. That's the Creative Quality difference.",
+    es: "Y aqu\u00ED est\u00E1 la parte que realmente importa: no empezamos con t\u00E1cticas. Empezamos con TU negocio. Aprendemos tu industria, tus clientes, tu competencia, qu\u00E9 te hace diferente. Luego usamos IA para movernos a una velocidad que har\u00EDa sudar a las agencias tradicionales. Cuando tu competencia te supera en presupuesto, nosotros los superamos con ideas. Esa es la diferencia de Creative Quality.",
+    fr: "Et voici la partie qui compte vraiment: on ne commence pas par les tactiques. On commence par VOTRE business. On apprend votre industrie, vos clients, vos concurrents, ce qui vous rend diff\u00E9rent. Ensuite on utilise l'IA pour bouger \u00E0 une vitesse qui ferait transpirer les agences traditionnelles. Quand la concurrence d\u00E9pense plus que vous, on les surpasse par l'id\u00E9e. C'est \u00E7a la diff\u00E9rence Creative Quality.",
+  },
+
+  "hmw.process.title": {
+    en: "Our Process: How We Actually Get It Done",
+    es: "Nuestro Proceso: C\u00F3mo Lo Hacemos Realmente",
+    fr: "Notre Processus: Comment On Fait Vraiment",
+  },
+  "hmw.process.subtitle": {
+    en: "No mystery, no smoke and mirrors. Here's exactly what happens when you work with us.",
+    es: "Sin misterio, sin humo y espejos. Esto es exactamente lo que pasa cuando trabajas con nosotros.",
+    fr: "Pas de myst\u00E8re, pas de fum\u00E9e et de miroirs. Voici exactement ce qui se passe quand vous travaillez avec nous.",
+  },
+
+  "hmw.bottom.title": {
+    en: "Ready to Fill the Gaps in Your Funnel?",
+    es: "Listo Para Llenar los Huecos en Tu Embudo?",
+    fr: "Pr\u00EAt \u00E0 Combler les Lacunes de Votre Entonnoir?",
+  },
+  "hmw.bottom.subtitle": {
+    en: "You can keep doing marketing blindfolded, or you can let us show you exactly where the leaks are and how to fix them. Your call.",
+    es: "Puedes seguir haciendo marketing con los ojos vendados, o puedes dejarnos mostrarte exactamente d\u00F3nde est\u00E1n las fugas y c\u00F3mo arreglarlas. T\u00FA decides.",
+    fr: "Vous pouvez continuer \u00E0 faire du marketing \u00E0 l'aveugle, ou nous laisser vous montrer exactement o\u00F9 sont les fuites et comment les r\u00E9parer. \u00C0 vous de voir.",
+  },
 
   // ============================================================
   // VALUE PROPS / SERVICES
@@ -230,7 +459,29 @@ export const siteTranslations: TranslationMap = {
   "footer.caseStudies": { en: "Case Studies", es: "Casos de \u00C9xito", fr: "\u00C9tudes de cas" },
   "footer.careers": { en: "Careers", es: "Carreras", fr: "Carri\u00E8res" },
 
+    // ============================================================
+  // NEWSLETTER
   // ============================================================
+  "newsletter.title": { en: "Stay in the Loop", es: "Mantente al Tanto", fr: "Restez dans la Boucle" },
+  "newsletter.subtitle": {
+    en: "The latest on AI, marketing, and business. No spam, just the good stuff.",
+    es: "Lo último en IA, marketing y negocios. Nada de spam, solo lo bueno.",
+    fr: "Le dernier cri en IA, marketing et business. Pas de spam, que du bon.",
+  },
+  "newsletter.placeholder": { en: "Your email", es: "Tu email", fr: "Votre email" },
+  "newsletter.submit": { en: "Subscribe", es: "Suscribirse", fr: "S'abonner" },
+  "newsletter.success": {
+    en: "You're in! Check your inbox (and maybe spam, we won't judge).",
+    es: "¡Ya estás dentro! Revisa tu bandeja de entrada (y tal vez spam, no juzgamos).",
+    fr: "Vous êtes inscrit! Vérifiez votre boîte de réception (et peut être les spams, on ne juge pas).",
+  },
+  "newsletter.error": {
+    en: "Something went wrong. Try again?",
+    es: "Algo salió mal. ¿Intentar de nuevo?",
+    fr: "Quelque chose s'est mal passé. Réessayer?",
+  },
+
+// ============================================================
   // CONTACT FORM
   // ============================================================
   "contact.pageTitle": { en: "Get in Touch", es: "Cont\u00E1ctenos", fr: "Contactez-nous" },
@@ -330,15 +581,17 @@ export const siteTranslations: TranslationMap = {
   // ============================================================
   // ABOUT PAGE
   // ============================================================
-  "about.title": { en: "Our Story", es: "Nuestra Historia", fr: "Notre histoire" },
+  "about.title": { en: "About Us", es: "Sobre Nosotros", fr: "\u00C0 propos" },
   "about.values": { en: "Core Values", es: "Valores Fundamentales", fr: "Nos valeurs" },
   "about.team": { en: "Leadership", es: "Liderazgo", fr: "Direction" },
   "about.badge": { en: "About Creative Quality Marketing", es: "Acerca de Creative Quality Marketing", fr: "\u00C0 propos de Creative Quality Marketing" },
-  "about.heading": { en: "Real People. Real Strategy. Really Good at What We Do.", es: "Personas Reales. Estrategia Real. Realmente Buenos en lo que Hacemos.", fr: "De Vraies Personnes. De la Vraie Strat\u00E9gie. Vraiment Bons dans Ce Qu\u2019on Fait." },
-  "about.intro": { en: "We started by helping small businesses that needed better marketing but did not have big agency budgets. That is still what we do, just with better tools now. AI makes us faster. Experience makes us smarter. And we still pick up the phone when you call.", es: "Empezamos ayudando a peque\u00F1os negocios que necesitaban mejor marketing pero no ten\u00EDan presupuestos de agencias grandes. Eso sigue siendo lo que hacemos, solo que con mejores herramientas ahora. La IA nos hace m\u00E1s r\u00E1pidos. La experiencia nos hace m\u00E1s inteligentes. Y seguimos contestando el tel\u00E9fono cuando llamas.", fr: "On a commenc\u00E9 en aidant des petites entreprises qui avaient besoin de meilleur marketing mais pas de gros budgets d\u2019agence. C\u2019est toujours ce qu\u2019on fait, juste avec de meilleurs outils. L\u2019IA nous rend plus rapides. L\u2019exp\u00E9rience nous rend plus malins. Et on d\u00E9croche toujours quand vous appelez." },
-  "about.story.title": { en: "Our Story", es: "Nuestra Historia", fr: "Notre histoire" },
-  "about.story.p1": { en: "CQM started in the Hudson Valley, helping local businesses that were tired of paying for marketing that did not work. We built websites, ran campaigns, created content, and actually showed up. Word spread, and now we work with businesses across the country.", es: "CQM empez\u00F3 en el Hudson Valley, ayudando a negocios locales que estaban cansados de pagar por marketing que no funcionaba. Construimos sitios web, lanzamos campa\u00F1as, creamos contenido y realmente aparecimos. La voz se corri\u00F3, y ahora trabajamos con negocios en todo el pa\u00EDs.", fr: "CQM a commenc\u00E9 dans le Hudson Valley, en aidant des entreprises locales fatigu\u00E9es de payer pour du marketing qui ne marchait pas. On a cr\u00E9\u00E9 des sites, lanc\u00E9 des campagnes, produit du contenu et on s\u2019est vraiment montr\u00E9. Le bouche-\u00E0-oreille a fait le reste." },
-  "about.story.p2": { en: "Today we combine proven strategy with AI-powered tools to help you grow without making the whole thing feel overwhelming. We are your bridge between where you are now and where you want to be.", es: "Hoy combinamos estrategia probada con herramientas de IA para ayudarte a crecer sin que todo se sienta abrumador. Somos tu puente entre donde est\u00E1s ahora y donde quieres estar.", fr: "Aujourd\u2019hui on combine strat\u00E9gie \u00E9prouv\u00E9e et outils IA pour vous aider \u00E0 grandir sans que tout devienne accablant. On est votre pont entre o\u00F9 vous \u00EAtes et o\u00F9 vous voulez aller." },
+  "about.heading": { en: "Meet the Team Behind the Strategy", es: "Conoce al Equipo Detras de la Estrategia", fr: "Rencontrez l\u2019\u00e9quipe derri\u00e8re la strat\u00e9gie" },
+  "about.intro": { en: "We are a small team that genuinely likes what we do. We have been building campaigns, solving problems, and nerding out over analytics since before AI made it trendy. Now we have even better tools, but the people are still the secret weapon.", es: "Somos un equipo peque\u00F1o al que genuinamente le gusta lo que hace. Hemos estado construyendo campa\u00F1as, resolviendo problemas y obsesion\u00E1ndonos con anal\u00EDticas desde antes de que la IA lo hiciera popular. Ahora tenemos mejores herramientas, pero las personas siguen siendo el arma secreta.", fr: "Nous sommes une petite \u00e9quipe qui aime sinc\u00e8rement ce qu\u2019elle fait. On construit des campagnes, on r\u00e9sout des probl\u00e8mes et on est passionn\u00e9s par les donn\u00e9es depuis bien avant que l\u2019IA ne rende tout \u00e7a tendance. On a de meilleurs outils maintenant, mais les gens restent notre arme secr\u00e8te." },
+  "about.story.title": { en: "Who We Are", es: "Quienes Somos", fr: "Qui nous sommes" },
+  "about.story.p1": { en: "CQM started in the Hudson Valley because Cesar got tired of watching small businesses get burned by agencies that did not care. So he built one that does. We actually show up, we learn your business, and we treat your budget like it is our own money.", es: "CQM empez\u00F3 en el Hudson Valley porque Cesar se cans\u00F3 de ver a peque\u00F1os negocios quemados por agencias que no les importaba. As\u00ED que construy\u00F3 una que s\u00ED. Realmente aparecemos, aprendemos tu negocio y tratamos tu presupuesto como si fuera nuestro dinero.", fr: "CQM a commenc\u00e9 dans le Hudson Valley parce que Cesar en avait assez de voir des petites entreprises se faire avoir par des agences qui s\u2019en fichaient. Alors il en a cr\u00e9\u00e9 une qui s\u2019en soucie. On se pr\u00e9sente vraiment, on apprend votre business, et on traite votre budget comme si c\u2019\u00e9tait notre argent." },
+  "about.story.p2": { en: "We were using AI before it was cool. Seriously. While other agencies were still figuring out what ChatGPT was, we were already building AI powered workflows into our campaigns. That head start means our team knows what actually works and what is just hype.", es: "Est\u00E1bamos usando IA antes de que fuera cool. En serio. Mientras otras agencias a\u00FAn intentaban entender qu\u00E9 era ChatGPT, nosotros ya est\u00E1bamos integrando flujos de trabajo con IA en nuestras campa\u00F1as. Esa ventaja significa que nuestro equipo sabe qu\u00E9 funciona y qu\u00E9 es solo ruido.", fr: "On utilisait l\u2019IA avant que ce soit cool. S\u00e9rieusement. Pendant que d\u2019autres agences essayaient encore de comprendre ChatGPT, on int\u00e9grait d\u00e9j\u00e0 des workflows IA dans nos campagnes. Cette avance signifie que notre \u00e9quipe sait ce qui marche et ce qui n\u2019est que du battage." },
+  "about.story.p3": { en: "Curious about how we actually put it all together?", es: "Tienes curiosidad de c\u00F3mo armamos todo esto?", fr: "Curieux de savoir comment on met tout \u00e7a en place\u00a0?" },
+  "about.story.processLink": { en: "See how our process works.", es: "Mira c\u00F3mo funciona nuestro proceso.", fr: "D\u00e9couvrez comment fonctionne notre processus." },
   "about.team.title": { en: "Our Leadership Team", es: "Nuestro Equipo de Liderazgo", fr: "Notre \u00E9quipe de direction" },
   "about.team.cesar.role": { en: "Founder & CEO", es: "Fundador y CEO", fr: "Fondateur et PDG" },
   "about.team.cesar.summary": { en: "Digital marketer, branding strategist, web designer/developer, and growth-focused campaign leader.", es: "Mercad\u00f3logo digital, estratega de marca, dise\u00f1ador/desarrollador web y l\u00edder de campa\u00f1as enfocadas en crecimiento.", fr: "Sp\u00e9cialiste du marketing num\u00e9rique, strat\u00e8ge de marque, designer/d\u00e9veloppeur web et leader de campagnes ax\u00e9 sur la croissance." },
@@ -362,8 +615,10 @@ export const siteTranslations: TranslationMap = {
   "about.value.problemSolving.desc": { en: "There is always a solution. We research, test, and build until we find it.", es: "Siempre hay una soluci\u00F3n. Investigamos, probamos y construimos hasta encontrarla.", fr: "Il y a toujours une solution. Nous recherchons, testons et construisons jusqu\u2019\u00E0 la trouver." },
   "about.value.balance": { en: "Balance", es: "Equilibrio", fr: "\u00C9quilibre" },
   "about.value.balance.desc": { en: "Work hard, play harder. We make the growth journey productive and enjoyable.", es: "Trabaja duro, disfruta m\u00E1s. Hacemos que el viaje de crecimiento sea productivo y agradable.", fr: "Travailler dur, s\u2019amuser encore plus. Nous rendons le parcours de croissance productif et agr\u00E9able." },
-  "about.cta.title": { en: "Ready to Build With Our Team?", es: "\u00BFListo para construir con nuestro equipo?", fr: "Pr\u00EAt \u00E0 construire avec notre \u00E9quipe ?" },
-  "about.cta.desc": { en: "We\u2019ll map the right strategy for your stage and show how AI can accelerate results without sacrificing quality.", es: "Trazaremos la estrategia correcta para su etapa y mostraremos c\u00F3mo la IA puede acelerar resultados sin sacrificar calidad.", fr: "Nous tracerons la bonne strat\u00E9gie pour votre stade et montrerons comment l\u2019IA peut acc\u00E9l\u00E9rer les r\u00E9sultats sans sacrifier la qualit\u00E9." },
+  "about.cta.title": { en: "Want to See How We Work?", es: "Quieres ver c\u00F3mo trabajamos?", fr: "Envie de voir comment on travaille\u00a0?" },
+  "about.cta.desc": { en: "Learn how we learn your business first, then build a strategy that actually fits. Or just say hi. We are friendly, we promise.", es: "Descubre c\u00F3mo primero aprendemos tu negocio y luego construimos una estrategia que realmente encaja. O simplemente sal\u00FAdanos. Somos amigables, lo prometemos.", fr: "D\u00e9couvrez comment on apprend d\u2019abord votre business, puis on construit une strat\u00e9gie qui correspond vraiment. Ou dites juste bonjour. On est sympas, promis." },
+  "about.cta.seeProcess": { en: "See Our Process", es: "Ver Nuestro Proceso", fr: "Voir notre processus" },
+  "about.cta.getInTouch": { en: "Get in Touch", es: "Contactarnos", fr: "Nous contacter" },
   "about.cta.exploreServices": { en: "Explore Services", es: "Explorar Servicios", fr: "Explorer les services" },
 
   // ============================================================
@@ -466,6 +721,27 @@ export const siteTranslations: TranslationMap = {
   "serviceDetail.pricingCTA": { en: "Ready to see what this looks like for you?", es: "Listo para ver c\u00f3mo se ve esto para ti?", fr: "Pr\u00eat \u00e0 voir \u00e0 quoi cela ressemble pour vous\u00a0?" },
   "serviceDetail.pricingCTADesc": { en: "Build your own proposal in minutes. Pick the services you need, see real pricing, and get a custom quote.", es: "Crea tu propia propuesta en minutos. Elige los servicios que necesitas, ve precios reales y obt\u00e9n una cotizaci\u00f3n personalizada.", fr: "Cr\u00e9ez votre proposition en minutes. Choisissez les services, consultez les tarifs et obtenez un devis personnalis\u00e9." },
 
+  // Funnel context
+  "serviceDetail.funnelContext.title": { en: "Where This Fits in Your Marketing Funnel", es: "D\u00f3nde Encaja Esto en Tu Embudo de Marketing", fr: "O\u00f9 Cela Se Situe dans Votre Entonnoir Marketing" },
+  "serviceDetail.funnelContext.link": { en: "See the full marketing funnel", es: "Ver el embudo de marketing completo", fr: "Voir l\u2019entonnoir marketing complet" },
+  "serviceDetail.funnel.awareness": { en: "Awareness", es: "Conciencia", fr: "Notori\u00e9t\u00e9" },
+  "serviceDetail.funnel.interest": { en: "Interest", es: "Inter\u00e9s", fr: "Int\u00e9r\u00eat" },
+  "serviceDetail.funnel.decision": { en: "Decision", es: "Decisi\u00f3n", fr: "D\u00e9cision" },
+  "serviceDetail.funnel.action": { en: "Action", es: "Acci\u00f3n", fr: "Action" },
+
+  // Cross-sell
+  "serviceDetail.crossSell.title": { en: "This Is Only One Piece of the Puzzle", es: "Esto Es Solo Una Pieza del Rompecabezas", fr: "Ce N\u2019est Qu\u2019une Pi\u00e8ce du Puzzle" },
+  "serviceDetail.crossSell.subtitle": { en: "This service works even better when combined with...", es: "Este servicio funciona a\u00fan mejor cuando se combina con...", fr: "Ce service fonctionne encore mieux combin\u00e9 avec..." },
+  "serviceDetail.crossSell.learnMore": { en: "Learn more", es: "Saber m\u00e1s", fr: "En savoir plus" },
+  "serviceDetail.crossSell.web": { en: "They found you. Now give them a site worth staying on.", es: "Te encontraron. Ahora dales un sitio que valga la pena.", fr: "Ils vous ont trouv\u00e9. Donnez-leur un site qui vaut le d\u00e9tour." },
+  "serviceDetail.crossSell.seo": { en: "Get found by people already searching for what you do.", es: "Que te encuentren las personas que ya buscan lo que haces.", fr: "Faites-vous trouver par ceux qui cherchent d\u00e9j\u00e0 ce que vous faites." },
+  "serviceDetail.crossSell.paidAds": { en: "Get in front of the right people right now.", es: "Ponte frente a las personas correctas ahora mismo.", fr: "Mettez-vous devant les bonnes personnes d\u00e8s maintenant." },
+  "serviceDetail.crossSell.socialMedia": { en: "Build an audience that actually cares about your brand.", es: "Construye una audiencia que realmente se interese en tu marca.", fr: "Construisez une audience qui s\u2019int\u00e9resse vraiment \u00e0 votre marque." },
+  "serviceDetail.crossSell.emailMarketing": { en: "Turn leads into customers with emails they actually open.", es: "Convierte leads en clientes con emails que realmente abren.", fr: "Transformez vos prospects en clients avec des emails qu\u2019ils ouvrent vraiment." },
+  "serviceDetail.crossSell.video": { en: "Content that people actually watch and share.", es: "Contenido que la gente realmente ve y comparte.", fr: "Du contenu que les gens regardent et partagent vraiment." },
+  "serviceDetail.crossSell.aiDev": { en: "Custom AI systems that do the boring stuff for you.", es: "Sistemas de IA personalizados que hacen lo aburrido por ti.", fr: "Des syst\u00e8mes IA personnalis\u00e9s qui font le travail ennuyeux pour vous." },
+  "serviceDetail.crossSell.aiInt": { en: "Plug AI into your existing tools without breaking anything.", es: "Conecta IA a tus herramientas actuales sin romper nada.", fr: "Branchez l\u2019IA \u00e0 vos outils existants sans rien casser." },
+
   // ============================================================
   // WORK / CASE STUDIES PAGE
   // ============================================================
@@ -476,14 +752,12 @@ export const siteTranslations: TranslationMap = {
     fr: "Des r\u00E9sultats r\u00E9els pour de vraies entreprises.",
   },
   "work.industries": { en: "Industries We Serve", es: "Industrias que Servimos", fr: "Industries desservies" },
-  "work.badge": { en: "Client Spotlights", es: "Casos de \u00c9xito", fr: "\u00c9tudes de cas" },
-  "work.heading": { en: "Real Results for Real Businesses", es: "Resultados Reales para Negocios Reales", fr: "Des r\u00e9sultats r\u00e9els pour de vraies entreprises" },
-  "work.description": { en: "We work with businesses across all kinds of industries. Here is what we have been up to and the results we have delivered.", es: "Trabajamos con negocios de todo tipo de industrias. Esto es lo que hemos estado haciendo y los resultados que hemos entregado.", fr: "On travaille avec des entreprises de toutes sortes d\u2019industries. Voici ce qu\u2019on a fait et les r\u00e9sultats qu\u2019on a livr\u00e9s." },
-  "work.aiAdvantage": { en: "The AI Advantage", es: "La Ventaja de la IA", fr: "L\u2019avantage de l\u2019IA" },
-  "work.ai1": { en: "AI-assisted content creation reduces production time by up to 60%", es: "La creaci\u00f3n de contenido asistida por IA reduce el tiempo de producci\u00f3n hasta un 60%", fr: "La cr\u00e9ation de contenu assist\u00e9e par l\u2019IA r\u00e9duit le temps de production jusqu\u2019\u00e0 60\u00a0%" },
-  "work.ai2": { en: "Automated reporting and analytics free up hours of manual work each week", es: "Los reportes y an\u00e1lisis automatizados liberan horas de trabajo manual cada semana", fr: "Les rapports et analyses automatis\u00e9s lib\u00e8rent des heures de travail manuel chaque semaine" },
-  "work.ai3": { en: "Smart audience targeting improves ad performance and reduces wasted spend", es: "La segmentaci\u00f3n inteligente de audiencia mejora el rendimiento de anuncios y reduce el gasto innecesario", fr: "Le ciblage intelligent de l\u2019audience am\u00e9liore les performances publicitaires et r\u00e9duit les d\u00e9penses inutiles" },
-  "work.ai4": { en: "Predictive optimization identifies opportunities before they become obvious", es: "La optimizaci\u00f3n predictiva identifica oportunidades antes de que sean obvias", fr: "L\u2019optimisation pr\u00e9dictive identifie les opportunit\u00e9s avant qu\u2019elles ne deviennent \u00e9videntes" },
+  "work.badge": { en: "Our Work", es: "Nuestro Trabajo", fr: "Nos travaux" },
+  "work.heading": { en: "Every Business Is Different. We Actually Act Like It.", es: "Cada Negocio Es Diferente. Nosotros Realmente Actuamos As\u00ed.", fr: "Chaque entreprise est diff\u00e9rente. On agit vraiment en cons\u00e9quence." },
+  "work.description": { en: "We do not copy and paste strategies from one client to the next. Every business gets its own deep dive. Here is what that looks like in practice and what we discovered along the way.", es: "No copiamos y pegamos estrategias de un cliente al siguiente. Cada negocio recibe su propia inmersion profunda. Esto es c\u00f3mo se ve en la pr\u00e1ctica y lo que descubrimos en el camino.", fr: "On ne copie pas les strat\u00e9gies d\u2019un client \u00e0 l\u2019autre. Chaque entreprise re\u00e7oit sa propre analyse approfondie. Voici \u00e0 quoi \u00e7a ressemble en pratique et ce qu\u2019on a d\u00e9couvert en cours de route." },
+  "work.approach.title": { en: "Our Approach: Learn First, Build Second", es: "Nuestro Enfoque: Primero Aprender, Luego Construir", fr: "Notre approche\u00a0: apprendre d\u2019abord, construire ensuite" },
+  "work.approach.desc": { en: "Before we touch a single ad or write a single post, we learn your business. Your customers, your competitors, what makes you different, and where the real opportunities are hiding. Most agencies skip this part. We think it is the most important part.", es: "Antes de tocar un solo anuncio o escribir una sola publicaci\u00f3n, aprendemos tu negocio. Tus clientes, tus competidores, qu\u00e9 te hace diferente y d\u00f3nde se esconden las oportunidades reales. La mayor\u00eda de las agencias se saltan esta parte. Nosotros creemos que es la parte m\u00e1s importante.", fr: "Avant de toucher \u00e0 une seule pub ou d\u2019\u00e9crire un seul post, on apprend votre business. Vos clients, vos concurrents, ce qui vous rend diff\u00e9rent et o\u00f9 se cachent les vraies opportunit\u00e9s. La plupart des agences sautent cette \u00e9tape. On pense que c\u2019est la plus importante." },
+  "work.discovered": { en: "What We Discovered", es: "Lo Que Descubrimos", fr: "Ce qu\u2019on a d\u00e9couvert" },
   "work.industries.title": { en: "Industries We Work With", es: "Industrias con las que Trabajamos", fr: "Industries avec lesquelles nous travaillons" },
   "work.ind.health": { en: "Health & Wellness", es: "Salud y Bienestar", fr: "Sant\u00e9 et bien-\u00eatre" },
   "work.ind.beauty": { en: "Beauty & Skincare", es: "Belleza y Cuidado de la Piel", fr: "Beaut\u00e9 et soins de la peau" },
@@ -493,8 +767,9 @@ export const siteTranslations: TranslationMap = {
   "work.ind.media": { en: "Media & Entertainment", es: "Medios y Entretenimiento", fr: "M\u00e9dias et divertissement" },
   "work.ind.retail": { en: "Retail", es: "Comercio Minorista", fr: "Commerce de d\u00e9tail" },
   "work.ind.ecommerce": { en: "E-Commerce", es: "Comercio Electr\u00f3nico", fr: "Commerce en ligne" },
-  "work.cta.title": { en: "Ready to Start Your Project?", es: "\u00bfListo para Iniciar su Proyecto?", fr: "Pr\u00eat \u00e0 d\u00e9marrer votre projet\u00a0?" },
-  "work.cta.desc": { en: "Let\u2019s discuss how we can help your business grow with a tailored marketing strategy.", es: "Hablemos de c\u00f3mo podemos ayudar a su negocio a crecer con una estrategia de marketing personalizada.", fr: "Discutons de la fa\u00e7on dont nous pouvons aider votre entreprise \u00e0 cro\u00eetre avec une strat\u00e9gie marketing sur mesure." },
+  "work.cta.title": { en: "Want to See How We Would Approach YOUR Business?", es: "Quieres ver c\u00f3mo abordar\u00edamos TU negocio?", fr: "Envie de voir comment on aborderait VOTRE entreprise\u00a0?" },
+  "work.cta.desc": { en: "Every client starts with a deep dive. We learn what makes your business tick before we recommend a single thing. That is the CQM difference.", es: "Cada cliente comienza con una inmersion profunda. Aprendemos qu\u00e9 hace funcionar tu negocio antes de recomendar algo. Esa es la diferencia CQM.", fr: "Chaque client commence par une analyse approfondie. On apprend ce qui fait tourner votre business avant de recommander quoi que ce soit. C\u2019est \u00e7a, la diff\u00e9rence CQM." },
+  "work.cta.seeProcess": { en: "See How It Works", es: "Ver C\u00f3mo Funciona", fr: "Voir comment \u00e7a marche" },
   "work.cta.startProject": { en: "Start a Project", es: "Iniciar un Proyecto", fr: "D\u00e9marrer un projet" },
   "work.cta.exploreServices": { en: "Explore Services", es: "Explorar Servicios", fr: "Explorer les services" },
 
@@ -504,31 +779,37 @@ export const siteTranslations: TranslationMap = {
   "work.spot.asm.s2": { en: "Local SEO", es: "SEO local", fr: "SEO local" },
   "work.spot.asm.s3": { en: "Social content", es: "Contenido social", fr: "Contenu social" },
   "work.spot.asm.impact": { en: "Created a clearer online presence and a stronger patient acquisition flow.", es: "Cre\u00f3 una presencia en l\u00ednea m\u00e1s clara y un flujo de adquisici\u00f3n de pacientes m\u00e1s fuerte.", fr: "A cr\u00e9\u00e9 une pr\u00e9sence en ligne plus claire et un flux d\u2019acquisition de patients plus fort." },
+  "work.spot.asm.discovered": { en: "Their best patients came from hyper local searches most agencies would have ignored. We optimized for those specific terms and the phone started ringing.", es: "Sus mejores pacientes ven\u00edan de b\u00fasquedas hiperlocales que la mayor\u00eda de agencias habr\u00edan ignorado. Optimizamos para esos t\u00e9rminos espec\u00edficos y el tel\u00e9fono empez\u00f3 a sonar.", fr: "Leurs meilleurs patients venaient de recherches hyper locales que la plupart des agences auraient ignor\u00e9es. On a optimis\u00e9 pour ces termes sp\u00e9cifiques et le t\u00e9l\u00e9phone s\u2019est mis \u00e0 sonner." },
   "work.spot.sagrah.focus": { en: "E-commerce growth and content consistency", es: "Crecimiento de e-commerce y consistencia de contenido", fr: "Croissance e-commerce et coh\u00e9rence du contenu" },
   "work.spot.sagrah.s1": { en: "Website support", es: "Soporte web", fr: "Support du site" },
   "work.spot.sagrah.s2": { en: "Email campaigns", es: "Campa\u00f1as de email", fr: "Campagnes e-mail" },
   "work.spot.sagrah.s3": { en: "Creative production", es: "Producci\u00f3n creativa", fr: "Production cr\u00e9ative" },
   "work.spot.sagrah.impact": { en: "Built a more consistent launch cadence with better conversion-focused content.", es: "Construy\u00f3 una cadencia de lanzamiento m\u00e1s consistente con contenido enfocado en conversi\u00f3n.", fr: "A construit une cadence de lancement plus r\u00e9guli\u00e8re avec du contenu ax\u00e9 sur la conversion." },
+  "work.spot.sagrah.discovered": { en: "Their audience responded way more to behind the scenes content than polished product shots. We shifted the content mix and engagement doubled.", es: "Su audiencia respond\u00eda mucho m\u00e1s al contenido detr\u00e1s de escenas que a fotos pulidas de productos. Cambiamos la mezcla de contenido y el engagement se duplic\u00f3.", fr: "Leur audience r\u00e9agissait bien plus au contenu en coulisses qu\u2019aux photos produits soign\u00e9es. On a ajust\u00e9 le mix de contenu et l\u2019engagement a doubl\u00e9." },
   "work.spot.urban.focus": { en: "Local demand capture", es: "Captura de demanda local", fr: "Capture de la demande locale" },
   "work.spot.urban.s1": { en: "SEO support", es: "Soporte SEO", fr: "Support SEO" },
   "work.spot.urban.s2": { en: "Paid search", es: "B\u00fasqueda pagada", fr: "Recherche payante" },
   "work.spot.urban.s3": { en: "Landing page optimization", es: "Optimizaci\u00f3n de landing pages", fr: "Optimisation des pages d\u2019atterrissage" },
   "work.spot.urban.impact": { en: "Improved visibility for high-intent local searches and quote requests.", es: "Mejor\u00f3 la visibilidad para b\u00fasquedas locales de alta intenci\u00f3n y solicitudes de cotizaci\u00f3n.", fr: "Am\u00e9lioration de la visibilit\u00e9 pour les recherches locales \u00e0 forte intention et les demandes de devis." },
+  "work.spot.urban.discovered": { en: "Competitors were spending big on broad keywords. We found the exact long tail searches homeowners actually use and captured that demand at a fraction of the cost.", es: "Los competidores gastaban mucho en palabras clave amplias. Encontramos las b\u00fasquedas exactas de cola larga que los due\u00f1os de casa realmente usan y capturamos esa demanda a una fracci\u00f3n del costo.", fr: "Les concurrents d\u00e9pensaient gros sur des mots cl\u00e9s larges. On a trouv\u00e9 les recherches longue tra\u00eene exactes que les propri\u00e9taires utilisent vraiment et on a captur\u00e9 cette demande pour une fraction du co\u00fbt." },
   "work.spot.hvp.focus": { en: "Media production and audience growth", es: "Producci\u00f3n de medios y crecimiento de audiencia", fr: "Production m\u00e9diatique et croissance d\u2019audience" },
   "work.spot.hvp.s1": { en: "Studio production", es: "Producci\u00f3n en estudio", fr: "Production en studio" },
   "work.spot.hvp.s2": { en: "Video edits", es: "Edici\u00f3n de video", fr: "Montage vid\u00e9o" },
   "work.spot.hvp.s3": { en: "Distribution workflows", es: "Flujos de distribuci\u00f3n", fr: "Flux de distribution" },
   "work.spot.hvp.impact": { en: "Expanded content output and streamlined publishing across major channels.", es: "Expandi\u00f3 la producci\u00f3n de contenido y optimiz\u00f3 la publicaci\u00f3n en los principales canales.", fr: "\u00c9largi la production de contenu et rationalis\u00e9 la publication sur les principaux canaux." },
+  "work.spot.hvp.discovered": { en: "They were sitting on hours of unreleased footage. We built a repurposing workflow that turned one recording session into weeks of content across multiple platforms.", es: "Ten\u00edan horas de material sin publicar. Construimos un flujo de reutilizaci\u00f3n que convirti\u00f3 una sesi\u00f3n de grabaci\u00f3n en semanas de contenido en m\u00faltiples plataformas.", fr: "Ils avaient des heures de m\u00e9trages non publi\u00e9s. On a cr\u00e9\u00e9 un workflow de r\u00e9utilisation qui transformait une session d\u2019enregistrement en des semaines de contenu sur plusieurs plateformes." },
   "work.spot.mark.focus": { en: "Brand storytelling and campaign content", es: "Narrativa de marca y contenido de campa\u00f1as", fr: "Storytelling de marque et contenu de campagne" },
   "work.spot.mark.s1": { en: "Photography", es: "Fotograf\u00eda", fr: "Photographie" },
   "work.spot.mark.s2": { en: "Video production", es: "Producci\u00f3n de video", fr: "Production vid\u00e9o" },
   "work.spot.mark.s3": { en: "Social campaign assets", es: "Activos de campa\u00f1as sociales", fr: "Actifs de campagnes sociales" },
   "work.spot.mark.impact": { en: "Delivered reusable media assets for ongoing audience engagement.", es: "Entreg\u00f3 activos de medios reutilizables para el engagement continuo de la audiencia.", fr: "Livr\u00e9 des actifs m\u00e9diatiques r\u00e9utilisables pour un engagement d\u2019audience continu." },
+  "work.spot.mark.discovered": { en: "His personal story was the most powerful marketing asset he had but he was not using it. We built the whole campaign around authentic storytelling and it resonated immediately.", es: "Su historia personal era el activo de marketing m\u00e1s poderoso que ten\u00eda pero no lo estaba usando. Construimos toda la campa\u00f1a alrededor de storytelling aut\u00e9ntico y reson\u00f3 inmediatamente.", fr: "Son histoire personnelle \u00e9tait son atout marketing le plus puissant mais il ne l\u2019utilisait pas. On a construit toute la campagne autour du storytelling authentique et \u00e7a a r\u00e9sonn\u00e9 imm\u00e9diatement." },
   "work.spot.wreck.focus": { en: "Performance-focused digital presence", es: "Presencia digital enfocada en rendimiento", fr: "Pr\u00e9sence num\u00e9rique ax\u00e9e sur la performance" },
   "work.spot.wreck.s1": { en: "Website support", es: "Soporte web", fr: "Support du site" },
   "work.spot.wreck.s2": { en: "Paid ads", es: "Anuncios pagados", fr: "Publicit\u00e9 payante" },
   "work.spot.wreck.s3": { en: "Content strategy", es: "Estrategia de contenido", fr: "Strat\u00e9gie de contenu" },
   "work.spot.wreck.impact": { en: "Improved campaign clarity with a stronger conversion path for prospects.", es: "Mejor\u00f3 la claridad de campa\u00f1as con un camino de conversi\u00f3n m\u00e1s fuerte para prospectos.", fr: "Am\u00e9lioration de la clart\u00e9 des campagnes avec un parcours de conversion plus solide pour les prospects." },
+  "work.spot.wreck.discovered": { en: "Their website was getting traffic but nobody was converting. The issue was not the ads, it was the landing experience. We rebuilt the conversion path and results followed.", es: "Su sitio web recib\u00eda tr\u00e1fico pero nadie convert\u00eda. El problema no eran los anuncios, era la experiencia de landing. Reconstruimos el camino de conversi\u00f3n y los resultados siguieron.", fr: "Leur site recevait du trafic mais personne ne convertissait. Le probl\u00e8me n\u2019\u00e9tait pas les pubs, c\u2019\u00e9tait l\u2019exp\u00e9rience d\u2019atterrissage. On a reconstruit le parcours de conversion et les r\u00e9sultats ont suivi." },
 
   // ============================================================
   // STUDIO PAGE
@@ -626,9 +907,17 @@ export const siteTranslations: TranslationMap = {
   // RESOURCES PAGE
   // ============================================================
   "resources.pageTitle": { en: "Resources & Tools", es: "Recursos y Herramientas", fr: "Ressources et outils" },
-  "resources.badge": { en: "Resources & Tools", es: "Recursos y Herramientas", fr: "Ressources et outils" },
-  "resources.heading": { en: "Guides, Tools, and Insights to Help You Grow", es: "Gu\u00edas, Herramientas y Perspectivas para Ayudarte a Crecer", fr: "Guides, outils et perspectives pour vous aider \u00e0 cro\u00eetre" },
-  "resources.description": { en: "Practical resources built from real campaign experience. Whether you\u2019re just starting out or scaling your marketing, these tools will help you move faster.", es: "Recursos pr\u00e1cticos construidos a partir de experiencia real en campa\u00f1as. Ya sea que est\u00e9s comenzando o escalando tu marketing, estas herramientas te ayudar\u00e1n a avanzar m\u00e1s r\u00e1pido.", fr: "Ressources pratiques issues d\u2019une exp\u00e9rience r\u00e9elle de campagne. Que vous d\u00e9butiez ou d\u00e9veloppiez votre marketing, ces outils vous aideront \u00e0 avancer plus vite." },
+  "resources.badge": { en: "Learn & Grow", es: "Aprende y Crece", fr: "Apprendre et grandir" },
+  "resources.heading": { en: "Level Up Your Marketing Knowledge", es: "Eleva tu Conocimiento de Marketing", fr: "\u00c9levez vos connaissances en marketing" },
+  "resources.description": { en: "Read our latest thinking on AI, marketing strategy, and growing a business without burning cash. Plus tools we actually use and recommend.", es: "Lee nuestras \u00faltimas ideas sobre IA, estrategia de marketing y c\u00f3mo hacer crecer un negocio sin quemar dinero. Adem\u00e1s, herramientas que realmente usamos y recomendamos.", fr: "Lisez nos derni\u00e8res r\u00e9flexions sur l\u2019IA, la strat\u00e9gie marketing et la croissance d\u2019une entreprise sans br\u00fbler de l\u2019argent. Plus les outils qu\u2019on utilise et recommande vraiment." },
+  "resources.blog.badge": { en: "Latest Content", es: "\u00daltimo Contenido", fr: "Dernier contenu" },
+  "resources.blog.title": { en: "The CQM Blog", es: "El Blog de CQM", fr: "Le blog CQM" },
+  "resources.blog.desc": { en: "AI tips, marketing breakdowns, business growth strategies, and the occasional hot take. Written by people who actually run campaigns, not just write about them.", es: "Consejos de IA, an\u00e1lisis de marketing, estrategias de crecimiento empresarial y alguna que otra opini\u00f3n picante. Escrito por personas que realmente ejecutan campa\u00f1as, no solo escriben sobre ellas.", fr: "Astuces IA, analyses marketing, strat\u00e9gies de croissance et quelques prises de position. \u00c9crit par des gens qui g\u00e8rent vraiment des campagnes, pas juste qui \u00e9crivent dessus." },
+  "resources.blog.cta": { en: "Read the Blog", es: "Leer el Blog", fr: "Lire le blog" },
+  "resources.hmw.badge": { en: "Free Guide", es: "Gu\u00eda Gratuita", fr: "Guide gratuit" },
+  "resources.hmw.title": { en: "How Marketing Actually Works", es: "C\u00f3mo Funciona Realmente el Marketing", fr: "Comment le marketing fonctionne vraiment" },
+  "resources.hmw.desc": { en: "Most businesses get sold tactics without understanding the strategy behind them. This guide breaks down how smart marketing actually works so you can make better decisions whether you hire us or not.", es: "A la mayor\u00eda de negocios les venden t\u00e1cticas sin entender la estrategia detr\u00e1s. Esta gu\u00eda explica c\u00f3mo funciona realmente el marketing inteligente para que puedas tomar mejores decisiones, nos contrates o no.", fr: "La plupart des entreprises ach\u00e8tent des tactiques sans comprendre la strat\u00e9gie derri\u00e8re. Ce guide explique comment le marketing intelligent fonctionne vraiment pour que vous puissiez prendre de meilleures d\u00e9cisions, que vous nous engagiez ou non." },
+  "resources.hmw.cta": { en: "Learn How It Works", es: "Aprende C\u00f3mo Funciona", fr: "D\u00e9couvrez comment \u00e7a marche" },
   "resources.type.playbook": { en: "Playbook", es: "Manual", fr: "Guide pratique" },
   "resources.featured1.title": { en: "AI Marketing Stack Guide", es: "Gu\u00eda de Herramientas de Marketing con IA", fr: "Guide des outils marketing IA" },
   "resources.featured1.desc": { en: "A practical playbook for choosing the right AI tools for planning, content, and reporting.", es: "Un manual pr\u00e1ctico para elegir las herramientas de IA adecuadas para planificaci\u00f3n, contenido y reportes.", fr: "Un guide pratique pour choisir les bons outils IA pour la planification, le contenu et les rapports." },
@@ -645,12 +934,14 @@ export const siteTranslations: TranslationMap = {
   "resources.lt5": { en: "Content Production: From ideation to distribution", es: "Producci\u00f3n de Contenido: De la ideaci\u00f3n a la distribuci\u00f3n", fr: "Production de contenu\u00a0: De l\u2019id\u00e9ation \u00e0 la distribution" },
   "resources.lt6": { en: "AI for Marketing: Practical tools and workflows", es: "IA para Marketing: Herramientas y flujos de trabajo pr\u00e1cticos", fr: "IA pour le marketing\u00a0: Outils et flux de travail pratiques" },
   "resources.tools.title": { en: "Recommended Tools", es: "Herramientas Recomendadas", fr: "Outils recommand\u00e9s" },
-  "resources.tools.desc": { en: "Tools we use and recommend for building an effective marketing stack.", es: "Herramientas que usamos y recomendamos para construir un stack de marketing efectivo.", fr: "Outils que nous utilisons et recommandons pour construire une pile marketing efficace." },
+  "resources.tools.desc": { en: "Tools we use and recommend for building an effective marketing stack. We have tested dozens so you do not have to.", es: "Herramientas que usamos y recomendamos para construir un stack de marketing efectivo. Hemos probado docenas para que t\u00fa no tengas que hacerlo.", fr: "Outils qu\u2019on utilise et recommande pour construire une pile marketing efficace. On en a test\u00e9 des dizaines pour que vous n\u2019ayez pas \u00e0 le faire." },
   "resources.tools.shopNow": { en: "Try It", es: "Probar", fr: "Essayer" },
   "resources.tools.comingSoon": { en: "Coming Soon", es: "Pr\u00f3ximamente", fr: "Bient\u00f4t disponible" },
   "resources.tools.disclosure": { en: "Some links above are affiliate links. We only recommend tools we actually use.", es: "Algunos enlaces anteriores son enlaces de afiliados. Solo recomendamos herramientas que realmente usamos.", fr: "Certains liens ci-dessus sont des liens d\u2019affiliation. Nous ne recommandons que les outils que nous utilisons r\u00e9ellement." },
-  "resources.cta.title": { en: "Need Help With Your Marketing?", es: "\u00bfNecesita Ayuda con su Marketing?", fr: "Besoin d\u2019aide avec votre marketing\u00a0?" },
-  "resources.cta.desc": { en: "Our team can help you implement these strategies and build a growth system that fits your business.", es: "Nuestro equipo puede ayudarle a implementar estas estrategias y construir un sistema de crecimiento que se adapte a su negocio.", fr: "Notre \u00e9quipe peut vous aider \u00e0 mettre en \u0153uvre ces strat\u00e9gies et \u00e0 construire un syst\u00e8me de croissance adapt\u00e9 \u00e0 votre entreprise." },
+  "resources.cta.title": { en: "Ready to Learn More?", es: "Listo para Aprender M\u00e1s?", fr: "Pr\u00eat \u00e0 en apprendre plus\u00a0?" },
+  "resources.cta.desc": { en: "Dive into our blog for the latest AI and marketing insights, or see how our process works from the inside.", es: "Sum\u00e9rgete en nuestro blog para las \u00faltimas ideas sobre IA y marketing, o ve c\u00f3mo funciona nuestro proceso desde adentro.", fr: "Plongez dans notre blog pour les derni\u00e8res perspectives sur l\u2019IA et le marketing, ou d\u00e9couvrez comment fonctionne notre processus de l\u2019int\u00e9rieur." },
+  "resources.cta.readBlog": { en: "Read the Blog", es: "Leer el Blog", fr: "Lire le blog" },
+  "resources.cta.seeProcess": { en: "See Our Process", es: "Ver Nuestro Proceso", fr: "Voir notre processus" },
   "resources.cta.seeServices": { en: "See Our Services", es: "Ver Nuestros Servicios", fr: "Voir nos services" },
   "resources.pageSubtitle": {
     en: "Free guides, tools, and insights to help you grow.",
@@ -1180,6 +1471,34 @@ export const siteTranslations: TranslationMap = {
   "sd.video.faq3.a": { en: "No. We support both studio and on-location productions based on the project goals.", es: "No. Soportamos producciones tanto en estudio como en locaci\u00f3n seg\u00fan los objetivos del proyecto.", fr: "Non. Nous supportons les productions en studio et sur site selon les objectifs du projet." },
   "sd.video.faq4.q": { en: "What is typical turnaround time?", es: "\u00bfCu\u00e1l es el tiempo de entrega t\u00edpico?", fr: "Quel est le d\u00e9lai de livraison typique\u00a0?" },
   "sd.video.faq4.a": { en: "Depending on scope and revision cycles, standard projects are often delivered in about 1-3 weeks.", es: "Dependiendo del alcance y ciclos de revisi\u00f3n, los proyectos est\u00e1ndar se entregan generalmente en 1-3 semanas.", fr: "Selon la port\u00e9e et les cycles de r\u00e9vision, les projets standards sont g\u00e9n\u00e9ralement livr\u00e9s en 1-3 semaines." },
+
+  // ============================================================
+  // BLOG PAGE
+  // ============================================================
+  "nav.blog": { en: "Blog", es: "Blog", fr: "Blog" },
+  "blog.badge": { en: "The CQM Brain Dump", es: "El Cerebro de CQM", fr: "Le Cerveau de CQM" },
+  "blog.title": { en: "The CQM Brain Dump", es: "El Cerebro de CQM", fr: "Le Cerveau de CQM" },
+  "blog.subtitle": {
+    en: "Real talk about AI, marketing, and growing your business. No fluff, no corporate jargon. Just stuff that actually works.",
+    es: "Conversaciones reales sobre IA, marketing y c\u00f3mo hacer crecer tu negocio. Sin relleno, sin jerga corporativa. Solo cosas que realmente funcionan.",
+    fr: "Des discussions vraies sur l\u2019IA, le marketing et la croissance de votre entreprise. Pas de blabla, pas de jargon. Juste des trucs qui marchent vraiment.",
+  },
+  "blog.readMore": { en: "Read More", es: "Leer M\u00e1s", fr: "Lire la suite" },
+  "blog.readTime": { en: "min read", es: "min de lectura", fr: "min de lecture" },
+  "blog.allCategories": { en: "All", es: "Todos", fr: "Tous" },
+  "blog.relatedArticles": { en: "Related Articles", es: "Art\u00edculos Relacionados", fr: "Articles Connexes" },
+  "blog.cta.title": { en: "Liked What You Read? Let\u2019s Talk Strategy.", es: "\u00bfTe gust\u00f3 lo que le\u00edste? Hablemos de estrategia.", fr: "Vous avez aim\u00e9\u00a0? Parlons strat\u00e9gie." },
+  "blog.cta.subtitle": {
+    en: "Take our free marketing assessment and find out exactly where your business can grow. No sales pitch, just real insights.",
+    es: "Toma nuestra evaluaci\u00f3n de marketing gratuita y descubre exactamente d\u00f3nde puede crecer tu negocio. Sin ventas, solo ideas reales.",
+    fr: "Faites notre \u00e9valuation marketing gratuite et d\u00e9couvrez exactement o\u00f9 votre entreprise peut grandir. Pas de pitch commercial, juste des vrais insights.",
+  },
+  "blog.category.aiAutomation": { en: "AI & Automation", es: "IA y Automatizaci\u00f3n", fr: "IA et Automatisation" },
+  "blog.category.marketingStrategy": { en: "Marketing Strategy", es: "Estrategia de Marketing", fr: "Strat\u00e9gie Marketing" },
+  "blog.category.seoSearch": { en: "SEO & Search", es: "SEO y B\u00fasqueda", fr: "SEO et Recherche" },
+  "blog.category.socialMedia": { en: "Social Media", es: "Redes Sociales", fr: "R\u00e9seaux Sociaux" },
+  "blog.category.webDesign": { en: "Web & Design", es: "Web y Dise\u00f1o", fr: "Web et Design" },
+  "blog.category.businessGrowth": { en: "Business Growth", es: "Crecimiento de Negocios", fr: "Croissance d\u2019Entreprise" },
 
   // ============================================================
   // COMMON UI

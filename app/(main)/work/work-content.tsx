@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Bot } from "lucide-react";
+import { ArrowRight, Lightbulb, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/i18n/context";
 import { CTABanner } from "@/components/sections/cta-banner";
@@ -17,6 +17,7 @@ export function WorkContent() {
       focusKey: "work.spot.asm.focus",
       serviceKeys: ["work.spot.asm.s1", "work.spot.asm.s2", "work.spot.asm.s3"],
       impactKey: "work.spot.asm.impact",
+      discoveredKey: "work.spot.asm.discovered",
     },
     {
       name: "SaGrah Beauty",
@@ -24,6 +25,7 @@ export function WorkContent() {
       focusKey: "work.spot.sagrah.focus",
       serviceKeys: ["work.spot.sagrah.s1", "work.spot.sagrah.s2", "work.spot.sagrah.s3"],
       impactKey: "work.spot.sagrah.impact",
+      discoveredKey: "work.spot.sagrah.discovered",
     },
     {
       name: "Urban Flooring",
@@ -31,6 +33,7 @@ export function WorkContent() {
       focusKey: "work.spot.urban.focus",
       serviceKeys: ["work.spot.urban.s1", "work.spot.urban.s2", "work.spot.urban.s3"],
       impactKey: "work.spot.urban.impact",
+      discoveredKey: "work.spot.urban.discovered",
     },
     {
       name: "Hudson Valley Podcasting",
@@ -38,6 +41,7 @@ export function WorkContent() {
       focusKey: "work.spot.hvp.focus",
       serviceKeys: ["work.spot.hvp.s1", "work.spot.hvp.s2", "work.spot.hvp.s3"],
       impactKey: "work.spot.hvp.impact",
+      discoveredKey: "work.spot.hvp.discovered",
     },
     {
       name: "Mark Viera",
@@ -45,6 +49,7 @@ export function WorkContent() {
       focusKey: "work.spot.mark.focus",
       serviceKeys: ["work.spot.mark.s1", "work.spot.mark.s2", "work.spot.mark.s3"],
       impactKey: "work.spot.mark.impact",
+      discoveredKey: "work.spot.mark.discovered",
     },
     {
       name: "Wrecktified",
@@ -52,6 +57,7 @@ export function WorkContent() {
       focusKey: "work.spot.wreck.focus",
       serviceKeys: ["work.spot.wreck.s1", "work.spot.wreck.s2", "work.spot.wreck.s3"],
       impactKey: "work.spot.wreck.impact",
+      discoveredKey: "work.spot.wreck.discovered",
     },
   ];
 
@@ -79,11 +85,18 @@ export function WorkContent() {
           {t("work.description")}
         </p>
 
+        <section className="mb-14 rounded-xl border bg-muted/30 p-6 md:p-8">
+          <div className="mb-3 flex items-center gap-2">
+            <Search className="h-5 w-5 text-primary" />
+            <h2 className="text-2xl font-semibold">{t("work.approach.title")}</h2>
+          </div>
+          <p className="text-muted-foreground">{t("work.approach.desc")}</p>
+        </section>
+
         <section className="mb-14 grid gap-5 md:grid-cols-2">
           {clientSpotlights.map((client) => (
-            <Link
+            <article
               key={client.name}
-              href={`/contact?client=${encodeURIComponent(client.name)}`}
               className="group rounded-xl border bg-white/95 p-5 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-xl md:p-6"
             >
               <div className="mb-4 flex items-center gap-4">
@@ -111,23 +124,19 @@ export function WorkContent() {
                 ))}
               </ul>
 
-              <p className="text-sm text-muted-foreground">{t(client.impactKey)}</p>
-            </Link>
-          ))}
-        </section>
+              <p className="mb-3 text-sm text-muted-foreground">{t(client.impactKey)}</p>
 
-        <section className="mb-14 rounded-xl border bg-muted/30 p-6 md:p-8">
-          <div className="mb-4 flex items-center gap-2">
-            <Bot className="h-5 w-5 text-primary" />
-            <h2 className="text-2xl font-semibold">{t("work.aiAdvantage")}</h2>
-          </div>
-          <div className="grid gap-3 md:grid-cols-2">
-            {(["work.ai1", "work.ai2", "work.ai3", "work.ai4"] as const).map((key) => (
-              <p key={key} className="rounded-lg border bg-background p-4 text-sm">
-                {t(key)}
-              </p>
-            ))}
-          </div>
+              <div className="rounded-lg border border-primary/10 bg-primary/5 p-3">
+                <div className="mb-1 flex items-center gap-1.5">
+                  <Lightbulb className="h-3.5 w-3.5 text-primary" />
+                  <span className="text-xs font-semibold uppercase tracking-wide text-primary">
+                    {t("work.discovered")}
+                  </span>
+                </div>
+                <p className="text-sm text-muted-foreground">{t(client.discoveredKey)}</p>
+              </div>
+            </article>
+          ))}
         </section>
 
         <section className="mb-14">
@@ -149,16 +158,13 @@ export function WorkContent() {
           <p className="mb-6 text-muted-foreground">{t("work.cta.desc")}</p>
           <div className="flex flex-col justify-center gap-3 sm:flex-row">
             <Button asChild>
-              <Link href="/contact">
-                {t("work.cta.startProject")}
+              <Link href="/how-marketing-works">
+                {t("work.cta.seeProcess")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href="/services">
-                {t("work.cta.exploreServices")}
-                <BadgeCheck className="ml-2 h-4 w-4" />
-              </Link>
+              <Link href="/contact">{t("work.cta.startProject")}</Link>
             </Button>
           </div>
         </section>

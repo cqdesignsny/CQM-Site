@@ -1,0 +1,226 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Sparkles, Clock, Calendar, ArrowRight, Tag } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/context";
+import { track } from "@/lib/analytics";
+import { getAllArticles } from "@/lib/blog/articles";
+import { BlogCategory } from "@/lib/blog/types";
+import { CTABanner } from "@/components/sections/cta-banner";
+
+const categories: BlogCategory[] = [
+  "AI & Automation",
+  "Marketing Strategy",
+  "SEO & Search",
+  "Social Media",
+  "Web & Design",
+  "Business Growth",
+];
+
+const categoryTranslationKeys: Record<BlogCategory, string> = {
+  "AI & Automation": "blog.category.aiAutomation",
+  "Marketing Strategy": "blog.category.marketingStrategy",
+  "SEO & Search": "blog.category.seoSearch",
+  "Social Media": "blog.category.socialMedia",
+  "Web & Design": "blog.category.webDesign",
+  "Business Growth": "blog.category.businessGrowth",
+};
+
+function formatDate(dateStr: string): string {
+  return new Date(dateStr).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+export function BlogContent() {
+  const { t } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState<BlogCategory | "all">("all");
+  const allArticles = getAllArticles();
+
+  const filteredArticles =
+    activeCategory === "all"
+      ? allArticles
+      : allArticles.filter((a) => a.category === activeCategory);
+
+  const featuredArticles = filteredArticles.filter((a) => a.featured);
+  const regularArticles = filteredArticles.filter((a) => !a.featured);
+
+  return (
+    <>
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-black py-20 text-white md:py-32">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(220,38,38,0.3),transparent_50%),radial-gradient(circle_at_bottom_right,rgba(220,38,38,0.15),transparent_40%)]" />
+        <div className="container relative mx-auto px-4 text-center">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-red-500/60 bg-red-600/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-red-200"
+          >
+            <Sparkles className="h-4 w-4" />
+            {t("blog.badge")}
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="mx-auto mb-6 max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl"
+          >
+            {t("blog.title")}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mx-auto max-w-2xl text-lg text-white/70"
+          >
+            {t("blog.subtitle")}
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Category Filters + Articles */}
+      <section className="bg-zinc-950 py-16 md:py-20">
+        <div className="container mx-auto px-4">
+          {/* Category Tabs */}
+          <div className="mb-12 flex flex-wrap justify-center gap-2">
+            <button
+              onClick={() => setActiveCategory("all")}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                activeCategory === "all"
+                  ? "bg-red-600 text-white shadow-lg shadow-red-600/25"
+                  : "border border-white/10 bg-white/5 text-white/60 hover:border-white/20 hover:text-white"
+              }`}
+            >
+              {t("blog.allCategories")}
+            </button>
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  track("button_click", { button: `blog_filter_${cat}` });
+                }}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                  activeCategory === cat
+                    ? "bg-red-600 text-white shadow-lg shadow-red-600/25"
+                    : "border border-white/10 bg-white/5 text-white/60 hover:border-white/20 hover:text-white"
+                }`}
+              >
+                {t(categoryTranslationKeys[cat])}
+              </button>
+            ))}
+          </div>
+
+          {/* Featured Articles */}
+          {featuredArticles.map((article, i) => (
+            <motion.div
+              key={article.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className="mb-8"
+            >
+              <Link href={`/blog/${article.slug}`} className="group block">
+                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-red-950/30 via-zinc-900 to-zinc-900 p-8 transition-all duration-500 hover:border-red-500/40 hover:shadow-2xl hover:shadow-red-600/10 md:p-12">
+                  {/* Shine sweep effect */}
+                  <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                  <div className="relative">
+                    <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-red-500/40 bg-red-600/20 px-3 py-1 text-xs font-semibold text-red-300">
+                      <Tag className="h-3 w-3" />
+                      {t(categoryTranslationKeys[article.category])}
+                    </span>
+                    <h2 className="mb-4 text-2xl font-bold text-white transition-colors group-hover:text-red-300 sm:text-3xl md:text-4xl">
+                      {article.title}
+                    </h2>
+                    <p className="mb-6 max-w-3xl text-lg text-white/60">
+                      {article.excerpt}
+                    </p>
+                    <div className="flex items-center gap-6 text-sm text-white/40">
+                      <span className="flex items-center gap-1.5">
+                        <Calendar className="h-4 w-4" />
+                        {formatDate(article.publishedAt)}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="h-4 w-4" />
+                        {article.readTimeMinutes} {t("blog.readTime")}
+                      </span>
+                      <span className="ml-auto inline-flex items-center gap-1.5 font-medium text-red-400 transition-colors group-hover:text-red-300">
+                        {t("blog.readMore")}
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+
+          {/* Regular Article Grid */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {regularArticles.map((article, i) => (
+              <motion.div
+                key={article.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.08 }}
+              >
+                <Link href={`/blog/${article.slug}`} className="group block h-full">
+                  <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-red-500/30 hover:bg-white/[0.06] hover:shadow-xl hover:shadow-red-600/5">
+                    {/* Shine sweep effect */}
+                    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+
+                    {/* Glow effect on hover */}
+                    <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-red-600/0 blur-3xl transition-all duration-500 group-hover:bg-red-600/10" />
+
+                    <div className="relative flex flex-1 flex-col">
+                      <span className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/50 transition-colors group-hover:border-red-500/30 group-hover:text-red-300">
+                        <Tag className="h-3 w-3" />
+                        {t(categoryTranslationKeys[article.category])}
+                      </span>
+
+                      <h3 className="mb-3 text-lg font-bold text-white transition-colors group-hover:text-red-300">
+                        {article.title}
+                      </h3>
+
+                      <p className="mb-4 flex-1 text-sm leading-relaxed text-white/50">
+                        {article.excerpt}
+                      </p>
+
+                      <div className="mt-auto flex items-center justify-between border-t border-white/5 pt-4 text-xs text-white/30">
+                        <div className="flex items-center gap-4">
+                          <span className="flex items-center gap-1">
+                            <Calendar className="h-3.5 w-3.5" />
+                            {formatDate(article.publishedAt)}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="h-3.5 w-3.5" />
+                            {article.readTimeMinutes} {t("blog.readTime")}
+                          </span>
+                        </div>
+                        <ArrowRight className="h-4 w-4 text-red-400 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Empty state */}
+          {filteredArticles.length === 0 && (
+            <div className="py-20 text-center text-white/40">
+              <p className="text-lg">No articles in this category yet. Check back soon!</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <CTABanner />
+    </>
+  );
+}

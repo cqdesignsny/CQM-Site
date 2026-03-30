@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { useLanguage } from "@/lib/i18n/context";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 /**
  * Footer Component - Site footer with address, links, and contact info
@@ -27,16 +28,15 @@ export function Footer() {
       { href: "/services/video", labelKey: "service.video" },
     ],
     tools: [
+      { href: "/how-marketing-works", labelKey: "nav.howMarketingWorks" },
       { href: "/assessment", labelKey: "footer.assessment" },
       { href: "/proposals", labelKey: "footer.proposalBuilder" },
-      { href: "/pricing", labelKey: "nav.pricing" },
       { href: "/studio", labelKey: "footer.studioTour" },
     ],
     company: [
       { href: "/about", labelKey: "nav.about" },
-      { href: "/process", labelKey: "nav.process" },
       { href: "/work", labelKey: "footer.caseStudies" },
-      { href: "/resources", labelKey: "footer.blog" },
+      { href: "/blog", labelKey: "nav.blog" },
       { href: "/careers", labelKey: "footer.careers" },
       { href: "/contact", labelKey: "nav.contact" },
       { href: "https://hvpodcasting.com", labelKey: "footer.hvPodcasting", external: true },
@@ -144,6 +144,19 @@ export function Footer() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        {/* Newsletter */}
+        <div className="mt-8 border-t border-white/10 pt-8">
+          <div className="mx-auto max-w-md text-center">
+            <h4 className="text-sm font-semibold text-white">
+              {t("newsletter.title")}
+            </h4>
+            <p className="mt-1 mb-3 text-xs text-white/60">
+              {t("newsletter.subtitle")}
+            </p>
+            <NewsletterSignup />
           </div>
         </div>
 

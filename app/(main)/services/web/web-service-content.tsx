@@ -60,6 +60,12 @@ export function WebServiceContent() {
         { question: t("sd.web.faq3.q"), answer: t("sd.web.faq3.a") },
         { question: t("sd.web.faq4.q"), answer: t("sd.web.faq4.a") },
       ]}
+      funnelStages={["interest", "action"]}
+      complementaryServices={[
+        { nameKey: "service.seo", href: "/services/seo", descKey: "serviceDetail.crossSell.seo" },
+        { nameKey: "service.emailMarketing", href: "/services/email-marketing", descKey: "serviceDetail.crossSell.emailMarketing" },
+        { nameKey: "service.aiIntegration", href: "/services/ai-integration", descKey: "serviceDetail.crossSell.aiInt" },
+      ]}
     />
   );
 }

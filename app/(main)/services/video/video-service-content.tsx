@@ -60,6 +60,12 @@ export function VideoServiceContent() {
         { question: t("sd.video.faq3.q"), answer: t("sd.video.faq3.a") },
         { question: t("sd.video.faq4.q"), answer: t("sd.video.faq4.a") },
       ]}
+      funnelStages={["awareness", "interest"]}
+      complementaryServices={[
+        { nameKey: "service.socialMedia", href: "/services/social-media", descKey: "serviceDetail.crossSell.socialMedia" },
+        { nameKey: "service.seo", href: "/services/seo", descKey: "serviceDetail.crossSell.seo" },
+        { nameKey: "service.web", href: "/services/web", descKey: "serviceDetail.crossSell.web" },
+      ]}
     />
   );
 }

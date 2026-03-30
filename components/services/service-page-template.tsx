@@ -23,6 +23,14 @@ interface ProcessStep {
   description: string;
 }
 
+type FunnelStage = "awareness" | "interest" | "decision" | "action";
+
+interface ComplementaryService {
+  nameKey: string;
+  href: string;
+  descKey: string;
+}
+
 interface ServicePageTemplateProps {
   serviceName: string;
   headline: string;
@@ -34,7 +42,18 @@ interface ServicePageTemplateProps {
   processSteps: ProcessStep[];
   tiers: PricingTier[];
   faqs: FAQ[];
+  funnelStages?: FunnelStage[];
+  complementaryServices?: ComplementaryService[];
 }
+
+const FUNNEL_STAGES: FunnelStage[] = ["awareness", "interest", "decision", "action"];
+
+const funnelLabelKeys: Record<FunnelStage, string> = {
+  awareness: "serviceDetail.funnel.awareness",
+  interest: "serviceDetail.funnel.interest",
+  decision: "serviceDetail.funnel.decision",
+  action: "serviceDetail.funnel.action",
+};
 
 export function ServicePageTemplate({
   serviceName,
@@ -47,6 +66,8 @@ export function ServicePageTemplate({
   processSteps,
   tiers,
   faqs,
+  funnelStages = [],
+  complementaryServices = [],
 }: ServicePageTemplateProps) {
   const { t } = useLanguage();
   const pageUrl = `${siteConfig.url}${path}`;
@@ -169,6 +190,57 @@ export function ServicePageTemplate({
         </div>
       </section>
 
+      {funnelStages.length > 0 && (
+        <section className="mb-10 rounded-xl border bg-white/95 p-6 md:p-8">
+          <h2 className="mb-5 text-lg font-semibold">
+            {t("serviceDetail.funnelContext.title")}
+          </h2>
+          <div className="flex items-center justify-between gap-0 px-2 sm:px-8">
+            {FUNNEL_STAGES.map((stage, i) => {
+              const isActive = funnelStages.includes(stage);
+              return (
+                <div key={stage} className="flex flex-1 items-center">
+                  <div className="flex flex-col items-center gap-1.5">
+                    <div
+                      className={`h-4 w-4 rounded-full transition-colors ${
+                        isActive
+                          ? "bg-red-600 shadow-[0_0_8px_rgba(220,38,38,0.5)]"
+                          : "bg-zinc-300"
+                      }`}
+                    />
+                    <span
+                      className={`text-[10px] font-medium uppercase tracking-wide sm:text-xs ${
+                        isActive ? "text-red-600" : "text-zinc-400"
+                      }`}
+                    >
+                      {t(funnelLabelKeys[stage])}
+                    </span>
+                  </div>
+                  {i < FUNNEL_STAGES.length - 1 && (
+                    <div
+                      className={`mx-1 h-0.5 flex-1 ${
+                        isActive && funnelStages.includes(FUNNEL_STAGES[i + 1])
+                          ? "bg-red-400"
+                          : "bg-zinc-200"
+                      }`}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          <div className="mt-5 text-center">
+            <Link
+              href="/how-marketing-works"
+              className="inline-flex items-center gap-1 text-sm font-medium text-red-600 hover:underline"
+            >
+              {t("serviceDetail.funnelContext.link")}
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+        </section>
+      )}
+
       <nav className="mb-14 flex flex-wrap gap-2">
         {[
           { href: "#outcomes", label: t("serviceDetail.outcomes") },
@@ -258,6 +330,41 @@ export function ServicePageTemplate({
 
       <ServicePricing serviceName={serviceName} tiers={tiers} />
       <ServiceFAQs faqs={faqs} />
+
+      {complementaryServices.length > 0 && (
+        <section className="mb-20">
+          <div className="mb-8">
+            <p className="brand-section-title mb-2">
+              {t("serviceDetail.crossSell.title")}
+            </p>
+            <h2 className="text-3xl font-bold sm:text-4xl">
+              {t("serviceDetail.crossSell.subtitle")}
+            </h2>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {complementaryServices.map((svc) => (
+              <Link
+                key={svc.href}
+                href={svc.href}
+                className="group relative overflow-hidden rounded-xl border bg-white/95 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-red-300 hover:shadow-[0_0_20px_rgba(220,38,38,0.15)]"
+              >
+                <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/60 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                <h3 className="mb-2 text-lg font-semibold">
+                  {t(svc.nameKey)}
+                </h3>
+                <p className="mb-4 text-sm text-muted-foreground">
+                  {t(svc.descKey)}
+                </p>
+                <span className="inline-flex items-center gap-1 text-sm font-medium text-red-600">
+                  {t("serviceDetail.crossSell.learnMore")}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       <ServiceLeadCapture serviceName={serviceName} />
     </div>
   );

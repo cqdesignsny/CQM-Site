@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes = [
     { path: "/", priority: 1 },
+    { path: "/how-marketing-works", priority: 0.95 },
     { path: "/services", priority: 0.9 },
     { path: "/services/web", priority: 0.85 },
     { path: "/services/seo", priority: 0.85 },
@@ -15,12 +16,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/services/video", priority: 0.85 },
     { path: "/services/ai-development", priority: 0.85 },
     { path: "/services/ai-integration", priority: 0.85 },
+    { path: "/blog", priority: 0.9 },
     { path: "/studio", priority: 0.8 },
-    { path: "/work", priority: 0.8 },
-    { path: "/pricing", priority: 0.8 },
-    { path: "/process", priority: 0.75 },
+    { path: "/work", priority: 0.75 },
     { path: "/about", priority: 0.75 },
-    { path: "/resources", priority: 0.75 },
+    { path: "/resources", priority: 0.7 },
     { path: "/contact", priority: 0.9 },
     { path: "/assessment", priority: 0.85 },
     { path: "/proposals", priority: 0.7 },

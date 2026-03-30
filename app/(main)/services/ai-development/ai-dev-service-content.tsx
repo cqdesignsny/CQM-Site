@@ -60,6 +60,12 @@ export function AiDevServiceContent() {
         { question: t("sd.aiDev.faq3.q"), answer: t("sd.aiDev.faq3.a") },
         { question: t("sd.aiDev.faq4.q"), answer: t("sd.aiDev.faq4.a") },
       ]}
+      funnelStages={["action"]}
+      complementaryServices={[
+        { nameKey: "service.aiIntegration", href: "/services/ai-integration", descKey: "serviceDetail.crossSell.aiInt" },
+        { nameKey: "service.web", href: "/services/web", descKey: "serviceDetail.crossSell.web" },
+        { nameKey: "service.emailMarketing", href: "/services/email-marketing", descKey: "serviceDetail.crossSell.emailMarketing" },
+      ]}
     />
   );
 }
