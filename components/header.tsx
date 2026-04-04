@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Menu, X, ChevronDown, BarChart3, Layers, Calculator } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { track } from "@/lib/analytics";
 import { siteConfig } from "@/lib/site-config";
@@ -15,9 +15,13 @@ import { LanguageSwitcher } from "@/components/language-switcher";
  *
  * Approach: Mobile-first responsive nav with hamburger menu
  * i18n: All labels use the global t() function
+ * Tools dropdown: Assessment, Proposal Builder, ROI Calculator
  */
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(false);
+  const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
+  const toolsRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
 
   const navLinks = [
@@ -25,13 +29,31 @@ export function Header() {
     { href: "/services", labelKey: "nav.services" },
     { href: "/studio", labelKey: "nav.studio" },
     { href: "/about", labelKey: "nav.about" },
-    { href: "/contact", labelKey: "nav.contact" },
+  ];
+
+  const toolsLinks = [
+    { href: "/assessment", labelKey: "nav.assessment", icon: BarChart3 },
+    { href: "/proposals", labelKey: "nav.proposals", icon: Layers },
+    { href: "/roi-calculator", labelKey: "nav.roiCalculator", icon: Calculator },
   ];
 
   const handleNavClick = (label: string) => {
     track("link_click", { link_type: "navigation", destination: label });
     setMobileMenuOpen(false);
+    setToolsOpen(false);
+    setMobileToolsOpen(false);
   };
+
+  // Close tools dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (toolsRef.current && !toolsRef.current.contains(e.target as Node)) {
+        setToolsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-red-900/50 bg-black/95 text-white backdrop-blur supports-[backdrop-filter]:bg-black/85">
@@ -64,6 +86,55 @@ export function Header() {
               {t(link.labelKey)}
             </Link>
           ))}
+
+          {/* Tools Dropdown */}
+          <div ref={toolsRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setToolsOpen(!toolsOpen)}
+              className="flex items-center gap-1 whitespace-nowrap text-[13px] font-medium text-white/90 transition-colors hover:text-red-300"
+            >
+              {t("nav.tools")}
+              <ChevronDown className={`h-3.5 w-3.5 transition-transform ${toolsOpen ? "rotate-180" : ""}`} />
+            </button>
+            {toolsOpen && (
+              <div className="absolute right-0 top-full mt-2 w-56 overflow-hidden rounded-xl border border-white/10 bg-zinc-900 py-1 shadow-2xl">
+                {toolsLinks.map((tool) => {
+                  const Icon = tool.icon;
+                  return (
+                    <Link
+                      key={tool.href}
+                      href={tool.href}
+                      onClick={() => handleNavClick(tool.labelKey)}
+                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+                    >
+                      <Icon className="h-4 w-4 text-red-400" />
+                      {t(tool.labelKey)}
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          {/* Blog */}
+          <Link
+            href="/blog"
+            className="whitespace-nowrap text-[13px] font-medium text-white/90 transition-colors hover:text-red-300"
+            onClick={() => handleNavClick("nav.blog")}
+          >
+            {t("nav.blog")}
+          </Link>
+
+          {/* Contact */}
+          <Link
+            href="/contact"
+            className="whitespace-nowrap text-[13px] font-medium text-white/90 transition-colors hover:text-red-300"
+            onClick={() => handleNavClick("nav.contact")}
+          >
+            {t("nav.contact")}
+          </Link>
+
           <LanguageSwitcher variant="compact" />
           <Link
             href="/contact"
@@ -114,6 +185,53 @@ export function Header() {
               {t(link.labelKey)}
             </Link>
           ))}
+
+          {/* Mobile Tools Dropdown */}
+          <button
+            type="button"
+            onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
+            className="flex w-full items-center justify-between py-2 text-sm font-medium text-white/90 hover:text-red-300"
+          >
+            {t("nav.tools")}
+            <ChevronDown className={`h-4 w-4 transition-transform ${mobileToolsOpen ? "rotate-180" : ""}`} />
+          </button>
+          {mobileToolsOpen && (
+            <div className="ml-4 space-y-2 border-l border-white/10 pl-4">
+              {toolsLinks.map((tool) => {
+                const Icon = tool.icon;
+                return (
+                  <Link
+                    key={tool.href}
+                    href={tool.href}
+                    className="flex items-center gap-2 py-1.5 text-sm text-white/70 hover:text-red-300"
+                    onClick={() => handleNavClick(tool.labelKey)}
+                  >
+                    <Icon className="h-4 w-4 text-red-400" />
+                    {t(tool.labelKey)}
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Blog */}
+          <Link
+            href="/blog"
+            className="block py-2 text-sm font-medium text-white/90 hover:text-red-300"
+            onClick={() => handleNavClick("nav.blog")}
+          >
+            {t("nav.blog")}
+          </Link>
+
+          {/* Contact */}
+          <Link
+            href="/contact"
+            className="block py-2 text-sm font-medium text-white/90 hover:text-red-300"
+            onClick={() => handleNavClick("nav.contact")}
+          >
+            {t("nav.contact")}
+          </Link>
+
           <Link
             href="/contact"
             className="block rounded-md border border-red-500 bg-red-600 px-4 py-2 text-center text-sm font-medium text-white"

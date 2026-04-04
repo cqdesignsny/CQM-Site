@@ -22,6 +22,26 @@ Education first sales tool. NOT a typical agency service listing site. The site 
 
 **Copy tone:** Human, casual, funny, personable, knowledgeable. No dashes of any kind. Comedy woven throughout. Like talking to a friend who happens to be really good at marketing.
 
+## What Was Built (April 4, 2026 — Session 2: Major Feature Round)
+
+### Navigation & Layout
+1. **Navigation restructured**: Added "Tools" dropdown with Assessment, Proposal Builder, ROI Calculator. Added "Blog" as standalone nav item. Contact remains visible.
+2. **Footer logo**: Replaced text name with the CQM logo image in the footer brand column.
+
+### Homepage New Sections (after SocialProof, before Newsletter)
+3. **Assessment Promo section**: Red background, stat pills (10 Questions, 2 Minutes, Personalized Plan), animated assessment score mockup on desktop, direct CTA to /assessment.
+4. **ROI Calculator Promo section**: Black background, animated preview stats (avg budget, ROI, industries), CTA to /roi-calculator.
+5. **Blog Promo section**: Dark zinc background, latest 3 blog posts with images/categories/read times, CTA to /blog.
+
+### ROI Calculator Improvements
+6. **Industry selector moved to top**: Industry is now the first input so users set context before entering numbers.
+7. **Expected Results Timeline**: New section in results panel shows estimated timeline (in months) based on spend ratio vs recommended budget. Ranges from "very long" (12-18 months at <40% budget) to "fast" (1-3 months at >180% budget). Includes visual bar, color coding, and messaging about speeding up results by increasing budget.
+
+### Copy & Content Fixes
+8. **Stage 3 funnel copy**: Changed "Yelp reviews" to "Google reviews", merged "checking your Google rating" into one sentence.
+9. **Stage 4 "How we fix it"**: Added "Payment & Booking Systems" to the services list.
+10. **Proposal packages**: Startup plan now says "3 Social Media Posts per Week, Monthly". Growth plan says "Social Media Management (2 Platforms, 5 Posts/Week)". All three languages updated.
+
 ## What Was Built (April 4, 2026 — Laura's Feedback Round)
 
 ### UX/Copy Improvements from User Testing

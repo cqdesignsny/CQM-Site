@@ -7,6 +7,10 @@
  * - Funnel teaser (4 stages, links to /how-marketing-works)
  * - Services grouped by funnel stage
  * - Social proof (testimonial + scrolling logos)
+ * - Assessment promo (red bg, interactive preview)
+ * - ROI Calculator promo (black bg, animated stats)
+ * - Blog promo (latest 3 posts)
+ * - Newsletter signup
  * - CTA banner (Assessment + Proposal Builder)
  */
 import { Metadata } from "next";
@@ -15,6 +19,9 @@ import { Differentiator } from "@/components/sections/differentiator";
 import { FunnelTeaser } from "@/components/sections/funnel-teaser";
 import { ServicesOverview } from "@/components/sections/services-overview";
 import { SocialProof } from "@/components/sections/social-proof";
+import { AssessmentPromo } from "@/components/sections/assessment-promo";
+import { ROIPromo } from "@/components/sections/roi-promo";
+import { BlogPromo } from "@/components/sections/blog-promo";
 import { CTABanner } from "@/components/sections/cta-banner";
 import { NewsletterSection } from "@/components/sections/newsletter-section";
 import { buildPageMetadata } from "@/lib/seo";
@@ -39,12 +46,11 @@ export default function HomePage() {
       <FunnelTeaser />
       <ServicesOverview />
       <SocialProof />
+      <AssessmentPromo />
+      <ROIPromo />
+      <BlogPromo />
       <NewsletterSection />
       <CTABanner />
     </>
   );
 }
-
-
-
-

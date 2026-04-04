@@ -43,7 +43,7 @@ This is NOT a typical agency website that lists services. It is an **education f
 
 | Route | Purpose |
 |-------|---------|
-| `/` | Homepage: Hero, Differentiator, Funnel Teaser, Services Overview, Social Proof, Newsletter, CTA |
+| `/` | Homepage: Hero, Differentiator, Funnel Teaser, Services Overview, Social Proof, Assessment Promo, ROI Promo, Blog Promo, Newsletter, CTA |
 | `/how-marketing-works` | Centerpiece education page: funnel diagram, gap checker, CQM difference, process |
 | `/blog` | Blog listing with 18 articles, category filters, featured images |
 | `/blog/[slug]` | Individual blog articles with related posts |
@@ -130,7 +130,7 @@ Industry CPA benchmarks (2026, raised ~25% for rising ad costs):
 
 ### Navigation (5 items)
 
-How Marketing Works | Services | Studio | About | Contact
+How Marketing Works | Services | Studio | About | Tools (dropdown: Assessment, Proposals, ROI Calculator) | Blog | Contact
 
 Assessment, Proposals, Blog, Work, Resources, ROI Calculator accessible via footer and CTAs.
 

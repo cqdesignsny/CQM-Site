@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { useLanguage } from "@/lib/i18n/context";
@@ -50,7 +51,13 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold">{siteConfig.name}</h3>
+            <Image
+              src={siteConfig.assets.logoWhitePath}
+              alt={siteConfig.name}
+              width={210}
+              height={47}
+              className="h-8 w-auto sm:h-9"
+            />
             <p className="text-sm text-white/70">
               {t("footer.tagline")}
             </p>

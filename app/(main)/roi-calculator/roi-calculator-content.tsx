@@ -17,6 +17,7 @@ import {
   Wrench,
   Monitor,
   BarChart3,
+  Clock,
 } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
 import { track } from "@/lib/analytics";
@@ -312,6 +313,27 @@ export function ROICalculatorContent() {
     if (currentSpend >= recommendedBudget * 0.8) status = "close";
     if (currentSpend >= recommendedBudget) status = "overspending";
 
+    // Expected results timeline calculation
+    // Based on ratio of actual spend to recommended budget
+    // Underspending = longer timeline, adequate = standard, overspending = faster
+    const spendRatio = recommendedBudget > 0 ? currentSpend / recommendedBudget : 0;
+    let timelineMonths: { min: number; max: number; label: string };
+    if (spendRatio <= 0) {
+      timelineMonths = { min: 0, max: 0, label: "noSpend" };
+    } else if (spendRatio < 0.4) {
+      timelineMonths = { min: 12, max: 18, label: "veryLong" };
+    } else if (spendRatio < 0.7) {
+      timelineMonths = { min: 8, max: 12, label: "slow" };
+    } else if (spendRatio < 1.0) {
+      timelineMonths = { min: 5, max: 8, label: "moderate" };
+    } else if (spendRatio < 1.3) {
+      timelineMonths = { min: 3, max: 6, label: "onTrack" };
+    } else if (spendRatio < 1.8) {
+      timelineMonths = { min: 2, max: 4, label: "accelerated" };
+    } else {
+      timelineMonths = { min: 1, max: 3, label: "fast" };
+    }
+
     return {
       newCustomersNeeded,
       growthNeeded,
@@ -329,6 +351,7 @@ export function ROICalculatorContent() {
       missedRevenue: Math.round(missedRevenue),
       status,
       estimatedNewCustomers,
+      timelineMonths,
     };
   }, [currentRevenue, revenueGoal, customerValue, currentSpend, industry]);
 
@@ -377,47 +400,7 @@ export function ROICalculatorContent() {
               <p className="text-sm text-white/50">{t("roi.inputsSubtitle")}</p>
             </div>
 
-            <DollarInput
-              id="current-revenue"
-              label={t("roi.currentRevenue")}
-              value={currentRevenue}
-              onChange={setCurrentRevenue}
-              min={0}
-              max={500000}
-              step={500}
-            />
-
-            <DollarInput
-              id="revenue-goal"
-              label={t("roi.revenueGoal")}
-              value={revenueGoal}
-              onChange={setRevenueGoal}
-              min={0}
-              max={500000}
-              step={1000}
-            />
-
-            <DollarInput
-              id="customer-value"
-              label={t("roi.customerValue")}
-              value={customerValue}
-              onChange={setCustomerValue}
-              min={0}
-              max={50000}
-              step={50}
-            />
-
-            <DollarInput
-              id="current-spend"
-              label={t("roi.currentSpend")}
-              value={currentSpend}
-              onChange={setCurrentSpend}
-              min={0}
-              max={100000}
-              step={100}
-            />
-
-            {/* Industry Dropdown */}
+            {/* Industry Dropdown — first so users set context */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-white/80">
                 {t("roi.industry")}
@@ -462,6 +445,46 @@ export function ROICalculatorContent() {
                 )}
               </div>
             </div>
+
+            <DollarInput
+              id="current-revenue"
+              label={t("roi.currentRevenue")}
+              value={currentRevenue}
+              onChange={setCurrentRevenue}
+              min={0}
+              max={500000}
+              step={500}
+            />
+
+            <DollarInput
+              id="revenue-goal"
+              label={t("roi.revenueGoal")}
+              value={revenueGoal}
+              onChange={setRevenueGoal}
+              min={0}
+              max={500000}
+              step={1000}
+            />
+
+            <DollarInput
+              id="customer-value"
+              label={t("roi.customerValue")}
+              value={customerValue}
+              onChange={setCustomerValue}
+              min={0}
+              max={50000}
+              step={50}
+            />
+
+            <DollarInput
+              id="current-spend"
+              label={t("roi.currentSpend")}
+              value={currentSpend}
+              onChange={setCurrentSpend}
+              min={0}
+              max={100000}
+              step={100}
+            />
           </motion.div>
 
           {/* --- Results Panel --- */}
@@ -568,6 +591,76 @@ export function ROICalculatorContent() {
                   <p className="mt-1 text-xs text-white/40">{t("roi.laborSpendDesc")}</p>
                 </div>
               </div>
+            </div>
+
+            {/* ======================== EXPECTED RESULTS TIMELINE ======================== */}
+            <div className={`rounded-xl border p-6 ${
+              results.timelineMonths.label === "noSpend"
+                ? "border-white/10 bg-white/[0.03]"
+                : results.timelineMonths.label === "onTrack" || results.timelineMonths.label === "accelerated" || results.timelineMonths.label === "fast"
+                ? "border-emerald-500/20 bg-emerald-500/5"
+                : results.timelineMonths.label === "moderate"
+                ? "border-amber-500/20 bg-amber-500/5"
+                : "border-red-500/20 bg-red-500/5"
+            }`}>
+              <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-white">
+                <Clock className="h-4 w-4 text-red-400" />
+                {t("roi.timeline.title")}
+              </h3>
+
+              {results.timelineMonths.label === "noSpend" ? (
+                <p className="text-sm text-white/50">
+                  {t("roi.timeline.noSpend")}
+                </p>
+              ) : (
+                <>
+                  {/* Visual timeline bar */}
+                  <div className="mb-3 flex items-center gap-3">
+                    <div className="flex-1">
+                      <div className="flex h-3 overflow-hidden rounded-full bg-white/10">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${Math.min(100, Math.max(10, (1 / (results.timelineMonths.max / 18)) * 100))}%` }}
+                          transition={{ duration: 0.6 }}
+                          className={`rounded-full ${
+                            results.timelineMonths.label === "onTrack" || results.timelineMonths.label === "accelerated" || results.timelineMonths.label === "fast"
+                              ? "bg-gradient-to-r from-emerald-500 to-emerald-400"
+                              : results.timelineMonths.label === "moderate"
+                              ? "bg-gradient-to-r from-amber-500 to-amber-400"
+                              : "bg-gradient-to-r from-red-500 to-red-400"
+                          }`}
+                        />
+                      </div>
+                      <div className="mt-1 flex justify-between text-[10px] text-white/30">
+                        <span>Faster</span>
+                        <span>Slower</span>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <span className={`text-2xl font-bold ${
+                        results.timelineMonths.label === "onTrack" || results.timelineMonths.label === "accelerated" || results.timelineMonths.label === "fast"
+                          ? "text-emerald-400"
+                          : results.timelineMonths.label === "moderate"
+                          ? "text-amber-400"
+                          : "text-red-400"
+                      }`}>
+                        {results.timelineMonths.min}{results.timelineMonths.min !== results.timelineMonths.max ? `\u2013${results.timelineMonths.max}` : ""}
+                      </span>
+                      <span className="ml-1 text-sm text-white/50">months</span>
+                    </div>
+                  </div>
+
+                  <p className="text-sm text-white/50">
+                    {t(`roi.timeline.${results.timelineMonths.label}`)}
+                  </p>
+
+                  {(results.timelineMonths.label === "veryLong" || results.timelineMonths.label === "slow") && (
+                    <p className="mt-2 text-xs font-medium text-red-300">
+                      {t("roi.timeline.speedUp")}
+                    </p>
+                  )}
+                </>
+              )}
             </div>
 
             {/* ======================== ROI EXPLANATION ======================== */}
