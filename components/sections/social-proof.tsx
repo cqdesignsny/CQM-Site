@@ -119,22 +119,41 @@ export function SocialProof() {
     <section className="relative overflow-hidden py-20 md:py-28">
       <VerticalText text="PROOF" side="left" variant="light" />
       <div className="container relative mx-auto px-4">
-        {/* Featured testimonial */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mx-auto mb-16 max-w-2xl text-center"
-        >
-          <Quote className="mx-auto mb-4 h-10 w-10 text-red-500/40" />
-          <blockquote className="mb-4 text-xl font-medium italic leading-relaxed sm:text-2xl">
-            &quot;It feels like its our company, like we are in it together.&quot;
-          </blockquote>
-          <div className="text-sm text-muted-foreground">
-            <span className="font-semibold text-foreground">Sarah O&apos;Flaherty</span>
-            {" "}/ Founder, SaGrah Beauty
-          </div>
-        </motion.div>
+        {/* Featured testimonials */}
+        <div className="mx-auto mb-16 grid max-w-4xl gap-10 md:grid-cols-2">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <Quote className="mx-auto mb-4 h-8 w-8 text-red-500/40" />
+            <blockquote className="mb-4 text-lg font-medium italic leading-relaxed sm:text-xl">
+              &quot;I&apos;m honestly really proud of the marketing team you guys are continuing to grow into. Even just calling you guys a &quot;marketing team&quot; doesn&apos;t do what you guys are doing justice. You are covering so much more and helping us grow into ways I know for fact other companies wouldn&apos;t be. I just want to say thank you truly.&quot;
+            </blockquote>
+            <div className="text-sm text-muted-foreground">
+              <span className="font-semibold text-foreground">Tyler Zitz</span>
+              {" "}/ Owner, TZ Electric
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-center"
+          >
+            <Quote className="mx-auto mb-4 h-8 w-8 text-red-500/40" />
+            <blockquote className="mb-4 text-lg font-medium italic leading-relaxed sm:text-xl">
+              &quot;It feels like its our company, like we are in it together.&quot;
+            </blockquote>
+            <div className="text-sm text-muted-foreground">
+              <span className="font-semibold text-foreground">Sarah O&apos;Flaherty</span>
+              {" "}/ Founder, SaGrah Beauty
+            </div>
+          </motion.div>
+        </div>
 
         {/* Trust logos strip */}
         <div>
