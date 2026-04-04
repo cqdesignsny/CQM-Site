@@ -7,7 +7,7 @@ import { useLanguage } from "@/lib/i18n/context";
 import { VerticalText } from "@/components/ui/vertical-text";
 import { useRef, useState, useCallback, useEffect } from "react";
 
-const logos = [
+const logos: { name: string; logo: string; invert?: boolean }[] = [
   { name: "Advanced Skin Medspa", logo: "/images/clients/ASM-Logo.webp" },
   { name: "51 Cattle", logo: "/images/clients/51-cattle-blk.svg" },
   { name: "Aseproc", logo: "/images/clients/Aseproc-Logo.webp" },
@@ -17,7 +17,7 @@ const logos = [
   { name: "Fearless", logo: "/images/clients/Fearless.png" },
   { name: "Halls Boat", logo: "/images/clients/Halls-Boat.webp" },
   { name: "Hello Kind Soul", logo: "/images/clients/Hello-Kind-Soul-Alt2-1.avif" },
-  { name: "Hudson Valley Outreach Foundation", logo: "/images/clients/HVOF-2025-logo.svg" },
+  { name: "Hudson Valley Outreach Foundation", logo: "/images/clients/HVOF-2025-logo.svg", invert: true },
   { name: "Hudson Valley Podcasting", logo: "/images/clients/HVP-Logo-1.webp" },
   { name: "La Bodega", logo: "/images/clients/La-Bodega-Logo.webp" },
   { name: "Level Aesthetics", logo: "/images/clients/Level-Logo.webp" },
@@ -26,13 +26,13 @@ const logos = [
   { name: "Perfect Foods", logo: "/images/clients/Perfect-foods.png" },
   { name: "Rising Lotus", logo: "/images/clients/Risong-Lotus-Logo.webp" },
   { name: "SaGrah Beauty", logo: "/images/clients/Sagrah-Beauty.webp" },
-  { name: "Salty Boats", logo: "/images/clients/salty-boats-logo-white.svg" },
-  { name: "Supreme", logo: "/images/clients/Supreme_logo_col-03.svg" },
+  { name: "Salty Boats", logo: "/images/clients/salty-boats-logo-white.svg", invert: true },
+  { name: "Supreme", logo: "/images/clients/Supreme_logo_col-03.svg", invert: true },
   { name: "TZ Media", logo: "/images/clients/tz-logo-main.svg" },
-  { name: "Urban Flooring Solutions", logo: "/images/clients/UFS_whitelogo_long.svg" },
+  { name: "Urban Flooring Solutions", logo: "/images/clients/UFS_whitelogo_long.svg", invert: true },
   { name: "Wells O", logo: "/images/clients/wells-o-blk.svg" },
   { name: "Wrecktified", logo: "/images/clients/Wrecktified-Logo.webp" },
-  { name: "Newburgh Seal", logo: "/images/clients/logo-seal-wht.webp" },
+  { name: "Newburgh Seal", logo: "/images/clients/logo-seal-wht.webp", invert: true },
   { name: "Download", logo: "/images/clients/download.png" },
 ];
 
@@ -186,7 +186,7 @@ export function SocialProof() {
                     alt={logo.name}
                     width={260}
                     height={104}
-                    className="h-12 w-auto select-none object-contain opacity-50 grayscale transition-all duration-300 hover:opacity-90 hover:grayscale-0 sm:h-14 md:h-[4.5rem]"
+                    className={`h-12 w-auto select-none object-contain opacity-50 grayscale transition-all duration-300 hover:opacity-90 hover:grayscale-0 sm:h-14 md:h-[4.5rem] ${logo.invert ? "invert" : ""}`}
                     draggable={false}
                   />
                 </div>
