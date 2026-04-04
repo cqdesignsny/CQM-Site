@@ -27,7 +27,7 @@ export function SocialProof() {
 
   return (
     <section className="relative overflow-hidden py-20 md:py-28">
-      <VerticalText text="PROOF" side="left" />
+      <VerticalText text="PROOF" side="left" variant="light" />
       <div className="container relative mx-auto px-4">
         {/* Featured testimonial */}
         <motion.div

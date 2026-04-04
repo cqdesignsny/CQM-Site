@@ -71,7 +71,7 @@ export function ServicesOverview() {
 
   return (
     <section className="relative overflow-hidden bg-muted/30 py-20 md:py-28">
-      <VerticalText text="SERVICES" side="right" />
+      <VerticalText text="SERVICES" side="right" variant="light" />
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-3xl text-center">
           <motion.h2

@@ -62,7 +62,7 @@ export function FunnelTeaser() {
 
   return (
     <section className="relative overflow-hidden py-20 md:py-28">
-      <VerticalText text="FUNNEL" side="left" />
+      <VerticalText text="FUNNEL" side="left" variant="light" />
       <div className="container relative mx-auto px-4">
         <div className="mx-auto max-w-3xl text-center">
           <motion.h2

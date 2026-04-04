@@ -80,7 +80,7 @@ export function HowMarketingWorksContent() {
 
       {/* The Problem */}
       <section className="relative overflow-hidden py-20 md:py-28">
-        <VerticalText text="PROBLEM" side="right" />
+        <VerticalText text="PROBLEM" side="right" variant="light" />
         <div className="container relative mx-auto px-4">
           <div className="mx-auto max-w-3xl">
             <motion.h2
@@ -115,7 +115,7 @@ export function HowMarketingWorksContent() {
 
       {/* The Marketing Funnel */}
       <section className="relative overflow-hidden bg-muted/30 py-20 md:py-28">
-        <VerticalText text="STAGES" side="left" />
+        <VerticalText text="STAGES" side="left" variant="light" />
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <motion.h2
@@ -143,7 +143,7 @@ export function HowMarketingWorksContent() {
 
       {/* Gap Checker */}
       <section className="relative overflow-hidden py-20 md:py-28">
-        <VerticalText text="GAPS" side="right" />
+        <VerticalText text="GAPS" side="right" variant="light" />
         <div className="container relative mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
             <motion.h2
@@ -229,7 +229,7 @@ export function HowMarketingWorksContent() {
 
       {/* Our Process */}
       <section className="relative overflow-hidden py-20 md:py-28">
-        <VerticalText text="PROCESS" side="right" />
+        <VerticalText text="PROCESS" side="right" variant="light" />
         <div className="container relative mx-auto px-4">
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <motion.h2
