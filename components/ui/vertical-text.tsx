@@ -28,7 +28,7 @@ export function VerticalText({ text, side = "right", className = "" }: VerticalT
       } ${className}`}
     >
       <span
-        className="font-black text-[12rem] lg:text-[16rem] uppercase tracking-tight text-white/[0.04] whitespace-nowrap"
+        className="font-black text-[14rem] lg:text-[20rem] uppercase tracking-tight text-white/[0.08] whitespace-nowrap"
         style={{
           writingMode: "vertical-lr",
           ...(isLeft ? { transform: "rotate(180deg)" } : {}),
