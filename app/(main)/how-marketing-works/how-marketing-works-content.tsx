@@ -79,7 +79,7 @@ export function HowMarketingWorksContent() {
       </section>
 
       {/* The Problem */}
-      <section className="relative overflow-hidden py-20 md:py-28">
+      <section className="relative overflow-hidden bg-background py-20 md:py-28">
         <VerticalText text="PROBLEM" side="right" variant="light" />
         <div className="container relative mx-auto px-4">
           <div className="mx-auto max-w-3xl">
@@ -142,7 +142,7 @@ export function HowMarketingWorksContent() {
       </section>
 
       {/* Gap Checker */}
-      <section className="relative overflow-hidden py-20 md:py-28">
+      <section className="relative overflow-hidden bg-background py-20 md:py-28">
         <VerticalText text="GAPS" side="right" variant="light" />
         <div className="container relative mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
@@ -170,7 +170,7 @@ export function HowMarketingWorksContent() {
       </section>
 
       {/* The CQM Difference */}
-      <section className="relative overflow-hidden bg-black py-20 text-white md:py-28">
+      <section className="relative -mt-px overflow-hidden bg-black py-20 text-white md:py-28">
         <VerticalText text="EDGE" side="left" />
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl">
@@ -228,7 +228,7 @@ export function HowMarketingWorksContent() {
       </section>
 
       {/* Our Process */}
-      <section className="relative overflow-hidden py-20 md:py-28">
+      <section className="relative overflow-hidden bg-background py-20 md:py-28">
         <VerticalText text="PROCESS" side="right" variant="light" />
         <div className="container relative mx-auto px-4">
           <div className="mx-auto mb-16 max-w-3xl text-center">
@@ -290,7 +290,7 @@ export function HowMarketingWorksContent() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="bg-black py-20 text-white md:py-28">
+      <section className="-mt-px bg-black py-20 text-white md:py-28">
         <div className="container mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

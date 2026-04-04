@@ -102,34 +102,42 @@ export function AboutContent() {
           </div>
         </section>
 
-        <section className="mb-14 rounded-xl border bg-black p-6 text-white md:p-8">
-          <h2 className="mb-4 text-2xl font-semibold">{t("about.values.title")}</h2>
-          <p className="mb-6 text-white/75">{t("about.values.desc")}</p>
-          <div className="mb-6 overflow-hidden rounded-lg border border-white/10 bg-white/5 p-4">
-            <Image
-              src="https://creativequalitymarketing.com/wp-content/uploads/2021/09/core_values_cq-980x878-2.png"
-              alt="Creative Quality Marketing core values wheel"
-              width={980}
-              height={878}
-              className="h-auto w-full rounded-md"
-            />
-          </div>
-          <div className="grid gap-3 md:grid-cols-2">
-            {coreValues.map((value) => {
-              const Icon = value.icon;
-              return (
-                <div
-                  key={value.titleKey}
-                  className="rounded-lg border border-white/10 bg-white/5 p-4 transition-all hover:border-red-300/40 hover:bg-white/[0.08]"
-                >
-                  <div className="mb-2 flex items-center gap-2">
-                    <Icon className="h-4 w-4 text-red-300" />
-                    <h3 className="font-semibold">{t(value.titleKey)}</h3>
+        <section className="mb-14">
+          <h2 className="mb-2 text-2xl font-semibold">{t("about.values.title")}</h2>
+          <p className="mb-8 text-muted-foreground">{t("about.values.desc")}</p>
+
+          <div className="grid items-center gap-8 lg:grid-cols-2">
+            {/* Values wheel graphic */}
+            <div className="flex items-center justify-center">
+              <Image
+                src="https://creativequalitymarketing.com/wp-content/uploads/2021/09/core_values_cq-980x878-2.png"
+                alt="Creative Quality Marketing core values wheel"
+                width={480}
+                height={430}
+                className="h-auto w-full max-w-sm rounded-lg"
+              />
+            </div>
+
+            {/* Value descriptions */}
+            <div className="space-y-4">
+              {coreValues.map((value) => {
+                const Icon = value.icon;
+                return (
+                  <div
+                    key={value.titleKey}
+                    className="rounded-lg border p-4 transition-all hover:border-primary/40 hover:shadow-md"
+                  >
+                    <div className="mb-1.5 flex items-center gap-2">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-600/10">
+                        <Icon className="h-4 w-4 text-red-500" />
+                      </div>
+                      <h3 className="font-semibold">{t(value.titleKey)}</h3>
+                    </div>
+                    <p className="pl-10 text-sm text-muted-foreground">{t(value.descKey)}</p>
                   </div>
-                  <p className="text-sm text-white/75">{t(value.descKey)}</p>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </section>
 
