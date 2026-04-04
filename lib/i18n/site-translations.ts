@@ -140,7 +140,7 @@ export const siteTranslations: TranslationMap = {
   // ============================================================
   // SOCIAL PROOF SECTION (Homepage)
   // ============================================================
-  "socialProof.title": { en: "Businesses That Trust Us", es: "Negocios Que Conf\u00EDan en Nosotros", fr: "Les Entreprises Qui Nous Font Confiance" },
+  "socialProof.title": { en: "Businesses That Trusted Us", es: "Negocios Que Confiaron en Nosotros", fr: "Les Entreprises Qui Nous Ont Fait Confiance" },
 
   // ============================================================
   // HOW MARKETING WORKS PAGE

@@ -9,19 +9,19 @@ import { useRef, useState, useCallback, useEffect } from "react";
 
 // scale: CSS scale factor (1 = default, 1.5 = 50% bigger, 0.7 = 30% smaller)
 const logos: { name: string; logo: string; invert?: boolean; scale?: number }[] = [
-  { name: "Advanced Skin Medspa", logo: "/images/clients/ASM-Logo.webp", scale: 1.5 },
+  { name: "Advanced Skin Medspa", logo: "/images/clients/ASM-Logo.webp", scale: 1.8 },
   { name: "51 Cattle", logo: "/images/clients/51-cattle-blk.svg" },
   { name: "Aseproc", logo: "/images/clients/Aseproc-Logo.webp" },
   { name: "Athens Strength Club", logo: "/images/clients/ATH_STR_CLB-Logo.avif" },
   { name: "Elco", logo: "/images/clients/Elco-logo-Modern.png.webp" },
-  { name: "Empire", logo: "/images/clients/Empire-Logo.webp", scale: 1.5 },
+  { name: "Empire", logo: "/images/clients/Empire-Logo.webp", scale: 2.3 },
   { name: "Fearless", logo: "/images/clients/Fearless.png", scale: 0.7 },
   { name: "Halls Boat", logo: "/images/clients/Halls-Boat.webp" },
   { name: "Hello Kind Soul", logo: "/images/clients/Hello-Kind-Soul-Alt2-1.avif" },
   { name: "Hudson Valley Outreach Foundation", logo: "/images/clients/HVOF-2025-logo.svg" },
   { name: "Hudson Valley Podcasting", logo: "/images/clients/HVP-Logo-1.webp" },
   { name: "La Bodega", logo: "/images/clients/La-Bodega-Logo.webp" },
-  { name: "Level Aesthetics", logo: "/images/clients/Level-Logo.webp" },
+  { name: "Level Aesthetics", logo: "/images/clients/Level-Logo.webp", scale: 1.5 },
   { name: "Mark Viera", logo: "/images/clients/Mark-Viera-Logo.webp" },
   { name: "Marlon", logo: "/images/clients/Marlon-Logo.webp", scale: 1.5, invert: true },
   { name: "Perfect Foods", logo: "/images/clients/Perfect-foods.png" },
@@ -32,7 +32,7 @@ const logos: { name: string; logo: string; invert?: boolean; scale?: number }[] 
   { name: "TZ Media", logo: "/images/clients/tz-logo-main.svg" },
   { name: "Urban Flooring Solutions", logo: "/images/clients/UFS_whitelogo_long.svg", invert: true },
   { name: "Wells O", logo: "/images/clients/wells-o-blk.svg" },
-  { name: "Wrecktified", logo: "/images/clients/Wrecktified-Logo.webp", scale: 1.5 },
+  { name: "Wrecktified", logo: "/images/clients/Wrecktified-Logo.webp", scale: 2.0 },
   { name: "Newburgh Seal", logo: "/images/clients/logo-seal-wht.webp", invert: true },
   { name: "Download", logo: "/images/clients/download.png" },
 ];
