@@ -13,44 +13,44 @@ const stages = [
     icon: Eye,
     nameKey: "funnel.stage1.name",
     hookKey: "funnel.stage1.hook",
-    gradient: "from-red-500/20 to-red-600/5",
-    borderColor: "border-red-500/30",
-    hoverBorder: "hover:border-red-500/70",
-    iconBg: "bg-red-500",
-    glowColor: "group-hover:shadow-red-500/20",
+    gradient: "from-blue-500/20 to-blue-600/5",
+    borderColor: "border-blue-500/30",
+    hoverBorder: "hover:border-blue-500/70",
+    iconBg: "bg-blue-500",
+    glowColor: "group-hover:shadow-blue-500/20",
     width: "w-full",
   },
   {
     icon: Zap,
     nameKey: "funnel.stage2.name",
     hookKey: "funnel.stage2.hook",
-    gradient: "from-red-600/20 to-red-700/5",
-    borderColor: "border-red-600/30",
-    hoverBorder: "hover:border-red-600/70",
-    iconBg: "bg-red-600",
-    glowColor: "group-hover:shadow-red-600/20",
+    gradient: "from-purple-500/20 to-purple-600/5",
+    borderColor: "border-purple-500/30",
+    hoverBorder: "hover:border-purple-500/70",
+    iconBg: "bg-purple-500",
+    glowColor: "group-hover:shadow-purple-500/20",
     width: "w-[88%]",
   },
   {
     icon: Scale,
     nameKey: "funnel.stage3.name",
     hookKey: "funnel.stage3.hook",
-    gradient: "from-red-700/20 to-red-800/5",
-    borderColor: "border-red-700/30",
-    hoverBorder: "hover:border-red-700/70",
-    iconBg: "bg-red-700",
-    glowColor: "group-hover:shadow-red-700/20",
+    gradient: "from-orange-500/20 to-orange-600/5",
+    borderColor: "border-orange-500/30",
+    hoverBorder: "hover:border-orange-500/70",
+    iconBg: "bg-orange-500",
+    glowColor: "group-hover:shadow-orange-500/20",
     width: "w-[74%]",
   },
   {
     icon: MousePointerClick,
     nameKey: "funnel.stage4.name",
     hookKey: "funnel.stage4.hook",
-    gradient: "from-red-800/20 to-red-900/5",
-    borderColor: "border-red-800/30",
-    hoverBorder: "hover:border-red-800/70",
-    iconBg: "bg-red-800",
-    glowColor: "group-hover:shadow-red-800/20",
+    gradient: "from-red-500/20 to-red-600/5",
+    borderColor: "border-red-500/30",
+    hoverBorder: "hover:border-red-500/70",
+    iconBg: "bg-red-500",
+    glowColor: "group-hover:shadow-red-500/20",
     width: "w-[58%]",
   },
 ];
@@ -138,7 +138,7 @@ export function FunnelTeaser() {
 
         {/* Bottom point of the funnel */}
         <div className="mx-auto mt-1 flex justify-center">
-          <div className="h-8 w-px bg-gradient-to-b from-red-800/40 to-transparent" />
+          <div className="h-8 w-px bg-gradient-to-b from-red-500/40 to-transparent" />
         </div>
 
         <motion.div

@@ -59,6 +59,8 @@ export function PaidAdsServiceContent() {
         { question: t("sd.ads.faq2.q"), answer: t("sd.ads.faq2.a") },
         { question: t("sd.ads.faq3.q"), answer: t("sd.ads.faq3.a") },
         { question: t("sd.ads.faq4.q"), answer: t("sd.ads.faq4.a") },
+        { question: t("sd.ads.faq5.q"), answer: t("sd.ads.faq5.a") },
+        { question: t("sd.ads.faq6.q"), answer: t("sd.ads.faq6.a") },
       ]}
       funnelStages={["awareness", "decision"]}
       complementaryServices={[

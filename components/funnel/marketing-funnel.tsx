@@ -15,11 +15,11 @@ const stages = [
     explanationKey: "hmw.stage1.explanation",
     servicesKey: "hmw.stage1.services",
     skipKey: "hmw.stage1.skip",
-    color: "red-500",
-    gradient: "from-red-500 to-red-600",
-    bgGradient: "from-red-500/15 to-red-600/5",
-    borderColor: "border-red-500/30",
-    activeBorder: "border-red-500",
+    color: "blue-500",
+    gradient: "from-blue-500 to-blue-600",
+    bgGradient: "from-blue-500/15 to-blue-600/5",
+    borderColor: "border-blue-500/30",
+    activeBorder: "border-blue-500",
     width: "w-full",
     serviceLinks: [
       { href: "/services/seo", label: "SEO" },
@@ -35,11 +35,11 @@ const stages = [
     explanationKey: "hmw.stage2.explanation",
     servicesKey: "hmw.stage2.services",
     skipKey: "hmw.stage2.skip",
-    color: "red-600",
-    gradient: "from-red-600 to-red-700",
-    bgGradient: "from-red-600/15 to-red-700/5",
-    borderColor: "border-red-600/30",
-    activeBorder: "border-red-600",
+    color: "purple-500",
+    gradient: "from-purple-500 to-purple-600",
+    bgGradient: "from-purple-500/15 to-purple-600/5",
+    borderColor: "border-purple-500/30",
+    activeBorder: "border-purple-500",
     width: "w-[90%]",
     serviceLinks: [
       { href: "/services/web", label: "Web Development" },
@@ -54,11 +54,11 @@ const stages = [
     explanationKey: "hmw.stage3.explanation",
     servicesKey: "hmw.stage3.services",
     skipKey: "hmw.stage3.skip",
-    color: "red-700",
-    gradient: "from-red-700 to-red-800",
-    bgGradient: "from-red-700/15 to-red-800/5",
-    borderColor: "border-red-700/30",
-    activeBorder: "border-red-700",
+    color: "orange-500",
+    gradient: "from-orange-500 to-orange-600",
+    bgGradient: "from-orange-500/15 to-orange-600/5",
+    borderColor: "border-orange-500/30",
+    activeBorder: "border-orange-500",
     width: "w-[78%]",
     serviceLinks: [
       { href: "/services/email-marketing", label: "Email Marketing" },
@@ -72,11 +72,11 @@ const stages = [
     explanationKey: "hmw.stage4.explanation",
     servicesKey: "hmw.stage4.services",
     skipKey: "hmw.stage4.skip",
-    color: "red-800",
-    gradient: "from-red-800 to-red-900",
-    bgGradient: "from-red-800/15 to-red-900/5",
-    borderColor: "border-red-800/30",
-    activeBorder: "border-red-800",
+    color: "red-500",
+    gradient: "from-red-500 to-red-600",
+    bgGradient: "from-red-500/15 to-red-600/5",
+    borderColor: "border-red-500/30",
+    activeBorder: "border-red-500",
     width: "w-[64%]",
     serviceLinks: [
       { href: "/services/web", label: "Conversion Optimization" },
@@ -109,7 +109,7 @@ export function MarketingFunnel() {
               <div
                 className={`group relative cursor-pointer overflow-hidden rounded-2xl border-2 transition-all duration-300 ${
                   isOpen
-                    ? `${stage.activeBorder} shadow-2xl shadow-red-500/10`
+                    ? `${stage.activeBorder} shadow-2xl`
                     : `${stage.borderColor} hover:shadow-lg`
                 }`}
                 onClick={() => setOpenStage(isOpen ? -1 : index)}
@@ -192,7 +192,7 @@ export function MarketingFunnel() {
 
       {/* Bottom point of funnel */}
       <div className="flex justify-center">
-        <div className="h-12 w-px bg-gradient-to-b from-red-800/50 to-transparent" />
+        <div className="h-12 w-px bg-gradient-to-b from-red-500/50 to-transparent" />
       </div>
     </div>
   );

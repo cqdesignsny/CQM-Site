@@ -1,6 +1,6 @@
 # CQM Site Handoff
 
-Updated: **March 30, 2026**
+Updated: **April 4, 2026**
 
 ## Repo State
 
@@ -21,6 +21,16 @@ Education first sales tool. NOT a typical agency service listing site. The site 
 - We learn your business first, then build marketing around what makes you different
 
 **Copy tone:** Human, casual, funny, personable, knowledgeable. No dashes of any kind. Comedy woven throughout. Like talking to a friend who happens to be really good at marketing.
+
+## What Was Built (April 4, 2026 — Laura's Feedback Round)
+
+### UX/Copy Improvements from User Testing
+1. **Funnel color gradient (cold to hot)**: Funnel stages now go from blue (Awareness/cold) → purple (Interest) → orange (Decision) → red (Action/hot), visually teaching the concept as users scroll. Applied to both homepage FunnelTeaser and HowMarketingWorks MarketingFunnel components.
+2. **Funnel storytelling unified**: All 4 stages now tell one continuous story about opening a restaurant, carried from Awareness through Action. Previously jumped between restaurant and med spa examples.
+3. **Newsletter copy fixed**: Removed "No fluff" (flagged as AI sounding). Now reads "No spam. Just the stuff that actually helps you grow."
+4. **SEO page**: Updated FAQ to include listings beyond Google Business Profile (Yelp, Apple Maps, Bing Places, and other directories).
+5. **Paid Ads page**: Added TikTok Ads to platform list. Added 2 new FAQs ("What if I've never run ads before?" and "How do you measure if ads are working?").
+6. **Email Marketing page**: Added new FAQ about platform support ("Can you work with whatever platform we're already using?") listing Klaviyo, Mailchimp, HubSpot, ActiveCampaign, ConvertKit, Constant Contact.
 
 ## What Was Built (March 29-30, 2026)
 

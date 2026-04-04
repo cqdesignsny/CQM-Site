@@ -59,6 +59,7 @@ export function EmailServiceContent() {
         { question: t("sd.email.faq2.q"), answer: t("sd.email.faq2.a") },
         { question: t("sd.email.faq3.q"), answer: t("sd.email.faq3.a") },
         { question: t("sd.email.faq4.q"), answer: t("sd.email.faq4.a") },
+        { question: t("sd.email.faq5.q"), answer: t("sd.email.faq5.a") },
       ]}
       funnelStages={["decision", "action"]}
       complementaryServices={[
