@@ -87,8 +87,13 @@ export function Header() {
             </Link>
           ))}
 
-          {/* Tools Dropdown */}
-          <div ref={toolsRef} className="relative">
+          {/* Tools Dropdown — hover on desktop */}
+          <div
+            ref={toolsRef}
+            className="relative"
+            onMouseEnter={() => setToolsOpen(true)}
+            onMouseLeave={() => setToolsOpen(false)}
+          >
             <button
               type="button"
               onClick={() => setToolsOpen(!toolsOpen)}
@@ -98,7 +103,7 @@ export function Header() {
               <ChevronDown className={`h-3.5 w-3.5 transition-transform ${toolsOpen ? "rotate-180" : ""}`} />
             </button>
             {toolsOpen && (
-              <div className="absolute right-0 top-full mt-2 w-56 overflow-hidden rounded-xl border border-white/10 bg-zinc-900 py-1 shadow-2xl">
+              <div className="absolute right-0 top-full w-56 overflow-hidden rounded-xl border border-white/10 bg-zinc-900 py-1 pt-3 shadow-2xl">
                 {toolsLinks.map((tool) => {
                   const Icon = tool.icon;
                   return (
