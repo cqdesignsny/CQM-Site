@@ -7,31 +7,32 @@ import { useLanguage } from "@/lib/i18n/context";
 import { VerticalText } from "@/components/ui/vertical-text";
 import { useRef, useState, useCallback, useEffect } from "react";
 
-const logos: { name: string; logo: string; invert?: boolean }[] = [
-  { name: "Advanced Skin Medspa", logo: "/images/clients/ASM-Logo.webp" },
+// scale: CSS scale factor (1 = default, 1.5 = 50% bigger, 0.7 = 30% smaller)
+const logos: { name: string; logo: string; invert?: boolean; scale?: number }[] = [
+  { name: "Advanced Skin Medspa", logo: "/images/clients/ASM-Logo.webp", scale: 1.5 },
   { name: "51 Cattle", logo: "/images/clients/51-cattle-blk.svg" },
   { name: "Aseproc", logo: "/images/clients/Aseproc-Logo.webp" },
   { name: "Athens Strength Club", logo: "/images/clients/ATH_STR_CLB-Logo.avif" },
   { name: "Elco", logo: "/images/clients/Elco-logo-Modern.png.webp" },
-  { name: "Empire", logo: "/images/clients/Empire-Logo.webp" },
-  { name: "Fearless", logo: "/images/clients/Fearless.png" },
+  { name: "Empire", logo: "/images/clients/Empire-Logo.webp", scale: 1.5 },
+  { name: "Fearless", logo: "/images/clients/Fearless.png", scale: 0.7 },
   { name: "Halls Boat", logo: "/images/clients/Halls-Boat.webp" },
   { name: "Hello Kind Soul", logo: "/images/clients/Hello-Kind-Soul-Alt2-1.avif" },
-  { name: "Hudson Valley Outreach Foundation", logo: "/images/clients/HVOF-2025-logo.svg", invert: true },
+  { name: "Hudson Valley Outreach Foundation", logo: "/images/clients/HVOF-2025-logo.svg" },
   { name: "Hudson Valley Podcasting", logo: "/images/clients/HVP-Logo-1.webp" },
   { name: "La Bodega", logo: "/images/clients/La-Bodega-Logo.webp" },
   { name: "Level Aesthetics", logo: "/images/clients/Level-Logo.webp" },
   { name: "Mark Viera", logo: "/images/clients/Mark-Viera-Logo.webp" },
-  { name: "Marlon", logo: "/images/clients/Marlon-Logo.webp" },
+  { name: "Marlon", logo: "/images/clients/Marlon-Logo.webp", scale: 1.5, invert: true },
   { name: "Perfect Foods", logo: "/images/clients/Perfect-foods.png" },
   { name: "Rising Lotus", logo: "/images/clients/Risong-Lotus-Logo.webp" },
   { name: "SaGrah Beauty", logo: "/images/clients/Sagrah-Beauty.webp" },
   { name: "Salty Boats", logo: "/images/clients/salty-boats-logo-white.svg", invert: true },
-  { name: "Supreme", logo: "/images/clients/Supreme_logo_col-03.svg", invert: true },
+  { name: "Supreme", logo: "/images/clients/Supreme_logo_col-03.svg" },
   { name: "TZ Media", logo: "/images/clients/tz-logo-main.svg" },
   { name: "Urban Flooring Solutions", logo: "/images/clients/UFS_whitelogo_long.svg", invert: true },
   { name: "Wells O", logo: "/images/clients/wells-o-blk.svg" },
-  { name: "Wrecktified", logo: "/images/clients/Wrecktified-Logo.webp" },
+  { name: "Wrecktified", logo: "/images/clients/Wrecktified-Logo.webp", scale: 1.5 },
   { name: "Newburgh Seal", logo: "/images/clients/logo-seal-wht.webp", invert: true },
   { name: "Download", logo: "/images/clients/download.png" },
 ];
@@ -187,6 +188,7 @@ export function SocialProof() {
                     width={260}
                     height={104}
                     className={`h-12 w-auto select-none object-contain opacity-50 grayscale transition-all duration-300 hover:opacity-90 hover:grayscale-0 sm:h-14 md:h-[4.5rem] ${logo.invert ? "invert" : ""}`}
+                    style={logo.scale ? { transform: `scale(${logo.scale})` } : undefined}
                     draggable={false}
                   />
                 </div>
