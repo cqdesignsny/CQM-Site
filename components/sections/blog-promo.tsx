@@ -7,6 +7,7 @@ import { BookOpen, ArrowRight, Clock } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
 import { track } from "@/lib/analytics";
 import { getAllArticles } from "@/lib/blog/articles";
+import { VerticalText } from "@/components/ui/vertical-text";
 
 /**
  * BlogPromo — Homepage section showing 3 latest blog posts.
@@ -18,6 +19,7 @@ export function BlogPromo() {
 
   return (
     <section className="relative overflow-hidden bg-zinc-950 py-20 md:py-28">
+      <VerticalText text="LEARN" side="right" />
       {/* Subtle top border glow */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent" />
 

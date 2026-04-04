@@ -22,6 +22,25 @@ Education first sales tool. NOT a typical agency service listing site. The site 
 
 **Copy tone:** Human, casual, funny, personable, knowledgeable. No dashes of any kind. Comedy woven throughout. Like talking to a friend who happens to be really good at marketing.
 
+## What Was Built (April 4, 2026 — Session 3: Design Polish)
+
+### Vertical Background Text Effect
+Inspired by SCM Ink's design, added large vertical text as a subtle background element on section sides. Uses `writing-mode: vertical-lr` at 4% opacity, alternating left/right sides across sections. Reusable `VerticalText` component at `components/ui/vertical-text.tsx`.
+
+Applied to:
+- **Homepage**: OUTTHINK (differentiator), FUNNEL (funnel teaser), SERVICES (services overview), PROOF (social proof), ASSESS (assessment promo), ROI (ROI promo), LEARN (blog promo), INBOX (newsletter), GROW (CTA banner)
+- **How Marketing Works**: PROBLEM, STAGES, GAPS, EDGE, PROCESS
+- **ROI Calculator**: CALCULATE, METHOD
+- **Service pages**: START (lead capture CTA)
+
+### Spacing Audit & Fixes
+- **Footer logo**: Increased ~50% bigger (h-8 → h-12, sm:h-9 → sm:h-14)
+- **Services page**: Added `mb-16` between "Ready to get started" button and CTABanner
+- **About page**: Added `mb-12` to CTA section before CTABanner
+- **Studio page**: Increased Packages CTA padding from `py-10` to `py-16 md:py-20`
+- **Contact page**: Added `mt-12` wrapper before CTABanner
+- **How Marketing Works**: Added `mt-4` wrapper before CTABanner
+
 ## What Was Built (April 4, 2026 — Session 2: Major Feature Round)
 
 ### Navigation & Layout

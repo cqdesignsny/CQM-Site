@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
+import { VerticalText } from "@/components/ui/vertical-text";
 
 const logos = [
   { name: "Advanced Skin Medspa", logo: "/images/asm.webp" },
@@ -25,8 +26,9 @@ export function SocialProof() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-20 md:py-28">
-      <div className="container mx-auto px-4">
+    <section className="relative overflow-hidden py-20 md:py-28">
+      <VerticalText text="PROOF" side="left" />
+      <div className="container relative mx-auto px-4">
         {/* Featured testimonial */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

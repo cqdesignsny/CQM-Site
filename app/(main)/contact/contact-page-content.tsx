@@ -103,7 +103,9 @@ export function ContactPageContent() {
         </div>
       </div>
 
-      <CTABanner variant="compact" />
+      <div className="mt-12">
+        <CTABanner variant="compact" />
+      </div>
     </div>
   );
 }

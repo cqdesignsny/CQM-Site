@@ -54,9 +54,9 @@ export function Footer() {
             <Image
               src={siteConfig.assets.logoWhitePath}
               alt={siteConfig.name}
-              width={210}
-              height={47}
-              className="h-8 w-auto sm:h-9"
+              width={315}
+              height={70}
+              className="h-12 w-auto sm:h-14"
             />
             <p className="text-sm text-white/70">
               {t("footer.tagline")}

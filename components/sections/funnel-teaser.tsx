@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/i18n/context";
 import { track } from "@/lib/analytics";
 import { useState } from "react";
+import { VerticalText } from "@/components/ui/vertical-text";
 
 const stages = [
   {
@@ -60,8 +61,9 @@ export function FunnelTeaser() {
   const [activeStage, setActiveStage] = useState<number | null>(null);
 
   return (
-    <section className="py-20 md:py-28">
-      <div className="container mx-auto px-4">
+    <section className="relative overflow-hidden py-20 md:py-28">
+      <VerticalText text="FUNNEL" side="left" />
+      <div className="container relative mx-auto px-4">
         <div className="mx-auto max-w-3xl text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

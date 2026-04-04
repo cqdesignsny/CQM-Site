@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/i18n/context";
 import { track } from "@/lib/analytics";
+import { VerticalText } from "@/components/ui/vertical-text";
 
 const serviceGroups = [
   {
@@ -69,7 +70,8 @@ export function ServicesOverview() {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-muted/30 py-20 md:py-28">
+    <section className="relative overflow-hidden bg-muted/30 py-20 md:py-28">
+      <VerticalText text="SERVICES" side="right" />
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-3xl text-center">
           <motion.h2

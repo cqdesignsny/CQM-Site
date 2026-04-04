@@ -271,7 +271,7 @@ export function StudioContent() {
       </section>
 
       {/* Packages CTA */}
-      <section className="py-10">
+      <section className="py-16 md:py-20">
         <div className="container mx-auto px-4">
           <div className="rounded-2xl border-2 border-red-500/30 bg-gradient-to-br from-red-950/20 to-black/40 p-8 text-center md:p-12">
             <div className="mx-auto max-w-2xl">

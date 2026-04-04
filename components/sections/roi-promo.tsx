@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { Calculator, ArrowRight, TrendingUp, DollarSign, Target } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
 import { track } from "@/lib/analytics";
+import { VerticalText } from "@/components/ui/vertical-text";
 
 function AnimatedStat({ value, suffix, label, delay }: { value: number; suffix: string; label: string; delay: number }) {
   const spring = useSpring(0, { stiffness: 50, damping: 20 });
@@ -35,6 +36,7 @@ export function ROIPromo() {
 
   return (
     <section className="relative overflow-hidden bg-black">
+      <VerticalText text="ROI" side="left" />
       {/* Gradient accents */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/4 top-0 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-red-600/8 blur-[120px]" />

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { BarChart3, ArrowRight, CheckCircle, Clock, FileText } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
 import { track } from "@/lib/analytics";
+import { VerticalText } from "@/components/ui/vertical-text";
 
 /**
  * AssessmentPromo — Homepage section promoting the free marketing assessment.
@@ -21,6 +22,7 @@ export function AssessmentPromo() {
 
   return (
     <section className="relative overflow-hidden bg-red-600">
+      <VerticalText text="ASSESS" side="right" />
       {/* Subtle pattern overlay */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -right-20 -top-20 h-[400px] w-[400px] rounded-full bg-red-500/30 blur-[100px]" />

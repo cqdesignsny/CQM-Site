@@ -9,6 +9,7 @@ import { track } from "@/lib/analytics";
 import { MarketingFunnel } from "@/components/funnel/marketing-funnel";
 import { FunnelGapChecker } from "@/components/funnel/funnel-gap-checker";
 import { CTABanner } from "@/components/sections/cta-banner";
+import { VerticalText } from "@/components/ui/vertical-text";
 
 const processSteps = [
   {
@@ -78,8 +79,9 @@ export function HowMarketingWorksContent() {
       </section>
 
       {/* The Problem */}
-      <section className="py-20 md:py-28">
-        <div className="container mx-auto px-4">
+      <section className="relative overflow-hidden py-20 md:py-28">
+        <VerticalText text="PROBLEM" side="right" />
+        <div className="container relative mx-auto px-4">
           <div className="mx-auto max-w-3xl">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -112,7 +114,8 @@ export function HowMarketingWorksContent() {
       </section>
 
       {/* The Marketing Funnel */}
-      <section className="bg-muted/30 py-20 md:py-28">
+      <section className="relative overflow-hidden bg-muted/30 py-20 md:py-28">
+        <VerticalText text="STAGES" side="left" />
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <motion.h2
@@ -139,8 +142,9 @@ export function HowMarketingWorksContent() {
       </section>
 
       {/* Gap Checker */}
-      <section className="py-20 md:py-28">
-        <div className="container mx-auto px-4">
+      <section className="relative overflow-hidden py-20 md:py-28">
+        <VerticalText text="GAPS" side="right" />
+        <div className="container relative mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -166,7 +170,8 @@ export function HowMarketingWorksContent() {
       </section>
 
       {/* The CQM Difference */}
-      <section className="bg-black py-20 text-white md:py-28">
+      <section className="relative overflow-hidden bg-black py-20 text-white md:py-28">
+        <VerticalText text="EDGE" side="left" />
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl">
             <motion.h2
@@ -223,8 +228,9 @@ export function HowMarketingWorksContent() {
       </section>
 
       {/* Our Process */}
-      <section className="py-20 md:py-28">
-        <div className="container mx-auto px-4">
+      <section className="relative overflow-hidden py-20 md:py-28">
+        <VerticalText text="PROCESS" side="right" />
+        <div className="container relative mx-auto px-4">
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -336,7 +342,9 @@ export function HowMarketingWorksContent() {
         </div>
       </section>
 
-      <CTABanner />
+      <div className="mt-4">
+        <CTABanner />
+      </div>
     </>
   );
 }

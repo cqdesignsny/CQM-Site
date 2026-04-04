@@ -22,6 +22,7 @@ import {
 import { useLanguage } from "@/lib/i18n/context";
 import { track } from "@/lib/analytics";
 import { CTABanner } from "@/components/sections/cta-banner";
+import { VerticalText } from "@/components/ui/vertical-text";
 
 /* ------------------------------------------------------------------ */
 /*  Industry Benchmarks (CPAs raised ~25% to reflect 2026 ad costs)    */
@@ -384,7 +385,9 @@ export function ROICalculatorContent() {
       </section>
 
       {/* ======================== CALCULATOR ======================== */}
-      <section className="container mx-auto px-4 py-12 md:py-20">
+      <section className="relative overflow-hidden">
+        <VerticalText text="CALCULATE" side="right" />
+        <div className="container mx-auto px-4 py-12 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_1fr]">
           {/* --- Input Panel --- */}
           <motion.div
@@ -794,10 +797,12 @@ export function ROICalculatorContent() {
             </div>
           </motion.div>
         </div>
+        </div>
       </section>
 
       {/* ======================== HOW WE CALCULATE THIS ======================== */}
-      <section className="border-t border-white/5 py-16 md:py-20">
+      <section className="relative overflow-hidden border-t border-white/5 py-16 md:py-20">
+        <VerticalText text="METHOD" side="left" />
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl">
             <h2 className="mb-8 text-2xl font-bold text-white">

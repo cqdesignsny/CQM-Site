@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Mail, Zap, TrendingUp, Lightbulb, Newspaper } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
 import { NewsletterSignup } from "@/components/newsletter-signup";
+import { VerticalText } from "@/components/ui/vertical-text";
 
 const bulletIcons = [Zap, TrendingUp, Lightbulb, Newspaper];
 
@@ -19,6 +20,7 @@ export function NewsletterSection() {
 
   return (
     <section className="relative overflow-hidden bg-black py-20 md:py-28">
+      <VerticalText text="INBOX" side="left" />
       {/* Red gradient accent */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-40 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-red-600/10 blur-[120px]" />

@@ -133,7 +133,7 @@ export function AboutContent() {
           </div>
         </section>
 
-        <section className="rounded-xl border p-6 text-center md:p-8">
+        <section className="mb-12 rounded-xl border p-6 text-center md:p-8">
           <h2 className="mb-3 text-2xl font-semibold">{t("about.cta.title")}</h2>
           <p className="mb-6 text-muted-foreground">{t("about.cta.desc")}</p>
           <div className="flex flex-col justify-center gap-3 sm:flex-row">

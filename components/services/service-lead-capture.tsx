@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
 import { useLanguage } from "@/lib/i18n/context";
+import { VerticalText } from "@/components/ui/vertical-text";
 
 /**
  * Service Lead Capture Component - Inline CTA for service inquiries
@@ -24,7 +25,8 @@ export function ServiceLeadCapture({ serviceName }: ServiceLeadCaptureProps) {
   };
 
   return (
-    <section className="mb-20 rounded-xl border border-white/10 bg-gradient-to-br from-black via-zinc-900 to-red-950 p-8 text-white md:p-12">
+    <section className="relative mb-20 overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-black via-zinc-900 to-red-950 p-8 text-white md:p-12">
+      <VerticalText text="START" side="right" />
       <div className="mx-auto max-w-2xl text-center">
         <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-red-300">
           {t("serviceDetail.nextStep")}

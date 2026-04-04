@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, BarChart3, Layers } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
 import { track } from "@/lib/analytics";
+import { VerticalText } from "@/components/ui/vertical-text";
 
 /**
  * CTABanner — Reusable site-wide CTA section that funnels visitors
@@ -107,8 +108,9 @@ export function CTABanner({ variant = "full", className = "" }: Props) {
 
   // variant === "full" — the default two-card layout
   return (
-    <section className={`bg-gradient-to-b from-zinc-950 to-black ${className}`}>
-      <div className="container mx-auto px-4 py-16 md:py-20">
+    <section className={`relative overflow-hidden bg-gradient-to-b from-zinc-950 to-black ${className}`}>
+      <VerticalText text="GROW" side="right" />
+      <div className="container relative mx-auto px-4 py-16 md:py-20">
         <h2 className="mb-3 text-center text-2xl font-bold text-white sm:text-3xl">
           {t("cta.readyToGrow")}
         </h2>

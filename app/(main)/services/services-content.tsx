@@ -175,7 +175,7 @@ export function ServicesContent() {
         </div>
       </section>
 
-      <div className="mt-16 text-center">
+      <div className="mt-16 mb-16 text-center">
         <h2 className="mb-4 text-2xl font-semibold">{t("services.readyToStart")}</h2>
         <p className="mb-6 text-muted-foreground">{t("services.readyToStart.desc")}</p>
         <Button size="lg" asChild>

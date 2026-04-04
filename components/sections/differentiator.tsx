@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Search, Fingerprint, Lightbulb, Layers, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
 import { track } from "@/lib/analytics";
+import { VerticalText } from "@/components/ui/vertical-text";
 
 const pillars = [
   {
@@ -41,8 +42,9 @@ export function Differentiator() {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-black py-20 text-white md:py-28">
-      <div className="container mx-auto px-4">
+    <section className="relative overflow-hidden bg-black py-20 text-white md:py-28">
+      <VerticalText text="OUTTHINK" side="right" />
+      <div className="container relative mx-auto px-4">
         <div className="mx-auto max-w-3xl text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
