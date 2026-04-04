@@ -289,8 +289,8 @@ export function HowMarketingWorksContent() {
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="-mt-px bg-black py-20 text-white md:py-28">
+      {/* Bottom CTA — red bg, flush with next section */}
+      <section className="-mt-px bg-red-600 py-20 text-white md:py-28">
         <div className="container mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -305,7 +305,7 @@ export function HowMarketingWorksContent() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mx-auto mb-8 max-w-2xl text-lg text-white/70"
+            className="mx-auto mb-8 max-w-2xl text-lg text-white/80"
           >
             {t("hmw.bottom.subtitle")}
           </motion.p>
@@ -316,7 +316,7 @@ export function HowMarketingWorksContent() {
             transition={{ delay: 0.2 }}
             className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
           >
-            <Button size="lg" asChild>
+            <Button size="lg" className="bg-white text-red-600 hover:bg-white/90" asChild>
               <Link
                 href="/assessment"
                 onClick={() => track("cta_click", { cta_type: "assessment", location: "hmw_bottom" })}
@@ -328,7 +328,7 @@ export function HowMarketingWorksContent() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+              className="border-white/50 bg-transparent text-white hover:bg-white/10 hover:text-white"
               asChild
             >
               <Link
@@ -342,9 +342,7 @@ export function HowMarketingWorksContent() {
         </div>
       </section>
 
-      <div className="mt-4">
-        <CTABanner />
-      </div>
+      <CTABanner />
     </>
   );
 }
