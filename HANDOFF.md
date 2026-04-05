@@ -22,6 +22,14 @@ Education first sales tool. NOT a typical agency service listing site. The site 
 
 **Copy tone:** Human, casual, funny, personable, knowledgeable. No dashes of any kind. Comedy woven throughout. Like talking to a friend who happens to be really good at marketing.
 
+## What Was Built (April 4, 2026 — Session 4: Launch Prep)
+
+### Launch Readiness
+1. **OG image**: Custom 1200x630 Creative Quality branded image for link previews on iMessage, Slack, social media, etc. Referenced in all page metadata via openGraph and twitter card tags.
+2. **Calendly embeds**: Live Calendly booking widget (cq-marketing/office-meeting) embedded on Contact page and Studio page, replacing placeholder blocks.
+3. **Favicon**: CQM symbol (red C with magnifying glass) set as browser favicon (icon.png) and apple-touch-icon.
+4. **Google Maps**: Skipped. Address in footer + schema markup is sufficient for SEO. No embed needed.
+
 ## What Was Built (April 4, 2026 — Session 3: Design Polish)
 
 ### Vertical Background Text Effect
@@ -115,10 +123,10 @@ Applied to:
 
 ### Medium Priority (Post Launch)
 6. **Content agent**: Set up automated blog posting via N8N or Claude scheduled tasks. Agent should search for latest AI, marketing, business, and design news, write articles in Cesar's voice, and publish to the blog
-7. **Calendly embeds**: Replace placeholder blocks on Contact and Studio pages with actual Calendly booking widget (needs NEXT_PUBLIC_CALENDLY_URL)
-8. **Google Maps embed**: Replace placeholder on Contact page
+7. ~~**Calendly embeds**~~: ✅ Done (embedded on Contact + Studio)
+8. ~~**Google Maps embed**~~: ✅ Skipped (not needed, address in footer + schema is sufficient)
 9. **Analytics scripts**: GA4, Meta Pixel, TikTok Pixel, LinkedIn Partner ID (env vars ready, just need the IDs)
-10. **Dedicated OG image**: Create 1200x630 social preview image (currently falls back to logo)
+10. ~~**Dedicated OG image**~~: ✅ Done (1200x630 branded image)
 
 ### Lower Priority (Ongoing)
 11. **Client stories**: Get real metrics, logos, and case study details for Advanced Skin Med Spa, Mark Vieira Comedy, Rectified, Level Aesthetics, Elko

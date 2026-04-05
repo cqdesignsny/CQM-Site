@@ -90,14 +90,15 @@ export function ContactPageContent() {
           {/* Calendly Embed */}
           <div>
             <h2 className="mb-4 text-2xl font-semibold">{t("contact.schedule")}</h2>
-            <div className="rounded-lg border bg-muted/30 p-8">
-              {/* TODO: Replace with Calendly embed */}
-              <p className="text-sm text-muted-foreground">
-                {t("common.calendlyPlaceholder")}
-              </p>
-              <p className="mt-2 text-xs text-muted-foreground">
-                {t("common.calendlyEnvHint")}
-              </p>
+            <div className="overflow-hidden rounded-lg border">
+              <iframe
+                src="https://calendly.com/cq-marketing/office-meeting?hide_gdpr_banner=1"
+                width="100%"
+                height="700"
+                frameBorder="0"
+                title="Schedule a meeting with CQM"
+                className="min-h-[600px] w-full"
+              />
             </div>
           </div>
         </div>

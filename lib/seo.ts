@@ -45,10 +45,10 @@ export function buildPageMetadata({
       description,
       images: [
         {
-          url: siteConfig.assets.logoPath,
+          url: "/images/og-image.jpg",
           width: 1200,
           height: 630,
-          alt: `${siteConfig.name} logo`,
+          alt: siteConfig.name,
         },
       ],
     },
@@ -56,7 +56,7 @@ export function buildPageMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [siteConfig.assets.logoPath],
+      images: ["/images/og-image.jpg"],
     },
   };
 }

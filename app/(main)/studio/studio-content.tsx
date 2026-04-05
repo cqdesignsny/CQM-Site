@@ -305,13 +305,15 @@ export function StudioContent() {
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="mb-4 text-3xl font-bold">{t("studio.cta.title")}</h2>
               <p className="mb-6 text-muted-foreground">{t("studio.cta.desc")}</p>
-              <div className="mb-6 rounded-lg border bg-background p-8">
-                <p className="text-sm text-muted-foreground">
-                  {t("common.calendlyPlaceholder")}
-                </p>
-                <p className="mt-2 text-xs text-muted-foreground">
-                  {t("common.calendlyEnvHint")}
-                </p>
+              <div className="mb-6 overflow-hidden rounded-lg border">
+                <iframe
+                  src="https://calendly.com/cq-marketing/office-meeting?hide_gdpr_banner=1"
+                  width="100%"
+                  height="700"
+                  frameBorder="0"
+                  title="Book a studio session with CQM"
+                  className="min-h-[600px] w-full"
+                />
               </div>
               <Button size="lg" asChild>
                 <Link href="/contact">{t("studio.cta.contact")}</Link>
