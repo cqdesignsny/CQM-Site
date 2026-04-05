@@ -234,7 +234,7 @@ export const siteTranslations: TranslationMap = {
   "hmw.gaps.q1": { en: "Can people easily find your business online?", es: "La gente puede encontrar tu negocio f\u00E1cilmente en l\u00EDnea?", fr: "Les gens peuvent facilement trouver votre entreprise en ligne?" },
   "hmw.gaps.q2": { en: "Does your website make people want to stay and learn more?", es: "Tu sitio web hace que la gente quiera quedarse y aprender m\u00E1s?", fr: "Votre site web donne envie aux gens de rester et d'en savoir plus?" },
   "hmw.gaps.q3": { en: "Do you have a system to follow up with leads who aren't ready to buy yet?", es: "Tienes un sistema para darle seguimiento a prospectos que a\u00FAn no est\u00E1n listos para comprar?", fr: "Avez vous un syst\u00E8me pour suivre les prospects qui ne sont pas encore pr\u00EAts \u00E0 acheter?" },
-  "hmw.gaps.q4": { en: "Is it dead simple for someone to book, buy, or contact you?", es: "Es super f\u00E1cil para alguien reservar, comprar o contactarte?", fr: "Est ce que c'est ultra simple pour quelqu'un de r\u00E9server, acheter ou vous contacter?" },
+  "hmw.gaps.q4": { en: "Is it super simple for someone to book, buy, or contact you?", es: "Es super fácil para alguien reservar, comprar o contactarte?", fr: "Est ce que c'est super simple pour quelqu'un de réserver, acheter ou vous contacter?" },
   "hmw.gaps.result": {
     en: "If you answered \"no\" to any of those, you have gaps in your funnel. That's not a judgment call, that's just where the money is leaking. Want the full picture?",
     es: "Si contestaste \"no\" a cualquiera de esas, tienes huecos en tu embudo. No es un juicio, es simplemente donde se est\u00E1 escapando el dinero. Quieres ver el panorama completo?",
