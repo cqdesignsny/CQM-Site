@@ -36,12 +36,39 @@ Core differentiator: "When your competition outspends you, we outthink them." CQ
 - Studio Production: ${siteConfig.url}/studio — Full service podcast and video production studio in Newburgh, NY. 3 angle 4K video, professional audio, editing, and distribution.
 
 ## Service Areas
+
+### Hudson Valley, NY (Home Base)
 - Orange County, NY: Newburgh, Middletown, Goshen, Monroe, Warwick, Cornwall, New Windsor
 - Dutchess County, NY: Poughkeepsie, Beacon, Fishkill, Wappingers Falls, Hyde Park, Rhinebeck
 - Ulster County, NY: Kingston, New Paltz, Saugerties, Woodstock, Highland
 - Rockland County, NY: New City, Nanuet, Suffern, Nyack, Pearl River
 - Westchester County, NY: White Plains, Yonkers, Peekskill, Tarrytown, Ossining
 - Sullivan County, NY: Monticello, Liberty, Fallsburg, Bethel
+- Service Areas Page: ${siteConfig.url}/service-areas
+
+### NYC Metro Area
+- New York City: Manhattan, Brooklyn, Queens, Bronx, Staten Island
+- Northern New Jersey: Bergen County, Passaic County, Hudson County (Jersey City, Hoboken, Hackensack, Fort Lee, Paterson)
+- Fairfield County, CT: Danbury, Stamford, Norwalk, Greenwich, Bridgeport
+
+### South Florida
+- Broward County, FL: Fort Lauderdale, Hollywood, Pompano Beach, Coral Springs, Plantation, Weston
+- Miami-Dade County, FL: Miami, Miami Beach, Coral Gables, Doral, Hialeah, Aventura, Brickell, Wynwood
+- Palm Beach County, FL: West Palm Beach, Boca Raton, Delray Beach, Jupiter, Palm Beach Gardens
+
+### Individual Service Area Pages
+- ${siteConfig.url}/service-areas/orange-county-ny
+- ${siteConfig.url}/service-areas/dutchess-county-ny
+- ${siteConfig.url}/service-areas/ulster-county-ny
+- ${siteConfig.url}/service-areas/rockland-county-ny
+- ${siteConfig.url}/service-areas/westchester-county-ny
+- ${siteConfig.url}/service-areas/sullivan-county-ny
+- ${siteConfig.url}/service-areas/new-york-city
+- ${siteConfig.url}/service-areas/northern-new-jersey
+- ${siteConfig.url}/service-areas/fairfield-county-ct
+- ${siteConfig.url}/service-areas/broward-county-fl
+- ${siteConfig.url}/service-areas/miami-dade-county-fl
+- ${siteConfig.url}/service-areas/palm-beach-county-fl
 
 ## Company and Contact
 - About: ${siteConfig.url}/about
@@ -54,7 +81,7 @@ Core differentiator: "When your competition outspends you, we outthink them." CQ
 
 ## Frequently Asked Questions
 - What services does Creative Quality Marketing offer? Full funnel digital marketing including web design, SEO, paid ads, social media, email marketing, video production, and AI automation.
-- Where is Creative Quality Marketing located? 320 Robinson Ave Suite 212, Newburgh, NY 12550. We serve the entire Hudson Valley region.
+- Where is Creative Quality Marketing located? 320 Robinson Ave Suite 212, Newburgh, NY 12550. We serve the Hudson Valley, NYC Metro area, Northern New Jersey, Connecticut, and South Florida (Fort Lauderdale, Miami, Palm Beach).
 - What makes CQM different from other agencies? We learn your business first before building any marketing. Our approach is human led and AI accelerated. We outthink, not outspend.
 - Does CQM work with small businesses? Yes. Our services are designed for small to medium businesses. We offer plans starting at $750/month.
 - How long does it take to see results? Depends on the service. SEO typically shows results in 3 to 6 months. Paid ads can generate leads within days. Website projects deliver in 2 to 6 weeks.

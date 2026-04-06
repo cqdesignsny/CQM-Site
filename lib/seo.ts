@@ -11,6 +11,12 @@ const defaultKeywords = [
   "email marketing",
   "video production",
   "Newburgh NY marketing agency",
+  "marketing agency Hudson Valley",
+  "digital marketing near me",
+  "marketing agency Fort Lauderdale",
+  "marketing agency NYC",
+  "web design near me",
+  "SEO agency near me",
 ];
 
 interface BuildPageMetadataOptions {

@@ -97,6 +97,10 @@ export function ContactPageContent() {
                   </p>
                 </div>
               </div>
+              <div className="mt-4 rounded-xl border border-red-500/10 bg-red-500/5 p-4">
+                <p className="text-xs font-medium text-red-400">Also serving the South Florida area</p>
+                <p className="mt-1 text-xs text-muted-foreground">Fort Lauderdale, Miami, West Palm Beach, and surrounding areas.</p>
+              </div>
             </div>
           </div>
 
