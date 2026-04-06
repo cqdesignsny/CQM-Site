@@ -1,7 +1,7 @@
 "use client";
 
 import { ContactForm } from "@/components/contact/contact-form";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { useLanguage } from "@/lib/i18n/context";
 import { CTABanner } from "@/components/sections/cta-banner";
@@ -10,81 +10,109 @@ import { BookingButtons } from "@/components/booking-buttons";
 /**
  * Contact Page Content
  *
- * Layout priority: Schedule a call FIRST, then contact info, then form.
- * We want to capture meetings before messages.
+ * Layout: Schedule a call FIRST (prominent), then contact info + form in cards.
  */
 export function ContactPageContent() {
   const { t } = useLanguage();
 
   return (
-    <div className="container mx-auto px-4 py-20">
-      {/* Header */}
-      <div className="mx-auto mb-12 max-w-3xl text-center">
-        <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
-          {t("contact.pageTitle")}
-        </h1>
-        <p className="text-lg text-muted-foreground">
-          {t("contact.pageSubtitle")}
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20">
+      <div className="container mx-auto px-4 py-20">
+        {/* Header */}
+        <div className="mx-auto mb-14 max-w-3xl text-center">
+          <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
+            {t("contact.pageTitle")}
+          </h1>
+          <p className="text-lg text-muted-foreground">
+            {t("contact.pageSubtitle")}
+          </p>
+        </div>
 
-      {/* Schedule a Call — FIRST, full width, prominent */}
-      <div className="mx-auto mb-16 max-w-2xl rounded-2xl border bg-muted/30 p-8 text-center md:p-10">
-        <h2 className="mb-2 text-2xl font-bold">{t("contact.schedule")}</h2>
-        <p className="mb-8 text-muted-foreground">{t("contact.scheduleDesc")}</p>
-        <BookingButtons location="contact_page" className="justify-center" />
-      </div>
+        {/* Schedule a Call — prominent, full width */}
+        <div className="mx-auto mb-16 max-w-2xl overflow-hidden rounded-2xl border border-red-500/20 bg-gradient-to-br from-red-950/30 via-black to-red-950/20 p-8 text-center shadow-2xl shadow-red-500/5 md:p-10">
+          <h2 className="mb-2 text-2xl font-bold text-white">{t("contact.schedule")}</h2>
+          <p className="mb-8 text-white/60">{t("contact.scheduleDesc")}</p>
+          <BookingButtons location="contact_page" className="justify-center" />
+        </div>
 
-      <div className="grid gap-12 lg:grid-cols-2">
-        {/* Contact Information */}
-        <div>
-          <h2 className="mb-6 text-2xl font-semibold">{t("contact.info.title")}</h2>
-          <div className="space-y-4">
-            <div className="flex items-start gap-4">
-              <MapPin className="mt-1 h-5 w-5 shrink-0 text-primary" />
-              <div>
-                <address className="not-italic text-muted-foreground">
-                  {siteConfig.contact.streetAddress}
-                  <br />
-                  {siteConfig.contact.locality}, {siteConfig.contact.region}{" "}
-                  {siteConfig.contact.postalCode}
-                </address>
+        <div className="grid gap-8 lg:grid-cols-2">
+          {/* Contact Information Card */}
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-8 shadow-xl backdrop-blur-sm md:p-10">
+            <h2 className="mb-8 text-2xl font-bold">{t("contact.info.title")}</h2>
+
+            <div className="space-y-6">
+              <div className="flex items-start gap-4 rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-colors hover:border-primary/20 hover:bg-white/[0.04]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-600/10">
+                  <MapPin className="h-5 w-5 text-red-500" />
+                </div>
+                <div>
+                  <p className="mb-1 text-sm font-semibold">Office</p>
+                  <address className="not-italic text-sm text-muted-foreground">
+                    {siteConfig.contact.streetAddress}
+                    <br />
+                    {siteConfig.contact.locality}, {siteConfig.contact.region}{" "}
+                    {siteConfig.contact.postalCode}
+                  </address>
+                </div>
               </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Phone className="mt-1 h-5 w-5 shrink-0 text-primary" />
-              <div>
-                <a
-                  href={`tel:${siteConfig.contact.phoneE164}`}
-                  className="text-muted-foreground hover:underline"
-                >
-                  {siteConfig.contact.phoneDisplay}
-                </a>
+
+              <div className="flex items-start gap-4 rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-colors hover:border-primary/20 hover:bg-white/[0.04]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-600/10">
+                  <Phone className="h-5 w-5 text-red-500" />
+                </div>
+                <div>
+                  <p className="mb-1 text-sm font-semibold">Phone</p>
+                  <a
+                    href={`tel:${siteConfig.contact.phoneE164}`}
+                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    {siteConfig.contact.phoneDisplay}
+                  </a>
+                </div>
               </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Mail className="mt-1 h-5 w-5 shrink-0 text-primary" />
-              <div>
-                <a
-                  href={`mailto:${siteConfig.contact.email}`}
-                  className="text-muted-foreground hover:underline"
-                >
-                  {siteConfig.contact.email}
-                </a>
+
+              <div className="flex items-start gap-4 rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-colors hover:border-primary/20 hover:bg-white/[0.04]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-600/10">
+                  <Mail className="h-5 w-5 text-red-500" />
+                </div>
+                <div>
+                  <p className="mb-1 text-sm font-semibold">Email</p>
+                  <a
+                    href={`mailto:${siteConfig.contact.email}`}
+                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    {siteConfig.contact.email}
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-colors hover:border-primary/20 hover:bg-white/[0.04]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-600/10">
+                  <Clock className="h-5 w-5 text-red-500" />
+                </div>
+                <div>
+                  <p className="mb-1 text-sm font-semibold">Hours</p>
+                  <p className="text-sm text-muted-foreground">
+                    Monday to Friday, 9 AM to 6 PM EST
+                  </p>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* Send a Message Card */}
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-8 shadow-xl backdrop-blur-sm md:p-10">
+            <h2 className="mb-2 text-2xl font-bold">{t("contact.sendMessage")}</h2>
+            <p className="mb-8 text-sm text-muted-foreground">
+              {t("contact.sendMessageDesc")}
+            </p>
+            <ContactForm />
+          </div>
         </div>
 
-        {/* Send a Message */}
-        <div>
-          <h2 className="mb-6 text-2xl font-semibold">{t("contact.sendMessage")}</h2>
-          <ContactForm />
+        <div className="mt-16">
+          <CTABanner variant="compact" />
         </div>
-      </div>
-
-      <div className="mt-12">
-        <CTABanner variant="compact" />
       </div>
     </div>
   );

@@ -119,13 +119,14 @@ export function StudioContent() {
                 transition={{ delay: 0.3 }}
                 className="flex flex-col gap-4 sm:flex-row"
               >
-                <Button size="lg" asChild>
-                  <Link
-                    href="#book-tour"
-                    onClick={() => track("cta_click", { cta_type: "studio_tour", location: "hero" })}
-                  >
-                    {t("studio.tourBtn")}
-                  </Link>
+                <Button
+                  size="lg"
+                  onClick={() => {
+                    track("cta_click", { cta_type: "studio_tour", location: "hero" });
+                    window.open("https://calendly.com/cq-marketing/hv-podcasting-in-studio-consult", "_blank", "noopener,noreferrer");
+                  }}
+                >
+                  {t("studio.tourBtn")}
                 </Button>
                 <Button
                   size="lg"
