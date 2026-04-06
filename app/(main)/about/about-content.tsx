@@ -110,7 +110,7 @@ export function AboutContent() {
             {/* Values wheel graphic */}
             <div className="flex items-center justify-center">
               <Image
-                src="https://creativequalitymarketing.com/wp-content/uploads/2021/09/core_values_cq-980x878-2.png"
+                src="/images/core-values.webp"
                 alt="Creative Quality Marketing core values wheel"
                 width={480}
                 height={430}

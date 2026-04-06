@@ -26,6 +26,8 @@ export async function POST(request: NextRequest) {
       honeypot: body._hp,
       formLoadedAt: body._t,
       ip: getClientIP(request.headers),
+      email: body.email,
+      message: body.message,
     });
     if (spamResult.isSpam) {
       // Return success to not tip off bots, but don't process
