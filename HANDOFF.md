@@ -208,10 +208,8 @@ All domains are live on Vercel, pointing to the CQM-Site project. Primary domain
 | `DEFAULT_PROPOSAL_EMAIL` | ✅ Set | cesar@creativequalitymarketing.com |
 | `RESEND_API_KEY` | ✅ Set | CQM Resend account (re_Zonhfenb...) |
 | `RESEND_AUDIENCE_ID` | ✅ Set | b5a5ad4b-0fde-4a63-be1b-4baaa62f22d3 |
-| `NEXT_PUBLIC_GA4_ID` | ⏳ Needed | Google Analytics 4 ID |
-| `NEXT_PUBLIC_META_PIXEL_ID` | ⏳ Needed | Meta Pixel ID |
-| `NEXT_PUBLIC_TIKTOK_PIXEL_ID` | ⏳ Needed | TikTok Pixel ID |
-| `NEXT_PUBLIC_LINKEDIN_PARTNER_ID` | ⏳ Needed | LinkedIn Partner ID |
+| `NEXT_PUBLIC_GA4_ID` | ✅ Set | G-ZHXZLZ8QLM |
+| `NEXT_PUBLIC_META_PIXEL_ID` | ✅ Set | 246488367624617 |
 
 Calendly is hardcoded in components (not env var): `https://calendly.com/cq-marketing/office-meeting`
 
