@@ -10,9 +10,11 @@ import { siteConfig } from "@/lib/site-config";
 // Module-level env vars (read once at initialization, like HVP pattern)
 // ---------------------------------------------------------------------------
 
-const NOTION_API_KEY = process.env.NOTION_API_KEY;
-const NOTION_LEADS_DATABASE_ID = process.env.NOTION_LEADS_DATABASE_ID;
-const NOTION_LEADS_DATASOURCE_ID = process.env.NOTION_LEADS_DATASOURCE_ID;
+// IMPORTANT: .trim() prevents trailing newline issues in env vars
+// (echo adds \n, Notion API rejects UUIDs with trailing whitespace)
+const NOTION_API_KEY = process.env.NOTION_API_KEY?.trim();
+const NOTION_LEADS_DATABASE_ID = process.env.NOTION_LEADS_DATABASE_ID?.trim();
+const NOTION_LEADS_DATASOURCE_ID = process.env.NOTION_LEADS_DATASOURCE_ID?.trim();
 
 // ---------------------------------------------------------------------------
 // Singleton Notion client (only used for queries and proposal creation)

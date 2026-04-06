@@ -51,8 +51,8 @@ export async function POST(request: NextRequest) {
     }
 
     const resendKey = process.env.RESEND_API_KEY;
-    const notionKey = process.env.NOTION_API_KEY;
-    const dbId = process.env.NOTION_LEADS_DATABASE_ID;
+    const notionKey = process.env.NOTION_API_KEY?.trim();
+    const dbId = process.env.NOTION_LEADS_DATABASE_ID?.trim();
 
     // 1. Save to Notion CRM with proper "ROI Calculator" source tag
     if (notionKey && dbId) {

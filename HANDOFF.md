@@ -189,9 +189,13 @@ Applied to:
 - ~~Spam protection~~: ✅ Honeypot + time check + rate limiting on all forms
 - ~~Domain redirects~~: ✅ 301 middleware for all secondary domains
 
+### Resolved Issues
+- **Notion trailing newline bug (2026-04-06)**: `NOTION_LEADS_DATABASE_ID` env var had a trailing `\n` from using `echo` to pipe values into `vercel env add`. Notion API rejected the UUID as invalid. Fix: re-added env vars using `printf` (no trailing newline). Added `.trim()` safeguard to all env var reads in code. **LESSON: Always use `printf` not `echo` when piping values to `vercel env add`.**
+- **MX records missing (2026-04-06)**: Moving nameservers to Vercel dropped all DNS records including MX. Google Workspace email stopped working. Fix: added all 5 Google MX records + SPF + DKIM + DMARC via `vercel dns add`.
+- **Sequential API timeouts (2026-04-06)**: Assessment API had 6 sequential `await` calls that could exceed Vercel's 10s timeout. Fix: switched to `Promise.allSettled()` for parallel execution.
+
 ### Active / In Progress
-1. **Notion assessment leads**: Debugging why Notion API rejects assessment entries (Slack + email work, Notion still failing). Direct API test works, investigating request body differences.
-2. **LinkedIn Pixel**: May add in the future (NEXT_PUBLIC_LINKEDIN_PARTNER_ID)
+1. **LinkedIn Pixel**: May add in the future (NEXT_PUBLIC_LINKEDIN_PARTNER_ID)
 
 ### Medium Priority (Post Launch)
 3. **Weekly newsletter pipeline**: Friday 8PM session → Saturday blog + email blast. Full plan in memory. Need: React Email template, "Weekly AI Roundup" blog category, scheduled Slack reminder.
