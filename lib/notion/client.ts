@@ -198,6 +198,25 @@ export async function createAssessmentLead(
     .join(", ");
 
   // Use direct API call (SDK v5 has intermittent issues with page creation)
+  const requestBody = {
+    parent: { database_id: getLeadsDbId() },
+    properties: {
+      Name: { title: [{ text: { content: String(data.contact.name || "") } }] },
+      Email: { email: String(data.contact.email || "") },
+      Source: { select: { name: "Assessment" } },
+      Status: { select: { name: "New" } },
+      "Lead ID": { rich_text: [{ text: { content: String(data.id || "") } }] },
+      Score: { number: data.overallScore || 0 },
+      "Score Breakdown": { rich_text: [{ text: { content: String(scoreBreakdown || "") } }] },
+      Locale: { select: { name: localeLabel(data.locale || "en") } },
+      ...(data.contact.phone && data.contact.phone.trim()
+        ? { Phone: { phone_number: data.contact.phone.trim() } }
+        : {}),
+    },
+  };
+
+  console.log("[Notion] Assessment request body:", JSON.stringify(requestBody).slice(0, 500));
+
   const response = await fetch("https://api.notion.com/v1/pages", {
     method: "POST",
     headers: {
@@ -205,26 +224,12 @@ export async function createAssessmentLead(
       "Content-Type": "application/json",
       "Notion-Version": "2022-06-28",
     },
-    body: JSON.stringify({
-      parent: { database_id: getLeadsDbId() },
-      properties: {
-        Name: { title: [{ text: { content: data.contact.name } }] },
-        Email: { email: data.contact.email },
-        ...(data.contact.phone?.trim() ? { Phone: { phone_number: data.contact.phone.trim() } } : {}),
-        Source: { select: { name: "Assessment" } },
-        Status: { select: { name: "New" } },
-        "Lead ID": { rich_text: [{ text: { content: data.id } }] },
-        Score: { number: data.overallScore },
-        "Score Breakdown": { rich_text: [{ text: { content: scoreBreakdown } }] },
-        Locale: { select: { name: localeLabel(data.locale) } },
-      },
-    }),
+    body: JSON.stringify(requestBody),
   });
 
   if (!response.ok) {
     const err = await response.text();
-    console.error("[Notion] Assessment lead creation failed:", response.status, err);
-    // Don't throw — let the rest of the pipeline (email, newsletter) continue
+    console.error("[Notion] Assessment lead FAILED:", response.status, err.slice(0, 500));
     return "notion-error";
   }
 

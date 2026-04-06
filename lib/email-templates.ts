@@ -19,11 +19,11 @@ function emailWrapper(body: string): string {
 <body style="margin: 0; padding: 0; background: #0a0a0a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
   <div style="max-width: 600px; margin: 0 auto; padding: 24px 16px;">
     <!-- Logo -->
-    <div style="text-align: center; padding: 24px 0 20px;">
+    <div style="text-align: center; padding: 24px 16px 20px; background: ${BRAND_RED}; border-radius: 12px 12px 0 0;">
       <img src="${LOGO_URL}" alt="${siteConfig.name}" width="200" style="height: auto; max-width: 200px;" />
     </div>
     <!-- Content Card -->
-    <div style="background: ${BRAND_DARK}; border-radius: 16px; padding: 32px 24px; color: #ffffff;">
+    <div style="background: ${BRAND_DARK}; border-radius: 0 0 16px 16px; padding: 32px 24px; color: #ffffff;">
       ${body}
     </div>
     <!-- Footer -->
