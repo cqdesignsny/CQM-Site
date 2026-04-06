@@ -1736,4 +1736,20 @@ export const siteTranslations: TranslationMap = {
   "home.blog.desc": { en: "Real talk about AI, marketing, business, and what actually works in 2026. No filler content. No recycled advice from 2019. Just the stuff we use ourselves every day.", es: "Conversación real sobre IA, marketing, negocios y lo que realmente funciona en 2026. Sin contenido de relleno. Sin consejos reciclados de 2019. Solo lo que usamos nosotros mismos cada día.", fr: "Discussion franche sur l'IA, le marketing, les affaires et ce qui marche vraiment en 2026. Pas de contenu de remplissage. Pas de conseils recyclés de 2019. Juste ce qu'on utilise nous-mêmes chaque jour." },
   "home.blog.cta": { en: "Read More on the Blog", es: "Leer Más en el Blog", fr: "Lire Plus sur le Blog" },
   "home.blog.readTime": { en: "min read", es: "min de lectura", fr: "min de lecture" },
+
+  // ============================================================
+  // NEWSLETTER OPT-IN (shared across forms)
+  // ============================================================
+  "newsletter.optIn": { en: "Send me weekly AI and marketing news and updates", es: "Envíame noticias y actualizaciones semanales de IA y marketing", fr: "Envoyez-moi les actualités IA et marketing chaque semaine" },
+
+  // ============================================================
+  // ROI CALCULATOR LEAD CAPTURE
+  // ============================================================
+  "roi.emailResults.title": { en: "Get Your Full Results", es: "Obtén Tus Resultados Completos", fr: "Obtenez Vos Résultats Complets" },
+  "roi.emailResults.desc": { en: "Enter your info and we'll send you a detailed breakdown of your marketing budget analysis, plus tips specific to your industry.", es: "Ingresa tu info y te enviaremos un desglose detallado de tu análisis de presupuesto de marketing, más consejos específicos para tu industria.", fr: "Entrez vos infos et nous vous enverrons une analyse détaillée de votre budget marketing, plus des conseils spécifiques à votre industrie." },
+  "roi.emailResults.name": { en: "Your name", es: "Tu nombre", fr: "Votre nom" },
+  "roi.emailResults.email": { en: "Your email", es: "Tu email", fr: "Votre email" },
+  "roi.emailResults.send": { en: "Send My Results", es: "Enviar Mis Resultados", fr: "Envoyer Mes Résultats" },
+  "roi.emailResults.sending": { en: "Sending...", es: "Enviando...", fr: "Envoi en cours..." },
+  "roi.emailResults.success": { en: "Check your inbox! Your personalized results are on the way.", es: "¡Revisa tu bandeja! Tus resultados personalizados van en camino.", fr: "Vérifiez votre boîte! Vos résultats personnalisés sont en route." },
 };

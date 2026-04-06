@@ -18,6 +18,7 @@ export function ContactForm() {
     phone: "",
     service: "",
     message: "",
+    newsletterOptIn: true,
   });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
@@ -42,13 +43,14 @@ export function ContactForm() {
           message: formData.message,
           locale,
           source: "contact_page",
+          newsletterOptIn: formData.newsletterOptIn,
           referrer: typeof window !== "undefined" ? document.referrer : undefined,
         }),
       });
 
       if (res.ok) {
         setStatus("success");
-        setFormData({ name: "", email: "", phone: "", service: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", service: "", message: "", newsletterOptIn: true });
       } else {
         setStatus("error");
       }
@@ -148,6 +150,16 @@ export function ContactForm() {
           className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
       </div>
+
+      <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-input bg-muted/30 p-3">
+        <input
+          type="checkbox"
+          checked={formData.newsletterOptIn}
+          onChange={(e) => setFormData({ ...formData, newsletterOptIn: e.target.checked })}
+          className="mt-0.5 h-4 w-4 shrink-0 accent-red-600"
+        />
+        <span className="text-xs text-muted-foreground">{t("newsletter.optIn")}</span>
+      </label>
 
       <Button type="submit" className="w-full" disabled={status === "sending"}>
         {status === "sending" ? t("contact.form.sending") : t("contact.form.submit")}

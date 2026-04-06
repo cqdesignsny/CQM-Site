@@ -26,7 +26,7 @@ interface AssessmentState {
   step: "intro" | "questions" | "contact" | "results";
   currentQuestion: number;
   answers: Map<string, AssessmentAnswer>;
-  contact: { name: string; email: string; phone: string };
+  contact: { name: string; email: string; phone: string; newsletterOptIn: boolean };
   isSubmitting: boolean;
   results: {
     assessmentId: string;
@@ -42,7 +42,7 @@ type AssessmentAction =
   | { type: "NEXT_QUESTION" }
   | { type: "PREV_QUESTION" }
   | { type: "SET_ANSWER"; questionId: string; optionIndex: number; score: number }
-  | { type: "UPDATE_CONTACT"; field: "name" | "email" | "phone"; value: string }
+  | { type: "UPDATE_CONTACT"; field: "name" | "email" | "phone" | "newsletterOptIn"; value: string | boolean }
   | { type: "SUBMIT_START" }
   | { type: "SUBMIT_SUCCESS"; results: AssessmentState["results"] }
   | { type: "SUBMIT_ERROR"; error: string };
@@ -51,7 +51,7 @@ const initialState: AssessmentState = {
   step: "intro",
   currentQuestion: 0,
   answers: new Map(),
-  contact: { name: "", email: "", phone: "" },
+  contact: { name: "", email: "", phone: "", newsletterOptIn: true },
   isSubmitting: false,
   results: null,
   error: null,
@@ -483,6 +483,18 @@ export function MarketingAssessment() {
                 />
               </div>
             </div>
+
+            <label className="mt-4 flex cursor-pointer items-start gap-3 rounded-lg border border-white/10 bg-white/5 p-3">
+              <input
+                type="checkbox"
+                checked={state.contact.newsletterOptIn}
+                onChange={(e) =>
+                  dispatch({ type: "UPDATE_CONTACT", field: "newsletterOptIn", value: e.target.checked })
+                }
+                className="mt-0.5 h-4 w-4 shrink-0 accent-red-600"
+              />
+              <span className="text-xs text-white/50">Send me weekly AI and marketing news and updates</span>
+            </label>
 
             {state.error && (
               <div className="mt-4 rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-sm text-red-400">

@@ -10,6 +10,7 @@ interface ContactBody {
   serviceInterest?: string;
   message: string;
   locale?: string;
+  newsletterOptIn?: boolean;
 }
 
 export async function POST(request: NextRequest) {
@@ -83,7 +84,23 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 3. Slack notification (non-blocking)
+    // 3. Newsletter opt-in (non-blocking)
+    if (body.newsletterOptIn && process.env.RESEND_AUDIENCE_ID && resendKey) {
+      try {
+        await fetch("https://api.resend.com/audiences/" + process.env.RESEND_AUDIENCE_ID + "/contacts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendKey}`,
+          },
+          body: JSON.stringify({ email: body.email }),
+        });
+      } catch (nlErr) {
+        console.error("[Contact] Newsletter opt-in error:", nlErr);
+      }
+    }
+
+    // 4. Slack notification (non-blocking)
     try {
       await sendSlackNotification({
         event: "contact_submitted",

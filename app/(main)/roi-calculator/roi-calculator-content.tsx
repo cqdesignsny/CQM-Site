@@ -18,6 +18,8 @@ import {
   Monitor,
   BarChart3,
   Clock,
+  Mail,
+  Loader2,
 } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
 import { track } from "@/lib/analytics";
@@ -240,6 +242,8 @@ export function ROICalculatorContent() {
   const [currentSpend, setCurrentSpend] = useState(0);
   const [industry, setIndustry] = useState<Industry>("other");
   const [selectOpen, setSelectOpen] = useState(false);
+  const [leadForm, setLeadForm] = useState({ name: "", email: "", newsletterOptIn: true });
+  const [leadStatus, setLeadStatus] = useState<"idle" | "sending" | "sent">("idle");
 
   const hasInteracted = useRef(false);
   useEffect(() => {
@@ -794,6 +798,88 @@ export function ROICalculatorContent() {
               >
                 {t("roi.ctaGetAssessment")}
               </Link>
+            </div>
+
+            {/* ======================== EMAIL ME MY RESULTS ======================== */}
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
+              <div className="mb-3 flex items-center gap-2">
+                <Mail className="h-5 w-5 text-red-400" />
+                <h3 className="text-sm font-semibold text-white">{t("roi.emailResults.title")}</h3>
+              </div>
+              <p className="mb-4 text-sm text-white/50">{t("roi.emailResults.desc")}</p>
+
+              {leadStatus === "sent" ? (
+                <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-4 text-center text-sm text-emerald-300">
+                  {t("roi.emailResults.success")}
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <input
+                    type="text"
+                    placeholder={t("roi.emailResults.name")}
+                    value={leadForm.name}
+                    onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
+                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/30"
+                  />
+                  <input
+                    type="email"
+                    placeholder={t("roi.emailResults.email")}
+                    value={leadForm.email}
+                    onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
+                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/30"
+                  />
+                  <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-white/10 bg-white/5 p-3">
+                    <input
+                      type="checkbox"
+                      checked={leadForm.newsletterOptIn}
+                      onChange={(e) => setLeadForm({ ...leadForm, newsletterOptIn: e.target.checked })}
+                      className="mt-0.5 h-4 w-4 shrink-0 accent-red-600"
+                    />
+                    <span className="text-xs text-white/50">{t("newsletter.optIn")}</span>
+                  </label>
+                  <button
+                    onClick={async () => {
+                      if (!leadForm.name.trim() || !leadForm.email.trim()) return;
+                      setLeadStatus("sending");
+                      track("form_submit", { form_type: "roi_lead_capture" });
+                      try {
+                        await fetch("/api/roi-results", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({
+                            name: leadForm.name,
+                            email: leadForm.email,
+                            newsletterOptIn: leadForm.newsletterOptIn,
+                            industry: t(`roi.industry.${industry}`),
+                            currentRevenue,
+                            revenueGoal,
+                            customerValue,
+                            currentSpend,
+                            recommendedBudget: results.recommendedBudget,
+                            roiMultiplier: results.roiMultiplier,
+                            timelineLabel: results.timelineMonths.label,
+                            timelineMonths: `${results.timelineMonths.min}-${results.timelineMonths.max} months`,
+                          }),
+                        });
+                        setLeadStatus("sent");
+                      } catch {
+                        setLeadStatus("idle");
+                      }
+                    }}
+                    disabled={!leadForm.name.trim() || !leadForm.email.trim() || leadStatus === "sending"}
+                    className="w-full rounded-lg bg-red-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-red-700 disabled:opacity-50"
+                  >
+                    {leadStatus === "sending" ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        {t("roi.emailResults.sending")}
+                      </span>
+                    ) : (
+                      t("roi.emailResults.send")
+                    )}
+                  </button>
+                </div>
+              )}
             </div>
           </motion.div>
         </div>
