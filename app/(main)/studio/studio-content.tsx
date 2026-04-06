@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { BookingButtons } from "@/components/booking-buttons";
 import {
   ArrowRight,
   Mic,
@@ -289,9 +290,7 @@ export function StudioContent() {
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link href="/contact">{t("studio.bookSession")}</Link>
-                </Button>
+                <BookingButtons variant="studio" location="studio_packages" />
               </div>
             </div>
           </div>
@@ -305,20 +304,7 @@ export function StudioContent() {
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="mb-4 text-3xl font-bold">{t("studio.cta.title")}</h2>
               <p className="mb-6 text-muted-foreground">{t("studio.cta.desc")}</p>
-              <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-                <Button size="lg" asChild>
-                  <Link
-                    href="https://calendly.com/cq-marketing/office-meeting"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t("studio.bookSession")}
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link href="/contact">{t("studio.cta.contact")}</Link>
-                </Button>
-              </div>
+              <BookingButtons variant="studio" location="studio_booking" className="justify-center" />
             </div>
           </div>
         </div>

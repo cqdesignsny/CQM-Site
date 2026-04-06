@@ -1,12 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { ContactForm } from "@/components/contact/contact-form";
-import { MapPin, Phone, Mail, Calendar } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { MapPin, Phone, Mail } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { useLanguage } from "@/lib/i18n/context";
 import { CTABanner } from "@/components/sections/cta-banner";
+import { BookingButtons } from "@/components/booking-buttons";
 
 /**
  * Contact Page Content - Client component for i18n support
@@ -78,16 +77,7 @@ export function ContactPageContent() {
           <div>
             <h2 className="mb-4 text-2xl font-semibold">{t("contact.schedule")}</h2>
             <p className="mb-6 text-muted-foreground">{t("contact.scheduleDesc")}</p>
-            <Button size="lg" asChild>
-              <Link
-                href="https://calendly.com/cq-marketing/office-meeting"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Calendar className="mr-2 h-5 w-5" />
-                {t("contact.bookCall")}
-              </Link>
-            </Button>
+            <BookingButtons location="contact_page" />
           </div>
         </div>
       </div>
