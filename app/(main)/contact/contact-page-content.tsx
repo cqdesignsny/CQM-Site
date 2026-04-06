@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { ContactForm } from "@/components/contact/contact-form";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site-config";
 import { useLanguage } from "@/lib/i18n/context";
 import { CTABanner } from "@/components/sections/cta-banner";
@@ -72,34 +74,20 @@ export function ContactPageContent() {
             </div>
           </div>
 
-          {/* Map Placeholder */}
-          <div>
-            <h2 className="mb-4 text-2xl font-semibold">{t("contact.visit")}</h2>
-            <div className="aspect-video rounded-lg border bg-muted">
-              {/* TODO: Add Google Maps embed */}
-              <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
-                {t("contact.mapPlaceholder")}
-                <br />
-                {siteConfig.contact.streetAddress},{" "}
-                {siteConfig.contact.locality}, {siteConfig.contact.region}{" "}
-                {siteConfig.contact.postalCode}
-              </div>
-            </div>
-          </div>
-
-          {/* Calendly Embed */}
+          {/* Schedule a Call */}
           <div>
             <h2 className="mb-4 text-2xl font-semibold">{t("contact.schedule")}</h2>
-            <div className="overflow-hidden rounded-lg border">
-              <iframe
-                src="https://calendly.com/cq-marketing/office-meeting?hide_gdpr_banner=1"
-                width="100%"
-                height="700"
-                frameBorder="0"
-                title="Schedule a meeting with CQM"
-                className="min-h-[600px] w-full"
-              />
-            </div>
+            <p className="mb-6 text-muted-foreground">{t("contact.scheduleDesc")}</p>
+            <Button size="lg" asChild>
+              <Link
+                href="https://calendly.com/cq-marketing/office-meeting"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Calendar className="mr-2 h-5 w-5" />
+                {t("contact.bookCall")}
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

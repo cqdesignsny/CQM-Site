@@ -551,6 +551,8 @@ export const siteTranslations: TranslationMap = {
   "contact.info.title": { en: "Contact Information", es: "Informaci\u00F3n de Contacto", fr: "Coordonn\u00E9es" },
   "contact.visit": { en: "Visit Our Studio", es: "Visite Nuestro Estudio", fr: "Visitez notre studio" },
   "contact.schedule": { en: "Schedule a Call", es: "Agende una Llamada", fr: "Planifier un appel" },
+  "contact.scheduleDesc": { en: "Pick a time that works for you and let's talk about how we can help your business grow.", es: "Elige un horario que te funcione y hablemos de cómo podemos ayudar a crecer tu negocio.", fr: "Choisissez un moment qui vous convient et parlons de comment nous pouvons aider votre entreprise à grandir." },
+  "contact.bookCall": { en: "Book a Strategy Call", es: "Reservar Llamada Estratégica", fr: "Réserver un Appel Stratégique" },
   "contact.mapPlaceholder": { en: "Google Maps embed will be added here", es: "Aqu\u00ed se agregar\u00E1 la integraci\u00F3n de Google Maps", fr: "L\u2019int\u00E9gration Google Maps sera ajout\u00E9e ici" },
 
   // ============================================================
