@@ -210,13 +210,12 @@ export async function createAssessmentLead(
       properties: {
         Name: { title: [{ text: { content: data.contact.name } }] },
         Email: { email: data.contact.email },
-        Phone: { phone_number: data.contact.phone || null },
+        ...(data.contact.phone?.trim() ? { Phone: { phone_number: data.contact.phone.trim() } } : {}),
         Source: { select: { name: "Assessment" } },
         Status: { select: { name: "New" } },
         "Lead ID": { rich_text: [{ text: { content: data.id } }] },
         Score: { number: data.overallScore },
         "Score Breakdown": { rich_text: [{ text: { content: scoreBreakdown } }] },
-        "Recommended Services": { rich_text: [{ text: { content: "" } }] },
         Locale: { select: { name: localeLabel(data.locale) } },
       },
     }),
@@ -263,7 +262,7 @@ export async function createContactLead(
       properties: {
         Name: { title: [{ text: { content: data.name } }] },
         Email: { email: data.email },
-        Phone: { phone_number: data.phone || null },
+        ...(data.phone?.trim() ? { Phone: { phone_number: data.phone.trim() } } : {}),
         Source: { select: { name: "Contact Form" } },
         Status: { select: { name: "New" } },
         "Service Interest": { rich_text: [{ text: { content: data.serviceInterest || "" } }] },
