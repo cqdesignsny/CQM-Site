@@ -3,6 +3,7 @@ import { createContactLead } from "@/lib/notion/client";
 import { sendSlackNotification } from "@/lib/slack";
 import { siteConfig } from "@/lib/site-config";
 import { checkForSpam, getClientIP } from "@/lib/spam-protection";
+import { buildContactNotificationEmail } from "@/lib/email-templates";
 
 interface ContactBody {
   name: string;
@@ -62,10 +63,18 @@ export async function POST(request: NextRequest) {
       console.error("[Contact] Notion create error:", notionError);
     }
 
-    // 2. Send notification email via Resend
+    // 2. Send branded notification email via Resend
     const resendKey = process.env.RESEND_API_KEY;
     if (resendKey) {
       try {
+        const html = buildContactNotificationEmail({
+          name: body.name,
+          email: body.email,
+          phone: body.phone,
+          serviceInterest: body.serviceInterest,
+          message: body.message,
+        });
+
         await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
@@ -77,20 +86,7 @@ export async function POST(request: NextRequest) {
             to: siteConfig.contact.email,
             reply_to: body.email,
             subject: `New Contact: ${body.name}${body.serviceInterest ? ` — ${body.serviceInterest}` : ""}`,
-            html: `
-              <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-                <h2 style="color: #111;">New Contact Form Submission</h2>
-                <table style="width: 100%; border-collapse: collapse;">
-                  <tr><td style="padding: 8px 0; color: #888; width: 120px;">Name</td><td style="padding: 8px 0;">${body.name}</td></tr>
-                  <tr><td style="padding: 8px 0; color: #888;">Email</td><td style="padding: 8px 0;"><a href="mailto:${body.email}">${body.email}</a></td></tr>
-                  ${body.phone ? `<tr><td style="padding: 8px 0; color: #888;">Phone</td><td style="padding: 8px 0;">${body.phone}</td></tr>` : ""}
-                  ${body.serviceInterest ? `<tr><td style="padding: 8px 0; color: #888;">Service</td><td style="padding: 8px 0;">${body.serviceInterest}</td></tr>` : ""}
-                </table>
-                <div style="margin-top: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px;">
-                  <p style="margin: 0; color: #333; white-space: pre-wrap;">${body.message}</p>
-                </div>
-              </div>
-            `,
+            html,
           }),
         });
       } catch (emailErr) {

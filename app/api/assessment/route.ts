@@ -10,6 +10,7 @@ import {
 import { ASSESSMENT_QUESTIONS } from "@/lib/assessment/questions";
 import type { AssessmentAnswer, Locale } from "@/lib/proposals/types";
 import { siteConfig } from "@/lib/site-config";
+import { buildAssessmentEmail } from "@/lib/email-templates";
 import { checkForSpam, getClientIP } from "@/lib/spam-protection";
 
 interface AssessmentBody {
@@ -102,25 +103,23 @@ export async function POST(request: NextRequest) {
       console.error("[Assessment] Slack error:", slackError);
     }
 
-    // 3. Send results email to the user
+    // 3. Send branded results email to the user (with recommended plan)
     const resendKey = process.env.RESEND_API_KEY;
     if (resendKey) {
       try {
-        const scoreColor = overallScore >= 70 ? "#22c55e" : overallScore >= 40 ? "#f59e0b" : "#ef4444";
-        const categoryRows = categoryScores
-          .map((c: { category: string; score: number }) => {
-            const barColor = c.score >= 70 ? "#22c55e" : c.score >= 40 ? "#f59e0b" : "#ef4444";
-            return `<tr>
-              <td style="padding: 8px 0; color: #888;">${c.category}</td>
-              <td style="padding: 8px 0;">
-                <div style="background: #222; border-radius: 8px; height: 12px; width: 100%; overflow: hidden;">
-                  <div style="background: ${barColor}; height: 100%; width: ${c.score}%; border-radius: 8px;"></div>
-                </div>
-              </td>
-              <td style="padding: 8px 0; text-align: right; font-weight: bold; color: ${barColor}; width: 50px;">${c.score}%</td>
-            </tr>`;
-          })
-          .join("");
+        const recommendedPlan: "startup" | "growth" | "scale" =
+          overallScore <= 40 ? "startup" : overallScore <= 65 ? "growth" : "scale";
+
+        const html = buildAssessmentEmail({
+          name: body.contact.name,
+          overallScore,
+          categoryScores: categoryScores.map((cs) => ({
+            category: cs.category,
+            percentage: cs.percentage,
+          })),
+          recommendedPlan,
+          assessmentId,
+        });
 
         await fetch("https://api.resend.com/emails", {
           method: "POST",
@@ -133,22 +132,7 @@ export async function POST(request: NextRequest) {
             to: body.contact.email,
             reply_to: siteConfig.contact.email,
             subject: `Your Marketing Score: ${overallScore}/100`,
-            html: `
-              <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #111; color: #fff; border-radius: 12px;">
-                <h2 style="color: #fff; margin-bottom: 4px;">Hey ${body.contact.name},</h2>
-                <p style="color: #999; margin-top: 0;">Here are your marketing assessment results.</p>
-                <div style="text-align: center; padding: 24px 0;">
-                  <div style="display: inline-block; font-size: 48px; font-weight: bold; color: ${scoreColor};">${overallScore}<span style="font-size: 20px; color: #666;">/100</span></div>
-                </div>
-                <table style="width: 100%; border-collapse: collapse;">${categoryRows}</table>
-                <div style="text-align: center; margin-top: 24px;">
-                  <a href="https://creativequalitymarketing.com/proposals?from=assessment&id=${assessmentId}" style="display: inline-block; background: #dc2626; color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">Build Your Marketing Plan</a>
-                </div>
-                <p style="text-align: center; margin-top: 16px; font-size: 12px; color: #555;">
-                  <a href="https://creativequalitymarketing.com/assessment?results=${assessmentId}" style="color: #888;">View your full results online</a>
-                </p>
-              </div>
-            `,
+            html,
           }),
         });
       } catch (emailErr) {

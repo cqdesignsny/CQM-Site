@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createContactLead } from "@/lib/notion/client";
 import { sendSlackNotification } from "@/lib/slack";
 import { siteConfig } from "@/lib/site-config";
 import { checkForSpam, getClientIP } from "@/lib/spam-protection";
+import { buildROIEmail } from "@/lib/email-templates";
 
 interface ROIResultsBody {
   name: string;
@@ -50,23 +50,58 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 1. Save to Notion CRM
-    try {
-      await createContactLead({
-        name: body.name,
-        email: body.email,
-        serviceInterest: "ROI Calculator",
-        message: `Industry: ${body.industry} | Revenue: $${body.currentRevenue.toLocaleString()}/mo | Goal: $${body.revenueGoal.toLocaleString()}/mo | Customer Value: $${body.customerValue.toLocaleString()} | Current Spend: $${body.currentSpend.toLocaleString()}/mo | Recommended: $${body.recommendedBudget.toLocaleString()}/mo | ROI: ${body.roiMultiplier}x | Timeline: ${body.timelineMonths}`,
-        locale: "en",
-      });
-    } catch (notionError) {
-      console.error("[ROI] Notion create error:", notionError);
+    const resendKey = process.env.RESEND_API_KEY;
+    const notionKey = process.env.NOTION_API_KEY;
+    const dbId = process.env.NOTION_LEADS_DATABASE_ID;
+
+    // 1. Save to Notion CRM with proper "ROI Calculator" source tag
+    if (notionKey && dbId) {
+      try {
+        const roiDetails = `Industry: ${body.industry} | Revenue: $${body.currentRevenue.toLocaleString()}/mo | Goal: $${body.revenueGoal.toLocaleString()}/mo | Customer Value: $${body.customerValue.toLocaleString()} | Current Spend: $${body.currentSpend.toLocaleString()}/mo | Recommended: $${body.recommendedBudget.toLocaleString()}/mo | ROI: ${body.roiMultiplier}x | Timeline: ${body.timelineMonths}`;
+
+        const response = await fetch("https://api.notion.com/v1/pages", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${notionKey}`,
+            "Content-Type": "application/json",
+            "Notion-Version": "2022-06-28",
+          },
+          body: JSON.stringify({
+            parent: { database_id: dbId },
+            properties: {
+              Name: { title: [{ text: { content: body.name } }] },
+              Email: { email: body.email },
+              Source: { select: { name: "ROI Calculator" } },
+              Status: { select: { name: "New" } },
+              "Service Interest": { rich_text: [{ text: { content: "ROI Calculator" } }] },
+              Message: { rich_text: [{ text: { content: roiDetails } }] },
+              Locale: { select: { name: "EN" } },
+            },
+          }),
+        });
+
+        if (!response.ok) {
+          const err = await response.text();
+          console.error("[ROI] Notion create error:", err);
+        }
+      } catch (notionError) {
+        console.error("[ROI] Notion create error:", notionError);
+      }
     }
 
-    // 2. Send results email to the user
-    const resendKey = process.env.RESEND_API_KEY;
+    // 2. Send branded results email to the user
     if (resendKey) {
       try {
+        const html = buildROIEmail({
+          name: body.name,
+          industry: body.industry,
+          currentRevenue: body.currentRevenue,
+          revenueGoal: body.revenueGoal,
+          recommendedBudget: body.recommendedBudget,
+          roiMultiplier: body.roiMultiplier,
+          timelineMonths: body.timelineMonths,
+        });
+
         await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
@@ -78,28 +113,7 @@ export async function POST(request: NextRequest) {
             to: body.email,
             reply_to: siteConfig.contact.email,
             subject: `Your Marketing ROI Analysis — ${body.industry}`,
-            html: `
-              <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #111; color: #fff; border-radius: 12px;">
-                <h2 style="color: #fff; margin-bottom: 4px;">Hey ${body.name},</h2>
-                <p style="color: #999; margin-top: 0;">Here's your personalized marketing budget analysis.</p>
-
-                <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
-                  <tr><td style="padding: 10px 0; color: #888; border-bottom: 1px solid #222;">Industry</td><td style="padding: 10px 0; text-align: right; font-weight: bold; border-bottom: 1px solid #222;">${body.industry}</td></tr>
-                  <tr><td style="padding: 10px 0; color: #888; border-bottom: 1px solid #222;">Current Revenue</td><td style="padding: 10px 0; text-align: right; font-weight: bold; border-bottom: 1px solid #222;">$${body.currentRevenue.toLocaleString()}/mo</td></tr>
-                  <tr><td style="padding: 10px 0; color: #888; border-bottom: 1px solid #222;">Revenue Goal</td><td style="padding: 10px 0; text-align: right; font-weight: bold; border-bottom: 1px solid #222;">$${body.revenueGoal.toLocaleString()}/mo</td></tr>
-                  <tr><td style="padding: 10px 0; color: #888; border-bottom: 1px solid #222;">Recommended Budget</td><td style="padding: 10px 0; text-align: right; font-weight: bold; color: #dc2626; border-bottom: 1px solid #222;">$${body.recommendedBudget.toLocaleString()}/mo</td></tr>
-                  <tr><td style="padding: 10px 0; color: #888; border-bottom: 1px solid #222;">Expected ROI</td><td style="padding: 10px 0; text-align: right; font-weight: bold; color: ${body.roiMultiplier >= 5 ? "#22c55e" : "#f59e0b"}; border-bottom: 1px solid #222;">${body.roiMultiplier}x return</td></tr>
-                  <tr><td style="padding: 10px 0; color: #888;">Expected Timeline</td><td style="padding: 10px 0; text-align: right; font-weight: bold;">${body.timelineMonths}</td></tr>
-                </table>
-
-                <div style="text-align: center; margin-top: 24px;">
-                  <a href="https://creativequalitymarketing.com/assessment" style="display: inline-block; background: #dc2626; color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">Take the Full Marketing Assessment</a>
-                </div>
-                <p style="text-align: center; margin-top: 12px;">
-                  <a href="https://creativequalitymarketing.com/roi-calculator" style="color: #888; font-size: 12px; text-decoration: none;">Run the calculator again</a>
-                </p>
-              </div>
-            `,
+            html,
           }),
         });
       } catch (emailErr) {
@@ -117,6 +131,7 @@ export async function POST(request: NextRequest) {
           "Industry": body.industry,
           "Current Revenue": `$${body.currentRevenue.toLocaleString()}/mo`,
           "Revenue Goal": `$${body.revenueGoal.toLocaleString()}/mo`,
+          "Current Spend": `$${body.currentSpend.toLocaleString()}/mo`,
           "Recommended Budget": `$${body.recommendedBudget.toLocaleString()}/mo`,
           "ROI": `${body.roiMultiplier}x`,
           "Timeline": body.timelineMonths,
@@ -135,7 +150,7 @@ export async function POST(request: NextRequest) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${resendKey}`,
           },
-          body: JSON.stringify({ email: body.email }),
+          body: JSON.stringify({ email: body.email, firstName: body.name }),
         });
       } catch (nlErr) {
         console.error("[ROI] Newsletter opt-in error:", nlErr);
