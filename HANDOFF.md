@@ -128,6 +128,21 @@ Applied to:
 9. **Analytics scripts**: GA4, Meta Pixel, TikTok Pixel, LinkedIn Partner ID (env vars ready, just need the IDs)
 10. ~~**Dedicated OG image**~~: ✅ Done (1200x630 branded image)
 
+### Weekly AI Newsletter Pipeline (Ready to Build)
+
+Full plan in Claude memory (`project_weekly_newsletter.md`). Summary:
+
+1. **Mon-Thu:** Automated agent gathers the week's biggest AI news
+2. **Friday 8:00 PM:** Slack reminder to #cqmarketing. Cesar sits down with Claude for 15 min.
+3. **Friday night:** Claude asks questions, Cesar gives his takes. Blog post gets written in his voice.
+4. **Saturday:** Blog post publishes + email excerpt auto-sends to newsletter subscribers with CTA to read full article on site.
+
+**To build this, need:**
+- React Email template for newsletter (Resend skills installed, ready to build)
+- "Weekly AI Roundup" blog category added to the blog system
+- Scheduled task or N8N workflow for news gathering + Friday Slack reminder
+- First session with Cesar to establish voice/format
+
 ### Lower Priority (Ongoing)
 11. **Client stories**: Get real metrics, logos, and case study details for Advanced Skin Med Spa, Mark Vieira Comedy, Rectified, Level Aesthetics, Elko
 12. **Blog content expansion**: More articles, deeper content, trending topics
