@@ -15,7 +15,7 @@ import { siteConfig } from "@/lib/site-config";
 
 interface CreateProposalBody {
   locale: Locale;
-  contact: { name: string; email: string; phone: string };
+  contact: { name: string; email: string; phone: string; newsletterOptIn?: boolean };
   referredBy: string;
   selectedServices: SelectedService[];
   customLineItems: CustomLineItem[];
@@ -84,24 +84,25 @@ export async function POST(request: NextRequest) {
       updatedAt: now,
     };
 
-    // 1. Save to Notion CRM
-    try {
-      const notionPageId = await createProposalLead(proposal);
-      proposal.notionPageId = notionPageId;
-    } catch (notionError) {
-      console.error("[Proposals] Notion create error:", notionError);
-    }
+    const resendKey = process.env.RESEND_API_KEY?.trim();
+    const promises: Promise<unknown>[] = [];
 
-    // 2. Send email via Resend (non-blocking)
-    try {
-      await sendProposalEmail(proposal, proposal.locale);
-    } catch (emailError) {
-      console.error("[Proposals] Email send error:", emailError);
-    }
+    // 1. Notion CRM
+    promises.push(
+      createProposalLead(proposal)
+        .then((id) => { proposal.notionPageId = id; })
+        .catch((e) => console.error("[Proposals] Notion error:", String(e)))
+    );
 
-    // 3. Slack notification (non-blocking)
-    try {
-      await sendSlackNotification({
+    // 2. Email to client (with BCC to Cesar)
+    promises.push(
+      sendProposalEmail(proposal, proposal.locale)
+        .catch((e) => console.error("[Proposals] Email error:", e))
+    );
+
+    // 3. Slack
+    promises.push(
+      sendSlackNotification({
         event: "proposal_created",
         name: proposal.contact.name,
         email: proposal.contact.email,
@@ -115,10 +116,21 @@ export async function POST(request: NextRequest) {
           "Referred By": proposal.referredBy,
           "View": `${siteConfig.url}/proposals/view/${proposal.id}`,
         },
-      });
-    } catch (slackError) {
-      console.error("[Proposals] Slack error:", slackError);
+      }).catch((e) => console.error("[Proposals] Slack error:", e))
+    );
+
+    // 4. Newsletter opt-in
+    if (body.contact.newsletterOptIn && process.env.RESEND_AUDIENCE_ID && resendKey) {
+      promises.push(
+        fetch(`https://api.resend.com/audiences/${process.env.RESEND_AUDIENCE_ID}/contacts`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${resendKey}` },
+          body: JSON.stringify({ email: body.contact.email, firstName: body.contact.name }),
+        }).catch((e) => console.error("[Proposals] Newsletter error:", e))
+      );
     }
+
+    await Promise.allSettled(promises);
 
     const viewUrl = `${siteConfig.url}/proposals/view/${proposal.id}`;
 

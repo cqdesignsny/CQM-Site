@@ -86,7 +86,7 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
     (s) => s.category === state.activeCategory
   );
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (newsletterOptIn: boolean = true) => {
     dispatch({ type: "SUBMIT_START" });
 
     try {
@@ -95,7 +95,7 @@ export function ProposalBuilder({ searchParamsPromise }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           locale,
-          contact: state.contact,
+          contact: { ...state.contact, newsletterOptIn },
           referredBy: state.referredBy,
           selectedServices: selectedArray,
           customLineItems: state.customLineItems,

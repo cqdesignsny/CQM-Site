@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type { Locale } from "@/lib/proposals/types";
 import { t } from "@/lib/proposals/translations";
 import { formatCurrency } from "@/lib/proposals/calculations";
@@ -32,7 +33,7 @@ interface Props {
   serviceCount: number;
   onUpdateContact: (field: "name" | "email" | "phone", value: string) => void;
   onSetReferredBy: (value: string) => void;
-  onSubmit: () => void;
+  onSubmit: (newsletterOptIn: boolean) => void;
   onBack: () => void;
   onReset: () => void;
 }
@@ -52,6 +53,7 @@ export function ContactStep({
   onBack,
   onReset,
 }: Props) {
+  const [newsletterOptIn, setNewsletterOptIn] = useState(true);
   const isValid = contact.name.trim().length > 0 && contact.email.trim().length > 0;
 
   // Success state
@@ -175,6 +177,17 @@ export function ContactStep({
         </div>
       </div>
 
+      {/* Newsletter opt-in */}
+      <label className="mt-4 flex cursor-pointer items-start gap-3 rounded-lg border border-white/10 bg-white/5 p-3">
+        <input
+          type="checkbox"
+          checked={newsletterOptIn}
+          onChange={(e) => setNewsletterOptIn(e.target.checked)}
+          className="mt-0.5 h-4 w-4 shrink-0 accent-red-600"
+        />
+        <span className="text-xs text-white/50">{t("newsletter.optIn", locale)}</span>
+      </label>
+
       {/* Error message */}
       {submitError && (
         <div className="mt-4 rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-sm text-red-400">
@@ -192,7 +205,7 @@ export function ContactStep({
           {t("btn.back", locale)}
         </button>
         <button
-          onClick={onSubmit}
+          onClick={() => onSubmit(newsletterOptIn)}
           disabled={!isValid || isSubmitting}
           className="flex items-center gap-2 rounded-lg bg-red-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-700 disabled:opacity-50 disabled:hover:bg-red-600"
         >
