@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { sendSlackNotification } from "@/lib/slack";
 import { siteConfig } from "@/lib/site-config";
 import { checkForSpam, getClientIP } from "@/lib/spam-protection";
-import { buildROIEmail } from "@/lib/email-templates";
+import { buildROIEmail, buildROINotificationEmail } from "@/lib/email-templates";
 
 interface ROIResultsBody {
   name: string;
@@ -118,6 +118,37 @@ export async function POST(request: NextRequest) {
         });
       } catch (emailErr) {
         console.error("[ROI] Email error:", emailErr);
+      }
+
+      // Send notification email to Cesar
+      try {
+        const notifHtml = buildROINotificationEmail({
+          name: body.name,
+          email: body.email,
+          industry: body.industry,
+          currentRevenue: body.currentRevenue,
+          revenueGoal: body.revenueGoal,
+          currentSpend: body.currentSpend,
+          recommendedBudget: body.recommendedBudget,
+          roiMultiplier: body.roiMultiplier,
+          timelineMonths: body.timelineMonths,
+        });
+
+        await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendKey}`,
+          },
+          body: JSON.stringify({
+            from: `${siteConfig.name} <noreply@creativequalitymarketing.com>`,
+            to: siteConfig.contact.email,
+            subject: `📊 New ROI Lead: ${body.name} — ${body.industry}`,
+            html: notifHtml,
+          }),
+        });
+      } catch (notifErr) {
+        console.error("[ROI] Notification email error:", notifErr);
       }
     }
 

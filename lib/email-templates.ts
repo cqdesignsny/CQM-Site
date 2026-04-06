@@ -166,9 +166,101 @@ interface ContactEmailData {
   message: string;
 }
 
+// ─── Assessment Notification (to Cesar) ───
+
+interface AssessmentNotificationData {
+  name: string;
+  email: string;
+  phone?: string;
+  overallScore: number;
+  categoryScores: { category: string; percentage: number }[];
+  recommendedPlan: string;
+  assessmentId: string;
+}
+
+export function buildAssessmentNotificationEmail(data: AssessmentNotificationData): string {
+  const scoreColor = data.overallScore >= 70 ? "#22c55e" : data.overallScore >= 40 ? "#f59e0b" : "#ef4444";
+
+  const categoryRows = data.categoryScores
+    .map((c) => {
+      const barColor = c.percentage >= 70 ? "#22c55e" : c.percentage >= 40 ? "#f59e0b" : "#ef4444";
+      return statRow(
+        c.category.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase()),
+        `<span style="color: ${barColor}; font-weight: bold;">${c.percentage}%</span>`,
+      );
+    })
+    .join("");
+
+  const body = `
+    <div style="margin-bottom: 16px; padding: 12px 16px; background: ${BRAND_RED}22; border-radius: 8px; border-left: 4px solid ${BRAND_RED};">
+      <p style="margin: 0; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: ${BRAND_RED};">New Assessment Lead</p>
+    </div>
+
+    <table style="width: 100%; border-collapse: collapse;">
+      ${statRow("Name", data.name)}
+      ${statRow("Email", `<a href="mailto:${data.email}" style="color: ${BRAND_RED}; text-decoration: none;">${data.email}</a>`)}
+      ${data.phone ? statRow("Phone", `<a href="tel:${data.phone}" style="color: ${BRAND_RED}; text-decoration: none;">${data.phone}</a>`) : ""}
+      ${statRow("Overall Score", `<span style="color: ${scoreColor}; font-size: 18px;">${data.overallScore}/100</span>`)}
+      ${statRow("Recommended Plan", data.recommendedPlan)}
+    </table>
+
+    <h3 style="color: #fff; margin: 20px 0 8px; font-size: 14px;">Score Breakdown</h3>
+    <table style="width: 100%; border-collapse: collapse;">${categoryRows}</table>
+
+    ${ctaButton("View in Notion", "https://www.notion.so/b98905d3f971471ea6da0bdc0a1f8af0")}
+  `;
+
+  return emailWrapper(body);
+}
+
+// ─── ROI Calculator Notification (to Cesar) ───
+
+interface ROINotificationData {
+  name: string;
+  email: string;
+  industry: string;
+  currentRevenue: number;
+  revenueGoal: number;
+  currentSpend: number;
+  recommendedBudget: number;
+  roiMultiplier: number;
+  timelineMonths: string;
+}
+
+export function buildROINotificationEmail(data: ROINotificationData): string {
+  const roiColor = data.roiMultiplier >= 5 ? "#22c55e" : data.roiMultiplier >= 3 ? "#f59e0b" : "#ef4444";
+
+  const body = `
+    <div style="margin-bottom: 16px; padding: 12px 16px; background: ${BRAND_RED}22; border-radius: 8px; border-left: 4px solid ${BRAND_RED};">
+      <p style="margin: 0; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: ${BRAND_RED};">New ROI Calculator Lead</p>
+    </div>
+
+    <table style="width: 100%; border-collapse: collapse;">
+      ${statRow("Name", data.name)}
+      ${statRow("Email", `<a href="mailto:${data.email}" style="color: ${BRAND_RED}; text-decoration: none;">${data.email}</a>`)}
+      ${statRow("Industry", data.industry)}
+      ${statRow("Current Revenue", `$${data.currentRevenue.toLocaleString()}/mo`)}
+      ${statRow("Revenue Goal", `$${data.revenueGoal.toLocaleString()}/mo`)}
+      ${statRow("Current Spend", `$${data.currentSpend.toLocaleString()}/mo`)}
+      ${statRow("Recommended Budget", `$${data.recommendedBudget.toLocaleString()}/mo`, BRAND_RED)}
+      ${statRow("Expected ROI", `${data.roiMultiplier}x return`, roiColor)}
+      ${statRow("Timeline", data.timelineMonths)}
+    </table>
+
+    ${ctaButton("View in Notion", "https://www.notion.so/b98905d3f971471ea6da0bdc0a1f8af0")}
+  `;
+
+  return emailWrapper(body);
+}
+
+// ─── Contact Form Notification (to Cesar) ───
+
 export function buildContactNotificationEmail(data: ContactEmailData): string {
   const body = `
-    <h2 style="color: #fff; margin: 0 0 16px;">New Contact Form Submission</h2>
+    <div style="margin-bottom: 16px; padding: 12px 16px; background: ${BRAND_RED}22; border-radius: 8px; border-left: 4px solid ${BRAND_RED};">
+      <p style="margin: 0; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: ${BRAND_RED};">New Contact Form Lead</p>
+    </div>
+    <h2 style="color: #fff; margin: 0 0 16px;">Contact Form Submission</h2>
     <table style="width: 100%; border-collapse: collapse;">
       ${statRow("Name", data.name)}
       ${statRow("Email", `<a href="mailto:${data.email}" style="color: ${BRAND_RED}; text-decoration: none;">${data.email}</a>`)}

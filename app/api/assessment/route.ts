@@ -10,7 +10,7 @@ import {
 import { ASSESSMENT_QUESTIONS } from "@/lib/assessment/questions";
 import type { AssessmentAnswer, Locale } from "@/lib/proposals/types";
 import { siteConfig } from "@/lib/site-config";
-import { buildAssessmentEmail } from "@/lib/email-templates";
+import { buildAssessmentEmail, buildAssessmentNotificationEmail } from "@/lib/email-templates";
 import { checkForSpam, getClientIP } from "@/lib/spam-protection";
 
 interface AssessmentBody {
@@ -105,10 +105,11 @@ export async function POST(request: NextRequest) {
 
     // 3. Send branded results email to the user (with recommended plan)
     const resendKey = process.env.RESEND_API_KEY;
+    const recommendedPlan: "startup" | "growth" | "scale" =
+      overallScore <= 40 ? "startup" : overallScore <= 65 ? "growth" : "scale";
+
     if (resendKey) {
       try {
-        const recommendedPlan: "startup" | "growth" | "scale" =
-          overallScore <= 40 ? "startup" : overallScore <= 65 ? "growth" : "scale";
 
         const html = buildAssessmentEmail({
           name: body.contact.name,
@@ -137,6 +138,35 @@ export async function POST(request: NextRequest) {
         });
       } catch (emailErr) {
         console.error("[Assessment] Email error:", emailErr);
+      }
+
+      // Send notification email to Cesar
+      try {
+        const notifHtml = buildAssessmentNotificationEmail({
+          name: body.contact.name,
+          email: body.contact.email,
+          phone: body.contact.phone,
+          overallScore,
+          categoryScores: categoryScores.map((cs) => ({ category: cs.category, percentage: cs.percentage })),
+          recommendedPlan: recommendedPlan === "startup" ? "Business Startup ($750/mo)" : recommendedPlan === "growth" ? "Business Growth ($1,500/mo)" : "Business Scale ($3,000/mo)",
+          assessmentId,
+        });
+
+        await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendKey}`,
+          },
+          body: JSON.stringify({
+            from: `${siteConfig.name} <noreply@creativequalitymarketing.com>`,
+            to: siteConfig.contact.email,
+            subject: `🎯 New Assessment: ${body.contact.name} scored ${overallScore}/100`,
+            html: notifHtml,
+          }),
+        });
+      } catch (notifErr) {
+        console.error("[Assessment] Notification email error:", notifErr);
       }
     }
 
