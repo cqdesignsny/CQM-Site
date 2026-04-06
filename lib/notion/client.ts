@@ -7,30 +7,68 @@ import type {
 import { siteConfig } from "@/lib/site-config";
 
 // ---------------------------------------------------------------------------
-// Singleton Notion client
+// Module-level env vars (read once at initialization, like HVP pattern)
+// ---------------------------------------------------------------------------
+
+const NOTION_API_KEY = process.env.NOTION_API_KEY;
+const NOTION_LEADS_DATABASE_ID = process.env.NOTION_LEADS_DATABASE_ID;
+const NOTION_LEADS_DATASOURCE_ID = process.env.NOTION_LEADS_DATASOURCE_ID;
+
+// ---------------------------------------------------------------------------
+// Singleton Notion client (only used for queries and proposal creation)
 // ---------------------------------------------------------------------------
 
 let notionClient: Client | null = null;
 
 function getNotion(): Client {
   if (notionClient) return notionClient;
-  const apiKey = process.env.NOTION_API_KEY;
-  if (!apiKey) throw new Error("Missing NOTION_API_KEY environment variable");
-  notionClient = new Client({ auth: apiKey });
+  if (!NOTION_API_KEY) throw new Error("Missing NOTION_API_KEY environment variable");
+  notionClient = new Client({ auth: NOTION_API_KEY });
   return notionClient;
 }
 
 function getLeadsDbId(): string {
-  const id = process.env.NOTION_LEADS_DATABASE_ID;
-  if (!id) throw new Error("Missing NOTION_LEADS_DATABASE_ID environment variable");
-  return id;
+  if (!NOTION_LEADS_DATABASE_ID) throw new Error("Missing NOTION_LEADS_DATABASE_ID environment variable");
+  return NOTION_LEADS_DATABASE_ID;
 }
 
 /** Data source ID for querying (v5 SDK uses dataSources.query) */
 function getLeadsDataSourceId(): string {
-  const id = process.env.NOTION_LEADS_DATASOURCE_ID;
-  if (!id) throw new Error("Missing NOTION_LEADS_DATASOURCE_ID environment variable");
-  return id;
+  if (!NOTION_LEADS_DATASOURCE_ID) throw new Error("Missing NOTION_LEADS_DATASOURCE_ID environment variable");
+  return NOTION_LEADS_DATASOURCE_ID;
+}
+
+// ---------------------------------------------------------------------------
+// Direct API helper (matches HVP's working pattern exactly)
+// ---------------------------------------------------------------------------
+
+async function notionCreatePage(properties: Record<string, unknown>): Promise<string> {
+  if (!NOTION_API_KEY || !NOTION_LEADS_DATABASE_ID) {
+    console.log("[Notion] Not configured, skipping");
+    return "not-configured";
+  }
+
+  const response = await fetch("https://api.notion.com/v1/pages", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${NOTION_API_KEY}`,
+      "Notion-Version": "2022-06-28",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      parent: { database_id: NOTION_LEADS_DATABASE_ID },
+      properties,
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    console.error("[Notion] API error:", response.status, error);
+    return "notion-error";
+  }
+
+  const page = await response.json();
+  return page.id;
 }
 
 // ---------------------------------------------------------------------------
@@ -190,30 +228,26 @@ export interface AssessmentLeadData {
 export async function createAssessmentLead(
   data: AssessmentLeadData
 ): Promise<string> {
-  const notion = getNotion();
-
   const scoreBreakdown = data.categoryScores
     .map((cs) => `${cs.category}: ${cs.percentage}%`)
     .join(", ");
 
-  console.log("[Notion] Creating assessment lead for:", data.contact.name, data.contact.email);
+  const properties: Record<string, unknown> = {
+    Name: { title: [{ text: { content: data.contact.name } }] },
+    Email: { email: data.contact.email },
+    Source: { select: { name: "Assessment" } },
+    Status: { select: { name: "New" } },
+    "Lead ID": { rich_text: [{ text: { content: data.id } }] },
+    Score: { number: data.overallScore },
+    "Score Breakdown": { rich_text: [{ text: { content: scoreBreakdown } }] },
+    Locale: { select: { name: localeLabel(data.locale || "en") } },
+  };
 
-  const response = await notion.pages.create({
-    parent: { database_id: getLeadsDbId() },
-    properties: {
-      Name: { title: [{ text: { content: data.contact.name } }] },
-      Email: { email: data.contact.email },
-      Source: { select: { name: "Assessment" } },
-      Status: { select: { name: "New" } },
-      "Lead ID": textProp(data.id),
-      Score: { number: data.overallScore },
-      "Score Breakdown": textProp(scoreBreakdown),
-      Locale: { select: { name: localeLabel(data.locale || "en") } },
-    },
-  });
+  if (data.contact.phone) {
+    properties.Phone = { phone_number: data.contact.phone };
+  }
 
-  console.log("[Notion] Assessment lead created:", response.id);
-  return response.id;
+  return notionCreatePage(properties);
 }
 
 // ---------------------------------------------------------------------------
@@ -232,25 +266,21 @@ export interface ContactLeadData {
 export async function createContactLead(
   data: ContactLeadData
 ): Promise<string> {
-  const notion = getNotion();
+  const properties: Record<string, unknown> = {
+    Name: { title: [{ text: { content: data.name } }] },
+    Email: { email: data.email },
+    Source: { select: { name: "Contact Form" } },
+    Status: { select: { name: "New" } },
+    "Service Interest": { rich_text: [{ text: { content: data.serviceInterest || "" } }] },
+    Message: { rich_text: [{ text: { content: data.message } }] },
+    Locale: { select: { name: localeLabel((data.locale as Locale) || "en") } },
+  };
 
-  console.log("[Notion] Creating contact lead for:", data.name, data.email);
+  if (data.phone) {
+    properties.Phone = { phone_number: data.phone };
+  }
 
-  const response = await notion.pages.create({
-    parent: { database_id: getLeadsDbId() },
-    properties: {
-      Name: { title: [{ text: { content: data.name } }] },
-      Email: { email: data.email },
-      Source: { select: { name: "Contact Form" } },
-      Status: { select: { name: "New" } },
-      "Service Interest": textProp(data.serviceInterest || ""),
-      Message: textProp(data.message),
-      Locale: { select: { name: localeLabel((data.locale as Locale) || "en") } },
-    },
-  });
-
-  console.log("[Notion] Contact lead created:", response.id);
-  return response.id;
+  return notionCreatePage(properties);
 }
 
 // ---------------------------------------------------------------------------
