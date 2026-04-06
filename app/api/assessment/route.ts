@@ -9,16 +9,29 @@ import {
 } from "@/lib/assessment/scoring";
 import type { AssessmentAnswer, Locale } from "@/lib/proposals/types";
 import { siteConfig } from "@/lib/site-config";
+import { checkForSpam, getClientIP } from "@/lib/spam-protection";
 
 interface AssessmentBody {
   locale: Locale;
   contact: { name: string; email: string; phone: string; newsletterOptIn?: boolean };
   answers: AssessmentAnswer[];
+  _hp?: string;
+  _t?: number;
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body: AssessmentBody = await request.json();
+
+    // Spam check
+    const spamResult = checkForSpam({
+      honeypot: body._hp,
+      formLoadedAt: body._t,
+      ip: getClientIP(request.headers),
+    });
+    if (spamResult.isSpam) {
+      return NextResponse.json({ success: true });
+    }
 
     if (!body.contact?.name || !body.contact?.email) {
       return NextResponse.json(

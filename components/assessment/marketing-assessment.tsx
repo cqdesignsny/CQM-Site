@@ -19,6 +19,7 @@ import {
   Check,
 } from "lucide-react";
 import { track } from "@/lib/analytics";
+import { useSpamProtection } from "@/lib/use-spam-protection";
 
 /* ───────────────────── State ───────────────────── */
 
@@ -266,6 +267,7 @@ function ShareResults({
 export function MarketingAssessment() {
   const { locale, pt } = useProposalLocale();
   const [state, dispatch] = useReducer(assessmentReducer, initialState);
+  const { spamFields } = useSpamProtection();
 
   const currentQ = ASSESSMENT_QUESTIONS[state.currentQuestion];
   const currentAnswer = state.answers.get(currentQ?.id ?? "");
@@ -284,6 +286,7 @@ export function MarketingAssessment() {
           locale,
           contact: state.contact,
           answers: Array.from(state.answers.values()),
+          ...spamFields,
         }),
       });
 
@@ -493,7 +496,7 @@ export function MarketingAssessment() {
                 }
                 className="mt-0.5 h-4 w-4 shrink-0 accent-red-600"
               />
-              <span className="text-xs text-white/50">Send me weekly AI and marketing news and updates</span>
+              <span className="text-xs text-white/50">{pt("newsletter.optIn")}</span>
             </label>
 
             {state.error && (

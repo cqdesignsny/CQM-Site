@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createContactLead } from "@/lib/notion/client";
 import { sendSlackNotification } from "@/lib/slack";
 import { siteConfig } from "@/lib/site-config";
+import { checkForSpam, getClientIP } from "@/lib/spam-protection";
 
 interface ContactBody {
   name: string;
@@ -11,11 +12,24 @@ interface ContactBody {
   message: string;
   locale?: string;
   newsletterOptIn?: boolean;
+  _hp?: string;
+  _t?: number;
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body: ContactBody = await request.json();
+
+    // Spam check
+    const spamResult = checkForSpam({
+      honeypot: body._hp,
+      formLoadedAt: body._t,
+      ip: getClientIP(request.headers),
+    });
+    if (spamResult.isSpam) {
+      // Return success to not tip off bots, but don't process
+      return NextResponse.json({ success: true });
+    }
 
     // Validate required fields
     if (!body.name?.trim() || !body.email?.trim() || !body.message?.trim()) {

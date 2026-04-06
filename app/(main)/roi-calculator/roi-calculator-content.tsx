@@ -24,6 +24,7 @@ import {
 import { useLanguage } from "@/lib/i18n/context";
 import { track } from "@/lib/analytics";
 import { CTABanner } from "@/components/sections/cta-banner";
+import { useSpamProtection } from "@/lib/use-spam-protection";
 import { VerticalText } from "@/components/ui/vertical-text";
 
 /* ------------------------------------------------------------------ */
@@ -244,6 +245,7 @@ export function ROICalculatorContent() {
   const [selectOpen, setSelectOpen] = useState(false);
   const [leadForm, setLeadForm] = useState({ name: "", email: "", newsletterOptIn: true });
   const [leadStatus, setLeadStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const { spamFields } = useSpamProtection();
 
   const hasInteracted = useRef(false);
   useEffect(() => {
@@ -859,6 +861,7 @@ export function ROICalculatorContent() {
                             roiMultiplier: results.roiMultiplier,
                             timelineLabel: results.timelineMonths.label,
                             timelineMonths: `${results.timelineMonths.min}-${results.timelineMonths.max} months`,
+                            ...spamFields,
                           }),
                         });
                         setLeadStatus("sent");

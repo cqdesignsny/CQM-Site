@@ -469,7 +469,9 @@ export const siteTranslations: TranslationMap = {
     es: "Lo último en IA, marketing y negocios. Nada de spam, solo lo bueno.",
     fr: "Le dernier cri en IA, marketing et business. Pas de spam, que du bon.",
   },
+  "newsletter.namePlaceholder": { en: "Your name", es: "Tu nombre", fr: "Votre nom" },
   "newsletter.placeholder": { en: "Your email", es: "Tu email", fr: "Votre email" },
+  "newsletter.phonePlaceholder": { en: "Phone (optional)", es: "Teléfono (opcional)", fr: "Téléphone (optionnel)" },
   "newsletter.submit": { en: "Subscribe", es: "Suscribirse", fr: "S'abonner" },
   "newsletter.success": {
     en: "You're in! Check your inbox (and maybe spam, we won't judge).",

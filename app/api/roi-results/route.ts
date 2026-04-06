@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createContactLead } from "@/lib/notion/client";
 import { sendSlackNotification } from "@/lib/slack";
 import { siteConfig } from "@/lib/site-config";
+import { checkForSpam, getClientIP } from "@/lib/spam-protection";
 
 interface ROIResultsBody {
   name: string;
@@ -16,11 +17,23 @@ interface ROIResultsBody {
   roiMultiplier: number;
   timelineLabel: string;
   timelineMonths: string;
+  _hp?: string;
+  _t?: number;
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body: ROIResultsBody = await request.json();
+
+    // Spam check
+    const spamResult = checkForSpam({
+      honeypot: body._hp,
+      formLoadedAt: body._t,
+      ip: getClientIP(request.headers),
+    });
+    if (spamResult.isSpam) {
+      return NextResponse.json({ success: true });
+    }
 
     if (!body.name?.trim() || !body.email?.trim()) {
       return NextResponse.json(

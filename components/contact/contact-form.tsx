@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
 import { useLanguage } from "@/lib/i18n/context";
+import { useSpamProtection } from "@/lib/use-spam-protection";
 
 /**
  * Contact Form Component
@@ -21,6 +22,7 @@ export function ContactForm() {
     newsletterOptIn: true,
   });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const { honeypot, setHoneypot, spamFields } = useSpamProtection();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,6 +47,7 @@ export function ContactForm() {
           source: "contact_page",
           newsletterOptIn: formData.newsletterOptIn,
           referrer: typeof window !== "undefined" ? document.referrer : undefined,
+          ...spamFields,
         }),
       });
 
@@ -148,6 +151,18 @@ export function ContactForm() {
             setFormData({ ...formData, message: e.target.value })
           }
           className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        />
+      </div>
+
+      {/* Honeypot — hidden from humans, bots auto-fill it */}
+      <div className="absolute -left-[9999px]" aria-hidden="true">
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
         />
       </div>
 
