@@ -173,6 +173,15 @@ export function Footer() {
           <p>
             &copy; {currentYear} {siteConfig.name}. {t("footer.copyright")}
           </p>
+          <div className="mt-3 flex justify-center gap-4 text-xs">
+            <Link href="/privacy" className="text-white/40 transition-colors hover:text-white/70">
+              Privacy Policy
+            </Link>
+            <span className="text-white/20">|</span>
+            <Link href="/terms" className="text-white/40 transition-colors hover:text-white/70">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
