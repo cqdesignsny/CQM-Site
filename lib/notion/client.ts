@@ -223,8 +223,9 @@ export async function createAssessmentLead(
 
   if (!response.ok) {
     const err = await response.text();
-    console.error("[Notion] Assessment lead creation failed:", err);
-    throw new Error(`Notion API error: ${response.status}`);
+    console.error("[Notion] Assessment lead creation failed:", response.status, err);
+    // Don't throw — let the rest of the pipeline (email, newsletter) continue
+    return "notion-error";
   }
 
   const page = await response.json();
@@ -274,8 +275,8 @@ export async function createContactLead(
 
   if (!response.ok) {
     const err = await response.text();
-    console.error("[Notion] Contact lead creation failed:", err);
-    throw new Error(`Notion API error: ${response.status}`);
+    console.error("[Notion] Contact lead creation failed:", response.status, err);
+    return "notion-error";
   }
 
   const page = await response.json();
