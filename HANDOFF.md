@@ -1,6 +1,6 @@
 # CQM Site Handoff
 
-Updated: **April 6, 2026**
+Updated: **April 6, 2026 (End of Day)**
 
 ## Repo State
 
@@ -21,6 +21,52 @@ Education first sales tool. NOT a typical agency service listing site. The site 
 - We learn your business first, then build marketing around what makes you different
 
 **Copy tone:** Human, casual, funny, personable, knowledgeable. No dashes of any kind. Comedy woven throughout. Like talking to a friend who happens to be really good at marketing.
+
+## What Was Built (April 6, 2026 — Session 6: SEO/AEO + Design Polish)
+
+### SEO Overhaul
+1. **Metadata fixes**: Assessment title expanded, home description trimmed, studio title shortened. All under limits.
+2. **Service page keywords**: All 9 service pages now have 10 local + intent keywords each (was 3). Descriptions include "Serving Newburgh NY and the Hudson Valley."
+3. **Service areas hub page**: `/service-areas` with 12 linked county cards organized by region.
+4. **12 county landing pages** for "near me" targeting:
+   - Hudson Valley: Orange, Dutchess, Ulster, Rockland, Westchester, Sullivan counties
+   - NYC Metro: New York City (all boroughs), Northern New Jersey, Fairfield County CT
+   - South Florida: Broward County (Fort Lauderdale), Miami-Dade, Palm Beach
+   - Each has unique content, 10-12 towns, LocalBusiness + BreadcrumbList schema, 8-10 keywords
+5. **Sitemap**: Updated with all 12 county pages + terms + privacy. Total: 71 pages.
+6. **Google Search Console**: Sitemap submitted (58 pages discovered), key URLs submitted for indexing.
+
+### AEO (Answer Engine Optimization)
+7. **llms.txt rewritten**: Full company description, service areas with towns, FAQ section (5 Q&As), detailed services, contact info. Serves both standard and .well-known paths.
+8. **FAQ schema**: Already on all service pages (verified).
+9. **AI bot access**: All major LLM crawlers explicitly allowed in robots.txt.
+
+### Design Polish (UI UX Pro Max)
+10. **Typography**: Outfit font for headings (bold, confident, modern), Inter for body. Loaded via next/font/google.
+11. **Shadow system**: 4-level dark mode elevation shadows + red glow variants.
+12. **Button micro-interactions**: Scale up (1.02x) + red glow on hover, scale down (0.97x) on press.
+13. **Card hover utility**: `.card-hover` class for consistent lift + shadow.
+
+### Legal Pages
+14. **Terms of Service** (`/terms`): 20 sections combining old TOS + Terms & Conditions + HVP-style language.
+15. **Privacy Policy** (`/privacy`): 13 sections covering all data collection, third-party services, cookies, user rights.
+16. **Footer**: Privacy Policy + Terms of Service links in bottom bar.
+
+### Booking Flow
+17. **BookingButtons component**: Virtual Meeting (Calendly discovery call) + Office Visit (Calendly office meeting). Studio pages use studio tour only.
+18. **Contact page redesigned**: Booking first (prominent card), then contact info cards (glassmorphism), then form. Both buttons red.
+19. **Studio hero**: "Book a Studio Tour" goes directly to Calendly (no scroll anchor).
+
+### Lead Capture Completed
+20. **Proposal builder**: Newsletter opt-in added, email template rebranded with CQM dark theme, parallel API execution.
+21. **All notification emails**: Red logo header for visibility in light/dark email clients.
+
+### Infrastructure
+22. **Notion fix**: Trailing newline in env var was root cause. Fixed with printf + .trim() safeguard.
+23. **MX/SPF/DKIM/DMARC**: All DNS records added for Google Workspace email delivery.
+24. **Calendly API**: Personal Access Token connected, event types mapped, saved to memory.
+25. **UI UX Pro Max skill**: Installed for design intelligence (67 styles, 161 palettes, 57 font pairings).
+26. **Resend skills**: react-email, resend, resend-cli, agent-email-inbox, email-best-practices all installed.
 
 ## What Was Built (April 5-6, 2026 — Session 5: Full Production Launch)
 
@@ -194,12 +240,18 @@ Applied to:
 - **MX records missing (2026-04-06)**: Moving nameservers to Vercel dropped all DNS records including MX. Google Workspace email stopped working. Fix: added all 5 Google MX records + SPF + DKIM + DMARC via `vercel dns add`.
 - **Sequential API timeouts (2026-04-06)**: Assessment API had 6 sequential `await` calls that could exceed Vercel's 10s timeout. Fix: switched to `Promise.allSettled()` for parallel execution.
 
-### Active / In Progress
-1. **LinkedIn Pixel**: May add in the future (NEXT_PUBLIC_LINKEDIN_PARTNER_ID)
+### Next Phase: Automation + Content Engine
+1. **Weekly newsletter pipeline**: Friday 8PM session with Cesar → Saturday blog + email blast. Need: React Email template, "Weekly AI Roundup" blog category, scheduled Slack reminder to #cqmarketing. Full plan in memory (`project_weekly_newsletter.md`).
+2. **Content agent**: Automated news gathering via N8N or Claude scheduled tasks. Agent scans AI/marketing news Mon-Thu, compiles draft for Friday session.
+3. **Continue UI/UX polish**: Use UI UX Pro Max skill to keep elevating the design. Focus on mobile experience, animation smoothness, and interactive elements.
 
-### Medium Priority (Post Launch)
-3. **Weekly newsletter pipeline**: Friday 8PM session → Saturday blog + email blast. Full plan in memory. Need: React Email template, "Weekly AI Roundup" blog category, scheduled Slack reminder.
-4. **Content agent**: N8N or Claude scheduled tasks for automated news gathering.
+### Lower Priority
+4. **LinkedIn Pixel**: Add when ready (NEXT_PUBLIC_LINKEDIN_PARTNER_ID)
+5. **Client stories**: Real metrics and case study details for Work page
+6. **Google Business Profile**: Photos, weekly posts, review strategy
+7. **Local citations**: Yelp, Bing Places, Apple Maps, BBB, Clutch, UpCity
+8. **Backlink building**: Chamber of Commerce, local directories, guest posts
+9. **Fort Lauderdale office**: Physical presence for South Florida market (when ready)
 
 ### Weekly AI Newsletter Pipeline (Ready to Build)
 
