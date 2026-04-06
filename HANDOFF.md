@@ -191,8 +191,8 @@ All domains are live on Vercel, pointing to the CQM-Site project. Primary domain
 | `NOTION_LEADS_DATASOURCE_ID` | ✅ Set | 90a477ee-0de7-42a6-b25b-21ba2a2e8614 |
 | `SLACK_WEBHOOK_URL` | ✅ Set | #cqm-leads channel |
 | `DEFAULT_PROPOSAL_EMAIL` | ✅ Set | cesar@creativequalitymarketing.com |
-| `RESEND_API_KEY` | ⏳ Needed | Get from resend.com/api-keys |
-| `RESEND_AUDIENCE_ID` | ⏳ Needed | Create audience in resend.com/audiences |
+| `RESEND_API_KEY` | ✅ Set | CQM Resend account (re_Zonhfenb...) |
+| `RESEND_AUDIENCE_ID` | ✅ Set | b5a5ad4b-0fde-4a63-be1b-4baaa62f22d3 |
 | `NEXT_PUBLIC_GA4_ID` | ⏳ Needed | Google Analytics 4 ID |
 | `NEXT_PUBLIC_META_PIXEL_ID` | ⏳ Needed | Meta Pixel ID |
 | `NEXT_PUBLIC_TIKTOK_PIXEL_ID` | ⏳ Needed | TikTok Pixel ID |
