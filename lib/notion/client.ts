@@ -227,6 +227,8 @@ export async function createAssessmentLead(
     body: JSON.stringify(requestBody),
   });
 
+  console.log("[Notion] Assessment response status:", response.status, response.statusText);
+
   if (!response.ok) {
     const err = await response.text();
     console.error("[Notion] Assessment lead FAILED:", response.status, err.slice(0, 500));

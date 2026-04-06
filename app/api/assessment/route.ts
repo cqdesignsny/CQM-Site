@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
 
     // 1. Save to Notion CRM
     try {
-      await createAssessmentLead({
+      const notionResult = await createAssessmentLead({
         id: assessmentId,
         contact: body.contact,
         overallScore,
@@ -65,8 +65,9 @@ export async function POST(request: NextRequest) {
         recommendedServices,
         locale: body.locale || "en",
       });
+      console.log("[Assessment] Notion result:", notionResult);
     } catch (notionError) {
-      console.error("[Assessment] Notion create error:", notionError);
+      console.error("[Assessment] Notion create error:", String(notionError));
     }
 
     // 2. Slack notification (non-blocking) — includes answers
