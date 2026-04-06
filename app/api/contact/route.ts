@@ -49,85 +49,60 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 1. Save to Notion CRM
-    try {
-      await createContactLead({
-        name: body.name,
-        email: body.email,
-        phone: body.phone,
-        serviceInterest: body.serviceInterest,
-        message: body.message,
-        locale: body.locale,
-      });
-    } catch (notionError) {
-      console.error("[Contact] Notion create error:", notionError);
-    }
-
-    // 2. Send branded notification email via Resend
     const resendKey = process.env.RESEND_API_KEY;
-    if (resendKey) {
-      try {
-        const html = buildContactNotificationEmail({
-          name: body.name,
-          email: body.email,
-          phone: body.phone,
-          serviceInterest: body.serviceInterest,
-          message: body.message,
-        });
+    const promises: Promise<unknown>[] = [];
 
-        await fetch("https://api.resend.com/emails", {
+    // 1. Notion CRM
+    promises.push(
+      createContactLead({
+        name: body.name, email: body.email, phone: body.phone,
+        serviceInterest: body.serviceInterest, message: body.message, locale: body.locale,
+      }).catch((e) => console.error("[Contact] Notion error:", String(e)))
+    );
+
+    // 2. Slack
+    promises.push(
+      sendSlackNotification({
+        event: "contact_submitted", name: body.name, email: body.email, phone: body.phone,
+        details: {
+          "Service Interest": body.serviceInterest,
+          "Message": body.message.length > 200 ? body.message.slice(0, 200) + "…" : body.message,
+        },
+      }).catch((e) => console.error("[Contact] Slack error:", e))
+    );
+
+    // 3. Email to Cesar
+    if (resendKey) {
+      const html = buildContactNotificationEmail({
+        name: body.name, email: body.email, phone: body.phone,
+        serviceInterest: body.serviceInterest, message: body.message,
+      });
+      promises.push(
+        fetch("https://api.resend.com/emails", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${resendKey}`,
-          },
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${resendKey}` },
           body: JSON.stringify({
             from: `${siteConfig.name} <noreply@creativequalitymarketing.com>`,
-            to: siteConfig.contact.email,
-            reply_to: body.email,
+            to: siteConfig.contact.email, reply_to: body.email,
             subject: `New Contact: ${body.name}${body.serviceInterest ? ` — ${body.serviceInterest}` : ""}`,
             html,
           }),
-        });
-      } catch (emailErr) {
-        console.error("[Contact] Email error:", emailErr);
+        }).catch((e) => console.error("[Contact] Email error:", e))
+      );
+
+      // 4. Newsletter opt-in
+      if (body.newsletterOptIn && process.env.RESEND_AUDIENCE_ID) {
+        promises.push(
+          fetch(`https://api.resend.com/audiences/${process.env.RESEND_AUDIENCE_ID}/contacts`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${resendKey}` },
+            body: JSON.stringify({ email: body.email }),
+          }).catch((e) => console.error("[Contact] Newsletter error:", e))
+        );
       }
     }
 
-    // 3. Newsletter opt-in (non-blocking)
-    if (body.newsletterOptIn && process.env.RESEND_AUDIENCE_ID && resendKey) {
-      try {
-        await fetch("https://api.resend.com/audiences/" + process.env.RESEND_AUDIENCE_ID + "/contacts", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${resendKey}`,
-          },
-          body: JSON.stringify({ email: body.email }),
-        });
-      } catch (nlErr) {
-        console.error("[Contact] Newsletter opt-in error:", nlErr);
-      }
-    }
-
-    // 4. Slack notification (non-blocking)
-    try {
-      await sendSlackNotification({
-        event: "contact_submitted",
-        name: body.name,
-        email: body.email,
-        phone: body.phone,
-        details: {
-          "Service Interest": body.serviceInterest,
-          "Message":
-            body.message.length > 200
-              ? body.message.slice(0, 200) + "…"
-              : body.message,
-        },
-      });
-    } catch (slackError) {
-      console.error("[Contact] Slack error:", slackError);
-    }
+    await Promise.allSettled(promises);
 
     return NextResponse.json({ success: true });
   } catch (error) {
