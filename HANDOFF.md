@@ -135,27 +135,70 @@ Applied to:
 14. **Assessment refinements**: Tweak scoring weights or question wording based on real usage data
 15. **Design polish**: Mobile responsiveness review, animation performance, card design iteration based on Cesar's feedback
 
-## Environment Variables
+## Domain Portfolio
 
-```env
-# Required for production
-NOTION_API_KEY=<Notion integration token>
-NOTION_LEADS_DATABASE_ID=b98905d3f971471ea6da0bdc0a1f8af0
-NOTION_LEADS_DATASOURCE_ID=90a477ee-0de7-42a6-b25b-21ba2a2e8614
-RESEND_API_KEY=<CQM Resend account key>
-SLACK_WEBHOOK_URL=<Slack incoming webhook for #cqm-leads>
-DEFAULT_PROPOSAL_EMAIL=cesar@creativequalitymarketing.com
+All domains are live on Vercel, pointing to the CQM-Site project. Primary domain is `creativequalitymarketing.com`. All others currently redirect to it. Nameservers for all are `ns1.vercel-dns.com` / `ns2.vercel-dns.com` via GoDaddy.
 
-# Newsletter
-RESEND_AUDIENCE_ID=<Resend audience ID for newsletter subscribers>
+### Active Domains (all Valid Configuration in Vercel)
 
-# Optional
-NEXT_PUBLIC_CALENDLY_URL=<Calendly embed URL>
-NEXT_PUBLIC_GA4_ID=<Google Analytics 4 ID>
-NEXT_PUBLIC_META_PIXEL_ID=<Meta Pixel ID>
-NEXT_PUBLIC_TIKTOK_PIXEL_ID=<TikTok Pixel ID>
-NEXT_PUBLIC_LINKEDIN_PARTNER_ID=<LinkedIn Partner ID>
-```
+| Domain | Current Use | Future Potential |
+|--------|-------------|------------------|
+| `creativequalitymarketing.com` | **Primary domain** | Main site, SEO authority hub |
+| `www.creativequalitymarketing.com` | Redirect to primary | Standard www redirect |
+| `cqmteam.com` | Redirect | Short internal URL for team. Could host an internal dashboard, client portal, or team resources page |
+| `cqmarketer.com` | Redirect | Personal brand landing page for Cesar. Could be a one-page "hire me" or speaking page |
+| `cqfunnels.com` | Redirect | **High potential.** Standalone funnel education microsite or lead magnet. "Free Marketing Funnel Guide" landing page. Could host the How Marketing Works content as a standalone lead gen tool |
+| `cqdesigns.com` | Redirect | Design portfolio showcase. Could host a design-only service landing page targeting "web design" searches |
+| `cqdesigns.co` | Redirect | Same as above, trendy .co TLD. Good for design-focused campaigns |
+| `smartsocialads.com` | Redirect | **High potential.** Standalone landing page for paid ads services. "Get a free ads audit" lead magnet. Great for ad campaigns where the domain IS the pitch |
+| `cqdigitalmarketing.com` | Redirect | SEO play. Could rank for "digital marketing" searches. Good for a long-form SEO landing page |
+| `cqmarketing.club` | Redirect | Community/membership play. Could be a free resource library, exclusive content hub, or referral program signup |
+| `creativequalitymedia.com` | Redirect | Media/video/podcast focused landing page. Could showcase HVP studio content separately |
+| `cqdesignsny.com` | Redirect | Local SEO play for "designs NY" searches. Location-specific landing page |
+| `cqm-site.vercel.app` | Vercel default | Dev/preview URL |
+
+### Email Opportunities
+
+- `cesar@creativequalitymarketing.com` — Primary business email
+- `cqmarketing.com` — Already forwarding to primary as shorthand
+- Could verify additional domains in Resend to send marketing emails from branded addresses:
+  - `hello@cqfunnels.com` for funnel-related email sequences
+  - `team@smartsocialads.com` for ads-related outreach
+  - `newsletter@cqmarketing.club` for newsletter sends
+- Each domain can have its own email identity in Resend for campaign segmentation
+
+### Future Landing Page Ideas
+
+1. **cqfunnels.com** — "The Marketing Funnel Explained" lead magnet. Capture email, deliver PDF, nurture into client. This is the easiest win.
+2. **smartsocialads.com** — "Free Ads Audit" landing page. Run ads TO this domain (meta irony). Form captures lead, auto-creates Notion entry, Slack notification.
+3. **cqmarketing.club** — "CQM Insider" resource library. Free tools, templates, guides. Email-gated content. Builds authority and list.
+4. **cqdesigns.com** — Portfolio showcase for design work. Before/after website redesigns, brand identity work, social media graphics.
+5. **creativequalitymedia.com** — Media production showcase. Video reels, podcast episodes, studio tours. Could be a separate Vercel project or route group.
+
+### Technical Notes
+
+- All domains are on GoDaddy with nameservers pointing to Vercel
+- To create a standalone landing page on any domain: create a new Vercel project, deploy it, and move that domain to the new project
+- Alternatively, use Vercel rewrites in next.config.ts to serve different content on different domains from the same project
+- For email sending from additional domains: verify each domain separately in Resend dashboard
+
+## Environment Variables (Vercel Production)
+
+| Variable | Status | Notes |
+|----------|--------|-------|
+| `NOTION_API_KEY` | ✅ Set | CQM Integration token |
+| `NOTION_LEADS_DATABASE_ID` | ✅ Set | b98905d3f971471ea6da0bdc0a1f8af0 |
+| `NOTION_LEADS_DATASOURCE_ID` | ✅ Set | 90a477ee-0de7-42a6-b25b-21ba2a2e8614 |
+| `SLACK_WEBHOOK_URL` | ✅ Set | #cqm-leads channel |
+| `DEFAULT_PROPOSAL_EMAIL` | ✅ Set | cesar@creativequalitymarketing.com |
+| `RESEND_API_KEY` | ⏳ Needed | Get from resend.com/api-keys |
+| `RESEND_AUDIENCE_ID` | ⏳ Needed | Create audience in resend.com/audiences |
+| `NEXT_PUBLIC_GA4_ID` | ⏳ Needed | Google Analytics 4 ID |
+| `NEXT_PUBLIC_META_PIXEL_ID` | ⏳ Needed | Meta Pixel ID |
+| `NEXT_PUBLIC_TIKTOK_PIXEL_ID` | ⏳ Needed | TikTok Pixel ID |
+| `NEXT_PUBLIC_LINKEDIN_PARTNER_ID` | ⏳ Needed | LinkedIn Partner ID |
+
+Calendly is hardcoded in components (not env var): `https://calendly.com/cq-marketing/office-meeting`
 
 ## Important Context for Next Session
 

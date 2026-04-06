@@ -201,4 +201,21 @@ npm run lint                  # Linting
 
 - Vercel auto deploys from `main`
 - Preview: `https://cqm-site.vercel.app`
-- Production: `https://creativequalitymarketing.com` (pending domain migration)
+- Production: `https://creativequalitymarketing.com`
+
+### Domain Portfolio (all live on Vercel, redirecting to primary)
+
+| Domain | Potential Use |
+|--------|-------------|
+| `creativequalitymarketing.com` | Primary (main site) |
+| `cqmteam.com` | Internal/team shorthand |
+| `cqmarketer.com` | Personal brand page |
+| `cqfunnels.com` | Funnel education lead magnet |
+| `cqdesigns.com` / `cqdesigns.co` | Design portfolio/landing page |
+| `smartsocialads.com` | Paid ads lead gen landing page |
+| `cqdigitalmarketing.com` | SEO landing page |
+| `cqmarketing.club` | Community/membership/resource hub |
+| `creativequalitymedia.com` | Media/video/podcast showcase |
+| `cqdesignsny.com` | Local SEO landing page |
+
+All managed via GoDaddy (nameservers → Vercel). See HANDOFF.md for full strategic breakdown.
