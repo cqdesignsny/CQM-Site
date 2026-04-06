@@ -63,6 +63,9 @@
   * {
     @apply border-border;
   }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), "Outfit", sans-serif;
+  }
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -93,7 +96,15 @@
   }
 
   .brand-section-title {
-    @apply text-sm font-semibold uppercase tracking-wide text-primary;
+    @apply text-sm font-semibold uppercase tracking-wide text-primary font-heading;
+  }
+
+  /* Elevated card hover — use on any card that should lift on hover */
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  .card-hover:hover {
+    @apply shadow-elevation-2 -translate-y-0.5;
   }
 
   .brand-highlight-text {

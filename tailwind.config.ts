@@ -9,6 +9,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        heading: ["var(--font-heading)", "Outfit", "sans-serif"],
+        body: ["var(--font-body)", "Inter", "sans-serif"],
+      },
+      boxShadow: {
+        "elevation-1": "0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3)",
+        "elevation-2": "0 4px 8px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3)",
+        "elevation-3": "0 10px 24px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.3)",
+        "elevation-4": "0 20px 48px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.3)",
+        "glow-red": "0 0 20px rgba(220, 38, 38, 0.15), 0 0 40px rgba(220, 38, 38, 0.05)",
+        "glow-red-lg": "0 0 30px rgba(220, 38, 38, 0.2), 0 0 60px rgba(220, 38, 38, 0.1)",
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
