@@ -2,10 +2,17 @@ import { buildPageMetadata } from "@/lib/seo";
 import { MarketingAssessment } from "@/components/assessment/marketing-assessment";
 
 export const metadata = buildPageMetadata({
-  title: "Marketing Assessment",
+  title: "Free Marketing Assessment | Grade Your Marketing | CQM",
   description:
-    "Take our free marketing assessment to find out how your business marketing stacks up. Get a personalized score and recommendations.",
+    "Take our free 10 question marketing assessment. Get your score, find gaps in your funnel, and see exactly what to fix first.",
   path: "/assessment",
+  keywords: [
+    "free marketing assessment",
+    "marketing quiz",
+    "marketing funnel assessment",
+    "marketing score",
+    "digital marketing audit",
+  ],
 });
 
 export default function AssessmentPage() {

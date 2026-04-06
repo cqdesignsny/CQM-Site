@@ -29,7 +29,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Full Funnel Marketing Agency | Newburgh NY | CQM",
   description:
-    "We learn your business first, then build marketing that actually works. Full funnel marketing agency in Newburgh, NY covering SEO, ads, social media, web, email, video, and AI.",
+    "Full funnel marketing agency in Newburgh, NY. We learn your business first, then build SEO, ads, social media, web, email, and video that works.",
   path: "/",
   keywords: [
     "marketing agency Newburgh NY",

@@ -3,7 +3,7 @@ import { buildPageMetadata } from "@/lib/seo";
 import { StudioContent } from "./studio-content";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Podcast & Content Production Studio | Creative Quality Marketing",
+  title: "Podcast & Video Production Studio | Newburgh NY | CQM",
   description:
     "Full-service podcast and video production studio. We shoot, edit, and distribute your content to major platforms including Spotify, Apple Podcasts, and YouTube.",
   path: "/studio",

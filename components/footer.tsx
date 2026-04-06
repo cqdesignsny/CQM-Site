@@ -41,6 +41,7 @@ export function Footer() {
       { href: "/blog", labelKey: "nav.blog" },
       { href: "/careers", labelKey: "footer.careers" },
       { href: "/contact", labelKey: "nav.contact" },
+      { href: "/service-areas", labelKey: "footer.serviceAreas" },
       { href: "https://hvpodcasting.com", labelKey: "footer.hvPodcasting", external: true },
     ],
   };

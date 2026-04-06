@@ -29,6 +29,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/assessment", priority: 0.85 },
     { path: "/proposals", priority: 0.7 },
     { path: "/careers", priority: 0.6 },
+    { path: "/service-areas", priority: 0.85 },
+    { path: "/terms", priority: 0.3 },
+    { path: "/privacy", priority: 0.3 },
     { path: "/llms.txt", priority: 0.4 },
     { path: "/.well-known/llms.txt", priority: 0.4 },
   ];

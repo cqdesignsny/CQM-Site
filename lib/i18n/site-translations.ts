@@ -458,7 +458,8 @@ export const siteTranslations: TranslationMap = {
   "footer.hvPodcasting": { en: "HV Podcasting", es: "HV Podcasting", fr: "HV Podcasting" },
   "footer.copyright": { en: "All rights reserved.", es: "Todos los derechos reservados.", fr: "Tous droits r\u00E9serv\u00E9s." },
   "footer.caseStudies": { en: "Case Studies", es: "Casos de \u00C9xito", fr: "\u00C9tudes de cas" },
-  "footer.careers": { en: "Careers", es: "Carreras", fr: "Carri\u00E8res" },
+  "footer.careers": { en: "Careers", es: "Carreras", fr: "Carrières" },
+  "footer.serviceAreas": { en: "Service Areas", es: "Áreas de Servicio", fr: "Zones de Service" },
 
     // ============================================================
   // NEWSLETTER
