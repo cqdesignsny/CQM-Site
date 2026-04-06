@@ -216,7 +216,7 @@ export async function createAssessmentLead(
         "Lead ID": { rich_text: [{ text: { content: data.id } }] },
         Score: { number: data.overallScore },
         "Score Breakdown": { rich_text: [{ text: { content: scoreBreakdown } }] },
-        "Recommended Services": { rich_text: [{ text: { content: data.recommendedServices.join(", ") } }] },
+        "Recommended Services": { rich_text: [{ text: { content: "" } }] },
         Locale: { select: { name: localeLabel(data.locale) } },
       },
     }),

@@ -95,7 +95,6 @@ export async function POST(request: NextRequest) {
           "Assessment ID": assessmentId,
           "Overall Score": `${overallScore}/100`,
           "Breakdown": scoreBreakdown,
-          "Recommended": recommendedServices.join(", ") || "None",
           "Answers": `\n${answersSummary}`,
         },
       });
@@ -142,7 +141,6 @@ export async function POST(request: NextRequest) {
                   <div style="display: inline-block; font-size: 48px; font-weight: bold; color: ${scoreColor};">${overallScore}<span style="font-size: 20px; color: #666;">/100</span></div>
                 </div>
                 <table style="width: 100%; border-collapse: collapse;">${categoryRows}</table>
-                ${recommendedServices.length > 0 ? `<p style="margin-top: 16px; color: #999;">We recommend focusing on: <strong style="color: #fff;">${recommendedServices.join(", ")}</strong></p>` : ""}
                 <div style="text-align: center; margin-top: 24px;">
                   <a href="https://creativequalitymarketing.com/proposals?from=assessment&id=${assessmentId}" style="display: inline-block; background: #dc2626; color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">Build Your Marketing Plan</a>
                 </div>
