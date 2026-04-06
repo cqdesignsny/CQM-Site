@@ -63,7 +63,11 @@ async function notionCreatePage(properties: Record<string, unknown>): Promise<st
 
   if (!response.ok) {
     const error = await response.text();
-    console.error("[Notion] API error:", response.status, error);
+    // Log in chunks so Vercel doesn't truncate
+    console.error("[Notion] ERRCODE:", response.status);
+    console.error("[Notion] ERRBODY1:", error.slice(0, 200));
+    console.error("[Notion] ERRBODY2:", error.slice(200, 400));
+    console.error("[Notion] PROPS:", JSON.stringify(Object.keys(properties)));
     return "notion-error";
   }
 
