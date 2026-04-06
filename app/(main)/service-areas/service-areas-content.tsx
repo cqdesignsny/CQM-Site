@@ -6,38 +6,7 @@ import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site-config";
 import { VerticalText } from "@/components/ui/vertical-text";
 
-const counties = [
-  {
-    name: "Orange County",
-    towns: ["Newburgh", "Middletown", "Goshen", "Monroe", "Warwick", "Cornwall", "Highland Falls", "New Windsor", "Woodbury", "Chester"],
-    description: "Our home base. We work with businesses across Orange County, from Main Street shops in Goshen to growing companies in Middletown. If you're in Orange County, we&apos;re your neighbors.",
-  },
-  {
-    name: "Dutchess County",
-    towns: ["Poughkeepsie", "Beacon", "Fishkill", "Wappingers Falls", "Hyde Park", "Rhinebeck", "Red Hook", "Millbrook", "Hopewell Junction", "LaGrangeville"],
-    description: "Just across the river. We serve Dutchess County businesses from Beacon's creative community to Poughkeepsie's growing business district. Full digital marketing, local SEO, and more.",
-  },
-  {
-    name: "Ulster County",
-    towns: ["Kingston", "New Paltz", "Saugerties", "Woodstock", "Ellenville", "Highland", "Rosendale", "Stone Ridge", "Marlboro", "Plattekill"],
-    description: "From Kingston's revitalized waterfront to the creative energy of Woodstock and New Paltz, we help Ulster County businesses stand out online and grow their customer base.",
-  },
-  {
-    name: "Rockland County",
-    towns: ["New City", "Nanuet", "Suffern", "Spring Valley", "Pearl River", "Nyack", "Haverstraw", "Stony Point", "West Nyack", "Congers"],
-    description: "Rockland County businesses get the same full funnel marketing we deliver to our neighbors. SEO, ads, social media, web design, and video production.",
-  },
-  {
-    name: "Westchester County",
-    towns: ["White Plains", "Yonkers", "New Rochelle", "Mount Vernon", "Tarrytown", "Peekskill", "Ossining", "Croton-on-Hudson", "Yorktown Heights", "Cortlandt"],
-    description: "We work with Westchester businesses competing in one of the most active markets in the state. From Peekskill to White Plains, we bring the same strategy and execution.",
-  },
-  {
-    name: "Sullivan County",
-    towns: ["Monticello", "Liberty", "Fallsburg", "Thompson", "Mamakating", "Bethel", "Callicoon", "Wurtsboro", "Livingston Manor", "Narrowsburg"],
-    description: "Sullivan County is growing, and so are the businesses here. We help local companies build their online presence, attract customers, and compete with bigger players.",
-  },
-];
+import { countyAreas } from "@/lib/service-areas";
 
 const services = [
   { name: "Web Design & Development", href: "/services/web" },
@@ -66,7 +35,7 @@ export function ServiceAreasContent() {
               Marketing Agency Serving the Hudson Valley and Beyond
             </h1>
             <p className="text-lg text-white/60">
-              Based in Newburgh, NY. We work with businesses across Orange County, Dutchess County, Ulster County, Rockland County, Westchester County, and Sullivan County. Full funnel marketing that helps local businesses compete and win.
+              Based in Newburgh, NY. We work with businesses across the Hudson Valley, NYC Metro, Northern New Jersey, Connecticut, and South Florida. Full funnel marketing that helps local businesses compete and win.
             </p>
           </div>
         </div>
@@ -76,20 +45,24 @@ export function ServiceAreasContent() {
       <section className="relative overflow-hidden py-20 md:py-28">
         <VerticalText text="AREAS" side="left" variant="light" />
         <div className="container relative mx-auto px-4">
-          <h2 className="mb-12 text-center text-3xl font-bold">Counties We Serve</h2>
+          <h2 className="mb-12 text-center text-3xl font-bold">Areas We Serve</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {counties.map((county) => (
-              <div
-                key={county.name}
-                className="rounded-2xl border bg-white/[0.03] p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-elevation-2"
+            {countyAreas.map((area) => (
+              <Link
+                key={area.slug}
+                href={`/service-areas/${area.slug}`}
+                className="group rounded-2xl border bg-white/[0.03] p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-elevation-2"
               >
+                <div className="mb-1 text-xs font-medium uppercase tracking-wider text-red-400">
+                  {area.region}
+                </div>
                 <div className="mb-3 flex items-center gap-2">
                   <MapPin className="h-5 w-5 text-red-500" />
-                  <h3 className="text-xl font-bold">{county.name}</h3>
+                  <h3 className="text-xl font-bold">{area.name}</h3>
                 </div>
-                <p className="mb-4 text-sm text-muted-foreground">{county.description}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {county.towns.map((town) => (
+                <p className="mb-4 text-sm text-muted-foreground">{area.description}</p>
+                <div className="mb-4 flex flex-wrap gap-1.5">
+                  {area.towns.slice(0, 6).map((town) => (
                     <span
                       key={town}
                       className="rounded-full border bg-muted/30 px-2.5 py-0.5 text-xs text-muted-foreground"
@@ -97,8 +70,16 @@ export function ServiceAreasContent() {
                       {town}
                     </span>
                   ))}
+                  {area.towns.length > 6 && (
+                    <span className="rounded-full border bg-muted/30 px-2.5 py-0.5 text-xs text-muted-foreground">
+                      +{area.towns.length - 6} more
+                    </span>
+                  )}
                 </div>
-              </div>
+                <span className="inline-flex items-center gap-1 text-sm font-medium text-red-400 transition-all group-hover:gap-2">
+                  Learn More <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -171,9 +152,9 @@ export function ServiceAreasContent() {
               postalCode: siteConfig.contact.postalCode,
               addressCountry: siteConfig.contact.country,
             },
-            areaServed: counties.map((county) => ({
+            areaServed: countyAreas.map((area) => ({
               "@type": "AdministrativeArea",
-              name: `${county.name}, New York`,
+              name: area.name,
             })),
             serviceArea: {
               "@type": "GeoCircle",

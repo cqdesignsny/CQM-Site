@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { getAllArticles } from "@/lib/blog/articles";
+import { countyAreas } from "@/lib/service-areas";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
@@ -57,5 +58,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: article.priority,
   }));
 
-  return [...staticEntries, ...blogEntries];
+  const countyEntries: MetadataRoute.Sitemap = countyAreas.map((area) => ({
+    url: `${siteConfig.url}/service-areas/${area.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  return [...staticEntries, ...countyEntries, ...blogEntries];
 }
