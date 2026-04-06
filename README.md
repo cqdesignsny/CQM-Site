@@ -2,7 +2,7 @@
 
 The education first marketing website for [Creative Quality Marketing](https://creativequalitymarketing.com), built with Next.js and Tailwind CSS.
 
-Last updated: **April 4, 2026**
+Last updated: **April 6, 2026**
 
 ## Quick Resume
 
@@ -128,11 +128,21 @@ Industry CPA benchmarks (2026, raised ~25% for rising ad costs):
 | `/api/contact` | POST | Contact form submission |
 | `/api/newsletter` | POST | Newsletter signup (Resend Audiences) |
 
-### Navigation (5 items)
+### Navigation
 
-How Marketing Works | Services | Studio | About | Tools (dropdown: Assessment, Proposals, ROI Calculator) | Blog | Contact
+How Marketing Works | Services | Studio | About | Tools (hover dropdown: Assessment, Proposals, ROI Calculator) | Blog | Contact
 
-Assessment, Proposals, Blog, Work, Resources, ROI Calculator accessible via footer and CTAs.
+### Lead Capture
+
+| Route | Purpose |
+|-------|---------|
+| `/api/contact` | Contact form → Notion + Slack + Email to Cesar |
+| `/api/assessment` | Assessment → Notion + Slack + Email to Cesar + Email to user (score + plan) |
+| `/api/roi-results` | ROI Calculator → Notion + Slack + Email to Cesar + Email to user (analysis) |
+| `/api/proposals` | Proposal Builder → Notion + Slack + Email |
+| `/api/newsletter` | Newsletter signup → Resend Audiences (name + email + phone) |
+
+All forms have spam protection (honeypot + time check + rate limiting) and newsletter opt-in checkbox.
 
 ## Key Architecture Patterns
 

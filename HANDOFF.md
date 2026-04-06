@@ -1,6 +1,6 @@
 # CQM Site Handoff
 
-Updated: **April 4, 2026**
+Updated: **April 6, 2026**
 
 ## Repo State
 
@@ -21,6 +21,68 @@ Education first sales tool. NOT a typical agency service listing site. The site 
 - We learn your business first, then build marketing around what makes you different
 
 **Copy tone:** Human, casual, funny, personable, knowledgeable. No dashes of any kind. Comedy woven throughout. Like talking to a friend who happens to be really good at marketing.
+
+## What Was Built (April 5-6, 2026 — Session 5: Full Production Launch)
+
+### Lead Capture System (Complete)
+All tools now have full lead capture with 3-channel notifications:
+
+| Tool | Notion | Slack | Email to Cesar | Email to Prospect | Newsletter Opt-in |
+|------|--------|-------|----------------|-------------------|-------------------|
+| Contact Form | ✅ "Contact Form" | ✅ | ✅ Branded notification | — | ✅ checkbox |
+| Assessment | ✅ "Assessment" | ✅ (with all answers) | ✅ Score + breakdown + plan | ✅ Score + recommended plan | ✅ checkbox |
+| ROI Calculator | ✅ "ROI Calculator" | ✅ (with all numbers) | ✅ Full budget analysis | ✅ Budget analysis | ✅ checkbox |
+| Proposal Builder | ✅ "Proposal" | ✅ | ✅ (existing) | ✅ (existing) | — |
+| Newsletter | Resend only | — | — | — | ✅ direct (name + email + phone) |
+
+### Branded Email Templates
+All emails use shared template system (`lib/email-templates.ts`):
+- CQM logo header on dark background
+- Red accent buttons and highlights
+- Footer with address, phone, website link
+- Assessment emails include recommended plan (Startup/Growth/Scale) with pricing
+- Each notification type has a red "NEW [TYPE] LEAD" banner
+
+### Spam Protection (All Forms)
+Three-layer protection on all API routes (`lib/spam-protection.ts`):
+1. **Honeypot field** — hidden input bots fill, humans never see
+2. **Time check** — rejects submissions under 2 seconds
+3. **Rate limiting** — 5 requests per minute per IP
+- Applied to: `/api/contact`, `/api/assessment`, `/api/newsletter`, `/api/roi-results`
+
+### Newsletter Expanded
+- Now collects name, email, and phone (for future SMS)
+- Name passed to Resend as firstName for personalized emails
+- Newsletter opt-in checkbox on all forms (checked by default)
+
+### Domain Portfolio (All Live)
+13 domains on Vercel, all redirecting to `creativequalitymarketing.com` via Next.js middleware (301 redirects). See Domain Portfolio section below.
+
+### Analytics
+- GA4 (G-ZHXZLZ8QLM) and Meta Pixel (246488367624617) active
+- Both track page views on every route change via next/script
+
+### Integrations Connected
+All 9 env vars set in Vercel production:
+- NOTION_API_KEY, NOTION_LEADS_DATABASE_ID, NOTION_LEADS_DATASOURCE_ID
+- RESEND_API_KEY, RESEND_AUDIENCE_ID
+- SLACK_WEBHOOK_URL, DEFAULT_PROPOSAL_EMAIL
+- NEXT_PUBLIC_GA4_ID, NEXT_PUBLIC_META_PIXEL_ID
+
+### Resend Skills Installed
+- `resend/react-email` — React component email builder
+- `resend/resend-skills` — Email sending + agent inbox
+- `resend/email-best-practices` — Deliverability + compliance
+- Resend CLI authenticated via macOS Keychain
+- Resend MCP server configured in Claude Code settings
+
+### Client Logo Slider
+- 26 client logos from Clients folder
+- Auto-scrolling with requestAnimationFrame
+- Mouse drag + touch swipe support
+- Per-logo scaling for consistent sizing
+- White logos inverted to black for visibility
+- Tyler Zitz + Sarah O'Flaherty testimonials in 2-column layout
 
 ## What Was Built (April 4, 2026 — Session 4: Launch Prep)
 
@@ -114,19 +176,26 @@ Applied to:
 
 ## Remaining To-Do List (Priority Order)
 
-### High Priority (Needed for Launch)
-1. **Domain migration**: Move `creativequalitymarketing.com` from Hostinger to Vercel
-2. **Set env vars in Vercel**: NOTION_API_KEY, NOTION_LEADS_DATABASE_ID, NOTION_LEADS_DATASOURCE_ID, RESEND_API_KEY, RESEND_AUDIENCE_ID, SLACK_WEBHOOK_URL, DEFAULT_PROPOSAL_EMAIL
-3. **Slack webhook**: Create #cqm-leads channel, configure Incoming Webhook URL
-4. **Resend domain verification**: Verify creativequalitymarketing.com in Resend once on Vercel (unblocks full email flow and newsletter)
-5. **Resend audience ID**: Create an audience in Resend dashboard, set RESEND_AUDIENCE_ID env var to activate newsletter signups
+### Completed (Launch)
+- ~~Domain migration~~: ✅ All domains on Vercel via GoDaddy nameservers
+- ~~Env vars~~: ✅ All 9 set in Vercel production
+- ~~Slack webhook~~: ✅ #cqm-leads channel connected
+- ~~Resend domain verification~~: ✅ creativequalitymarketing.com verified
+- ~~Resend audience~~: ✅ CQM Newsletter audience created
+- ~~Calendly embeds~~: ✅ Embedded on Contact + Studio
+- ~~OG image~~: ✅ 1200x630 branded image
+- ~~Analytics~~: ✅ GA4 + Meta Pixel active
+- ~~Lead capture~~: ✅ All tools connected to Notion + Slack + Resend
+- ~~Spam protection~~: ✅ Honeypot + time check + rate limiting on all forms
+- ~~Domain redirects~~: ✅ 301 middleware for all secondary domains
+
+### Active / In Progress
+1. **Notion assessment leads**: Debugging why Notion API rejects assessment entries (Slack + email work, Notion still failing). Direct API test works, investigating request body differences.
+2. **LinkedIn Pixel**: May add in the future (NEXT_PUBLIC_LINKEDIN_PARTNER_ID)
 
 ### Medium Priority (Post Launch)
-6. **Content agent**: Set up automated blog posting via N8N or Claude scheduled tasks. Agent should search for latest AI, marketing, business, and design news, write articles in Cesar's voice, and publish to the blog
-7. ~~**Calendly embeds**~~: ✅ Done (embedded on Contact + Studio)
-8. ~~**Google Maps embed**~~: ✅ Skipped (not needed, address in footer + schema is sufficient)
-9. **Analytics scripts**: GA4, Meta Pixel, TikTok Pixel, LinkedIn Partner ID (env vars ready, just need the IDs)
-10. ~~**Dedicated OG image**~~: ✅ Done (1200x630 branded image)
+3. **Weekly newsletter pipeline**: Friday 8PM session → Saturday blog + email blast. Full plan in memory. Need: React Email template, "Weekly AI Roundup" blog category, scheduled Slack reminder.
+4. **Content agent**: N8N or Claude scheduled tasks for automated news gathering.
 
 ### Weekly AI Newsletter Pipeline (Ready to Build)
 
