@@ -550,6 +550,7 @@ export const siteTranslations: TranslationMap = {
   "contact.form.podcastStudio": { en: "Podcast Studio", es: "Estudio de Podcasts", fr: "Studio de podcasts" },
   "contact.info.title": { en: "Contact Information", es: "Informaci\u00F3n de Contacto", fr: "Coordonn\u00E9es" },
   "contact.visit": { en: "Visit Our Studio", es: "Visite Nuestro Estudio", fr: "Visitez notre studio" },
+  "contact.sendMessage": { en: "Send a Message", es: "Enviar un Mensaje", fr: "Envoyer un Message" },
   "contact.schedule": { en: "Schedule a Call", es: "Agende una Llamada", fr: "Planifier un appel" },
   "booking.virtual": { en: "Virtual Meeting", es: "Reunión Virtual", fr: "Réunion Virtuelle" },
   "booking.inPerson": { en: "Office Visit", es: "Visita a la Oficina", fr: "Visite au Bureau" },

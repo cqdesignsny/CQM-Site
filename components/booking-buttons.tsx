@@ -56,7 +56,6 @@ export function BookingButtons({ variant = "default", location = "unknown", clas
       </Button>
       <Button
         size="lg"
-        variant="outline"
         onClick={() => handleClick("in_person", CALENDLY_URLS.inPerson)}
       >
         <MapPin className="mr-2 h-4 w-4" />
