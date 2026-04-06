@@ -190,31 +190,46 @@ export interface AssessmentLeadData {
 export async function createAssessmentLead(
   data: AssessmentLeadData
 ): Promise<string> {
-  const notion = getNotion();
+  const apiKey = process.env.NOTION_API_KEY;
+  if (!apiKey) throw new Error("Missing NOTION_API_KEY");
 
   const scoreBreakdown = data.categoryScores
     .map((cs) => `${cs.category}: ${cs.percentage}%`)
     .join(", ");
 
-  const response = await notion.pages.create({
-    parent: { database_id: getLeadsDbId() },
-    properties: {
-      Name: {
-        title: [{ text: { content: data.contact.name } }],
-      },
-      Email: { email: data.contact.email },
-      Phone: { phone_number: data.contact.phone || null },
-      Source: { select: { name: "Assessment" } },
-      Status: { select: { name: "New" } },
-      "Lead ID": textProp(data.id),
-      Score: { number: data.overallScore },
-      "Score Breakdown": textProp(scoreBreakdown),
-      "Recommended Services": textProp(data.recommendedServices.join(", ")),
-      Locale: { select: { name: localeLabel(data.locale) } },
+  // Use direct API call (SDK v5 has intermittent issues with page creation)
+  const response = await fetch("https://api.notion.com/v1/pages", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+      "Notion-Version": "2022-06-28",
     },
+    body: JSON.stringify({
+      parent: { database_id: getLeadsDbId() },
+      properties: {
+        Name: { title: [{ text: { content: data.contact.name } }] },
+        Email: { email: data.contact.email },
+        Phone: { phone_number: data.contact.phone || null },
+        Source: { select: { name: "Assessment" } },
+        Status: { select: { name: "New" } },
+        "Lead ID": { rich_text: [{ text: { content: data.id } }] },
+        Score: { number: data.overallScore },
+        "Score Breakdown": { rich_text: [{ text: { content: scoreBreakdown } }] },
+        "Recommended Services": { rich_text: [{ text: { content: data.recommendedServices.join(", ") } }] },
+        Locale: { select: { name: localeLabel(data.locale) } },
+      },
+    }),
   });
 
-  return response.id;
+  if (!response.ok) {
+    const err = await response.text();
+    console.error("[Notion] Assessment lead creation failed:", err);
+    throw new Error(`Notion API error: ${response.status}`);
+  }
+
+  const page = await response.json();
+  return page.id;
 }
 
 // ---------------------------------------------------------------------------
@@ -233,29 +248,39 @@ export interface ContactLeadData {
 export async function createContactLead(
   data: ContactLeadData
 ): Promise<string> {
-  const notion = getNotion();
+  const apiKey = process.env.NOTION_API_KEY;
+  if (!apiKey) throw new Error("Missing NOTION_API_KEY");
 
-  const response = await notion.pages.create({
-    parent: { database_id: getLeadsDbId() },
-    properties: {
-      Name: {
-        title: [{ text: { content: data.name } }],
-      },
-      Email: { email: data.email },
-      Phone: { phone_number: data.phone || null },
-      Source: { select: { name: "Contact Form" } },
-      Status: { select: { name: "New" } },
-      "Service Interest": textProp(data.serviceInterest || ""),
-      Message: textProp(data.message),
-      Locale: {
-        select: {
-          name: localeLabel((data.locale as Locale) || "en"),
-        },
-      },
+  const response = await fetch("https://api.notion.com/v1/pages", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+      "Notion-Version": "2022-06-28",
     },
+    body: JSON.stringify({
+      parent: { database_id: getLeadsDbId() },
+      properties: {
+        Name: { title: [{ text: { content: data.name } }] },
+        Email: { email: data.email },
+        Phone: { phone_number: data.phone || null },
+        Source: { select: { name: "Contact Form" } },
+        Status: { select: { name: "New" } },
+        "Service Interest": { rich_text: [{ text: { content: data.serviceInterest || "" } }] },
+        Message: { rich_text: [{ text: { content: data.message } }] },
+        Locale: { select: { name: localeLabel((data.locale as Locale) || "en") } },
+      },
+    }),
   });
 
-  return response.id;
+  if (!response.ok) {
+    const err = await response.text();
+    console.error("[Notion] Contact lead creation failed:", err);
+    throw new Error(`Notion API error: ${response.status}`);
+  }
+
+  const page = await response.json();
+  return page.id;
 }
 
 // ---------------------------------------------------------------------------

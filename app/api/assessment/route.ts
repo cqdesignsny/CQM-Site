@@ -7,6 +7,7 @@ import {
   calculateOverallScore,
   getRecommendedServices,
 } from "@/lib/assessment/scoring";
+import { ASSESSMENT_QUESTIONS } from "@/lib/assessment/questions";
 import type { AssessmentAnswer, Locale } from "@/lib/proposals/types";
 import { siteConfig } from "@/lib/site-config";
 import { checkForSpam, getClientIP } from "@/lib/spam-protection";
@@ -67,8 +68,24 @@ export async function POST(request: NextRequest) {
       console.error("[Assessment] Notion create error:", notionError);
     }
 
-    // 2. Slack notification (non-blocking)
+    // 2. Slack notification (non-blocking) — includes answers
     try {
+      // Build answers summary for Slack
+      const answersSummary = body.answers.map((a: AssessmentAnswer) => {
+        const q = ASSESSMENT_QUESTIONS.find((q) => q.id === a.questionId);
+        if (!q) return "";
+        const selectedOption = q.options[a.selectedOptionIndex];
+        const scoreEmoji = a.score >= 4 ? "🟢" : a.score >= 2 ? "🟡" : "🔴";
+        return `${scoreEmoji} ${q.question}\n   → ${selectedOption?.text || "N/A"} (${a.score}/5)`;
+      }).filter(Boolean).join("\n");
+
+      const scoreBreakdown = categoryScores
+        .map((cs) => {
+          const emoji = cs.percentage >= 70 ? "🟢" : cs.percentage >= 40 ? "🟡" : "🔴";
+          return `${emoji} ${cs.category}: ${cs.percentage}%`;
+        })
+        .join(" | ");
+
       await sendSlackNotification({
         event: "assessment_completed",
         name: body.contact.name,
@@ -77,7 +94,9 @@ export async function POST(request: NextRequest) {
         details: {
           "Assessment ID": assessmentId,
           "Overall Score": `${overallScore}/100`,
+          "Breakdown": scoreBreakdown,
           "Recommended": recommendedServices.join(", ") || "None",
+          "Answers": `\n${answersSummary}`,
         },
       });
     } catch (slackError) {
